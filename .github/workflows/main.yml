@@ -1,0 +1,52 @@
+﻿name: Build Game
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: Build Unity Project for Windows
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      # Cache
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: StandaloneWindows64
+
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build 
+
+      # Extract branch name for discord notification
+      - name: Extract branch name
+        uses: vazco/github-actions-branch-name@v1
+        id: branch
+
+      # Notify
+      - name: Discord notification
+        env:
+          ACTION_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_USERNAME: Git Cube
+          GITHUB_BRANCH: ${{ steps.branch.outputs.branch_name }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'A new Build of branch {{ GITHUB_BRANCH }} has been saved to our repository. Check it out at {{ ACTION_URL }}'
