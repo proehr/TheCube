@@ -25,6 +25,8 @@ namespace WorkerAI
         private void Update()
         {
             currentState = currentState.Process();
+
+            Debug.DrawRay(transform.position, this.agent.desiredVelocity, Color.red, 0.5f);
         }
 
         public void QueueCommand(Command command)

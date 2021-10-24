@@ -14,7 +14,8 @@ namespace WorkerAI
     {
         [SerializeField] private WorkerBehavior[] workerPrefabs;
         [SerializeField] private GameObject commandPostPrefab;
-        [SerializeField] private int workerPerCommand = 4;
+        [Min(0)] [SerializeField] private int workerPerCommand = 4;
+        [Min(0)] [SerializeField] private int spawnedWorkersPerClick = 1;
 
         [Header("UI")] [SerializeField] private Slider slider;
         [SerializeField] private TMP_Text text;
@@ -83,12 +84,18 @@ namespace WorkerAI
             if (context.phase != InputActionPhase.Performed) return;
             if (EventSystem.current.IsPointerOverGameObject()) return;
 
-            Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out var hit, 100);
+            if (!Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out var hit)) return;
+
+            UnityEngine.Debug.Log("Left Click at " + hit.point);
             var transformPosition = hit.point;
-            transformPosition.y = 0.5f;
-            var worker = Instantiate(PickWorkerPrefab(), transformPosition,
-                Quaternion.Euler(0, Random.Range(0, 360), 0));
-            AddWorker(worker);
+            // transformPosition.y = 0.5f;
+            for (int i = 0; i < spawnedWorkersPerClick; i++)
+            {
+                var worker = Instantiate(PickWorkerPrefab(), transformPosition,
+                    Quaternion.Euler(0, Random.Range(0, 360), 0));
+                AddWorker(worker);
+            }
+
             Debug();
         }
 
@@ -96,7 +103,8 @@ namespace WorkerAI
         {
             if (context.phase != InputActionPhase.Performed) return;
 
-            Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out var hit, 100);
+            if (!Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out var hit)) return;
+            UnityEngine.Debug.Log("Right Click at " + hit.point);
 
             var command = new Command(hit.point, commandPostPrefab);
             runningCommands.Add(command);
