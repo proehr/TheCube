@@ -1,29 +1,12 @@
 using System;
 
-namespace Utils.Variables
+namespace DataStructures.Variables
 {
     [Serializable]
-    public class BoolReference
+    public class BoolReference : AbstractReference<bool>
     {
-        public bool useConstant = true;
-        public bool constantValue;
-        public BoolVariable variable;
-
-        public BoolReference()
+        public BoolReference(bool value) : base(value)
         {
-        }
-
-        public BoolReference(bool value)
-        {
-            useConstant = true;
-            constantValue = value;
-        }
-
-        public bool value => useConstant ? constantValue : variable.boolValue;
-
-        public static implicit operator bool(BoolReference reference)
-        {
-            return reference.value;
         }
     }
 }

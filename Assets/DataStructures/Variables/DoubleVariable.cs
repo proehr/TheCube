@@ -1,23 +1,12 @@
 using UnityEngine;
 
-namespace Utils.Variables
+namespace DataStructures.Variables
 {
-    [CreateAssetMenu(fileName = "new DoubleVariable", menuName = "Utils/Variables/DoubleVariable")]
-    public class DoubleVariable : ScriptableObject
+    [CreateAssetMenu(fileName = "NewDoubleVariable", menuName = "Utils/Variables/DoubleVariable")]
+    public class DoubleVariable : AbstractVariable<double>
     {
-        public double doubleValue;
-        [SerializeField] private double startValue;
+        public void ApplyChange(double amount) => runtimeValue += amount;
 
-        public double GetVariableValue() => doubleValue;
-
-        public void ResetVariable() => doubleValue = startValue;
-
-        public void SetValue(double value) => doubleValue = value;
-
-        public void SetValue(DoubleVariable value) => doubleValue = value.doubleValue;
-        
-        public void ApplyChange(double amount) => doubleValue += amount;
-
-        public void ApplyChange(DoubleVariable amount) => doubleValue += amount.doubleValue;
+        public void ApplyChange(DoubleVariable amount) => runtimeValue += amount.runtimeValue;
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 using UnityEngine;
 
-namespace Utils.RuntimeSet_Namespace
+namespace DataStructures.RuntimeSet
 {
     public abstract class RuntimeSet_SO<T> : ScriptableObject
     {

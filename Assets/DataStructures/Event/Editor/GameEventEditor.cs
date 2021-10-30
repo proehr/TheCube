@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Utils.Event.Editor
+namespace DataStructures.Event.Editor
 {
     [CustomEditor(typeof(GameEvent), editorForChildClasses: true)]
     public class GameEventEditor : UnityEditor.Editor

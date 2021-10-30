@@ -1,23 +1,12 @@
 using UnityEngine;
 
-namespace Utils.Variables
+namespace DataStructures.Variables
 {
-    [CreateAssetMenu(fileName = "new BoolVariable", menuName = "Utils/Variables/BoolVariable")]
-    public class BoolVariable : ScriptableObject
+    [CreateAssetMenu(fileName = "NewBoolVariable", menuName = "Utils/Variables/BoolVariable")]
+    public class BoolVariable : AbstractVariable<bool>
     {
-        public bool boolValue;
-        [SerializeField] private bool startValue;
+        public void SetTrue() => runtimeValue = true;
 
-        public bool GetVariableValue() => boolValue;
-
-        public void ResetVariable() => boolValue = startValue;
-
-        public void SetValue(bool value) => boolValue = value;
-        
-        public void SetValue(BoolVariable value) => boolValue = value.boolValue;
-
-        public void SetTrue() => boolValue = true;
-
-        public void SetFalse() => boolValue = false;
+        public void SetFalse() => runtimeValue = false;
     }
 }

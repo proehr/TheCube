@@ -1,23 +1,12 @@
 using UnityEngine;
 
-namespace Utils.Variables
+namespace DataStructures.Variables
 {
-    [CreateAssetMenu(fileName = "new StringVariable", menuName = "Utils/Variables/StringVariable")]
-    public class StringVariable : ScriptableObject
+    [CreateAssetMenu(fileName = "NewStringVariable", menuName = "Utils/Variables/StringVariable")]
+    public class StringVariable : AbstractVariable<string>
     {
-        public string stringValue;
-        [SerializeField] private string startValue;
+        public void ApplyChange(string amount) => runtimeValue += amount;
 
-        public string GetVariableValue() => stringValue;
-
-        public void ResetVariable() => stringValue = startValue;
-        
-        public void SetValue(string value) => stringValue = value;
-
-        public void SetValue(StringVariable value) => stringValue = value.stringValue;
-
-        public void ApplyChange(string amount) => stringValue += amount;
-
-        public void ApplyChange(StringVariable amount) => stringValue += amount.stringValue;
+        public void ApplyChange(StringVariable amount) => runtimeValue += amount.runtimeValue;
     }
 }

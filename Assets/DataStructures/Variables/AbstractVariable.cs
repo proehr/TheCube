@@ -1,8 +1,7 @@
-using Sirenix.OdinInspector;
+using DataStructures.Event;
 using UnityEngine;
-using Utils.Event;
 
-namespace Utils.Variables
+namespace DataStructures.Variables
 {
     public abstract class AbstractVariable<T> : ScriptableObject
     {

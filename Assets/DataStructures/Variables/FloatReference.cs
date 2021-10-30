@@ -1,6 +1,6 @@
 using System;
 
-namespace Utils.Variables
+namespace DataStructures.Variables
 {
     [Serializable]
     public class FloatReference : AbstractReference<float>

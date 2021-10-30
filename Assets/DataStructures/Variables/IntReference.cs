@@ -1,29 +1,12 @@
 using System;
 
-namespace Utils.Variables
+namespace DataStructures.Variables
 {
     [Serializable]
-    public class IntReference
+    public class IntReference : AbstractReference<int>
     {
-        public bool useConstant = true;
-        public int constantValue;
-        public IntVariable variable;
-
-        public IntReference()
+        public IntReference(int value) : base(value)
         {
-        }
-
-        public IntReference(int value)
-        {
-            useConstant = true;
-            constantValue = value;
-        }
-
-        public int value => useConstant ? constantValue : variable.intValue;
-
-        public static implicit operator int (IntReference reference)
-        {
-            return reference.value;
         }
     }
 }

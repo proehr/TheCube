@@ -1,8 +1,7 @@
 ﻿using System;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Utils.Variables
+namespace DataStructures.Variables
 {
     [Serializable]
     public abstract class AbstractReference<T>
