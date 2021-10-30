@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using DataStructures.Event;
 using UnityEngine;
 

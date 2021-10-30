@@ -5,8 +5,8 @@ namespace DataStructures.Event
 {
     public class GameEventListener : MonoBehaviour
     {
-        public GameEvent @event;
-        public UnityEvent Response;
+        [SerializeField] private GameEvent @event;
+        [SerializeField] private UnityEvent response;
 
         private void OnEnable()
         {
@@ -20,7 +20,7 @@ namespace DataStructures.Event
 
         public void OnEventRaised()
         {
-            Response.Invoke();
+            response.Invoke();
         }
     }
 }

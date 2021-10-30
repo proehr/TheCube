@@ -5,8 +5,8 @@ namespace DataStructures.Variables
     [CreateAssetMenu(fileName = "NewStringVariable", menuName = "Utils/Variables/StringVariable")]
     public class StringVariable : AbstractVariable<string>
     {
-        public void ApplyChange(string amount) => runtimeValue += amount;
+        public void Append(string value) => runtimeValue += value;
 
-        public void ApplyChange(StringVariable amount) => runtimeValue += amount.runtimeValue;
+        public void Append(StringVariable value) => runtimeValue += value.runtimeValue;
     }
 }
