@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Gui Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Gui
+  m_TableCollectionNameGuidString: 54b96a95d57107d4ea33b439cf7bba7e
+  m_Entries:
+  - m_Id: 80705159168
+    m_Key: BUTTON_PLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 855182064156672
+    m_Key: BUTTON_EXIT_GAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 855243934334976
+    m_Key: BUTTON_SETTINGS
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1634255156637
