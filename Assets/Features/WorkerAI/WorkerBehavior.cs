@@ -1,7 +1,9 @@
 ﻿using Features.WorkerAI.StateMachine;
+using Features.WorkerDTO;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
+using Utils.CrossSceneReference;
 
 namespace Features.WorkerAI
 {
@@ -23,10 +25,13 @@ namespace Features.WorkerAI
 
         private Vector3 wanderTarget = Vector3.zero;
         private NavMeshAgent agent;
+        private GuidComponent guidComponent;
+        
         public AbstractState currentState { get; private set; }
 
         private void Awake()
         {
+            guidComponent = GetComponent<GuidComponent>();
             agent = GetComponent<NavMeshAgent>();
             currentState = new Wander(gameObject, agent, walkSpeedMultiplier, runSpeedMultiplier, wanderRadius,
                 wanderDistance, maxAngleChange);
@@ -49,6 +54,11 @@ namespace Features.WorkerAI
         {
             currentState.SetNext(new Wander(gameObject, agent, walkSpeedMultiplier, runSpeedMultiplier, wanderRadius,
                 wanderDistance, maxAngleChange));
+        }
+        
+        public WorkerVo GetWorkerVo()
+        {
+            return new WorkerVo(transform, size, guidComponent.GetGuid());
         }
     }
 }
