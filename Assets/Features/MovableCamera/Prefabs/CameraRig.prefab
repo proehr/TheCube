@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCameraTransform: {fileID: 5857115625557989880}
   cameraPreset: {fileID: 11400000, guid: e56a26b9dab67f646823c6ba6b942e10, type: 2}
+  cameraDebugViewer: {fileID: 11400000, guid: 61c8d2092c372634d84ffe2b12c7d908, type: 2}
   snappingPositions:
   - {fileID: 11400000, guid: 582a67d1309b97041a81d79bf0745fe2, type: 2}
   - {fileID: 11400000, guid: 3ac7ca29af2bc83459e5698511ca359d, type: 2}

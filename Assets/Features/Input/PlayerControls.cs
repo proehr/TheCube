@@ -390,7 +390,7 @@ namespace Features.Input
                 {
                     ""name"": """",
                     ""id"": ""542f3569-414e-445b-9c98-eb313b9fd225"",
-                    ""path"": ""<Keyboard>/numpad5"",
+                    ""path"": ""<Keyboard>/numpad6"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

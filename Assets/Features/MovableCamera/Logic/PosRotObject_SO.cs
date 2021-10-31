@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Features.Camera.Logic
+namespace Features.MovableCamera.Logic
 {
     [CreateAssetMenu(fileName = "NewCameraSnappingPosition", menuName = "Camera/SnappingPosition")]
     public class PosRotObject_SO : ScriptableObject
@@ -8,7 +8,7 @@ namespace Features.Camera.Logic
         [SerializeField] private Vector3 position;
         [SerializeField] private Quaternion rotation;
 
-        public Vector3 Pos() => position;
-        public Quaternion Rot() => rotation;
+        public Vector3 Position() => position;
+        public Quaternion Rotation() => rotation;
     }
 }
