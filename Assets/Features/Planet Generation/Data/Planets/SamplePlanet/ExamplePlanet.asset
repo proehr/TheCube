@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a8b62c914046d7b6cb0955f2b09b12, type: 3}
   m_Name: ExamplePlanet
   m_EditorClassIdentifier: 
-  size: 27
+  size: 9
   defaultResource: {fileID: 11400000, guid: 959852ddfed053b4bb8fd93ab653f9c0, type: 2}
   relic: {fileID: 11400000, guid: 96d47fe986a180047a0ea373af7550a5, type: 2}
+  relicDistanceToSurface: 0
   resources: []
   planetModifiers:
   - {fileID: 11400000, guid: b0a94140fc64038458130e9fa870b35e, type: 2}
