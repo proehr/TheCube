@@ -106,10 +106,10 @@ namespace Features.WorkerAI.Demo
 
             if (!UnityEngine.Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()),
                 out var hit)) return;
-            var facing = hit.collider.transform.up;
-            UnityEngine.Debug.Log("Right Click at " + hit.point + ". Up: " + facing);
+            var planeNormal = hit.collider.transform.up;
+            UnityEngine.Debug.Log("Right Click at " + hit.point + ". Up: " + planeNormal);
 
-            var command = new Command(hit.point, commandPostPrefab, facing);
+            var command = new Command(hit.point, commandPostPrefab, planeNormal);
             runningCommands.Add(command);
 
             var idleWorkers = workersPerState[AbstractState.STATE.WANDER];
