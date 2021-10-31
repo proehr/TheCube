@@ -25,13 +25,11 @@ namespace Features.WorkerAI
 
         private Vector3 wanderTarget = Vector3.zero;
         private NavMeshAgent agent;
-        private GuidComponent guidComponent;
         
         public AbstractState currentState { get; private set; }
 
         private void Awake()
         {
-            guidComponent = GetComponent<GuidComponent>();
             agent = GetComponent<NavMeshAgent>();
             currentState = new Wander(gameObject, agent, walkSpeedMultiplier, runSpeedMultiplier, wanderRadius,
                 wanderDistance, maxAngleChange);
@@ -56,9 +54,9 @@ namespace Features.WorkerAI
                 wanderDistance, maxAngleChange));
         }
         
-        public WorkerVo GetWorkerVo()
+        public WorkerVO GetWorkerVO()
         {
-            return new WorkerVo(transform, size, guidComponent.GetGuid());
+            return new WorkerVO(transform, size);
         }
     }
 }

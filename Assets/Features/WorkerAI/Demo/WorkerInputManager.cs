@@ -31,18 +31,18 @@ namespace Features.WorkerAI.Demo
 
         private readonly List<Command> runningCommands = new List<Command>();
         
-        private WorkerBo workerBo;
-        public WorkerBo WorkerBo => workerBo;
+        private WorkerBO workerBO;
+        public WorkerBO WorkerBO => workerBO;
 
         private void Start()
         {
-            workerBo = new WorkerBo(workerPrefabs);
+            workerBO = new WorkerBO(workerPrefabs);
 
             var workersInScene = GameObject.FindGameObjectsWithTag("Worker");
             foreach (var workerGO in workersInScene)
             {
                 var worker = workerGO.GetComponent<WorkerBehavior>();
-                workerBo.AddNewWorker(worker);
+                workerBO.AddNewWorker(worker);
             }
 
             foreach (var workerPrefab in workerPrefabs)
@@ -56,7 +56,7 @@ namespace Features.WorkerAI.Demo
 
             slider.value = workerPerCommand;
             text.text = workerPerCommand.ToString();
-            workerBo.Debug(workerInfoText);
+            workerBO.Debug(workerInfoText);
         }
 
         private WorkerBehavior PickWorkerPrefab()
@@ -87,10 +87,10 @@ namespace Features.WorkerAI.Demo
             // transformPosition.y = 0.5f;
             for (int i = 0; i < spawnedWorkersPerClick; i++)
             {
-                workerBo.InstantiateNewWorker(PickWorkerPrefab().size - 1, transformPosition, Quaternion.Euler(0, Random.Range(0, 360), 0));
+                workerBO.InstantiateNewWorker(PickWorkerPrefab().size - 1, transformPosition, Quaternion.Euler(0, Random.Range(0, 360), 0));
             }
 
-            workerBo.Debug(workerInfoText);
+            workerBO.Debug(workerInfoText);
         }
 
         public void OnRightClick(InputAction.CallbackContext context)
@@ -105,7 +105,7 @@ namespace Features.WorkerAI.Demo
             var command = new Command(hit.point, commandPostPrefab, planeNormal);
             runningCommands.Add(command);
 
-            var idleWorkers = workerBo.WorkersPerState[AbstractState.STATE.WANDER];
+            var idleWorkers = workerBO.GetWorkersWithState(AbstractState.STATE.WANDER);
             for (int i = 0; i < workerPerCommand; i++)
             {
                 if (idleWorkers.Count == 0) break;
@@ -113,21 +113,21 @@ namespace Features.WorkerAI.Demo
                 var worker = idleWorkers[Random.Range(0, idleWorkers.Count)];
                 worker.QueueCommand(command);
                 idleWorkers.Remove(worker);
-                workerBo.WorkersPerState[AbstractState.STATE.COMMAND].Add(worker);
+                workerBO.GetWorkersWithState(AbstractState.STATE.COMMAND).Add(worker);
             }
 
-            workerBo.Debug(workerInfoText);
+            workerBO.Debug(workerInfoText);
         }
 
         public void OnSpaceKey(InputAction.CallbackContext context)
         {
             if (context.phase != InputActionPhase.Performed) return;
 
-            var commandedWorkers = workerBo.WorkersPerState[AbstractState.STATE.COMMAND];
+            var commandedWorkers = workerBO.GetWorkersWithState(AbstractState.STATE.COMMAND);
             foreach (var worker in commandedWorkers)
             {
                 worker.QueueWandering();
-                workerBo.WorkersPerState[AbstractState.STATE.WANDER].Add(worker);
+                workerBO.GetWorkersWithState(AbstractState.STATE.WANDER).Add(worker);
             }
 
             foreach (var command in runningCommands)
@@ -138,7 +138,7 @@ namespace Features.WorkerAI.Demo
             runningCommands.Clear();
             commandedWorkers.Clear();
 
-            workerBo.Debug(workerInfoText);
+            workerBO.Debug(workerInfoText);
         }
 
         public void OnWorkersPerCommandValueChange()

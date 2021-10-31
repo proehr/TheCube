@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Features.WorkerDTO
 {
-    public class WorkerBo
+    public class WorkerBO
     {
         private readonly Dictionary<int, WorkerBehavior> workerPrefabs;
         
@@ -17,7 +17,7 @@ namespace Features.WorkerDTO
         private readonly Dictionary<AbstractState.STATE, List<WorkerBehavior>> workersPerState =
             new Dictionary<AbstractState.STATE, List<WorkerBehavior>>();
         
-        public WorkerBo(Dictionary<int, WorkerBehavior> workerPrefabs)
+        public WorkerBO(Dictionary<int, WorkerBehavior> workerPrefabs)
         {
             this.workerPrefabs = workerPrefabs;
             
@@ -27,7 +27,7 @@ namespace Features.WorkerDTO
             }
         }
 
-        public Dictionary<AbstractState.STATE, List<WorkerBehavior>> WorkersPerState => workersPerState;
+        public List<WorkerBehavior> GetWorkersWithState(AbstractState.STATE state) => workersPerState[state];
         
         public void AddNewWorker(WorkerBehavior workerBehaviour)
         {
@@ -73,8 +73,8 @@ namespace Features.WorkerDTO
         
         public void Save()
         {
-            var workerVos = workers.Select(worker => worker.GetWorkerVo()).ToList();
-            SaveGame.Save("worker", workerVos);
+            var workerVOs = workers.Select(worker => worker.GetWorkerVO()).ToList();
+            SaveGame.Save("worker", workerVOs);
         }
 
         public void Load()
@@ -87,9 +87,9 @@ namespace Features.WorkerDTO
             }
 
             //Load them
-            foreach (WorkerVo workerVo in SaveGame.Load<List<WorkerVo>>("worker"))
+            foreach (WorkerVO workerVO in SaveGame.Load<List<WorkerVO>>("worker"))
             {
-                InstantiateNewWorker(workerVo.workerSize, workerVo.position, workerVo.rotation);
+                InstantiateNewWorker(workerVO.workerSize, workerVO.position, workerVO.rotation);
             }
         }
     }
