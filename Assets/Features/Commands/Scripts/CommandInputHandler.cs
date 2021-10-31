@@ -11,6 +11,7 @@ public class CommandInputHandler : MonoBehaviour
     [SerializeField] private MouseCursorHandler_SO mouseCursorHandler;
     [SerializeField] private string cubeTag;
 
+    private Camera camera;
     private bool selectorInputDown;
     private GameObject hoveredObject;
     private string cubeRemoveHighlightMethod = "OnHoverEnd";
@@ -45,7 +46,10 @@ public class CommandInputHandler : MonoBehaviour
 
     private void HandleExcavationInput()
     {
-        var camera = Camera.current;
+        if (!camera)
+        {
+            camera = Camera.current;
+        }
         if (!camera) return;
         Ray ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out var hit))
