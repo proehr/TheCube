@@ -2,6 +2,90 @@
     "name": "TheCube",
     "maps": [
         {
+            "name": "Commands",
+            "id": "5262ee49-0836-45b2-8104-91056fc8fcfc",
+            "actions": [
+                {
+                    "name": "IssueCommand",
+                    "type": "Button",
+                    "id": "1e85b773-48cb-46a0-afdc-e3b65c8884be",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PauseMenu",
+                    "type": "Button",
+                    "id": "57396f0c-cb23-47c6-a99e-89685cea02cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CommandModeExcavate",
+                    "type": "Button",
+                    "id": "eab8dcb6-9786-4c36-a7fe-7100ba9d302a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CommandModeTransport",
+                    "type": "Button",
+                    "id": "ec0c8678-ff11-4cf2-9a32-5e19f782555c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "86e81a82-e8aa-4f06-86d5-5054cb037752",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseAndKeyboard",
+                    "action": "IssueCommand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "56ad99d7-e074-4d7a-bbd1-5b011e66bd77",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseAndKeyboard",
+                    "action": "PauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb09eff3-0339-4562-a537-4bf176c13011",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseAndKeyboard",
+                    "action": "CommandModeExcavate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e54d9fc-28fc-44ff-9488-3c669d0f49d3",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseAndKeyboard",
+                    "action": "CommandModeTransport",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Player",
             "id": "cc739b0c-3712-40f9-839d-424c3b3af0a3",
             "actions": [
