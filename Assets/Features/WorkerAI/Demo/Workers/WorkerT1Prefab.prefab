@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3912867443596418127}
+  - component: {fileID: 6205559713677325975}
   - component: {fileID: 8898499396749841657}
   - component: {fileID: 3912867443596418114}
   - component: {fileID: 3912867443596418113}
@@ -34,6 +35,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6205559713677325975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3912867443596418126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14545521e2f7a25438cfbab207061347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializedGuid: 
 --- !u!114 &8898499396749841657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,9 +61,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
-  wanderR: 5
-  wanderD: 3
-  change: 0.3
+  wanderRadius: 5
+  wanderDistance: 3
+  maxAngleChange: 0.3
+  walkSpeedMultiplier: 3.5
+  runSpeedMultiplier: 7
 --- !u!33 &3912867443596418114
 MeshFilter:
   m_ObjectHideFlags: 0
