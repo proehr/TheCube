@@ -11,12 +11,12 @@ namespace Features.Camera.Logic
 
         [SerializeField] private List<PosRotObject_SO> snappingPositions = new List<PosRotObject_SO>(6);
         
-        private PlayerControls playerControlsActionMaps;
+        private PlayerControls playerControls;
 
         private bool isSnapping;
         private void Awake()
         {
-            playerControlsActionMaps = new PlayerControls();
+            playerControls = new PlayerControls();
             
             Transform cameraRigTransform = transform;
             cameraPreset.newPosition = cameraRigTransform.position;
@@ -27,12 +27,12 @@ namespace Features.Camera.Logic
 
         private void OnEnable()
         {
-            playerControlsActionMaps.Enable();
+            playerControls.Enable();
         }
 
         private void OnDisable()
         {
-            playerControlsActionMaps.Disable();
+            playerControls.Disable();
         }
         
         private void Update()
@@ -44,15 +44,16 @@ namespace Features.Camera.Logic
         private void HandleKeyboardInput()
         {
             // Get Inputs
-            Vector2 movementInput = playerControlsActionMaps.CameraActionMap.PlanarMovement.ReadValue<Vector2>();
-            float shiftInput = playerControlsActionMaps.CameraActionMap.ShiftSpeed.ReadValue<float>();
-            float leftRotationInput = playerControlsActionMaps.CameraActionMap.LeftRotationMovement.ReadValue<float>();
-            float rightRotationInput = playerControlsActionMaps.CameraActionMap.RigthRotationMovement.ReadValue<float>();
-            float zoomInput = playerControlsActionMaps.CameraActionMap.Zoom.ReadValue<float>();
+            Vector2 movementInput = playerControls.CameraActionMap.PlanarMovement.ReadValue<Vector2>();
+            float shiftInput = playerControls.CameraActionMap.ShiftSpeed.ReadValue<float>();
+            float leftRotationInput = playerControls.CameraActionMap.LeftRotationMovement.ReadValue<float>();
+            float rightRotationInput = playerControls.CameraActionMap.RigthRotationMovement.ReadValue<float>();
+            float zoomInput = playerControls.CameraActionMap.Zoom.ReadValue<float>();
             
             // if shift is pressed add extraSpeed
             cameraPreset.movementSpeed = shiftInput > 0 ? cameraPreset.fastSpeed : cameraPreset.normalSpeed;
             
+            // assign Values for Debug
             cameraPreset.movementInput = movementInput;
             cameraPreset.shiftInput = shiftInput;
             cameraPreset.leftRotationInput = leftRotationInput;
@@ -106,12 +107,12 @@ namespace Features.Camera.Logic
 
         private void HandleSnappingInput()
         {
-            float snapAInput = playerControlsActionMaps.CameraActionMap.SnapSideA.ReadValue<float>();
-            float snapBInput = playerControlsActionMaps.CameraActionMap.SnapSideB.ReadValue<float>();
-            float snapCInput = playerControlsActionMaps.CameraActionMap.SnapSideC.ReadValue<float>();
-            float snapDInput = playerControlsActionMaps.CameraActionMap.SnapSideD.ReadValue<float>();
-            float snapEInput = playerControlsActionMaps.CameraActionMap.SnapSideE.ReadValue<float>();
-            float snapFInput = playerControlsActionMaps.CameraActionMap.SnapSideF.ReadValue<float>();
+            float snapAInput = playerControls.CameraActionMap.SnapSideA.ReadValue<float>();
+            float snapBInput = playerControls.CameraActionMap.SnapSideB.ReadValue<float>();
+            float snapCInput = playerControls.CameraActionMap.SnapSideC.ReadValue<float>();
+            float snapDInput = playerControls.CameraActionMap.SnapSideD.ReadValue<float>();
+            float snapEInput = playerControls.CameraActionMap.SnapSideE.ReadValue<float>();
+            float snapFInput = playerControls.CameraActionMap.SnapSideF.ReadValue<float>();
 
             if (isSnapping) return;
             isSnapping = true;
