@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DefaultResource
   m_EditorClassIdentifier: 
   amount: 5
-  resourcePrefab: {fileID: 950513910805580604, guid: 5fe2672233fb4a04d9511f03f5b4333f, type: 3}
+  resourcePrefab: {fileID: 950513910805580604, guid: b5738a52fed159144980d505fc395539, type: 3}

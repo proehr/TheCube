@@ -45,7 +45,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "MouseAndKeyboard",
+                    "groups": "MouseAndKeyboard;Keyboard&Mouse",
                     "action": "IssueCommand",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -56,7 +56,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "MouseAndKeyboard",
+                    "groups": "MouseAndKeyboard;Keyboard&Mouse",
                     "action": "PauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -67,7 +67,7 @@
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
-                    "groups": "MouseAndKeyboard",
+                    "groups": "MouseAndKeyboard;Keyboard&Mouse",
                     "action": "CommandModeExcavate",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -78,7 +78,7 @@
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
-                    "groups": "MouseAndKeyboard",
+                    "groups": "MouseAndKeyboard;Keyboard&Mouse",
                     "action": "CommandModeTransport",
                     "isComposite": false,
                     "isPartOfComposite": false
