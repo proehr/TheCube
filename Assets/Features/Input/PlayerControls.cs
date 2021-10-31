@@ -45,10 +45,26 @@ namespace Features.Input
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""RotationMovement"",
+                    ""name"": ""PlanarMovement"",
                     ""type"": ""PassThrough"",
                     ""id"": ""b7395fbe-991b-4397-ae2a-c0a1d7a18ca0"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""LeftRotationMovement"",
+                    ""type"": ""Button"",
+                    ""id"": ""fa374db7-576c-4ffc-8ee7-60a38775e35d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RigthRotationMovement"",
+                    ""type"": ""Button"",
+                    ""id"": ""93a600fd-1da6-4a1f-b4be-b08463276b58"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -57,6 +73,62 @@ namespace Features.Input
                     ""type"": ""Value"",
                     ""id"": ""18c181a1-1af3-4871-9a8a-e0bb448b6947"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ShiftSpeed"",
+                    ""type"": ""Button"",
+                    ""id"": ""657ff4af-15ed-43f9-8b7c-303a5bfbfc0c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SnapSideA"",
+                    ""type"": ""Button"",
+                    ""id"": ""4735328c-c157-442e-9050-6e4121c4031f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SnapSideB"",
+                    ""type"": ""Button"",
+                    ""id"": ""099c716f-6a12-42e7-ad70-50067bf60365"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SnapSideC"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f0929d4-5b48-405e-88ca-76145971c00a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SnapSideD"",
+                    ""type"": ""Button"",
+                    ""id"": ""0da709b3-64e2-442d-8edf-716726ce2384"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SnapSideE"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6b8efa9-65dc-4224-ba05-b6204205d86a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SnapSideF"",
+                    ""type"": ""Button"",
+                    ""id"": ""8bc8f4df-e265-4f5f-888a-48f69ce43f56"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -113,7 +185,7 @@ namespace Features.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationMovement"",
+                    ""action"": ""PlanarMovement"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -124,7 +196,7 @@ namespace Features.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationMovement"",
+                    ""action"": ""PlanarMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -135,7 +207,7 @@ namespace Features.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationMovement"",
+                    ""action"": ""PlanarMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -146,7 +218,7 @@ namespace Features.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationMovement"",
+                    ""action"": ""PlanarMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -157,7 +229,7 @@ namespace Features.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationMovement"",
+                    ""action"": ""PlanarMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -168,7 +240,7 @@ namespace Features.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationMovement"",
+                    ""action"": ""PlanarMovement"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -179,7 +251,7 @@ namespace Features.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationMovement"",
+                    ""action"": ""PlanarMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -190,7 +262,7 @@ namespace Features.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationMovement"",
+                    ""action"": ""PlanarMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -201,7 +273,7 @@ namespace Features.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationMovement"",
+                    ""action"": ""PlanarMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -212,62 +284,7 @@ namespace Features.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RotationMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""QE"",
-                    ""id"": ""97c47856-09d0-42e4-bf92-69bf8f3a69d5"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RotationMovement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""021da61b-4149-49b9-a08b-4ff8bf1fd247"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RotationMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""a3cf5411-6453-41eb-bfd6-89a286c2754f"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RotationMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""0e1beba5-06b4-46bb-96a1-017f08dace4e"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RotationMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""5afe4849-b40a-4244-8e3c-5567298cf9f0"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RotationMovement"",
+                    ""action"": ""PlanarMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -281,6 +298,105 @@ namespace Features.Input
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2297b3e-a72e-41ac-9fde-fe453218555d"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShiftSpeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9ce431f-0de7-43ec-812e-b1a94360d373"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RigthRotationMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f057062-440c-45a6-86c5-fe651eb51a25"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftRotationMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57bc4bc9-e862-4f05-b941-480b26c6d231"",
+                    ""path"": ""<Keyboard>/numpad1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SnapSideA"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d46adb9-31c6-4080-9527-902d97fcc2f5"",
+                    ""path"": ""<Keyboard>/numpad2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SnapSideB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""06706887-0fcd-4e20-b274-884adc6b0c7c"",
+                    ""path"": ""<Keyboard>/numpad3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SnapSideC"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef77fddf-ad38-4eee-8085-fa348e24bf69"",
+                    ""path"": ""<Keyboard>/numpad4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SnapSideD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e31e9f76-2a54-44f8-b5c3-628987f40f90"",
+                    ""path"": ""<Keyboard>/numpad5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SnapSideE"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""542f3569-414e-445b-9c98-eb313b9fd225"",
+                    ""path"": ""<Keyboard>/numpad5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SnapSideF"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -292,8 +408,17 @@ namespace Features.Input
             m_CameraActionMap_DragMovement = m_CameraActionMap.FindAction("DragMovement", throwIfNotFound: true);
             m_CameraActionMap_ResetCamera = m_CameraActionMap.FindAction("ResetCamera", throwIfNotFound: true);
             m_CameraActionMap_MousePosition = m_CameraActionMap.FindAction("MousePosition", throwIfNotFound: true);
-            m_CameraActionMap_RotationMovement = m_CameraActionMap.FindAction("RotationMovement", throwIfNotFound: true);
+            m_CameraActionMap_PlanarMovement = m_CameraActionMap.FindAction("PlanarMovement", throwIfNotFound: true);
+            m_CameraActionMap_LeftRotationMovement = m_CameraActionMap.FindAction("LeftRotationMovement", throwIfNotFound: true);
+            m_CameraActionMap_RigthRotationMovement = m_CameraActionMap.FindAction("RigthRotationMovement", throwIfNotFound: true);
             m_CameraActionMap_Zoom = m_CameraActionMap.FindAction("Zoom", throwIfNotFound: true);
+            m_CameraActionMap_ShiftSpeed = m_CameraActionMap.FindAction("ShiftSpeed", throwIfNotFound: true);
+            m_CameraActionMap_SnapSideA = m_CameraActionMap.FindAction("SnapSideA", throwIfNotFound: true);
+            m_CameraActionMap_SnapSideB = m_CameraActionMap.FindAction("SnapSideB", throwIfNotFound: true);
+            m_CameraActionMap_SnapSideC = m_CameraActionMap.FindAction("SnapSideC", throwIfNotFound: true);
+            m_CameraActionMap_SnapSideD = m_CameraActionMap.FindAction("SnapSideD", throwIfNotFound: true);
+            m_CameraActionMap_SnapSideE = m_CameraActionMap.FindAction("SnapSideE", throwIfNotFound: true);
+            m_CameraActionMap_SnapSideF = m_CameraActionMap.FindAction("SnapSideF", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -346,8 +471,17 @@ namespace Features.Input
         private readonly InputAction m_CameraActionMap_DragMovement;
         private readonly InputAction m_CameraActionMap_ResetCamera;
         private readonly InputAction m_CameraActionMap_MousePosition;
-        private readonly InputAction m_CameraActionMap_RotationMovement;
+        private readonly InputAction m_CameraActionMap_PlanarMovement;
+        private readonly InputAction m_CameraActionMap_LeftRotationMovement;
+        private readonly InputAction m_CameraActionMap_RigthRotationMovement;
         private readonly InputAction m_CameraActionMap_Zoom;
+        private readonly InputAction m_CameraActionMap_ShiftSpeed;
+        private readonly InputAction m_CameraActionMap_SnapSideA;
+        private readonly InputAction m_CameraActionMap_SnapSideB;
+        private readonly InputAction m_CameraActionMap_SnapSideC;
+        private readonly InputAction m_CameraActionMap_SnapSideD;
+        private readonly InputAction m_CameraActionMap_SnapSideE;
+        private readonly InputAction m_CameraActionMap_SnapSideF;
         public struct CameraActionMapActions
         {
             private @PlayerControls m_Wrapper;
@@ -355,8 +489,17 @@ namespace Features.Input
             public InputAction @DragMovement => m_Wrapper.m_CameraActionMap_DragMovement;
             public InputAction @ResetCamera => m_Wrapper.m_CameraActionMap_ResetCamera;
             public InputAction @MousePosition => m_Wrapper.m_CameraActionMap_MousePosition;
-            public InputAction @RotationMovement => m_Wrapper.m_CameraActionMap_RotationMovement;
+            public InputAction @PlanarMovement => m_Wrapper.m_CameraActionMap_PlanarMovement;
+            public InputAction @LeftRotationMovement => m_Wrapper.m_CameraActionMap_LeftRotationMovement;
+            public InputAction @RigthRotationMovement => m_Wrapper.m_CameraActionMap_RigthRotationMovement;
             public InputAction @Zoom => m_Wrapper.m_CameraActionMap_Zoom;
+            public InputAction @ShiftSpeed => m_Wrapper.m_CameraActionMap_ShiftSpeed;
+            public InputAction @SnapSideA => m_Wrapper.m_CameraActionMap_SnapSideA;
+            public InputAction @SnapSideB => m_Wrapper.m_CameraActionMap_SnapSideB;
+            public InputAction @SnapSideC => m_Wrapper.m_CameraActionMap_SnapSideC;
+            public InputAction @SnapSideD => m_Wrapper.m_CameraActionMap_SnapSideD;
+            public InputAction @SnapSideE => m_Wrapper.m_CameraActionMap_SnapSideE;
+            public InputAction @SnapSideF => m_Wrapper.m_CameraActionMap_SnapSideF;
             public InputActionMap Get() { return m_Wrapper.m_CameraActionMap; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -375,12 +518,39 @@ namespace Features.Input
                     @MousePosition.started -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnMousePosition;
                     @MousePosition.performed -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnMousePosition;
                     @MousePosition.canceled -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnMousePosition;
-                    @RotationMovement.started -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnRotationMovement;
-                    @RotationMovement.performed -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnRotationMovement;
-                    @RotationMovement.canceled -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnRotationMovement;
+                    @PlanarMovement.started -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnPlanarMovement;
+                    @PlanarMovement.performed -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnPlanarMovement;
+                    @PlanarMovement.canceled -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnPlanarMovement;
+                    @LeftRotationMovement.started -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnLeftRotationMovement;
+                    @LeftRotationMovement.performed -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnLeftRotationMovement;
+                    @LeftRotationMovement.canceled -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnLeftRotationMovement;
+                    @RigthRotationMovement.started -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnRigthRotationMovement;
+                    @RigthRotationMovement.performed -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnRigthRotationMovement;
+                    @RigthRotationMovement.canceled -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnRigthRotationMovement;
                     @Zoom.started -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnZoom;
                     @Zoom.performed -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnZoom;
                     @Zoom.canceled -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnZoom;
+                    @ShiftSpeed.started -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnShiftSpeed;
+                    @ShiftSpeed.performed -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnShiftSpeed;
+                    @ShiftSpeed.canceled -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnShiftSpeed;
+                    @SnapSideA.started -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideA;
+                    @SnapSideA.performed -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideA;
+                    @SnapSideA.canceled -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideA;
+                    @SnapSideB.started -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideB;
+                    @SnapSideB.performed -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideB;
+                    @SnapSideB.canceled -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideB;
+                    @SnapSideC.started -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideC;
+                    @SnapSideC.performed -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideC;
+                    @SnapSideC.canceled -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideC;
+                    @SnapSideD.started -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideD;
+                    @SnapSideD.performed -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideD;
+                    @SnapSideD.canceled -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideD;
+                    @SnapSideE.started -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideE;
+                    @SnapSideE.performed -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideE;
+                    @SnapSideE.canceled -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideE;
+                    @SnapSideF.started -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideF;
+                    @SnapSideF.performed -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideF;
+                    @SnapSideF.canceled -= m_Wrapper.m_CameraActionMapActionsCallbackInterface.OnSnapSideF;
                 }
                 m_Wrapper.m_CameraActionMapActionsCallbackInterface = instance;
                 if (instance != null)
@@ -394,12 +564,39 @@ namespace Features.Input
                     @MousePosition.started += instance.OnMousePosition;
                     @MousePosition.performed += instance.OnMousePosition;
                     @MousePosition.canceled += instance.OnMousePosition;
-                    @RotationMovement.started += instance.OnRotationMovement;
-                    @RotationMovement.performed += instance.OnRotationMovement;
-                    @RotationMovement.canceled += instance.OnRotationMovement;
+                    @PlanarMovement.started += instance.OnPlanarMovement;
+                    @PlanarMovement.performed += instance.OnPlanarMovement;
+                    @PlanarMovement.canceled += instance.OnPlanarMovement;
+                    @LeftRotationMovement.started += instance.OnLeftRotationMovement;
+                    @LeftRotationMovement.performed += instance.OnLeftRotationMovement;
+                    @LeftRotationMovement.canceled += instance.OnLeftRotationMovement;
+                    @RigthRotationMovement.started += instance.OnRigthRotationMovement;
+                    @RigthRotationMovement.performed += instance.OnRigthRotationMovement;
+                    @RigthRotationMovement.canceled += instance.OnRigthRotationMovement;
                     @Zoom.started += instance.OnZoom;
                     @Zoom.performed += instance.OnZoom;
                     @Zoom.canceled += instance.OnZoom;
+                    @ShiftSpeed.started += instance.OnShiftSpeed;
+                    @ShiftSpeed.performed += instance.OnShiftSpeed;
+                    @ShiftSpeed.canceled += instance.OnShiftSpeed;
+                    @SnapSideA.started += instance.OnSnapSideA;
+                    @SnapSideA.performed += instance.OnSnapSideA;
+                    @SnapSideA.canceled += instance.OnSnapSideA;
+                    @SnapSideB.started += instance.OnSnapSideB;
+                    @SnapSideB.performed += instance.OnSnapSideB;
+                    @SnapSideB.canceled += instance.OnSnapSideB;
+                    @SnapSideC.started += instance.OnSnapSideC;
+                    @SnapSideC.performed += instance.OnSnapSideC;
+                    @SnapSideC.canceled += instance.OnSnapSideC;
+                    @SnapSideD.started += instance.OnSnapSideD;
+                    @SnapSideD.performed += instance.OnSnapSideD;
+                    @SnapSideD.canceled += instance.OnSnapSideD;
+                    @SnapSideE.started += instance.OnSnapSideE;
+                    @SnapSideE.performed += instance.OnSnapSideE;
+                    @SnapSideE.canceled += instance.OnSnapSideE;
+                    @SnapSideF.started += instance.OnSnapSideF;
+                    @SnapSideF.performed += instance.OnSnapSideF;
+                    @SnapSideF.canceled += instance.OnSnapSideF;
                 }
             }
         }
@@ -409,8 +606,17 @@ namespace Features.Input
             void OnDragMovement(InputAction.CallbackContext context);
             void OnResetCamera(InputAction.CallbackContext context);
             void OnMousePosition(InputAction.CallbackContext context);
-            void OnRotationMovement(InputAction.CallbackContext context);
+            void OnPlanarMovement(InputAction.CallbackContext context);
+            void OnLeftRotationMovement(InputAction.CallbackContext context);
+            void OnRigthRotationMovement(InputAction.CallbackContext context);
             void OnZoom(InputAction.CallbackContext context);
+            void OnShiftSpeed(InputAction.CallbackContext context);
+            void OnSnapSideA(InputAction.CallbackContext context);
+            void OnSnapSideB(InputAction.CallbackContext context);
+            void OnSnapSideC(InputAction.CallbackContext context);
+            void OnSnapSideD(InputAction.CallbackContext context);
+            void OnSnapSideE(InputAction.CallbackContext context);
+            void OnSnapSideF(InputAction.CallbackContext context);
         }
     }
 }

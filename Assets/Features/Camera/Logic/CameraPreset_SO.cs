@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-namespace Features.Camera
+namespace Features.Camera.Logic
 {
-    [CreateAssetMenu(fileName = "new CameraPreset", menuName = "Camera/CameraPreset")]
+    [CreateAssetMenu(fileName = "NewCameraPreset", menuName = "Camera/Preset")]
     public class CameraPreset_SO : ScriptableObject
     {
         [Header("Design Related")]
-        [Tooltip("Currently unused")]
+        [Tooltip("Current movementSpeed")]
         public float movementSpeed;
         [Tooltip("Smoothness (Time it takes to Lerp between two values)")]
         public float movementTime;
@@ -14,10 +14,12 @@ namespace Features.Camera
         public float normalSpeed;
         [Tooltip("Faster Speed when pressing LEFT-SHIFT")]
         public float fastSpeed;
+        [Tooltip("idk")]
+        public float rotationAmount;
+        [Tooltip("idk")]
+        public Vector3 zoomAmount;
         
-        public float rotationSpeed;
-        public Vector3 zoomSpeed;
-        public float defaultZoom;
+        public Vector3 defaultZoom;
         
         [Header("Debug Related")]
         public Vector3 newPosition;
@@ -32,8 +34,11 @@ namespace Features.Camera
         [Header("Debug Input Related")]
         public Vector2 mousePosition;
         public Vector2 clickMousePosition;
-        public float zoomInput;
         public Vector2 movementInput;
+        public float shiftInput;
+        public float leftRotationInput;
+        public float rightRotationInput;
+        public float zoomInput;
 
         public void ResetValues()
         {
@@ -41,7 +46,7 @@ namespace Features.Camera
             newRotation.x = 0;
             newRotation.y = 0;
             newRotation.z = 0;
-            newZoom = new Vector3(0, 0, defaultZoom);
+            newZoom = defaultZoom;
             
             if (resetDragPositions)
             {
@@ -56,6 +61,10 @@ namespace Features.Camera
             movementInput = new Vector2(0, 0);
         }
         private void OnEnable()
+        {
+            ResetValues();
+        }
+        private void OnDisable()
         {
             ResetValues();
         }

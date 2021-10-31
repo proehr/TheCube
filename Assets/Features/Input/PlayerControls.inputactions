@@ -1,5 +1,5 @@
-﻿{
-    "name": "PlayerControlsActionMaps",
+{
+    "name": "PlayerControls",
     "maps": [
         {
             "name": "CameraActionMap",
@@ -30,10 +30,26 @@
                     "interactions": ""
                 },
                 {
-                    "name": "RotationMovement",
+                    "name": "PlanarMovement",
                     "type": "PassThrough",
                     "id": "b7395fbe-991b-4397-ae2a-c0a1d7a18ca0",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LeftRotationMovement",
+                    "type": "Button",
+                    "id": "fa374db7-576c-4ffc-8ee7-60a38775e35d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RigthRotationMovement",
+                    "type": "Button",
+                    "id": "93a600fd-1da6-4a1f-b4be-b08463276b58",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -42,6 +58,62 @@
                     "type": "Value",
                     "id": "18c181a1-1af3-4871-9a8a-e0bb448b6947",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ShiftSpeed",
+                    "type": "Button",
+                    "id": "657ff4af-15ed-43f9-8b7c-303a5bfbfc0c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SnapSideA",
+                    "type": "Button",
+                    "id": "4735328c-c157-442e-9050-6e4121c4031f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SnapSideB",
+                    "type": "Button",
+                    "id": "099c716f-6a12-42e7-ad70-50067bf60365",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SnapSideC",
+                    "type": "Button",
+                    "id": "5f0929d4-5b48-405e-88ca-76145971c00a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SnapSideD",
+                    "type": "Button",
+                    "id": "0da709b3-64e2-442d-8edf-716726ce2384",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SnapSideE",
+                    "type": "Button",
+                    "id": "c6b8efa9-65dc-4224-ba05-b6204205d86a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SnapSideF",
+                    "type": "Button",
+                    "id": "8bc8f4df-e265-4f5f-888a-48f69ce43f56",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -98,7 +170,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotationMovement",
+                    "action": "PlanarMovement",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -109,7 +181,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotationMovement",
+                    "action": "PlanarMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -120,7 +192,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotationMovement",
+                    "action": "PlanarMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -131,7 +203,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotationMovement",
+                    "action": "PlanarMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -142,7 +214,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotationMovement",
+                    "action": "PlanarMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -153,7 +225,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotationMovement",
+                    "action": "PlanarMovement",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -164,7 +236,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotationMovement",
+                    "action": "PlanarMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -175,7 +247,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotationMovement",
+                    "action": "PlanarMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -186,7 +258,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotationMovement",
+                    "action": "PlanarMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -197,62 +269,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RotationMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "QE",
-                    "id": "97c47856-09d0-42e4-bf92-69bf8f3a69d5",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotationMovement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "021da61b-4149-49b9-a08b-4ff8bf1fd247",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotationMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "a3cf5411-6453-41eb-bfd6-89a286c2754f",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotationMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "0e1beba5-06b4-46bb-96a1-017f08dace4e",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotationMovement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "5afe4849-b40a-4244-8e3c-5567298cf9f0",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotationMovement",
+                    "action": "PlanarMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -264,6 +281,105 @@
                     "processors": "Normalize(min=-1,max=1)",
                     "groups": "",
                     "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2297b3e-a72e-41ac-9fde-fe453218555d",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShiftSpeed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d9ce431f-0de7-43ec-812e-b1a94360d373",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RigthRotationMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f057062-440c-45a6-86c5-fe651eb51a25",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftRotationMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "57bc4bc9-e862-4f05-b941-480b26c6d231",
+                    "path": "<Keyboard>/numpad1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SnapSideA",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d46adb9-31c6-4080-9527-902d97fcc2f5",
+                    "path": "<Keyboard>/numpad2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SnapSideB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06706887-0fcd-4e20-b274-884adc6b0c7c",
+                    "path": "<Keyboard>/numpad3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SnapSideC",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef77fddf-ad38-4eee-8085-fa348e24bf69",
+                    "path": "<Keyboard>/numpad4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SnapSideD",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e31e9f76-2a54-44f8-b5c3-628987f40f90",
+                    "path": "<Keyboard>/numpad5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SnapSideE",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "542f3569-414e-445b-9c98-eb313b9fd225",
+                    "path": "<Keyboard>/numpad5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SnapSideF",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

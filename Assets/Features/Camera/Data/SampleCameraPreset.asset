@@ -13,20 +13,23 @@ MonoBehaviour:
   m_Name: SampleCameraPreset
   m_EditorClassIdentifier: 
   movementSpeed: 0.3
-  movementTime: 1
-  normalSpeed: 1
-  fastSpeed: 2
-  rotationSpeed: 1
-  zoomSpeed: {x: 0, y: 0, z: 10}
-  defaultZoom: -100
-  newPosition: {x: 0, y: 0, z: 0}
-  newRotation: {x: 0, y: 0, z: 0, w: 1}
-  newZoom: {x: 0, y: 0, z: -100}
+  movementTime: 10
+  normalSpeed: 0.3
+  fastSpeed: 1
+  rotationAmount: 1
+  zoomAmount: {x: 0, y: 2.5, z: -4}
+  defaultZoom: {x: 0, y: 38, z: -100}
+  newPosition: {x: 15, y: 0, z: 0}
+  newRotation: {x: 0.270598, y: 0.65328145, z: 0.65328145, w: 0.270598}
+  newZoom: {x: 0, y: 40.5, z: -104}
   resetDragPositions: 1
   dragStartPosition: {x: 0, y: 0, z: 0}
   dragCurrentPosition: {x: 0, y: 0, z: 0}
   dragPositionOffset: {x: 0, y: 0, z: 0}
   mousePosition: {x: 0, y: 0}
   clickMousePosition: {x: 0, y: 0}
-  zoomInput: 0
   movementInput: {x: 0, y: 0}
+  shiftInput: 0
+  leftRotationInput: 0
+  rightRotationInput: 0
+  zoomInput: 0
