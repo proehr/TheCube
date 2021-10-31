@@ -14,6 +14,8 @@ namespace Features.Planet_Generation.Scripts
         [SerializeField] private Resource_SO defaultResource;
         [Tooltip("Data for relics in this planet")]
         [SerializeField] private Resource_SO relic;
+        [Tooltip("Minimum distance of relic to surface, can not be bigger than half planet size")]
+        [Min(0)][SerializeField] private int relicDistanceToSurface;
         [Tooltip("Data for resources in this planet")]
         [SerializeField] private List<Resource_SO> resources;
         [Tooltip("Data for all planet modifiers")]
@@ -22,16 +24,18 @@ namespace Features.Planet_Generation.Scripts
         [Tooltip("Seed used for randomization, no seed used if this is set to 0")]
         [SerializeField] private int seed;
         
-        public int getSize => size;
+        public int Size => size;
 
-        public Resource_SO getRelic => relic;
+        public Resource_SO Relic => relic;
         
-        public Resource_SO getDefaultResource => defaultResource;
+        public int RelicDistanceToSurface => relicDistanceToSurface;
+        
+        public Resource_SO DefaultResource => defaultResource;
 
-        public List<Resource_SO> getResources => resources;
+        public List<Resource_SO> Resources => resources;
 
-        public List<PlanetModifier> getPlanetModifiers => planetModifiers;
+        public List<PlanetModifier> PlanetModifiers => planetModifiers;
 
-        public int getSeed => seed;
+        public int Seed => seed;
     }
 }

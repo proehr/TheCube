@@ -10,7 +10,7 @@ public class PlanetGenerator : MonoBehaviour
     void Start()
     {
         Generate();
-        Load();
+        CreateGameObjects();
     }
 
     private void Generate()
@@ -23,24 +23,24 @@ public class PlanetGenerator : MonoBehaviour
 
     private void InitSeededRandomization()
     {
-        if (planetData.getSeed != 0)
+        if (planetData.Seed != 0)
         {
-            Random.InitState(planetData.getSeed);
+            Random.InitState(planetData.Seed);
         }
     }
 
     private void InitWithDefaultResource()
     {
-        resourceArrangement = new Resource_SO[planetData.getSize][][];
-        for (int i = 0; i < planetData.getSize; i++)
+        resourceArrangement = new Resource_SO[planetData.Size][][];
+        for (int i = 0; i < planetData.Size; i++)
         {
-            resourceArrangement[i] = new Resource_SO[planetData.getSize][];
-            for (int j = 0; j < planetData.getSize; j++)
+            resourceArrangement[i] = new Resource_SO[planetData.Size][];
+            for (int j = 0; j < planetData.Size; j++)
             {
-                resourceArrangement[i][j] = new Resource_SO[planetData.getSize];
-                for (int k = 0; k < planetData.getSize; k++)
+                resourceArrangement[i][j] = new Resource_SO[planetData.Size];
+                for (int k = 0; k < planetData.Size; k++)
                 {
-                    resourceArrangement[i][j][k] = planetData.getDefaultResource;
+                    resourceArrangement[i][j][k] = planetData.DefaultResource;
                 }
             }
         }
@@ -48,7 +48,7 @@ public class PlanetGenerator : MonoBehaviour
 
     private void ApplyPlanetModifiers()
     {
-        foreach (var planetModifier in planetData.getPlanetModifiers)
+        foreach (var planetModifier in planetData.PlanetModifiers)
         {
             planetModifier.ModifyPlanet(resourceArrangement);
         }
@@ -57,20 +57,21 @@ public class PlanetGenerator : MonoBehaviour
     private void PlaceRelics()
     {
         int i = 0;
-        while (i < planetData.getRelic.getAmount)
+        while (i < planetData.Relic.Amount)
         {
-            int relicX = Random.Range(0, planetData.getSize);
-            int relicY = Random.Range(0, planetData.getSize);
-            int relicZ = Random.Range(0, planetData.getSize);
+            int distance = Mathf.Min(planetData.RelicDistanceToSurface, planetData.Size/2);
+            int relicX = Random.Range(0 + distance, planetData.Size - distance);
+            int relicY = Random.Range(0 + distance, planetData.Size - distance);
+            int relicZ = Random.Range(0 + distance, planetData.Size - distance);
             if (resourceArrangement[relicX][relicY][relicZ] != null)
             {
-                resourceArrangement[relicX][relicY][relicZ] = planetData.getRelic;
+                resourceArrangement[relicX][relicY][relicZ] = planetData.Relic;
                 i++;
             }
         }
     }
 
-    private void Load()
+    private void CreateGameObjects()
     {
         for (int i = 0; i < resourceArrangement.Length; i++)
         {
@@ -80,10 +81,11 @@ public class PlanetGenerator : MonoBehaviour
                 {
                     if (resourceArrangement[i][j][k] != null)
                     {
-                        GameObject resource = Instantiate(resourceArrangement[i][j][k].getResourcePrefab, transform);
-                        resource.transform.localPosition = new Vector3(10 * (i - resourceArrangement.Length / 2),
-                            10 * (j - resourceArrangement[i].Length / 2),
-                            10 * (k - resourceArrangement[i][j].Length / 2));
+                        GameObject resource = Instantiate(resourceArrangement[i][j][k].ResourcePrefab, transform);
+                        float resourceScale = resource.transform.localScale.x;
+                        resource.transform.localPosition = new Vector3( resourceScale * (i - resourceArrangement.Length / 2),
+                            resourceScale * (j - resourceArrangement[i].Length / 2),
+                            resourceScale * (k - resourceArrangement[i][j].Length / 2));
                     }
                 }
             }

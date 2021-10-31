@@ -11,8 +11,8 @@ namespace Features.Planet_Generation.Scripts
         [Tooltip("Prefab used to instantiate this resource")]
         [SerializeField] private GameObject resourcePrefab;
 
-        public int getAmount => amount;
+        public int Amount => amount;
 
-        public GameObject getResourcePrefab => resourcePrefab;
+        public GameObject ResourcePrefab => resourcePrefab;
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Features.Planet_Generation.Scripts
 {
@@ -7,6 +8,7 @@ namespace Features.Planet_Generation.Scripts
     {
         
         [Tooltip("Min and Max Value of possible crater radius")]
+        [MinMaxSlider(0,10,true)]
         [SerializeField] private Vector2Int radiusInterval;
         [Tooltip("Amount of craters created by this modifier")]
         [SerializeField] private int amount;
