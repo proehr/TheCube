@@ -1,6 +1,7 @@
 ﻿using Features.WorkerAI.StateMachine;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace Features.WorkerAI
 {
@@ -8,18 +9,27 @@ namespace Features.WorkerAI
     {
         [Min(1)] [SerializeField] public int size;
 
-        [SerializeField] private float wanderR = 10; // Radius for our "wander circle"
-        [SerializeField] private float wanderD = 20; // Distance for our "wander circle"
-        [SerializeField] private float change = 0.3f;
+        [Tooltip("Radius for our 'wander circle'")] [FormerlySerializedAs("wanderR")] [SerializeField]
+        private float wanderRadius = 10;
+
+        [FormerlySerializedAs("wanderD")] [Tooltip("Distance for our 'wander circle'")] [SerializeField]
+        private float wanderDistance = 20;
+
+        [Tooltip("In Radians")] [FormerlySerializedAs("change")] [SerializeField]
+        private float maxAngleChange = 0.3f;
+
+        [SerializeField] private float walkSpeedMultiplier = 3.5f;
+        [SerializeField] private float runSpeedMultiplier = 7.0f;
 
         private Vector3 wanderTarget = Vector3.zero;
         private NavMeshAgent agent;
-        public State currentState { get; private set; }
+        public AbstractState currentState { get; private set; }
 
         private void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
-            currentState = new Wander(gameObject, agent, wanderR, wanderD, change);
+            currentState = new Wander(gameObject, agent, walkSpeedMultiplier, runSpeedMultiplier, wanderRadius,
+                wanderDistance, maxAngleChange);
         }
 
         private void Update()
@@ -31,12 +41,14 @@ namespace Features.WorkerAI
 
         public void QueueCommand(Command command)
         {
-            currentState.SetNext(new ExecutingCommand(gameObject, agent, command));
+            currentState.SetNext(new ExecutingCommand(gameObject, agent, walkSpeedMultiplier, runSpeedMultiplier,
+                command));
         }
 
         public void QueueWandering()
         {
-            currentState.SetNext(new Wander(gameObject, agent, wanderR, wanderD, change));
+            currentState.SetNext(new Wander(gameObject, agent, walkSpeedMultiplier, runSpeedMultiplier, wanderRadius,
+                wanderDistance, maxAngleChange));
         }
     }
 }

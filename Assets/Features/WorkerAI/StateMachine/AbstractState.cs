@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 namespace Features.WorkerAI.StateMachine
 {
-    public class State
+    public abstract class AbstractState
     {
         public enum STATE
         {
@@ -26,14 +26,20 @@ namespace Features.WorkerAI.StateMachine
         protected WorkerBehavior workerBehavior;
         protected NavMeshAgent agent;
 
-        protected State nextState;
+        protected AbstractState nextState;
 
-        public State(GameObject worker, NavMeshAgent agent)
+        protected readonly float walkSpeedMultiplier;
+        protected readonly float runSpeedMultiplier;
+
+        public AbstractState(GameObject worker, NavMeshAgent agent, float walkSpeedMultiplier, float runSpeedMultiplier)
         {
             this.worker = worker;
-            // TODO
             this.workerBehavior = worker.GetComponent<WorkerBehavior>();
             this.agent = agent;
+
+            this.walkSpeedMultiplier = walkSpeedMultiplier;
+            this.runSpeedMultiplier = runSpeedMultiplier;
+
             stage = STAGE.ENTER;
         }
 
@@ -54,7 +60,7 @@ namespace Features.WorkerAI.StateMachine
         }
 
 
-        public State Process()
+        public AbstractState Process()
         {
             if (stage == STAGE.ENTER) Enter();
             if (stage == STAGE.UPDATE) Update();
@@ -67,7 +73,7 @@ namespace Features.WorkerAI.StateMachine
             return this;
         }
 
-        public void SetNext(State nextState)
+        public void SetNext(AbstractState nextState)
         {
             this.nextState = nextState;
             this.stage = STAGE.EXIT;

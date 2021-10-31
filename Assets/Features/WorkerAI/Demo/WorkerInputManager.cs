@@ -25,14 +25,14 @@ namespace Features.WorkerAI.Demo
         private readonly List<WorkerBehavior> usedWorkerPrefabs = new List<WorkerBehavior>();
         private readonly List<WorkerBehavior> workers = new List<WorkerBehavior>();
 
-        private readonly Dictionary<State.STATE, List<WorkerBehavior>> workersPerState =
-            new Dictionary<State.STATE, List<WorkerBehavior>>();
+        private readonly Dictionary<AbstractState.STATE, List<WorkerBehavior>> workersPerState =
+            new Dictionary<AbstractState.STATE, List<WorkerBehavior>>();
 
         private readonly List<Command> runningCommands = new List<Command>();
 
         private void Start()
         {
-            foreach (State.STATE state in Enum.GetValues(typeof(State.STATE)))
+            foreach (AbstractState.STATE state in Enum.GetValues(typeof(AbstractState.STATE)))
             {
                 workersPerState.Add(state, new List<WorkerBehavior>());
             }
@@ -106,12 +106,13 @@ namespace Features.WorkerAI.Demo
 
             if (!UnityEngine.Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()),
                 out var hit)) return;
-            UnityEngine.Debug.Log("Right Click at " + hit.point);
+            var facing = hit.collider.transform.up;
+            UnityEngine.Debug.Log("Right Click at " + hit.point + ". Up: " + facing);
 
-            var command = new Command(hit.point, commandPostPrefab);
+            var command = new Command(hit.point, commandPostPrefab, facing);
             runningCommands.Add(command);
 
-            var idleWorkers = workersPerState[State.STATE.WANDER];
+            var idleWorkers = workersPerState[AbstractState.STATE.WANDER];
             for (int i = 0; i < workerPerCommand; i++)
             {
                 if (idleWorkers.Count == 0) break;
@@ -119,7 +120,7 @@ namespace Features.WorkerAI.Demo
                 var worker = idleWorkers[Random.Range(0, idleWorkers.Count)];
                 worker.QueueCommand(command);
                 idleWorkers.Remove(worker);
-                workersPerState[State.STATE.COMMAND].Add(worker);
+                workersPerState[AbstractState.STATE.COMMAND].Add(worker);
             }
 
             Debug();
@@ -129,11 +130,11 @@ namespace Features.WorkerAI.Demo
         {
             if (context.phase != InputActionPhase.Performed) return;
 
-            var commandedWorkers = workersPerState[State.STATE.COMMAND];
+            var commandedWorkers = workersPerState[AbstractState.STATE.COMMAND];
             foreach (var worker in commandedWorkers)
             {
                 worker.QueueWandering();
-                workersPerState[State.STATE.WANDER].Add(worker);
+                workersPerState[AbstractState.STATE.WANDER].Add(worker);
             }
 
             foreach (var command in runningCommands)
@@ -156,12 +157,12 @@ namespace Features.WorkerAI.Demo
 
         private void Debug()
         {
-            UnityEngine.Debug.Log("Workers: " + "ON THE JOB " + workersPerState[State.STATE.COMMAND].Count +
+            UnityEngine.Debug.Log("Workers: " + "ON THE JOB " + workersPerState[AbstractState.STATE.COMMAND].Count +
                                   " / IDLE " +
-                                  workersPerState[State.STATE.WANDER].Count + " / TOTAL " + workers.Count);
+                                  workersPerState[AbstractState.STATE.WANDER].Count + " / TOTAL " + workers.Count);
             workerInfoText.text = "<align=\"left\"><u>Workers</u></align>" +
-                                  "\nON THE JOB: " + workersPerState[State.STATE.COMMAND].Count +
-                                  "\nIDLE: " + workersPerState[State.STATE.WANDER].Count +
+                                  "\nON THE JOB: " + workersPerState[AbstractState.STATE.COMMAND].Count +
+                                  "\nIDLE: " + workersPerState[AbstractState.STATE.WANDER].Count +
                                   "\nTOTAL: " + workers.Count;
         }
     }

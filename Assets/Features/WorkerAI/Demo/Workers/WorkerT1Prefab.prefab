@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
-  wanderR: 10
-  wanderD: 20
+  wanderR: 5
+  wanderD: 3
   change: 0.3
 --- !u!33 &3912867443596418114
 MeshFilter:
