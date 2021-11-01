@@ -5,8 +5,16 @@ namespace DataStructures.Variables
     [CreateAssetMenu(fileName = "NewFloatVariable", menuName = "Utils/Variables/Float Variable")]
     public class FloatVariable : AbstractVariable<float>
     {
-        public void ApplyChange(float amount) => runtimeValue += amount;
+        public void AddValue(float value)
+        {
+            runtimeValue += value;
+            onValueChanged.Raise();
+        }
 
-        public void ApplyChange(FloatVariable amount) => runtimeValue += amount.runtimeValue;
+        public void AddValue(FloatVariable value)
+        {
+            runtimeValue += value.runtimeValue;
+            onValueChanged.Raise();
+        }
     }
 }

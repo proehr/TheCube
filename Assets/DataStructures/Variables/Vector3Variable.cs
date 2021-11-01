@@ -5,9 +5,17 @@ namespace DataStructures.Variables
     [CreateAssetMenu(fileName = "NewVector3Variable", menuName = "Utils/Variables/Vector3Variable")]
     public class Vector3Variable : AbstractVariable<Vector3>
     {
-        public void ApplyChange(Vector3 amount) => runtimeValue += amount;
+        public void AddValue(Vector3 value)
+        {
+            runtimeValue += value;
+            onValueChanged.Raise();
+        }
 
-        public void ApplyChange(Vector3Variable amount) => runtimeValue += amount.runtimeValue;
+        public void AddValue(Vector3Variable value)
+        {
+            runtimeValue += value.runtimeValue;
+            onValueChanged.Raise();
+        }
     }
 }
 
