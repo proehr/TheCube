@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace DataStructures.Event
@@ -6,7 +7,7 @@ namespace DataStructures.Event
     [CreateAssetMenu(fileName = "new GameEvent", menuName = "Utils/Event")]
     public class GameEvent : ScriptableObject
     {
-        public List<GameEventListener> listeners = new List<GameEventListener>();
+        [ShowInInspector, ReadOnly] private List<GameEventListener> listeners = new List<GameEventListener>();
 
         public void Raise()
         {
