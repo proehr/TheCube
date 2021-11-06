@@ -7,13 +7,13 @@ namespace DataStructures.Variables
     {
         public void SetTrue()
         {
-            runtimeValue = true;
+            Set(true);
             onValueChanged.Raise();
         }
 
         public void SetFalse()
         {
-            runtimeValue = false;
+            Set(false);
             onValueChanged.Raise();
         }
     }
