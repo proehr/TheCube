@@ -5,16 +5,9 @@ namespace DataStructures.Variables
     [CreateAssetMenu(fileName = "NewBoolVariable", menuName = "Utils/Variables/BoolVariable")]
     public class BoolVariable : AbstractVariable<bool>
     {
-        public void SetTrue()
+        public void Toggle()
         {
-            Set(true);
-            onValueChanged.Raise();
-        }
-
-        public void SetFalse()
-        {
-            Set(false);
-            onValueChanged.Raise();
+            Set(!runtimeValue);
         }
     }
 }
