@@ -1,25 +1,32 @@
+using System;
+using System.Collections.Generic;
 using Features.Planet_Generation.Scripts;
+using Features.Planet_Generation.Scripts.Events;
 using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class PlanetGenerator : MonoBehaviour
 {
     [SerializeField] private Planet_SO planetData;
     [SerializeField] private NavMeshSurface[] navMeshSurfaces = new NavMeshSurface[6];
+    [SerializeField] private PlanetGeneratedActionEvent onPlanetGenerated;
 
     private Resource_SO[][][] resourceArrangement;
+    private Dictionary<Surface, List<GameObject>> surfaces;
 
     void Start()
     {
         Generate();
         CreateGameObjects();
         GenerateNavMesh();
+        onPlanetGenerated.Raise(this);
     }
 
     private void Generate()
     {
         InitSeededRandomization();
+        InitSurfaces();
         InitWithDefaultResource();
         ApplyPlanetModifiers();
         PlaceRelics();
@@ -30,6 +37,15 @@ public class PlanetGenerator : MonoBehaviour
         if (planetData.Seed != 0)
         {
             Random.InitState(planetData.Seed);
+        }
+    }
+
+    private void InitSurfaces()
+    {
+        surfaces = new Dictionary<Surface, List<GameObject>>();
+        foreach (Surface surface in Enum.GetValues(typeof(Surface)))
+        {
+            surfaces.Add(surface, new List<GameObject>());
         }
     }
 
@@ -100,9 +116,20 @@ public class PlanetGenerator : MonoBehaviour
                             resourceScale * (i - resourceArrangement.Length / 2),
                             resourceScale * (j - resourceArrangement[i].Length / 2),
                             resourceScale * (k - resourceArrangement[i][j].Length / 2));
+
+                        // TODO generalize for all surfaces
+                        if (j == resourceArrangement[i].Length - 1)
+                        {
+                            surfaces[Surface.POSITIVE_Y].Add(resource);
+                        }
                     }
                 }
             }
         }
+    }
+
+    public GameObject[] GetSurface(Surface surface)
+    {
+        return surfaces[surface].ToArray();
     }
 }
