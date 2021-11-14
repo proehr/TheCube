@@ -2,25 +2,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BayatGames.SaveGameFree;
-using Features.WorkerAI;
+using Features.WorkerAI.Scripts;
 using Features.WorkerAI.Demo;
-using Features.WorkerAI.StateMachine;
+using Features.WorkerAI.Scripts.StateMachine;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using Object = UnityEngine.Object;
 
 namespace Features.WorkerDTO
 {
-    public class WorkerBO
+    [CreateAssetMenu(fileName = "WorkerBO", menuName = "WorkerBO")]
+    public class WorkerBO_SO : SerializedScriptableObject
     {
-        private readonly Dictionary<int, WorkerBehavior> workerPrefabs;
+        [SerializeField] private Dictionary<int, WorkerBehavior> workerPrefabs;
 
         private readonly List<WorkerBehavior> workers = new List<WorkerBehavior>();
 
         private readonly Dictionary<AbstractState.STATE, List<WorkerBehavior>> workersPerState =
             new Dictionary<AbstractState.STATE, List<WorkerBehavior>>();
 
-        public WorkerBO(Dictionary<int, WorkerBehavior> workerPrefabs)
+        // FIXME - no constructor for SO
+        public WorkerBO_SO(Dictionary<int, WorkerBehavior> workerPrefabs)
         {
             this.workerPrefabs = workerPrefabs;
 
@@ -30,7 +34,28 @@ namespace Features.WorkerDTO
             }
         }
 
-        public List<WorkerBehavior> GetWorkersWithState(AbstractState.STATE state) => workersPerState[state];
+        public IEnumerable<WorkerBehavior> GetWorkersForCommand(int count)
+        {
+            var foundWorkers = new List<WorkerBehavior>(count);
+            var idleWorkers = workersPerState[AbstractState.STATE.WANDER];
+            for (int i = 0; i < count; i++)
+            {
+                if (idleWorkers.Count == 0) break;
+
+                var worker = idleWorkers[Random.Range(0, idleWorkers.Count)];
+                foundWorkers.Add(worker);
+                idleWorkers.Remove(worker);
+                workersPerState[AbstractState.STATE.COMMAND].Add(worker);
+            }
+
+            return foundWorkers;
+        }
+
+        public void UpdateWorkerState(WorkerBehavior worker, AbstractState.STATE newState)
+        {
+            workersPerState[worker.currentState.name].Remove(worker);
+            workersPerState[newState].Add(worker);
+        }
 
         public void AddNewWorker(WorkerBehavior workerBehaviour)
         {
