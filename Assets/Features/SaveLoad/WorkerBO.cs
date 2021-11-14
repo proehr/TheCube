@@ -46,7 +46,7 @@ namespace Features.WorkerDTO
             }
             else
             {
-                UnityEngine.Debug.Log($"The requested cube prefab doesnt exists in the {workerPrefabs}");
+                UnityEngine.Debug.LogWarning($"The requested cube prefab doesnt exists in the {workerPrefabs}");
             }
         }
 
