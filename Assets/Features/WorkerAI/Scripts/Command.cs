@@ -19,7 +19,7 @@ namespace Features.WorkerAI.Scripts
         public int cubeObjectId { get; private set; }
 
         public Command(Cube targetCube, int cubeObjectId, Vector3 planeNormal, WorkerBO_SO workerBO,
-            Command_SO commandData, CommandFinishedActionEvent commandFinishedActionEvent)
+            Command_SO commandData, CommandFinishedActionEvent commandFinishedActionEvent, Transform commandPostsParent)
         {
             this.workerBO = workerBO;
             this.cubeObjectId = cubeObjectId;
@@ -28,7 +28,7 @@ namespace Features.WorkerAI.Scripts
             this.commandFinishedActionEvent = commandFinishedActionEvent;
             if (commandData.CommandPostPrefab != null)
             {
-                commandPost = Object.Instantiate(commandData.CommandPostPrefab, this.location, Quaternion.identity);
+                commandPost = Object.Instantiate(commandData.CommandPostPrefab, this.location, Quaternion.identity, commandPostsParent);
                 commandPost.transform.up = planeNormal;
             }
         }
