@@ -2,7 +2,7 @@ using Features.Physics;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Features.WorkerAI.StateMachine
+namespace Features.WorkerAI.Scripts.StateMachine
 {
     public class Wander : AbstractState
     {
