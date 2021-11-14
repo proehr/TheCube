@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Features.WorkerAI.StateMachine;
 using Features.WorkerDTO;
 using Sirenix.OdinInspector;
@@ -9,7 +8,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 namespace Features.WorkerAI.Demo
 {
@@ -19,6 +17,7 @@ namespace Features.WorkerAI.Demo
         private Dictionary<int, WorkerBehavior> workerPrefabs;
 
         [SerializeField] private GameObject commandPostPrefab;
+        [SerializeField] private Transform commandPostsParent;
         [Min(0)] [SerializeField] private int workerPerCommand = 4;
         [Min(0)] [SerializeField] private int spawnedWorkersPerClick = 1;
 
@@ -114,7 +113,7 @@ namespace Features.WorkerAI.Demo
             var planeNormal = hit.collider.transform.up;
             UnityEngine.Debug.Log("Right Click at " + hit.point + ". Up: " + planeNormal);
 
-            var command = new Command(hit.point, commandPostPrefab, planeNormal);
+            var command = new Command(hit.point, commandPostPrefab, commandPostsParent, planeNormal);
             runningCommands.Add(command);
 
             var idleWorkers = workerBO.GetWorkersWithState(AbstractState.STATE.WANDER);
