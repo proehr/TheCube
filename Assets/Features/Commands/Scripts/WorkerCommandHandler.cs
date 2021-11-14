@@ -13,6 +13,7 @@ namespace Features.Commands.Scripts
         [SerializeField] private CommandFinishedActionEvent commandFinishedEvent;
         private readonly Dictionary<int, Command> activeCommands = new Dictionary<int, Command>();
         [SerializeField] private Command_SO excavationCommandData;
+        [SerializeField] private Transform commandPostsParent;
 
         private void OnEnable()
         {
@@ -34,7 +35,7 @@ namespace Features.Commands.Scripts
             if (cube.isMarkedForExcavation)
             {
                 // Create worker command; TODO: planeNormal
-                var pCommand = new Command(cube, cubeObjectId, Vector3.up,workerBo, excavationCommandData, commandFinishedEvent);
+                var pCommand = new Command(cube, cubeObjectId, Vector3.up,workerBo, excavationCommandData, commandFinishedEvent, commandPostsParent);
                 // UpdateActiveCommands();
                 if (!this.activeCommands.ContainsKey(cubeObjectId))
                 {

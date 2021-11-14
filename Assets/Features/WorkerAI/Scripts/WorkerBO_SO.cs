@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BayatGames.SaveGameFree;
-using Features.WorkerAI.Scripts;
 using Features.WorkerAI.Demo;
+using Features.WorkerAI.Scripts;
 using Features.WorkerAI.Scripts.StateMachine;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
-using Random = UnityEngine.Random;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace Features.WorkerDTO
 {
@@ -23,14 +23,14 @@ namespace Features.WorkerDTO
         private readonly Dictionary<AbstractState.STATE, List<WorkerBehavior>> workersPerState =
             new Dictionary<AbstractState.STATE, List<WorkerBehavior>>();
 
-        // FIXME - no constructor for SO
-        public WorkerBO_SO(Dictionary<int, WorkerBehavior> workerPrefabs)
+        private void OnEnable()
         {
-            this.workerPrefabs = workerPrefabs;
-
             foreach (AbstractState.STATE state in Enum.GetValues(typeof(AbstractState.STATE)))
             {
-                workersPerState.Add(state, new List<WorkerBehavior>());
+                if (!workersPerState.ContainsKey(state))
+                {
+                    workersPerState.Add(state, new List<WorkerBehavior>());
+                }
             }
         }
 
