@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8905468799537247415}
+  - component: {fileID: 3942852816037562710}
   - component: {fileID: 2899726290405011490}
   - component: {fileID: 5949118940647709314}
   - component: {fileID: 6344934977905358141}
   - component: {fileID: 9011054420907706947}
-  - component: {fileID: 3942852816037562710}
   m_Layer: 0
   m_Name: LandingPod
   m_TagString: Resource
@@ -35,6 +35,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3942852816037562710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950513910805580604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cceafaae874a43c7a2e5cc263f520fae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: b951f25756a12eb48a71be3d3bba0121, type: 2}
+  workerBO: {fileID: 11400000, guid: d2da8624966c1b442a7e83172a545dee, type: 2}
+  yOffset: 4
+  spawnedWorkerPrefab: {fileID: 8898499396749841657, guid: aae8914922466a04383ec8cef4c86b99, type: 3}
+  workerCost: 2
+  workerSpawnCooldown: 5
 --- !u!33 &2899726290405011490
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -113,15 +131,3 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &3942852816037562710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950513910805580604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cceafaae874a43c7a2e5cc263f520fae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
