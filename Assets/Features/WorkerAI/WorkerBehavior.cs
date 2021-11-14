@@ -25,7 +25,7 @@ namespace Features.WorkerAI
 
         private Vector3 wanderTarget = Vector3.zero;
         private NavMeshAgent agent;
-        
+
         public AbstractState currentState { get; private set; }
 
         private void Awake()
@@ -38,8 +38,6 @@ namespace Features.WorkerAI
         private void Update()
         {
             currentState = currentState.Process();
-
-            Debug.DrawRay(transform.position, this.agent.desiredVelocity, Color.red, 0.5f);
         }
 
         public void QueueCommand(Command command)
@@ -53,7 +51,7 @@ namespace Features.WorkerAI
             currentState.SetNext(new Wander(gameObject, agent, walkSpeedMultiplier, runSpeedMultiplier, wanderRadius,
                 wanderDistance, maxAngleChange));
         }
-        
+
         public WorkerVO GetWorkerVO()
         {
             return new WorkerVO(transform, size);

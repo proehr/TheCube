@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Features.WorkerAI.StateMachine;
 using Features.WorkerDTO;
 using Sirenix.OdinInspector;
@@ -9,16 +8,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 namespace Features.WorkerAI.Demo
 {
     public class WorkerInputManager : SerializedMonoBehaviour
     {
-        [DictionaryDrawerSettings(KeyLabel = "Worker Size", ValueLabel = "Worker Prefab")]
-        [OdinSerialize] private Dictionary<int, WorkerBehavior> workerPrefabs;
-        
+        [DictionaryDrawerSettings(KeyLabel = "Worker Size", ValueLabel = "Worker Prefab")] [OdinSerialize]
+        private Dictionary<int, WorkerBehavior> workerPrefabs;
+
         [SerializeField] private GameObject commandPostPrefab;
+        [SerializeField] private Transform commandPostsParent;
         [Min(0)] [SerializeField] private int workerPerCommand = 4;
         [Min(0)] [SerializeField] private int spawnedWorkersPerClick = 1;
 
@@ -30,7 +29,7 @@ namespace Features.WorkerAI.Demo
         private readonly List<WorkerBehavior> usedWorkerPrefabs = new List<WorkerBehavior>();
 
         private readonly List<Command> runningCommands = new List<Command>();
-        
+
         private WorkerBO workerBO;
         public WorkerBO WorkerBO => workerBO;
 
@@ -79,15 +78,21 @@ namespace Features.WorkerAI.Demo
             if (context.phase != InputActionPhase.Performed) return;
             if (EventSystem.current.IsPointerOverGameObject()) return;
 
-            if (!UnityEngine.Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()),
-                out var hit)) return;
+            if (!UnityEngine.Physics.Raycast(
+                Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()),
+                out var hit,
+                Mathf.Infinity))
+            {
+                return;
+            }
 
             UnityEngine.Debug.Log("Left Click at " + hit.point);
             var transformPosition = hit.point;
             // transformPosition.y = 0.5f;
             for (int i = 0; i < spawnedWorkersPerClick; i++)
             {
-                workerBO.InstantiateNewWorker(PickWorkerPrefab().size - 1, transformPosition, Quaternion.Euler(0, Random.Range(0, 360), 0));
+                workerBO.InstantiateNewWorker(PickWorkerPrefab(), transformPosition,
+                    Quaternion.Euler(0, Random.Range(0, 360), 0), transform);
             }
 
             workerBO.Debug(workerInfoText);
@@ -97,12 +102,18 @@ namespace Features.WorkerAI.Demo
         {
             if (context.phase != InputActionPhase.Performed) return;
 
-            if (!UnityEngine.Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()),
-                out var hit)) return;
+            if (!UnityEngine.Physics.Raycast(
+                Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()),
+                out var hit,
+                Mathf.Infinity))
+            {
+                return;
+            }
+
             var planeNormal = hit.collider.transform.up;
             UnityEngine.Debug.Log("Right Click at " + hit.point + ". Up: " + planeNormal);
 
-            var command = new Command(hit.point, commandPostPrefab, planeNormal);
+            var command = new Command(hit.point, commandPostPrefab, commandPostsParent, planeNormal);
             runningCommands.Add(command);
 
             var idleWorkers = workerBO.GetWorkersWithState(AbstractState.STATE.WANDER);

@@ -52,7 +52,7 @@ namespace Features.WorkerAI.StateMachine
             float h = agent.velocity.Heading(); // We need to know the heading to offset wandertheta
 
             var up = agent.transform.up;
-            Debug.DrawRay(agent.transform.position, up, new Color(1, 0.5f, 0), 0.5f);
+            // Debug.DrawRay(agent.transform.position, up, new Color(1, 0.5f, 0), 0.5f);
 
             Vector3 circleOffSet;
             // var circleOffSet =
@@ -98,8 +98,8 @@ namespace Features.WorkerAI.StateMachine
                 }
             }
 
-            Debug.DrawRay(agent.transform.position, circlepos, Color.green, 0.5f);
-            Debug.DrawRay(circlepos, circleOffSet, Color.blue, 0.5f);
+            // Debug.DrawRay(agent.transform.position, circlepos, Color.green, 0.5f);
+            // Debug.DrawRay(circlepos, circleOffSet, Color.blue, 0.5f);
 
             var target = circlepos + circleOffSet;
             Seek(target);
