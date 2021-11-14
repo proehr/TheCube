@@ -1,11 +1,10 @@
-﻿using Features.WorkerAI.StateMachine;
+﻿using Features.WorkerAI.Scripts.StateMachine;
 using Features.WorkerDTO;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
-using Utils.CrossSceneReference;
 
-namespace Features.WorkerAI
+namespace Features.WorkerAI.Scripts
 {
     public class WorkerBehavior : MonoBehaviour
     {

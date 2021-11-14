@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Features.Commands.Scripts.ActionEvents
 {
-    [CreateAssetMenu(fileName = "newWorkerCommandActionEvent", menuName = "Utils/ActionEvents")]
+    [CreateAssetMenu(fileName = "newWorkerCommandActionEvent", menuName = "Utils/ActionEvents/WorkerCommand")]
     public class WorkerCommandActionEvent : ScriptableObject
     {
         Action<Cube> listeners;

@@ -16,11 +16,14 @@ public class Cube : MonoBehaviour
     
     private CubeState state;
     public CubeState cubeState => this.state;
+
     [SerializeField] private WorkerCommandActionEvent workerCommandActionEvent;
     [SerializeField] private MeshRenderer renderer;
     [SerializeField] private ColorVariable defaultMaterialColor;
     [SerializeField] private ColorVariable highlightMaterialColor;
     [SerializeField] private ColorVariable excavateMaterialColor;
+
+    public bool isMarkedForExcavation => this.state == CubeState.MarkedForExcavation;
 
     private void Awake()
     {
