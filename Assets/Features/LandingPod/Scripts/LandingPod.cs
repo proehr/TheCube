@@ -8,25 +8,24 @@ namespace Features.LandingPod.Scripts
 {
     public class LandingPod : MonoBehaviour
     {
-        [Header("Required References")] [SerializeField]
-        private Inventory_SO inventory;
+        [Header("Required References")]
+        [SerializeField] private Inventory_SO inventory;
 
         [SerializeField] private WorkerBO_SO workerBO;
         private Transform workersParent;
 
         [Header("Landing Pod Positioning")]
         [Tooltip("How high does the Landing Pod float above the planet?")]
-        [SerializeField]
-        private float yOffset = 4.0f;
+        [SerializeField] private float yOffset = 4.0f;
 
-        [Header("Spawning Workers")] [SerializeField]
-        private WorkerBehavior spawnedWorkerPrefab;
+        [Header("Spawning Workers")]
+        [SerializeField] private WorkerBehavior spawnedWorkerPrefab;
 
-        [Tooltip("How many resources does it cost to spawn 1 worker?")] [SerializeField]
-        private int workerCost = 2;
+        [Tooltip("How many resources does it cost to spawn 1 worker?")]
+        [SerializeField] private int workerCost = 2;
 
-        [Tooltip("Cooldown in seconds before spawning a new worker.")] [SerializeField]
-        private float workerSpawnCooldown = 5.0f;
+        [Tooltip("Cooldown in seconds before spawning a new worker.")]
+        [SerializeField] private float workerSpawnCooldown = 5.0f;
 
         [ShowInInspector] [ReadOnly] private float currentCooldown;
         private float lastWorkerSpawnTime;
