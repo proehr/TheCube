@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Worker
   - Resource
+  - WorkersParent
   layers:
   - Default
   - TransparentFX
