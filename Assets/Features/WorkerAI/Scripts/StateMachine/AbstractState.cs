@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace Features.WorkerAI.StateMachine
+namespace Features.WorkerAI.Scripts.StateMachine
 {
     public abstract class AbstractState
     {

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2186026472103115887
+--- !u!1 &7664579047499098914
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2186026472103115873}
-  - component: {fileID: 2355959874383997977}
+  - component: {fileID: 5184443917228064755}
+  - component: {fileID: 2802461900014680890}
   m_Layer: 0
-  m_Name: ExamplePlanet
+  m_Name: LandingPodManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2186026472103115873
+--- !u!4 &5184443917228064755
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2186026472103115887}
+  m_GameObject: {fileID: 7664579047499098914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,17 +31,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2355959874383997977
+--- !u!114 &2802461900014680890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2186026472103115887}
+  m_GameObject: {fileID: 7664579047499098914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c6d99092f6b3d7458ce6a8b90bf5e3e, type: 3}
+  m_Script: {fileID: 11500000, guid: b57bcbc712f0488ab7293dca9fa10ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetData: {fileID: 11400000, guid: 59059b04400de16428ab9c63c0d4c3b8, type: 2}
   onPlanetGenerated: {fileID: 11400000, guid: f84051dd761d9fc41a7dcb7302a5dfb0, type: 2}
+  landingPodPrefab: {fileID: 3942852816037562710, guid: 16fb14ddae4b0ec458c6d146ff6eda22, type: 3}
