@@ -1,12 +1,12 @@
-using Sirenix.OdinInspector;
 using DataStructures.Event;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace DataStructures.Variables
 {
     public abstract class AbstractVariable<T> : ScriptableObject
     {
-        [ShowInInspector, ReadOnly] protected T runtimeValue;
+        [ShowInInspector] protected T runtimeValue;
         [SerializeField] private T storedValue;
         [SerializeField] protected GameEvent onValueChanged;
 
