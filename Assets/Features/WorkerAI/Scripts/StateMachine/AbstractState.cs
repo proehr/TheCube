@@ -12,7 +12,7 @@ namespace Features.WorkerAI.Scripts.StateMachine
         };
 
 
-        public enum STAGE
+        protected enum STAGE
         {
             ENTER,
             UPDATE,
@@ -44,17 +44,17 @@ namespace Features.WorkerAI.Scripts.StateMachine
         }
 
 
-        public virtual void Enter()
+        protected virtual void Enter()
         {
             stage = STAGE.UPDATE;
         }
 
-        public virtual void Update()
+        protected virtual void Update()
         {
             stage = STAGE.UPDATE;
         }
 
-        public virtual void Exit()
+        protected virtual void Exit()
         {
             stage = STAGE.EXIT;
         }

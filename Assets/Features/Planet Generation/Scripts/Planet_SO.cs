@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEditor.UI;
 using UnityEngine;
 
 namespace Features.Planet_Generation.Scripts
@@ -10,7 +9,7 @@ namespace Features.Planet_Generation.Scripts
         [Tooltip("Number of cubes on one side of the planet")]
         [SerializeField] private int size;
         
-        [Tooltip("Data for default resource in this planet. Amount will be ignored")]
+        [Tooltip("Data for default resource in this planet. Count will be ignored")]
         [SerializeField] private Resource_SO defaultResource;
         [Tooltip("Data for relics in this planet")]
         [SerializeField] private Resource_SO relic;

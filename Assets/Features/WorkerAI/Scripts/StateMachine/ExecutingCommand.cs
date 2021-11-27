@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Features.Commands.Scripts;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Features.WorkerAI.Scripts.StateMachine
@@ -14,7 +15,7 @@ namespace Features.WorkerAI.Scripts.StateMachine
             this.command = command;
         }
 
-        public override void Enter()
+        protected override void Enter()
         {
             agent.speed = runSpeedMultiplier * GetSpeedMultiplier();
             Seek(command.location);

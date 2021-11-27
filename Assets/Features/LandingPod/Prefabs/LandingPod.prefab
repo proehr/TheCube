@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: b951f25756a12eb48a71be3d3bba0121, type: 2}
-  workerBO: {fileID: 11400000, guid: d2da8624966c1b442a7e83172a545dee, type: 2}
+  workerService: {fileID: 11400000, guid: d2da8624966c1b442a7e83172a545dee, type: 2}
   yOffset: 4
   spawnedWorkerPrefab: {fileID: 8898499396749841657, guid: aae8914922466a04383ec8cef4c86b99, type: 3}
   workerCost: 2

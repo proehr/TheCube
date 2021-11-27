@@ -2,19 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BayatGames.SaveGameFree;
-using Features.WorkerAI.Demo;
-using Features.WorkerAI.Scripts;
 using Features.WorkerAI.Scripts.StateMachine;
+using Features.WorkerDTO;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
-using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
-namespace Features.WorkerDTO
+namespace Features.WorkerAI.Scripts
 {
     [CreateAssetMenu(fileName = "WorkerBO", menuName = "WorkerBO")]
-    public class WorkerBO_SO : SerializedScriptableObject
+    public class WorkerService_SO : SerializedScriptableObject
     {
         [SerializeField] private Dictionary<int, WorkerBehavior> workerPrefabs;
 
@@ -22,6 +20,8 @@ namespace Features.WorkerDTO
 
         private readonly Dictionary<AbstractState.STATE, List<WorkerBehavior>> workersPerState =
             new Dictionary<AbstractState.STATE, List<WorkerBehavior>>();
+
+        private Transform workersParent;
 
         private void OnEnable()
         {
@@ -32,23 +32,30 @@ namespace Features.WorkerDTO
                     workersPerState.Add(state, new List<WorkerBehavior>());
                 }
             }
+
+            workersParent = GameObject.FindGameObjectWithTag("WorkersParent").transform;
+            UnityEngine.Debug.Assert(workersParent != null, "Missing a game object tagged 'WorkersParent' in the scene!");
         }
 
-        public IEnumerable<WorkerBehavior> GetWorkersForCommand(int count)
+        public ICollection<WorkerBehavior> GetWorkersForCommand(int count)
         {
-            var foundWorkers = new List<WorkerBehavior>(count);
+            return GetWorkersForCommand(count, new List<WorkerBehavior>(count));
+        }
+
+        public ICollection<WorkerBehavior> GetWorkersForCommand(int count, ICollection<WorkerBehavior> workersForCommand)
+        {
             var idleWorkers = workersPerState[AbstractState.STATE.WANDER];
             for (int i = 0; i < count; i++)
             {
                 if (idleWorkers.Count == 0) break;
 
                 var worker = idleWorkers[Random.Range(0, idleWorkers.Count)];
-                foundWorkers.Add(worker);
+                workersForCommand.Add(worker);
                 idleWorkers.Remove(worker);
                 workersPerState[AbstractState.STATE.COMMAND].Add(worker);
             }
 
-            return foundWorkers;
+            return workersForCommand;
         }
 
         public void UpdateWorkerState(WorkerBehavior worker, AbstractState.STATE newState)
@@ -63,11 +70,11 @@ namespace Features.WorkerDTO
             workersPerState[workerBehaviour.currentState.name].Add(workerBehaviour);
         }
 
-        public void InstantiateNewWorker(int workerSizeKey, Vector3 position, Quaternion rotation, Transform parent)
+        private void InstantiateNewWorker(int workerSizeKey, Vector3 position, Quaternion rotation)
         {
             if (workerPrefabs.TryGetValue(workerSizeKey, out WorkerBehavior workerBehaviorPrefab))
             {
-                InstantiateNewWorker(workerBehaviorPrefab, position, rotation, parent);
+                InstantiateNewWorker(workerBehaviorPrefab, position, rotation);
             }
             else
             {
@@ -75,11 +82,10 @@ namespace Features.WorkerDTO
             }
         }
 
-        public void InstantiateNewWorker(WorkerBehavior workerBehaviorPrefab, Vector3 position, Quaternion rotation,
-            Transform parent)
+        public void InstantiateNewWorker(WorkerBehavior workerBehaviorPrefab, Vector3 position, Quaternion rotation)
         {
             WorkerBehavior workerBehaviour =
-                UnityEngine.Object.Instantiate(workerBehaviorPrefab, position, rotation, parent);
+                UnityEngine.Object.Instantiate(workerBehaviorPrefab, position, rotation, workersParent);
             AddNewWorker(workerBehaviour);
         }
 
@@ -122,10 +128,9 @@ namespace Features.WorkerDTO
             }
 
             //Load them
-            var parent = Object.FindObjectOfType<WorkerInputManager>().transform;
             foreach (WorkerVO workerVO in SaveGame.Load<List<WorkerVO>>("worker"))
             {
-                InstantiateNewWorker(workerVO.workerSize, workerVO.position, workerVO.rotation, parent);
+                InstantiateNewWorker(workerVO.workerSize, workerVO.position, workerVO.rotation);
             }
         }
     }

@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6455f3b9a7954b71bb08dd5775dcf4ab, type: 3}
-  m_Name: InventoryData
+  m_Script: {fileID: 11500000, guid: 92a54472c5124c8c8c23e297eb5b73d4, type: 3}
+  m_Name: RelicExcavationCommandData
   m_EditorClassIdentifier: 
-  resource: {fileID: 11400000, guid: ab4801d2e9b68f44aa5711385e8926f6, type: 2}
-  relics: {fileID: 11400000, guid: cb2bab5ef5e385d44807c9e320f9cc3f, type: 2}
+  requiredWorkers: 8
+  maxDistanceToLocation: 9
+  duration: 40
+  commandPostPrefab: {fileID: 1792652583490922534, guid: e0c3e6980c5bb5942a2f9abba5f81c35, type: 3}

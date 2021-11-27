@@ -9,6 +9,10 @@ namespace Features.Inventory.Scripts
         [Tooltip("Amount of stored/available resources for worker production.")]
         [SerializeField] private IntVariable resource;
 
+        [Tooltip("Amount of collected relics.")]
+        [SerializeField] private IntVariable relics;
+
         public IntVariable Resource => resource;
+        public IntVariable Relics => relics;
     }
 }
