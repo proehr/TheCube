@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CraterPlanetModifier
   m_EditorClassIdentifier: 
   radiusInterval: {x: 2, y: 4}
-  amount: 1
+  count: 1

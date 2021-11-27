@@ -1,21 +1,20 @@
-using Features.WorkerAI.Demo;
+using Features.WorkerAI.Scripts;
 using UnityEngine;
-using Utils.CrossSceneReference;
 
-namespace Features.WorkerDTO
+namespace Features.SaveLoad
 {
     public class SaveAndLoadWorkers : MonoBehaviour
     {
-        [SerializeField] private GuidReference guidReference;
+        [SerializeField] private WorkerService_SO workerService;
     
         public void Save()
         {
-            guidReference.gameObject.GetComponent<WorkerInputManager>().WorkerBO.Save();
+            workerService.Save();
         }
 
         public void Load()
         {
-            guidReference.gameObject.GetComponent<WorkerInputManager>().WorkerBO.Load();
+            workerService.Load();
         }
     }
 }

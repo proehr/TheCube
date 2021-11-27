@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6455f3b9a7954b71bb08dd5775dcf4ab, type: 3}
-  m_Name: InventoryData
+  m_Script: {fileID: 11500000, guid: d60f261b718a448d960f65fcea8d2f82, type: 3}
+  m_Name: RelicAmount
   m_EditorClassIdentifier: 
-  resource: {fileID: 11400000, guid: ab4801d2e9b68f44aa5711385e8926f6, type: 2}
-  relics: {fileID: 11400000, guid: cb2bab5ef5e385d44807c9e320f9cc3f, type: 2}
+  storedValue: 0
+  onValueChanged: {fileID: 11400000, guid: 562930a3a05379446aaecb906d45cb9d, type: 2}

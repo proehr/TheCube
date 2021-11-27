@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Features.Planet.Resources.Scripts;
 using Features.Planet_Generation.Scripts;
 using Features.Planet_Generation.Scripts.Events;
 using Unity.AI.Navigation;
@@ -77,7 +78,7 @@ public class PlanetGenerator : MonoBehaviour
     private void PlaceRelics()
     {
         int i = 0;
-        while (i < planetData.Relic.Amount)
+        while (i < planetData.Relic.Count)
         {
             int distance = Mathf.Min(planetData.RelicDistanceToSurface, planetData.Size / 2);
             int relicX = Random.Range(0 + distance, planetData.Size - distance);
@@ -108,9 +109,15 @@ public class PlanetGenerator : MonoBehaviour
             {
                 for (int k = 0; k < resourceArrangement[i][j].Length; k++)
                 {
-                    if (resourceArrangement[i][j][k] != null)
+                    var resourceData = resourceArrangement[i][j][k];
+                    if (resourceData != null)
                     {
-                        GameObject resource = Instantiate(resourceArrangement[i][j][k].ResourcePrefab, transform);
+                        GameObject resource = Instantiate(resourceData.ResourcePrefab, transform);
+                        var cube = resource.GetComponent<Cube>();
+                        if (cube != null)
+                        {
+                            cube.Init(resourceData);
+                        }
                         float resourceScale = resource.transform.localScale.x;
                         resource.transform.localPosition = new Vector3(
                             resourceScale * (i - resourceArrangement.Length / 2),
