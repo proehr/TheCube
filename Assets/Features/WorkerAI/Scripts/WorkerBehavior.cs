@@ -1,4 +1,5 @@
-﻿using Features.WorkerAI.Scripts.StateMachine;
+﻿using Features.Commands.Scripts;
+using Features.WorkerAI.Scripts.StateMachine;
 using Features.WorkerDTO;
 using UnityEngine;
 using UnityEngine.AI;
@@ -41,6 +42,8 @@ namespace Features.WorkerAI.Scripts
 
         public void QueueCommand(Command command)
         {
+            if (currentState.name == AbstractState.STATE.COMMAND) return;
+
             currentState.SetNext(new ExecutingCommand(gameObject, agent, walkSpeedMultiplier, runSpeedMultiplier,
                 command));
         }

@@ -1,60 +1,111 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using DataStructures.Variables;
 using Features.Commands.Scripts.ActionEvents;
+using Features.Planet.Resources.Scripts;
 using Features.WorkerAI.Scripts;
-using Features.WorkerDTO;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Features.Commands.Scripts
 {
     public class WorkerCommandHandler : MonoBehaviour
     {
-        [SerializeField] private WorkerBO_SO workerBo;
+        [SerializeField] private WorkerService_SO workerService;
+        [SerializeField] private CommandModeReference commandMode;
         [SerializeField] private WorkerCommandActionEvent workerCommandEvent;
         [SerializeField] private CommandFinishedActionEvent commandFinishedEvent;
-        private readonly Dictionary<int, Command> activeCommands = new Dictionary<int, Command>();
-        [SerializeField] private Command_SO excavationCommandData;
         [SerializeField] private Transform commandPostsParent;
+
+        private readonly Dictionary<int, Command> activeCommandsPerCube = new Dictionary<int, Command>();
+
+        /**
+         * Required to have an insertion ordered collection of active commands
+         */
+        [ShowInInspector, ReadOnly] private readonly List<Command> activeCommands = new List<Command>();
+
+        private readonly List<Command> commandsFlaggedForRemoval = new List<Command>();
 
         private void OnEnable()
         {
             workerCommandEvent.RegisterListener(OnNewWorkerCubeCommand);
-            commandFinishedEvent.RegisterListener(OnCommandFinished);
         }
 
         private void OnDisable()
         {
             workerCommandEvent.UnregisterListener(OnNewWorkerCubeCommand);
-            commandFinishedEvent.UnregisterListener(OnCommandFinished);
         }
 
         private void OnNewWorkerCubeCommand(Cube cube)
         {
-            // Example code
             var cubeGameObject = cube.gameObject;
             var cubeObjectId = cubeGameObject.GetInstanceID();
+            switch ((CommandMode) commandMode)
+            {
+                case CommandMode.Excavate:
+                {
+                    OnNewExcavationCommand(cube, cubeObjectId);
+                    break;
+                }
+                case CommandMode.TransportLine:
+                {
+                    throw new NotImplementedException();
+                }
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void OnNewExcavationCommand(Cube cube, int cubeObjectId)
+        {
             if (cube.isMarkedForExcavation)
             {
                 // Create worker command; TODO: planeNormal
-                var pCommand = new Command(cube, cubeObjectId, Vector3.up,workerBo, excavationCommandData, commandFinishedEvent, commandPostsParent);
-                // UpdateActiveCommands();
-                if (!this.activeCommands.ContainsKey(cubeObjectId))
+                var pCommand = new ExcavationCommand(cube, cubeObjectId, Vector3.up, workerService,
+                    cube.resourceData.ExcavationCommandData, commandPostsParent);
+                if (!this.activeCommandsPerCube.ContainsKey(cubeObjectId))
                 {
-                    activeCommands.Add(cubeObjectId, pCommand);
+                    activeCommandsPerCube.Add(cubeObjectId, pCommand);
+                    activeCommands.Add(pCommand);
                 }
             }
             else
             {
-                if (this.activeCommands.TryGetValue(cubeObjectId, out var command))
+                if (this.activeCommandsPerCube.TryGetValue(cubeObjectId, out var command))
                 {
-                    command.End();
-                    this.activeCommands.Remove(cubeObjectId);
+                    command.Cancel();
+                    RemoveCommand(command);
                 }
             }
         }
 
-        private void OnCommandFinished(Command finishedCommand)
+        private void Update()
         {
-            this.activeCommands.Remove(finishedCommand.cubeObjectId);
+            foreach (var command in this.activeCommands)
+            {
+                if (command.Process() != Command.Stage.FINISHED) continue;
+
+                commandsFlaggedForRemoval.Add(command);
+                if (command.Success)
+                {
+                    this.commandFinishedEvent.Raise(command);
+                }
+            }
+
+            if (commandsFlaggedForRemoval.Count == 0) return;
+
+            foreach (var command in commandsFlaggedForRemoval)
+            {
+                RemoveCommand(command);
+            }
+
+            commandsFlaggedForRemoval.Clear();
+        }
+
+        private void RemoveCommand(Command command)
+        {
+            this.activeCommandsPerCube.Remove(command.cubeObjectId);
+            this.activeCommands.Remove(command);
         }
     }
 }

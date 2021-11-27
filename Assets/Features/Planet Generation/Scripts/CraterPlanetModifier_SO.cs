@@ -10,12 +10,12 @@ namespace Features.Planet_Generation.Scripts
         [Tooltip("Min and Max Value of possible crater radius")]
         [MinMaxSlider(0,10,true)]
         [SerializeField] private Vector2Int radiusInterval;
-        [Tooltip("Amount of craters created by this modifier")]
-        [SerializeField] private int amount;
+        [Tooltip("Count of craters created by this modifier")]
+        [SerializeField] private int count;
 
         public override void ModifyPlanet(Resource_SO[][][] resources)
         {
-            for (int i = 0; i < amount; i++)
+            for (int i = 0; i < count; i++)
             {
                 int side = Random.Range(0, 6);
                 Vector3Int craterPosition = new Vector3Int();

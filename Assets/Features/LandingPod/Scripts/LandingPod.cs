@@ -1,6 +1,5 @@
 ﻿using Features.Inventory.Scripts;
 using Features.WorkerAI.Scripts;
-using Features.WorkerDTO;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -11,8 +10,7 @@ namespace Features.LandingPod.Scripts
         [Header("Required References")]
         [SerializeField] private Inventory_SO inventory;
 
-        [SerializeField] private WorkerBO_SO workerBO;
-        private Transform workersParent;
+        [SerializeField] private WorkerService_SO workerService;
 
         [Header("Landing Pod Positioning")]
         [Tooltip("How high does the Landing Pod float above the planet?")]
@@ -54,9 +52,6 @@ namespace Features.LandingPod.Scripts
             thisTransform.rotation = surfaceCubeTransform.rotation;
 
             spawnPosition = surfaceCubePosition + surfaceCubeTransform.up * (surfaceCubeScale.y / 2);
-
-            workersParent = GameObject.FindGameObjectWithTag("WorkersParent").transform;
-            Debug.Assert(workersParent != null, "Missing a game object tagged 'WorkersParent' in the scene!");
         }
 
         private void Update()
@@ -80,7 +75,7 @@ namespace Features.LandingPod.Scripts
                 return;
             }
 
-            workerBO.InstantiateNewWorker(spawnedWorkerPrefab, spawnPosition, Quaternion.identity, workersParent);
+            workerService.InstantiateNewWorker(spawnedWorkerPrefab, spawnPosition, Quaternion.identity);
             if (useResources)
             {
                 inventory.Resource.Add(-workerCost);

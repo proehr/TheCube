@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3681857849156021640}
   - component: {fileID: 3681857849156021641}
+  - component: {fileID: 1622972831089985491}
   - component: {fileID: 3681857847642558880}
   m_Layer: 0
   m_Name: CommandInputHandler
@@ -47,6 +48,25 @@ MonoBehaviour:
   commandMode: {fileID: 11400000, guid: b60ae1fb9a26eb3458a186e23f52ab21, type: 2}
   mouseCursorHandler: {fileID: 11400000, guid: a139b231c1fcaae4a947f01eb4d5fc1b, type: 2}
   cubeTag: Resource
+--- !u!114 &1622972831089985491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3681857849156021646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0172f4c25d1d447085dadf4d533b0d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workerService: {fileID: 11400000, guid: d2da8624966c1b442a7e83172a545dee, type: 2}
+  commandMode:
+    variable: {fileID: 11400000, guid: b60ae1fb9a26eb3458a186e23f52ab21, type: 2}
+  workerCommandEvent: {fileID: 11400000, guid: 1a1fcbd24fb1086448c73f84438a7991, type: 2}
+  commandFinishedEvent: {fileID: 11400000, guid: 7b2f1eab6458a2046b9ffc48f3588408, type: 2}
+  excavationCommandData: {fileID: 11400000, guid: 4d429cc94e5889049b16a15af8eff4bb, type: 2}
+  commandPostsParent: {fileID: 3681857849156021640}
 --- !u!114 &3681857847642558880
 MonoBehaviour:
   m_ObjectHideFlags: 0

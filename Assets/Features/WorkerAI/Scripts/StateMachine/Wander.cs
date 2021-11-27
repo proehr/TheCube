@@ -22,14 +22,14 @@ namespace Features.WorkerAI.Scripts.StateMachine
             this.maxAngleChange = maxAngleChange;
         }
 
-        public override void Enter()
+        protected override void Enter()
         {
             agent.speed = this.walkSpeedMultiplier * GetSpeedMultiplier();
 
             base.Enter();
         }
 
-        public override void Update()
+        protected override void Update()
         {
             WanderNOC();
         }
