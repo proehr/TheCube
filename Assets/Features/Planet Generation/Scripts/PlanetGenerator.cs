@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Features.Planet.Resources.Scripts;
+using DataStructures.Variables;
 using Features.Planet_Generation.Scripts;
 using Features.Planet_Generation.Scripts.Events;
 using Unity.AI.Navigation;
@@ -10,6 +11,7 @@ using Random = UnityEngine.Random;
 public class PlanetGenerator : MonoBehaviour
 {
     [SerializeField] private Planet_SO planetData;
+    [SerializeField] private PlanetCubes_SO planetCubes;
     [SerializeField] private NavMeshSurface[] navMeshSurfaces = new NavMeshSurface[6];
     [SerializeField] private PlanetGeneratedActionEvent onPlanetGenerated;
     [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
@@ -31,6 +33,7 @@ public class PlanetGenerator : MonoBehaviour
     void Start()
     {
         Generate();
+        planetCubes.Init(planetData);
         CreateGameObjects();
         GenerateNavMesh();
         onPlanetGenerated.Raise(this);
@@ -170,8 +173,10 @@ public class PlanetGenerator : MonoBehaviour
                         var cube = resource.GetComponent<Cube>();
                         if (cube != null)
                         {
-                            cube.Init(resourceData);
+                            cube.Init(resourceData, new Vector3Int(i, j, k));
                         }
+                        planetCubes.AddCube(cube);
+                        
                         float resourceScale = resource.transform.localScale.x;
                         var localPosition = new Vector3(
                             resourceScale * (i - resourceArrangement.Length / 2),
@@ -198,12 +203,14 @@ public class PlanetGenerator : MonoBehaviour
         }
     }
 
+    public Resource_SO[][][] GetRessources() => resourceArrangement;
+
     public GameObject[] GetSurface(Surface surface)
     {
         return surfaces[surface].ToArray();
     }
 
-    private void UpdateNavMesh(Resource_SO obj)
+    private void UpdateNavMesh(Cube obj)
     {
         // TODO create navMeshLinks at edges of removed cube
         if (!updateNavMeshOnCubeRemoval) return;

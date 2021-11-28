@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2354569467159366250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5712587119823172448}
+  - component: {fileID: 2680913770497524541}
+  m_Layer: 0
+  m_Name: Integrity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5712587119823172448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2354569467159366250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 389.4751, y: 213.53, z: 105.72638}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2680913770497524541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2354569467159366250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8a69d8507690a4e93f86172654dfee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPlanetGenerated: {fileID: 11400000, guid: f84051dd761d9fc41a7dcb7302a5dfb0, type: 2}
+  onLaunchTriggered: {fileID: 11400000, guid: cb6bc0a8661e89147a25f7338dda6746, type: 2}
+  planetCubes: {fileID: 11400000, guid: 2ba9aca49bd6a7e49bd0f7350ae5bfaa, type: 2}
+  integrityThreshold: {fileID: 11400000, guid: 3477042811d2649439bf98de1b6c963e, type: 2}
+  currentIntegrity: {fileID: 11400000, guid: 3253e204aa8aca14193315643fa54697, type: 2}
+  maxStability: 0
+  currentStability: 0

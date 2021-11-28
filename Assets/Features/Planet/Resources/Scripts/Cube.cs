@@ -29,10 +29,12 @@ namespace Features.Planet.Resources.Scripts
 
         public bool isMarkedForExcavation => this.state.HasFlag(CubeState.MarkedForExcavation);
         public Resource_SO resourceData { get; private set; }
+        public Vector3Int planetPosition { get; private set; }
 
-        public void Init(Resource_SO resourceData)
+        public void Init(Resource_SO resourceData, Vector3Int planetPosition)
         {
             this.resourceData = resourceData;
+            this.planetPosition = planetPosition;
         }
 
         private void Awake()

@@ -17,3 +17,4 @@ MonoBehaviour:
   inventoryResource: {fileID: 11400000, guid: ab4801d2e9b68f44aa5711385e8926f6, type: 2}
   excavationAmountInterval: {x: 1, y: 4}
   excavationCommandData: {fileID: 11400000, guid: 4d429cc94e5889049b16a15af8eff4bb, type: 2}
+  integrityBlockValue: 1
