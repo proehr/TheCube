@@ -20,6 +20,8 @@ namespace Features.Planet_Generation.Scripts
         [SerializeField] private Vector2Int excavationAmountInterval;
         [Tooltip("The values used when workers are commanded to excavate a cube of this resource.")]
         [SerializeField] private Command_SO excavationCommandData;
+        [Tooltip("The integrity multiplier per type of block")]
+        [SerializeField] private float integrityBlockValue;
 
         public int Count => count;
 
@@ -30,5 +32,7 @@ namespace Features.Planet_Generation.Scripts
         public Vector2Int ExcavationAmountInterval => excavationAmountInterval;
 
         public Command_SO ExcavationCommandData => excavationCommandData;
+
+        public float IntegrityBlockValue => integrityBlockValue;
     }
 }

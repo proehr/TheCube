@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Features.Planet.Resources.Scripts;
+using DataStructures.Variables;
 using Features.Planet_Generation.Scripts;
 using Features.Planet_Generation.Scripts.Events;
 using Unity.AI.Navigation;
@@ -197,6 +198,8 @@ public class PlanetGenerator : MonoBehaviour
             }
         }
     }
+
+    public Resource_SO[][][] GetRessources() => resourceArrangement;
 
     public GameObject[] GetSurface(Surface surface)
     {
