@@ -1,9 +1,9 @@
 using System;
-using System.Diagnostics;
 using DataStructures.Variables;
 using Features.Commands.Scripts.ActionEvents;
 using Features.Planet_Generation.Scripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Features.Planet.Resources.Scripts
 {
@@ -22,7 +22,7 @@ namespace Features.Planet.Resources.Scripts
         public CubeState cubeState => this.state;
 
         [SerializeField] private WorkerCommandActionEvent workerCommandActionEvent;
-        [SerializeField] private new MeshRenderer renderer;
+        [FormerlySerializedAs("renderer")] [SerializeField] private MeshRenderer cubeMeshRenderer;
         [SerializeField] private ColorVariable defaultMaterialColor;
         [SerializeField] private ColorVariable highlightMaterialColor;
         [SerializeField] private ColorVariable excavateMaterialColor;
@@ -37,22 +37,22 @@ namespace Features.Planet.Resources.Scripts
 
         private void Awake()
         {
-            if (this.renderer == null)
+            if (this.cubeMeshRenderer == null)
             {
-                this.renderer = GetComponent<MeshRenderer>();
+                this.cubeMeshRenderer = GetComponent<MeshRenderer>();
             }
         }
 
         private void OnHover()
         {
-            if (this.state.HasFlag(CubeState.Hovered) || !renderer) return;
+            if (this.state.HasFlag(CubeState.Hovered) || !this.cubeMeshRenderer) return;
             this.state |= CubeState.Hovered;
             UpdateMaterial();
         }
 
         private void OnHoverEnd()
         {
-            if (!this.state.HasFlag(CubeState.Hovered) || !this.renderer) return;
+            if (!this.state.HasFlag(CubeState.Hovered) || !this.cubeMeshRenderer) return;
             this.state &= ~CubeState.Hovered;
             UpdateMaterial();
         }
@@ -95,12 +95,12 @@ namespace Features.Planet.Resources.Scripts
 
         private void SetMaterialColor(ColorVariable colorVariable)
         {
-            this.renderer.material.color = colorVariable.Get();
+            this.cubeMeshRenderer.material.color = colorVariable.Get();
         } 
         
         private void SetMaterialColorBlend(ColorVariable colorVariableA, ColorVariable colorVariableB)
         {
-            this.renderer.material.color = colorVariableA.Get() * colorVariableB.Get();
+            this.cubeMeshRenderer.material.color = colorVariableA.Get() * colorVariableB.Get();
         }
 
         private void AddState(CubeState newCubeState)
