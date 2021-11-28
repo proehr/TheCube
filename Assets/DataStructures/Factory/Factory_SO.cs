@@ -2,7 +2,7 @@
 
 namespace DataStructures.Factory
 {
-	public abstract class FactorySO<T> : ScriptableObject, IFactory<T>
+	public abstract class Factory_SO<T> : ScriptableObject, IFactory<T>
 	{
 		public abstract T Create();
 	}

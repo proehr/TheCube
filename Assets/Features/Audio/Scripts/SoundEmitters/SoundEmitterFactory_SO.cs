@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Features.Audio
 {
 	[CreateAssetMenu(fileName = "NewSoundEmitterFactory", menuName = "Factory/SoundEmitter Factory")]
-	public class SoundEmitterFactorySO : FactorySO<SoundEmitter>
+	public class SoundEmitterFactory_SO : Factory_SO<SoundEmitter>
 	{
 		public SoundEmitter prefab = default;
 

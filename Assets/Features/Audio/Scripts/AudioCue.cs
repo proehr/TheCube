@@ -1,29 +1,30 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Features.Audio
 {
 	public class AudioCue : MonoBehaviour
 	{
 		[Header("Sound definition")]
-		[SerializeField] private AudioCueSO _audioCue = default;
-		[SerializeField] private bool _playOnStart = false;
+		[SerializeField] private AudioCue_SO audioCue = default;
+		[SerializeField] private bool playOnStart = false;
 
 		[Header("Configuration")]
-		[SerializeField] private AudioCueEventChannelSO _audioCueEventChannel = default;
-		[SerializeField] private AudioConfigurationSO _audioConfiguration = default;
+		[SerializeField] private AudioCueEventChannel_SO audioCueEventChannel = default;
+		[SerializeField] private AudioConfiguration_SO audioConfiguration = default;
 
 		private AudioCueKey controlKey = AudioCueKey.Invalid;
 
 		private void Start()
 		{
-			if (this._playOnStart)
+			if (this.playOnStart)
 				StartCoroutine(PlayDelayed());
 		}
 
 		private void OnDisable()
 		{
-			this._playOnStart = false;
+			this.playOnStart = false;
 			StopAudioCue();
 		}
 
@@ -34,20 +35,20 @@ namespace Features.Audio
 
 			//This additional check prevents the AudioCue from playing if the object is disabled or the scene unloaded
 			//This prevents playing a looping AudioCue which then would be never stopped
-			if (this._playOnStart)
+			if (this.playOnStart)
 				PlayAudioCue();
 		}
 
 		public void PlayAudioCue()
 		{
-			this.controlKey = this._audioCueEventChannel.RaisePlayEvent(this._audioCue, this._audioConfiguration, this.transform.position);
+			this.controlKey = this.audioCueEventChannel.RaisePlayEvent(this.audioCue, this.audioConfiguration, this.transform.position);
 		}
 
 		public void StopAudioCue()
 		{
 			if (this.controlKey != AudioCueKey.Invalid)
 			{
-				if (!this._audioCueEventChannel.RaiseStopEvent(this.controlKey))
+				if (!this.audioCueEventChannel.RaiseStopEvent(this.controlKey))
 				{
 					this.controlKey = AudioCueKey.Invalid;
 				}
@@ -58,7 +59,7 @@ namespace Features.Audio
 		{
 			if (this.controlKey != AudioCueKey.Invalid)
 			{
-				if (!this._audioCueEventChannel.RaiseFinishEvent(this.controlKey))
+				if (!this.audioCueEventChannel.RaiseFinishEvent(this.controlKey))
 				{
 					this.controlKey = AudioCueKey.Invalid;
 				}

@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f92f965dbe44449b252b814ddc7137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioCue: {fileID: 11400000, guid: 9f12bc0ac3ebf1540b473a0660bd55b6, type: 2}
-  _playOnStart: 0
-  _audioCueEventChannel: {fileID: 11400000, guid: 9b5c99e34ed1e9c419efb86300044bb0, type: 2}
-  _audioConfiguration: {fileID: 11400000, guid: 3ac6a73c107870140a4c34ce114aba80, type: 2}
+  audioCue: {fileID: 11400000, guid: 9f12bc0ac3ebf1540b473a0660bd55b6, type: 2}
+  playOnStart: 0
+  audioCueEventChannel: {fileID: 11400000, guid: 9b5c99e34ed1e9c419efb86300044bb0, type: 2}
+  audioConfiguration: {fileID: 11400000, guid: 135d58a04787528408d6533e47de5db4, type: 2}

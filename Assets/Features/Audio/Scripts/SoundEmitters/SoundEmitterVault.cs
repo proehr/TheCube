@@ -13,7 +13,7 @@ namespace Features.Audio
 			this.soundEmitters = new Dictionary<AudioCueKey, SoundEmitter[]>();
 		}
 
-		public AudioCueKey GetKey(AudioCueSO cue)
+		public AudioCueKey GetKey(AudioCue_SO cue)
 		{
 			return new AudioCueKey(this.nextUniqueKey++, cue);
 		}
@@ -23,7 +23,7 @@ namespace Features.Audio
 			this.soundEmitters.Add(key, emitters);
 		}
 
-		public AudioCueKey Add(AudioCueSO cue, SoundEmitter[] emitters)
+		public AudioCueKey Add(AudioCue_SO cue, SoundEmitter[] emitters)
 		{
 			AudioCueKey emitterKey = GetKey(cue);
 			this.soundEmitters.Add(emitterKey, emitters);
