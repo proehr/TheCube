@@ -1,6 +1,7 @@
 using System;
 using DataStructures.Variables;
 using Features.Gui;
+using Features.LandingPod.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,7 @@ public class CommandInputHandler : MonoBehaviour
     [SerializeField] private CommandModeVariable commandMode;
     [SerializeField] private MouseCursorHandler_SO mouseCursorHandler;
     [SerializeField] private string cubeTag;
+    [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
 
     private Camera cachedCamera;
     private bool selectorInputDown;
@@ -127,6 +129,14 @@ public class CommandInputHandler : MonoBehaviour
             if (!commandMode) return;
             this.commandMode.Set(CommandMode.TransportLine);
             this.mouseCursorHandler.SetCursor(MouseCursorLook.Default);
+        }
+    }
+
+    public void OnCommandLaunch(InputAction.CallbackContext context)
+    {
+        if (context.performed && context.ReadValueAsButton())
+        {
+            onLaunchTriggered.Raise(new LaunchInformation());
         }
     }
 }

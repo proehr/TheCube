@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPlanetGenerated: {fileID: 11400000, guid: f84051dd761d9fc41a7dcb7302a5dfb0, type: 2}
   landingPodPrefab: {fileID: 3942852816037562710, guid: 16fb14ddae4b0ec458c6d146ff6eda22, type: 3}
+  onLaunchTriggered: {fileID: 11400000, guid: cb6bc0a8661e89147a25f7338dda6746, type: 2}
+  relicAmount: {fileID: 11400000, guid: cb2bab5ef5e385d44807c9e320f9cc3f, type: 2}

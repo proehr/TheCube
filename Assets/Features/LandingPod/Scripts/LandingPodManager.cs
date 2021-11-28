@@ -1,4 +1,5 @@
-﻿using Features.ExtendedRandom;
+﻿using DataStructures.Variables;
+using Features.ExtendedRandom;
 using Features.Planet_Generation.Scripts;
 using Features.Planet_Generation.Scripts.Events;
 using UnityEngine;
@@ -9,11 +10,16 @@ namespace Features.LandingPod.Scripts
     {
         [SerializeField] private PlanetGeneratedActionEvent onPlanetGenerated;
         [SerializeField] private LandingPod landingPodPrefab;
+
+        [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
+        [SerializeField] private IntVariable relicAmount;
+
         private LandingPod landingPod;
 
         private void Awake()
         {
             onPlanetGenerated.RegisterListener(PlaceLandingPod);
+            onLaunchTriggered.RegisterListener(Launch);
         }
 
         private void PlaceLandingPod(PlanetGenerator planetGenerator)
@@ -22,6 +28,15 @@ namespace Features.LandingPod.Scripts
             var pickedSurfaceCube = RandomSet<GameObject>.PickOne(surfaceCubes);
             this.landingPod = Instantiate(landingPodPrefab, this.transform);
             this.landingPod.Init(pickedSurfaceCube);
+        }
+
+        private void Launch(LaunchInformation launchInformation)
+        {
+            // Safety check
+            if (relicAmount.Get() <= 0) return;
+
+            Debug.Log("We would launch now :)");
+            // TODO Do the launch!
         }
     }
 }
