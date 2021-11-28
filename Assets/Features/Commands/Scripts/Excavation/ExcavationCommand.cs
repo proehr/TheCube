@@ -1,9 +1,10 @@
 ﻿using DataStructures.Variables;
+using Features.ExtendedRandom;
 using Features.Planet.Resources.Scripts;
 using Features.WorkerAI.Scripts;
 using UnityEngine;
 
-namespace Features.Commands.Scripts
+namespace Features.Commands.Scripts.Excavation
 {
     public class ExcavationCommand : Command
     {
@@ -13,22 +14,15 @@ namespace Features.Commands.Scripts
         private readonly IntVariable resourceSlot;
 
         public ExcavationCommand(Cube targetCube, int cubeObjectId, Vector3 planeNormal, WorkerService_SO workerService,
-            Command_SO commandData, Transform commandPostsParent) :
-            base(targetCube, cubeObjectId, planeNormal, workerService, commandData, commandPostsParent)
+            Command_SO excavationCommandData, Transform commandPostsParent) :
+            base(targetCube, cubeObjectId, planeNormal, workerService, excavationCommandData, commandPostsParent)
         {
             this.targetCube = targetCube;
             this.cubeStartScale = targetCube.transform.localScale;
-            this.resourceAmount = RandomFromRange(targetCube.resourceData.ExcavationAmountInterval);
             this.resourceSlot = targetCube.resourceData.InventoryResource;
-        }
 
-        /**
-         * Vector2Int.x = minInclusive
-         * Vector2Int.y = maxInclusive (different behavior than Random.Range!)
-         */
-        private static int RandomFromRange(Vector2Int range)
-        {
-            return Random.Range(range.x, range.y + 1);
+            // Randomize how many resources actually going to be gathered
+            this.resourceAmount = XRandom.Range(targetCube.resourceData.ExcavationAmountInterval);
         }
 
         protected override void Update()
@@ -51,8 +45,10 @@ namespace Features.Commands.Scripts
         {
             if (this.Success)
             {
+                Object.Destroy(targetCube.gameObject);
                 this.resourceSlot.Add(this.resourceAmount);
             }
+
             base.End();
         }
     }
