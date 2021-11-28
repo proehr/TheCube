@@ -18,6 +18,7 @@ namespace Features.Commands.Scripts
         [SerializeField] private CommandModeReference commandMode;
         [SerializeField] private WorkerCommandActionEvent workerCommandEvent;
         [SerializeField] private CommandFinishedActionEvent commandFinishedEvent;
+        [SerializeField] private CubeExcavationFinishedActionEvent cubeExcavationFinishedEvent;
         [SerializeField] private Transform commandPostsParent;
         [SerializeField] private UnityEvent onCommandAction;
         [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
