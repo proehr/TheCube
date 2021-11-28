@@ -13,6 +13,7 @@ public class CommandInputHandler : MonoBehaviour
 
     private Camera camera;
     private bool selectorInputDown;
+    private bool excavationMode;
     private GameObject hoveredObject;
     private string cubeRemoveHighlightMethod = "OnHoverEnd";
     private string cubeHighlightMethodName = "OnHover";
@@ -61,20 +62,23 @@ public class CommandInputHandler : MonoBehaviour
                 {
                     this.mouseCursorHandler.SetCursor(MouseCursorLook.Excavate);
                 }
-                if (this.hoveredObject)
+                if (this.hoveredObject && this.hoveredObject != targetObject)
                 {
-                    if (this.hoveredObject != targetObject)
-                    {
-                        this.hoveredObject.SendMessage(this.cubeRemoveHighlightMethod);
-                        targetObject.SendMessage(this.cubeHighlightMethodName);
-                        this.hoveredObject = targetObject;
-                    }
+                    this.hoveredObject.SendMessage(this.cubeRemoveHighlightMethod);
                 }
-                else
+                if (!this.hoveredObject || this.hoveredObject != targetObject)
                 {
-                    targetObject.SendMessage(this.cubeHighlightMethodName);
+                    if (this.selectorInputDown)
+                    {
+                        targetObject.SendMessage(this.cubeSelectMethodName, excavationMode);
+                    }
+                    else
+                    {
+                        targetObject.SendMessage(this.cubeHighlightMethodName);
+                    }
                     this.hoveredObject = targetObject;
                 }
+
                 return;
             }
         }
@@ -98,7 +102,8 @@ public class CommandInputHandler : MonoBehaviour
         {
             this.selectorInputDown = true;
             if (!this.hoveredObject) return;
-            this.hoveredObject.SendMessage(this.cubeSelectMethodName, true);
+            excavationMode = HoverState.currentHoverState != HoverState.State.CubeExcavate;
+            this.hoveredObject.SendMessage(this.cubeSelectMethodName, excavationMode);
             
         }
         if (context.canceled)
