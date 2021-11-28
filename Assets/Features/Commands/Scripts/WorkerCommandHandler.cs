@@ -4,6 +4,7 @@ using DataStructures.Variables;
 using Features.Commands.Scripts.ActionEvents;
 using Features.Commands.Scripts.Excavation;
 using Features.Planet.Resources.Scripts;
+using Features.Planet_Generation.Scripts;
 using Features.WorkerAI.Scripts;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace Features.Commands.Scripts
         [SerializeField] private CommandFinishedActionEvent commandFinishedEvent;
         [SerializeField] private Transform commandPostsParent;
         [SerializeField] private UnityEvent onCommandAction;
+        [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
+
 
         private readonly Dictionary<int, Command> activeCommandsPerCube = new Dictionary<int, Command>();
 
@@ -65,7 +68,7 @@ namespace Features.Commands.Scripts
             {
                 // Create worker command; TODO: planeNormal
                 var pCommand = new ExcavationCommand(cube, cubeObjectId, Vector3.up, workerService,
-                    cube.resourceData.ExcavationCommandData, commandPostsParent);
+                    cube.resourceData.ExcavationCommandData, commandPostsParent, onCubeRemoved);
                 if (!this.activeCommandsPerCube.ContainsKey(cubeObjectId))
                 {
                     activeCommandsPerCube.Add(cubeObjectId, pCommand);
