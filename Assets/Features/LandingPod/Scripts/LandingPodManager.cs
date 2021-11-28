@@ -1,4 +1,4 @@
-﻿using DataStructures.Variables;
+using DataStructures.Variables;
 using Features.ExtendedRandom;
 using Features.Planet_Generation.Scripts;
 using Features.Planet_Generation.Scripts.Events;
