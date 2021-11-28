@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 namespace Features.Audio
 {
 	[CreateAssetMenu(menuName = "Audio/Audio Configuration")]
-	public class AudioConfigurationSO : ScriptableObject
+	public class AudioConfiguration_SO : ScriptableObject
 	{
 		public AudioMixerGroup OutputAudioMixerGroup = null;
 
 		// Simplified management of priority levels (values are counterintuitive, see enum below)
-		[SerializeField] private PriorityLevel _priorityLevel = PriorityLevel.Standard;
+		[SerializeField] private PriorityLevel priorityLevel = PriorityLevel.Standard;
 		[HideInInspector]
 		public int Priority
 		{
-			get { return (int)this._priorityLevel; }
-			set { this._priorityLevel = (PriorityLevel)value; }
+			get { return (int)this.priorityLevel; }
+			set { this.priorityLevel = (PriorityLevel)value; }
 		}
 
 		[Header("Sound properties")]

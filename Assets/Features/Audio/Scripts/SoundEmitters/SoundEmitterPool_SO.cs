@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Features.Audio
 {
 	[CreateAssetMenu(fileName = "NewSoundEmitterPool", menuName = "Pool/SoundEmitter Pool")]
-	public class SoundEmitterPoolSO : ComponentPoolSO<SoundEmitter>
+	public class SoundEmitterPool_SO : ComponentPool_SO<SoundEmitter>
 	{
-		[SerializeField] private SoundEmitterFactorySO factory;
+		[SerializeField] private SoundEmitterFactory_SO factory;
 
 		public override IFactory<SoundEmitter> Factory
 		{
@@ -17,7 +17,7 @@ namespace Features.Audio
 			}
 			set
 			{
-				this.factory = value as SoundEmitterFactorySO;
+				this.factory = value as SoundEmitterFactory_SO;
 			}
 		}
 	}

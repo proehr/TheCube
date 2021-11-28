@@ -5,14 +5,14 @@ namespace Features.Audio
 	/// <summary>
 	/// Event on which <c>AudioCue</c> components send a message to play SFX and music. <c>AudioManager</c> listens on these events, and actually plays the sound.
 	/// </summary>
-	[CreateAssetMenu(menuName = "Audio/AudioCue Event Channel")]
-	public class AudioCueEventChannelSO : ScriptableObject
+	[CreateAssetMenu(menuName = "Audio/Audio Cue Event Channel")]
+	public class AudioCueEventChannel_SO : ScriptableObject
 	{
 		public AudioCuePlayAction OnAudioCuePlayRequested;
 		public AudioCueStopAction OnAudioCueStopRequested;
 		public AudioCueFinishAction OnAudioCueFinishRequested;
 
-		public AudioCueKey RaisePlayEvent(AudioCueSO audioCue, AudioConfigurationSO audioConfiguration, Vector3 positionInSpace = default)
+		public AudioCueKey RaisePlayEvent(AudioCue_SO audioCue, AudioConfiguration_SO audioConfiguration, Vector3 positionInSpace = default)
 		{
 			AudioCueKey audioCueKey = AudioCueKey.Invalid;
 
@@ -67,7 +67,7 @@ namespace Features.Audio
 		}
 	}
 
-	public delegate AudioCueKey AudioCuePlayAction(AudioCueSO audioCue, AudioConfigurationSO audioConfiguration, Vector3 positionInSpace);
+	public delegate AudioCueKey AudioCuePlayAction(AudioCue_SO audioCue, AudioConfiguration_SO audioConfiguration, Vector3 positionInSpace);
 	public delegate bool AudioCueStopAction(AudioCueKey emitterKey);
 	public delegate bool AudioCueFinishAction(AudioCueKey emitterKey);
 }

@@ -8,7 +8,7 @@ namespace  DataStructures.Pool
 	/// A generic pool that generates members of type T on-demand via a factory.
 	/// </summary>
 	/// <typeparam name="T">Specifies the type of elements to pool.</typeparam>
-	public abstract class PoolSO<T> : ScriptableObject, IPool<T>
+	public abstract class Pool_SO<T> : ScriptableObject, IPool<T>
 	{
 		protected readonly Stack<T> Available = new Stack<T>();
 		/// <summary>

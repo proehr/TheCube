@@ -7,7 +7,7 @@ namespace Features.Audio
 	/// A collection of grouped audio clips that are played in parallel, each group supports sequential or random playback within the group.
 	/// </summary>
 	[CreateAssetMenu(fileName = "newAudioCue", menuName = "Audio/Audio Cue")]
-	public class AudioCueSO : ScriptableObject
+	public class AudioCue_SO : ScriptableObject
 	{
 		public bool looping = false;
 		[SerializeField] private AudioClipGroup[] audioClipGroups = default;

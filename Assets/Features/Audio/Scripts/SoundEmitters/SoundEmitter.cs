@@ -26,7 +26,7 @@ namespace Features.Audio
 			this.audioSource.playOnAwake = false;
 		}
 		
-		public void PlayAudioClip(AudioClipData clipData, AudioConfigurationSO settings, bool hasToLoop, Vector3 position = default)
+		public void PlayAudioClip(AudioClipData clipData, AudioConfiguration_SO settings, bool hasToLoop, Vector3 position = default)
 		{
 			this.audioSource.clip = clipData.audioClip;
 			settings.ApplyTo(this.audioSource);
@@ -47,7 +47,7 @@ namespace Features.Audio
 			}
 		}
 		
-		public void FadeInAudioClip(AudioClipData clipData, AudioConfigurationSO settings, bool hasToLoop, Vector3 position = default)
+		public void FadeInAudioClip(AudioClipData clipData, AudioConfiguration_SO settings, bool hasToLoop, Vector3 position = default)
 		{
 			this.audioSource.clip = clipData.audioClip;
 			settings.ApplyTo(this.audioSource);
@@ -90,10 +90,6 @@ namespace Features.Audio
 			if (Mathf.Approximately(this.audioSource.volume,0))
 			{
 				OnFinished();
-			}
-			else
-			{
-				FadeOutAudioClip();
 			}
 		}
 

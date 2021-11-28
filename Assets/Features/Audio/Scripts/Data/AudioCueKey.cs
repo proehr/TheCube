@@ -7,9 +7,9 @@ namespace Features.Audio
 		public static AudioCueKey Invalid = new AudioCueKey(-1, null);
 
 		internal int Value;
-		internal AudioCueSO AudioCue;
+		internal AudioCue_SO AudioCue;
 
-		internal AudioCueKey(int value, AudioCueSO audioCue)
+		internal AudioCueKey(int value, AudioCue_SO audioCue)
 		{
 			this.Value = value;
 			this.AudioCue = audioCue;

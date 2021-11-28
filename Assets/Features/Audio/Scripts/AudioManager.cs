@@ -5,17 +5,17 @@ namespace Features.Audio
 	public class AudioManager : MonoBehaviour
 	{
 		[Header("SoundEmitters pool")]
-		[SerializeField] private SoundEmitterPoolSO pool = default;
+		[SerializeField] private SoundEmitterPool_SO pool = default;
 		[SerializeField] private int initialSize = 10;
 
 		[Header("Listening on channels")]
-		[SerializeField] private AudioCueEventChannelSO effectsEventChannel = default;
+		[SerializeField] private AudioCueEventChannel_SO effectsEventChannel = default;
 		private SoundEmitterVault soundEmitterVault;
 		private SoundEmitter musicSoundEmitter;
 	
 		[Header("Music")]
-		[SerializeField] private AudioCueSO ingameMusic = default;
-		[SerializeField] private AudioConfigurationSO ingameMusicConfiguration = default;
+		[SerializeField] private AudioCue_SO ingameMusic = default;
+		[SerializeField] private AudioConfiguration_SO ingameMusicConfiguration = default;
 
 		private void Awake()
 		{
@@ -61,7 +61,7 @@ namespace Features.Audio
 			return false;
 		}
 		
-		public AudioCueKey PlayAudioCue(AudioCueSO audioCueData, AudioConfigurationSO config, Vector3 position = default)
+		public AudioCueKey PlayAudioCue(AudioCue_SO audioCueData, AudioConfiguration_SO config, Vector3 position = default)
 		{
 			AudioClipData[] clipsToPlay = audioCueData.GetClips();
 			SoundEmitter[] soundEmitterArray = new SoundEmitter[clipsToPlay.Length];
