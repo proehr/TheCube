@@ -21,7 +21,30 @@ namespace Features.WorkerAI.Scripts
         private readonly Dictionary<AbstractState.STATE, List<WorkerBehavior>> workersPerState =
             new Dictionary<AbstractState.STATE, List<WorkerBehavior>>();
 
-        private Transform workersParent;
+        private Transform cachedWorkersParent = null;
+        private bool cachedWorkersParentLoaded = false;
+        private Transform workersParent
+        {
+            get
+            {
+                if (cachedWorkersParent == null && cachedWorkersParentLoaded == false)
+                {
+                    var foundWorkersParent = GameObject.FindGameObjectWithTag("WorkersParent");
+                    if (foundWorkersParent == null)
+                    {
+                        UnityEngine.Debug.Assert(true, "Missing a game object tagged 'WorkersParent' in the scene!");
+                    }
+                    else
+                    {
+                        cachedWorkersParent = foundWorkersParent.transform;
+                    }
+
+                    cachedWorkersParentLoaded = true;
+                }
+
+                return cachedWorkersParent;
+            }
+        }
 
         private void OnEnable()
         {
@@ -32,9 +55,6 @@ namespace Features.WorkerAI.Scripts
                     workersPerState.Add(state, new List<WorkerBehavior>());
                 }
             }
-
-            workersParent = GameObject.FindGameObjectWithTag("WorkersParent").transform;
-            UnityEngine.Debug.Assert(workersParent != null, "Missing a game object tagged 'WorkersParent' in the scene!");
         }
 
         public ICollection<WorkerBehavior> GetWorkersForCommand(int count)

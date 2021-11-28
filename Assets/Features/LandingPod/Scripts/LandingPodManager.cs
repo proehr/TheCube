@@ -1,4 +1,4 @@
-﻿using DataStructures.RandomSet;
+﻿using Features.ExtendedRandom;
 using Features.Planet_Generation.Scripts;
 using Features.Planet_Generation.Scripts.Events;
 using UnityEngine;

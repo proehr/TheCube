@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DataStructures.Variables;
 using Features.Commands.Scripts.ActionEvents;
+using Features.Commands.Scripts.Excavation;
 using Features.Planet.Resources.Scripts;
 using Features.WorkerAI.Scripts;
 using Sirenix.OdinInspector;
@@ -104,7 +105,7 @@ namespace Features.Commands.Scripts
 
         private void RemoveCommand(Command command)
         {
-            this.activeCommandsPerCube.Remove(command.cubeObjectId);
+            this.activeCommandsPerCube.Remove(command.CubeObjectId);
             this.activeCommands.Remove(command);
         }
     }

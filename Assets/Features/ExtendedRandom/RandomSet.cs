@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
-namespace DataStructures.RandomSet
+namespace Features.ExtendedRandom
 {
     public abstract class RandomSet<T>
     {
