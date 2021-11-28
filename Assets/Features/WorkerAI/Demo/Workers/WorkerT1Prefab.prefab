@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 1
   wanderRadius: 5
-  wanderDistance: 3
+  wanderDistance: 10
   maxAngleChange: 0.3
   walkSpeedMultiplier: 3.5
   runSpeedMultiplier: 7
