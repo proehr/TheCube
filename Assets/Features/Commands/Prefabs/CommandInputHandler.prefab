@@ -49,6 +49,7 @@ MonoBehaviour:
   commandMode: {fileID: 11400000, guid: b60ae1fb9a26eb3458a186e23f52ab21, type: 2}
   mouseCursorHandler: {fileID: 11400000, guid: a139b231c1fcaae4a947f01eb4d5fc1b, type: 2}
   cubeTag: Resource
+  onLaunchTriggered: {fileID: 11400000, guid: cb6bc0a8661e89147a25f7338dda6746, type: 2}
 --- !u!114 &1622972831089985491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +220,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 6c5d478c-59f3-4708-800c-183a48e345ea
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3681857849156021641}
+        m_TargetAssemblyTypeName: CommandInputHandler, Assembly-CSharp
+        m_MethodName: OnCommandLaunch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 71a13ac7-9d3f-47d6-953f-d1c76fe2ce32
+    m_ActionName: Commands/CommandLaunch[/Keyboard/3]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Commands
