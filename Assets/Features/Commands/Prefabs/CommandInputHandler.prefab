@@ -124,7 +124,19 @@ MonoBehaviour:
     m_ActionId: 1e85b773-48cb-46a0-afdc-e3b65c8884be
     m_ActionName: Commands/IssueCommand[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 0c2a1d745b052564c88a5db77c40a538, type: 2}
+        m_TargetAssemblyTypeName: DataStructures.Variables.BoolVariable, Assembly-CSharp
+        m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 57396f0c-cb23-47c6-a99e-89685cea02cd
     m_ActionName: Commands/PauseMenu[/Keyboard/escape]
   - m_PersistentCalls:
