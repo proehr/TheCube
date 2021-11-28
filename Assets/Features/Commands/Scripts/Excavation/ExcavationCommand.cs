@@ -51,6 +51,7 @@ namespace Features.Commands.Scripts.Excavation
             {
                 onCubeRemoved.Raise(targetCube.resourceData);
                 Object.Destroy(targetCube.gameObject);
+                //TODO: call event for destroy cube
                 this.resourceSlot.Add(this.resourceAmount);
             }
 
