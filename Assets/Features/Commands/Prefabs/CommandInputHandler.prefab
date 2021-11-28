@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3681857849156021641}
   - component: {fileID: 1622972831089985491}
   - component: {fileID: 3681857847642558880}
+  - component: {fileID: 849179258}
   m_Layer: 0
   m_Name: CommandInputHandler
   m_TagString: Untagged
@@ -65,8 +66,22 @@ MonoBehaviour:
     variable: {fileID: 11400000, guid: b60ae1fb9a26eb3458a186e23f52ab21, type: 2}
   workerCommandEvent: {fileID: 11400000, guid: 1a1fcbd24fb1086448c73f84438a7991, type: 2}
   commandFinishedEvent: {fileID: 11400000, guid: 7b2f1eab6458a2046b9ffc48f3588408, type: 2}
-  excavationCommandData: {fileID: 11400000, guid: 4d429cc94e5889049b16a15af8eff4bb, type: 2}
   commandPostsParent: {fileID: 3681857849156021640}
+  onCommandAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 849179258}
+        m_TargetAssemblyTypeName: Features.Audio.AudioCue, Assembly-CSharp
+        m_MethodName: PlayAudioCue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3681857847642558880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,3 +224,19 @@ MonoBehaviour:
   m_DefaultActionMap: Commands
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &849179258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3681857849156021646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f92f965dbe44449b252b814ddc7137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCue: {fileID: 11400000, guid: 9f12bc0ac3ebf1540b473a0660bd55b6, type: 2}
+  playOnStart: 0
+  audioCueEventChannel: {fileID: 11400000, guid: 9b5c99e34ed1e9c419efb86300044bb0, type: 2}
+  audioConfiguration: {fileID: 11400000, guid: 135d58a04787528408d6533e47de5db4, type: 2}

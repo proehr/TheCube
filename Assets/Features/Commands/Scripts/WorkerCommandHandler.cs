@@ -6,6 +6,7 @@ using Features.Planet.Resources.Scripts;
 using Features.WorkerAI.Scripts;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Features.Commands.Scripts
 {
@@ -16,6 +17,7 @@ namespace Features.Commands.Scripts
         [SerializeField] private WorkerCommandActionEvent workerCommandEvent;
         [SerializeField] private CommandFinishedActionEvent commandFinishedEvent;
         [SerializeField] private Transform commandPostsParent;
+        [SerializeField] private UnityEvent onCommandAction;
 
         private readonly Dictionary<int, Command> activeCommandsPerCube = new Dictionary<int, Command>();
 
@@ -77,6 +79,7 @@ namespace Features.Commands.Scripts
                     RemoveCommand(command);
                 }
             }
+            onCommandAction?.Invoke();
         }
 
         private void Update()
