@@ -48,6 +48,17 @@ namespace Features.WorkerAI.Scripts
                 command));
         }
 
+        /**
+         * This is just the very basic implementation.
+         * Later on a worker should know if he's in place and finished all animations so the actual command work
+         * can start.
+         */
+        public bool IsReadyForCommand(Vector3 commandLocation, float sqrMaxDistance)
+        {
+            return Vector3.SqrMagnitude(this.transform.position - commandLocation) <= sqrMaxDistance;
+        }
+
+
         public void QueueWandering()
         {
             currentState.SetNext(new Wander(gameObject, agent, walkSpeedMultiplier, runSpeedMultiplier, wanderRadius,
