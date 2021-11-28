@@ -2,7 +2,6 @@
 
 namespace Features.Commands.Scripts
 {
-    [CreateAssetMenu(fileName = "CommandDefinition", menuName = "Command")]
     public class Command_SO : ScriptableObject
     {
         [Tooltip("How many workers are required to execute this command?")]

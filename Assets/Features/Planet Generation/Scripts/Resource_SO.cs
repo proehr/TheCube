@@ -1,5 +1,5 @@
 ﻿using DataStructures.Variables;
-using Features.Commands.Scripts;
+using Features.Commands.Scripts.Excavation;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -19,7 +19,7 @@ namespace Features.Planet_Generation.Scripts
         [MinMaxSlider(0,20,true)]
         [SerializeField] private Vector2Int excavationAmountInterval;
         [Tooltip("The values used when workers are commanded to excavate a cube of this resource.")]
-        [SerializeField] private Command_SO excavationCommandData;
+        [SerializeField] private ExcavationCommandData_SO excavationCommandData;
 
         public int Count => count;
 
@@ -29,6 +29,6 @@ namespace Features.Planet_Generation.Scripts
 
         public Vector2Int ExcavationAmountInterval => excavationAmountInterval;
 
-        public Command_SO ExcavationCommandData => excavationCommandData;
+        public ExcavationCommandData_SO ExcavationCommandData => excavationCommandData;
     }
 }

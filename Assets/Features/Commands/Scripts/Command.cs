@@ -23,7 +23,7 @@ namespace Features.Commands.Scripts
         protected readonly Command_SO commandData;
         private readonly WorkerService_SO workerService;
         private readonly ICollection<WorkerBehavior> workersForCommand;
-        public int cubeObjectId { get; private set; }
+        public int CubeObjectId { get; private set; }
         public bool Success { get; private set; }
 
         /**
@@ -37,16 +37,16 @@ namespace Features.Commands.Scripts
             Command_SO commandData, Transform commandPostsParent)
         {
             this.workerService = workerService;
-            this.cubeObjectId = cubeObjectId;
+            this.CubeObjectId = cubeObjectId;
             // TODO Might want to offset according to plane normal
             this.location = targetCube.transform.position;
             this.commandData = commandData;
             this.workersForCommand = new List<WorkerBehavior>(commandData.RequiredWorkers);
             if (commandData.CommandPostPrefab != null)
             {
-                Vector3 location = this.location;
-                location += planeNormal * commandData.CommandPostPrefab.transform.localScale.y;
-                commandPost = Object.Instantiate(commandData.CommandPostPrefab, location, Quaternion.identity,
+                Vector3 commandPostLocation = this.location;
+                commandPostLocation += planeNormal * commandData.CommandPostPrefab.transform.localScale.y;
+                commandPost = Object.Instantiate(commandData.CommandPostPrefab, commandPostLocation, Quaternion.identity,
                     commandPostsParent);
                 commandPost.transform.up = planeNormal;
             }
@@ -123,6 +123,7 @@ namespace Features.Commands.Scripts
 
             foreach (var worker in workersForCommand)
             {
+                // TODO maybe ask worker if they are "ready"? Can be a range check initially but later state/animation check
                 if (Vector3.SqrMagnitude(worker.transform.position - location) > sqrMaxWorkerDistance)
                 {
                     return;

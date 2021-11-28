@@ -16,4 +16,4 @@ MonoBehaviour:
   resourcePrefab: {fileID: 7071232725673322986, guid: 619bc8ebb7b98414fbbc0840ce3b67a3, type: 3}
   inventoryResource: {fileID: 11400000, guid: cb2bab5ef5e385d44807c9e320f9cc3f, type: 2}
   excavationAmountInterval: {x: 1, y: 1}
-  excavationCommandData: {fileID: 11400000, guid: 08146545c4c25c841b021cc794a63ecd, type: 2}
+  excavationCommandData: {fileID: 11400000, guid: d295f9bd8d0dcd940b87c01eabc7b7f6, type: 2}

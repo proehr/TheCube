@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a94f467c0d8e4a5ebb5e776ea575d015, type: 3}
+  m_Name: NewResourceExcavationCommandData
+  m_EditorClassIdentifier: 
+  requiredWorkers: 4
+  maxDistanceToLocation: 7
+  duration: 15
+  commandPostPrefab: {fileID: 1792652583490922534, guid: e0c3e6980c5bb5942a2f9abba5f81c35, type: 3}
+  excavationAmountPerTick: 1
