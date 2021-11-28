@@ -1,5 +1,4 @@
 using System;
-using DataStructures.RuntimeSet;
 using DataStructures.Variables;
 using Features.Gui;
 using UnityEngine;
@@ -11,7 +10,7 @@ public class CommandInputHandler : MonoBehaviour
     [SerializeField] private MouseCursorHandler_SO mouseCursorHandler;
     [SerializeField] private string cubeTag;
 
-    private Camera camera;
+    private Camera cachedCamera;
     private bool selectorInputDown;
     private bool excavationMode;
     private GameObject hoveredObject;
@@ -47,12 +46,12 @@ public class CommandInputHandler : MonoBehaviour
 
     private void HandleExcavationInput()
     {
-        if (!camera)
+        if (!this.cachedCamera)
         {
-            camera = Camera.current;
+            this.cachedCamera = Camera.current;
         }
-        if (!camera) return;
-        Ray ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        if (!this.cachedCamera) return;
+        Ray ray = this.cachedCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out var hit))
         {
             var targetObject = hit.transform.gameObject;
