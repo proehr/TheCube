@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DataStructures.Event
 {
-    [CreateAssetMenu(fileName = "new GameEvent", menuName = "Utils/Event")]
+    [CreateAssetMenu(fileName = "new GameEvent", menuName = "Utils/Game Event")]
     public class GameEvent : ScriptableObject
     {
         [ShowInInspector, ReadOnly] private List<GameEventListener> listeners = new List<GameEventListener>();
