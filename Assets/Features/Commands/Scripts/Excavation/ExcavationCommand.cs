@@ -49,7 +49,7 @@ namespace Features.Commands.Scripts.Excavation
         {
             if (this.Success)
             {
-                onCubeRemoved.Raise(targetCube.resourceData);
+                onCubeRemoved.Raise(targetCube);
                 Object.Destroy(targetCube.gameObject);
                 this.resourceSlot.Add(this.resourceAmount);
             }

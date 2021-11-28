@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onPlanetGenerated: {fileID: 11400000, guid: f84051dd761d9fc41a7dcb7302a5dfb0, type: 2}
+  onLaunchTriggered: {fileID: 11400000, guid: cb6bc0a8661e89147a25f7338dda6746, type: 2}
   planetCubes: {fileID: 11400000, guid: 2ba9aca49bd6a7e49bd0f7350ae5bfaa, type: 2}
   integrityThreshold: {fileID: 11400000, guid: 3477042811d2649439bf98de1b6c963e, type: 2}
   currentIntegrity: {fileID: 11400000, guid: 3253e204aa8aca14193315643fa54697, type: 2}

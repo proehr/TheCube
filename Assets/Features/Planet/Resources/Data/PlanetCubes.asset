@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37decbd8286fe5478885590eb579b07, type: 3}
   m_Name: PlanetCubes
   m_EditorClassIdentifier: 
-  cubeExcavationFinishedEvent: {fileID: 11400000, guid: 281a61c828adb8c4e8beac63c41f70ce, type: 2}
+  onCubeRemoved: {fileID: 11400000, guid: d398d64abf2958a4eb05f7535f8a3ed6, type: 2}

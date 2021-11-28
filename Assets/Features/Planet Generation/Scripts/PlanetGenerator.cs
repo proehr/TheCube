@@ -210,7 +210,7 @@ public class PlanetGenerator : MonoBehaviour
         return surfaces[surface].ToArray();
     }
 
-    private void UpdateNavMesh(Resource_SO obj)
+    private void UpdateNavMesh(Cube obj)
     {
         // TODO create navMeshLinks at edges of removed cube
         if (!updateNavMeshOnCubeRemoval) return;

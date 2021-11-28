@@ -1,4 +1,5 @@
 using DataStructures.Variables;
+using Features.LandingPod.Scripts;
 using Features.Planet.Resources.Scripts;
 using Features.Planet_Generation.Scripts.Events;
 using Sirenix.OdinInspector;
@@ -9,6 +10,7 @@ namespace Features.Planet_Integrity
     public class Integrity : MonoBehaviour
     {
         [SerializeField] private PlanetGeneratedActionEvent onPlanetGenerated;
+        [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
         [SerializeField] private PlanetCubes_SO planetCubes;
 
         [SerializeField] private FloatVariable integrityThreshold;
@@ -71,6 +73,7 @@ namespace Features.Planet_Integrity
         
             if (currentIntegrity.Get() < integrityThreshold.Get())
             {
+                onLaunchTriggered.Raise(new LaunchInformation());
                 Debug.Log("Lost");
             }
         }

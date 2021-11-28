@@ -7,7 +7,7 @@ namespace Features.Planet.Resources.Scripts
     [CreateAssetMenu]
     public class PlanetCubes_SO : ScriptableObject
     {
-        [SerializeField] private CubeExcavationFinishedActionEvent cubeExcavationFinishedEvent;
+        [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
         
         private Cube[][][] cubes;
 
@@ -22,7 +22,7 @@ namespace Features.Planet.Resources.Scripts
                     cubes[i][j] = new Cube[planetData.Size];
                 }
             }
-            cubeExcavationFinishedEvent.RegisterListener(RemoveCube);
+            onCubeRemoved.RegisterListener(RemoveCube);
         }
 
         public void AddCube(Cube cube)
