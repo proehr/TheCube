@@ -1,6 +1,7 @@
 ﻿using DataStructures.Variables;
 using Features.ExtendedRandom;
 using Features.Planet.Resources.Scripts;
+using Features.Planet_Generation.Scripts;
 using Features.WorkerAI.Scripts;
 using UnityEngine;
 
@@ -12,14 +13,17 @@ namespace Features.Commands.Scripts.Excavation
         private readonly Vector3 cubeStartScale;
         private readonly int resourceAmount;
         private readonly IntVariable resourceSlot;
+        private readonly CubeRemovedActionEvent onCubeRemoved;
 
         public ExcavationCommand(Cube targetCube, int cubeObjectId, Vector3 planeNormal, WorkerService_SO workerService,
-            Command_SO excavationCommandData, Transform commandPostsParent) :
+            Command_SO excavationCommandData, Transform commandPostsParent,
+            CubeRemovedActionEvent onCubeRemoved) :
             base(targetCube, cubeObjectId, planeNormal, workerService, excavationCommandData, commandPostsParent)
         {
             this.targetCube = targetCube;
             this.cubeStartScale = targetCube.transform.localScale;
             this.resourceSlot = targetCube.resourceData.InventoryResource;
+            this.onCubeRemoved = onCubeRemoved;
 
             // Randomize how many resources actually going to be gathered
             this.resourceAmount = XRandom.Range(targetCube.resourceData.ExcavationAmountInterval);
@@ -45,6 +49,7 @@ namespace Features.Commands.Scripts.Excavation
         {
             if (this.Success)
             {
+                onCubeRemoved.Raise(targetCube.resourceData);
                 Object.Destroy(targetCube.gameObject);
                 this.resourceSlot.Add(this.resourceAmount);
             }
