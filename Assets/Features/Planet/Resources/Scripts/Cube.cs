@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using DataStructures.Variables;
 using Features.Commands.Scripts.ActionEvents;
 using Features.Planet_Generation.Scripts;
@@ -45,40 +46,61 @@ namespace Features.Planet.Resources.Scripts
         private void OnHover()
         {
             if (this.state.HasFlag(CubeState.Hovered) || !renderer) return;
-            SetMaterialColor(this.highlightMaterialColor);
             this.state |= CubeState.Hovered;
+            UpdateMaterial();
         }
 
         private void OnHoverEnd()
         {
             if (!this.state.HasFlag(CubeState.Hovered) || !this.renderer) return;
-            if (this.isMarkedForExcavation)
-            {
-                SetMaterialColor(this.excavateMaterialColor);
-            }
-            else
-            {
-                SetMaterialColor(this.defaultMaterialColor);
-            }
-
             this.state &= ~CubeState.Hovered;
+            UpdateMaterial();
         }
 
-        private void OnSelect()
+        private void OnSelect(bool bExcavate)
         {
-            if (this.state.HasFlag(CubeState.MarkedForExcavation))
+            if (!this.isMarkedForExcavation && bExcavate)
+            {
+                AddState(CubeState.MarkedForExcavation);
+            }
+            else if(!bExcavate)
             {
                 RemoveState(CubeState.MarkedForExcavation);
             }
-            else
+        }
+
+        private void UpdateMaterial()
+        {
+            switch (state)
             {
-                AddState(CubeState.MarkedForExcavation);
+                case CubeState.Default:
+                    SetMaterialColor(this.defaultMaterialColor);
+                    break;
+                case CubeState.Hovered:
+                    HoverState.SetState(HoverState.State.Cube);
+                    SetMaterialColor(this.highlightMaterialColor);
+                    break;
+                case CubeState.MarkedForExcavation:
+                    HoverState.SetState(HoverState.State.CubeExcavate);
+                    SetMaterialColor(this.excavateMaterialColor);
+                    break;
+                case CubeState.Hovered | CubeState.MarkedForExcavation:
+                    HoverState.SetState(HoverState.State.CubeExcavate);
+                    SetMaterialColorBlend(this.highlightMaterialColor, this.excavateMaterialColor);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
         private void SetMaterialColor(ColorVariable colorVariable)
         {
             this.renderer.material.color = colorVariable.Get();
+        } 
+        
+        private void SetMaterialColorBlend(ColorVariable colorVariableA, ColorVariable colorVariableB)
+        {
+            this.renderer.material.color = colorVariableA.Get() * colorVariableB.Get();
         }
 
         private void AddState(CubeState newCubeState)
@@ -97,6 +119,7 @@ namespace Features.Planet.Resources.Scripts
 
         private void OnStateChange()
         {
+            UpdateMaterial();
             if (this.workerCommandActionEvent == null) return;
             this.workerCommandActionEvent.Raise(this);
         }
