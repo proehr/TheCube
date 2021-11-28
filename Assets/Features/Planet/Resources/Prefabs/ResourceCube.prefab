@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workerCommandActionEvent: {fileID: 11400000, guid: 1a1fcbd24fb1086448c73f84438a7991, type: 2}
-  renderer: {fileID: 5949118940647709314}
+  cubeMeshRenderer: {fileID: 5949118940647709314}
   defaultMaterialColor: {fileID: 11400000, guid: 1c23fbbbba1a4c541901f08d60a9efec, type: 2}
   highlightMaterialColor: {fileID: 11400000, guid: 792b60916623f6a4bbe238472e1e8096, type: 2}
   excavateMaterialColor: {fileID: 11400000, guid: d1d09bd2e4fbbaf48aca448d63d2d58e, type: 2}
