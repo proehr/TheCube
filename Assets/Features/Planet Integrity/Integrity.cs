@@ -51,7 +51,7 @@ public class Integrity : MonoBehaviour
                             Mathf.Abs(k - resourceArrangement[i][j].Length / 2));
                         cubeDistance[i][j][k] = Mathf.Max(blockPosition.x, blockPosition.y, blockPosition.z);
 
-                        maxDistanceFromCenter = Mathf.Max(maxDistanceFromCenter, cubeDistanceFromCenter[i][j][k]);
+                        maxDistanceFromCenter = Mathf.Max(maxDistanceFromCenter, cubeDistance[i][j][k]);
                     }
                 }
             }
