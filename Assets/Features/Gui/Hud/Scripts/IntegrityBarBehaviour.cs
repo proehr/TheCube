@@ -1,8 +1,7 @@
-using System;
 using DataStructures.Variables;
 using UnityEngine;
 
-namespace Features.Planet_Integrity
+namespace Features.Gui.Hud.Scripts
 {
     public class IntegrityBarBehaviour : MonoBehaviour
     {

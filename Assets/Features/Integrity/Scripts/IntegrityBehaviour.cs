@@ -21,7 +21,6 @@ namespace Features.Integrity.Scripts
         [SerializeField, ReadOnly] private float currentStability;
 
         private bool isInitialized;
-        private float[][][] cubeDistanceFromCenter;
         private float maxDistanceFromCenter;
     
         private void Awake()
@@ -33,40 +32,16 @@ namespace Features.Integrity.Scripts
         private void UpdateCurrentStability(Cube cube)
         {
             currentStability -= cube.resourceData.IntegrityBlockValue * Mathf.Pow(
-                2f - cubeDistanceFromCenter[cube.planetPosition.x][cube.planetPosition.y][cube.planetPosition.z] /
+                2f - planetCubes.GetCubeLayerDistanceFromCenter(cube.planetPosition) /
                 maxDistanceFromCenter, 2);
         }
 
         private void InitializeIntegrity(PlanetGenerator planetGenerator)
         {
-            cubeDistanceFromCenter = CalculateDistanceFromCenter(planetCubes.GetCubes());
             maxDistanceFromCenter = planetCubes.cubeLayerCount;
             CalculateMaxStability(planetCubes.GetCubes());
             currentStability = maxStability;
             isInitialized = true;
-        }
-
-        private float[][][] CalculateDistanceFromCenter(Cube[][][] cubes)
-        {
-            float[][][] cubeDistance = new float[cubes.Length][][];
-        
-            for (int i = 0; i < cubes.Length; i++)
-            {
-                cubeDistance[i] = new float[cubes.Length][];
-                for (int j = 0; j < cubes[i].Length; j++)
-                {
-                    cubeDistance[i][j] = new float[cubes.Length];
-                    for (int k = 0; k < cubes[i][j].Length; k++)
-                    {
-                        Cube currentCube = cubes[i][j][k];
-                        if (currentCube != null)
-                        {
-                            cubeDistance[i][j][k] = Mathf.Max(currentCube.planetPosition.x, currentCube.planetPosition.y, currentCube.planetPosition.z);
-                        }
-                    }
-                }
-            }
-            return cubeDistance;
         }
         
         private void CalculateMaxStability(Cube[][][] cubes)
@@ -79,10 +54,12 @@ namespace Features.Integrity.Scripts
                 {
                     for (int k = 0; k < cubes[i][j].Length; k++)
                     {
-                        if (cubes[i][j][k] != null)
+                        Cube currentCube = cubes[i][j][k];
+                        if (currentCube != null)
                         {
-                            maxStability += cubes[i][j][k].resourceData.IntegrityBlockValue *
-                                            Mathf.Pow(2f - (cubeDistanceFromCenter[i][j][k] / maxDistanceFromCenter), 2);
+                            maxStability += currentCube.resourceData.IntegrityBlockValue *
+                                            Mathf.Pow(2f - (planetCubes.GetCubeLayerDistanceFromCenter(currentCube.planetPosition) 
+                                                            / maxDistanceFromCenter), 2);
                         }
                     }
                 }
@@ -95,7 +72,7 @@ namespace Features.Integrity.Scripts
             
             currentIntegrity.Add((1 - currentStability / maxStability) * Time.deltaTime);
         
-            if (currentIntegrity.Get() < integrityThreshold.Get())
+            if (currentIntegrity.Get() > integrityThreshold.Get())
             {
                 onLaunchTriggered.Raise(new LaunchInformation());
                 Debug.Log("Lost");
