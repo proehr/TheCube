@@ -1,7 +1,7 @@
 using System;
 using DataStructures.Variables;
 using Features.Commands.Scripts.ActionEvents;
-using Features.Planet_Generation.Scripts;
+using Features.PlanetGeneration.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 

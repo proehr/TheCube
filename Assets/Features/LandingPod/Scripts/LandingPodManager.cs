@@ -1,7 +1,7 @@
 ﻿using DataStructures.Variables;
 using Features.ExtendedRandom;
-using Features.Planet_Generation.Scripts;
-using Features.Planet_Generation.Scripts.Events;
+using Features.PlanetGeneration.Scripts;
+using Features.PlanetGeneration.Scripts.Events;
 using UnityEngine;
 
 namespace Features.LandingPod.Scripts

@@ -3,7 +3,7 @@ using Features.Commands.Scripts;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Features.Planet_Generation.Scripts
+namespace Features.PlanetGeneration.Scripts
 {
     [CreateAssetMenu(fileName = "ResourceType", menuName = "Resource", order = 0)]
     public class Resource_SO : ScriptableObject

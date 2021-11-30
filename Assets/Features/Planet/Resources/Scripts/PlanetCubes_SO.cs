@@ -1,5 +1,5 @@
 using System;
-using Features.Planet_Generation.Scripts;
+using Features.PlanetGeneration.Scripts;
 using UnityEngine;
 
 namespace Features.Planet.Resources.Scripts
@@ -8,6 +8,8 @@ namespace Features.Planet.Resources.Scripts
     public class PlanetCubes_SO : ScriptableObject
     {
         [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
+        
+        public int cubeLayerCount { get; private set; }
         
         private Cube[][][] cubes;
 
@@ -23,6 +25,8 @@ namespace Features.Planet.Resources.Scripts
                 }
             }
             onCubeRemoved.RegisterListener(RemoveCube);
+
+            cubeLayerCount = planetData.Size / 2;
         }
 
         public void AddCube(Cube cube)

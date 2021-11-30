@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Features.Planet_Generation.Scripts
+namespace Features.PlanetGeneration.Scripts
 {
     [CreateAssetMenu(fileName = "CraterPlanetModifier", menuName = "PlanetModifiers/CraterPlanetModifier", order = 0)]
     public class CraterPlanetModifier_SO : PlanetModifier

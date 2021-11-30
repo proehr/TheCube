@@ -1,4 +1,4 @@
-﻿namespace Features.Planet_Generation.Scripts
+﻿namespace Features.PlanetGeneration.Scripts
 {
     public enum Surface
     {

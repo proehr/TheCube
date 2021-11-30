@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Features.Planet_Generation.Scripts
+namespace Features.PlanetGeneration.Scripts
 {
     public abstract class PlanetModifier : ScriptableObject
     {

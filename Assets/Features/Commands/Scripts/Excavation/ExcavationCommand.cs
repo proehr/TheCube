@@ -1,7 +1,7 @@
 ﻿using DataStructures.Variables;
 using Features.ExtendedRandom;
 using Features.Planet.Resources.Scripts;
-using Features.Planet_Generation.Scripts;
+using Features.PlanetGeneration.Scripts;
 using Features.WorkerAI.Scripts;
 using UnityEngine;
 

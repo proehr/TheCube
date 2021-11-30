@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Features.Planet_Generation.Scripts
+namespace Features.PlanetGeneration.Scripts
 {
     [CreateAssetMenu(fileName = "PlanetConfiguration", menuName = "Planet", order = 0)]
     public class Planet_SO : ScriptableObject
