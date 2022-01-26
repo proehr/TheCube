@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 
 namespace Features.WorkerAI.Scripts
 {
-    [CreateAssetMenu(fileName = "WorkerBO", menuName = "WorkerBO")]
+    [CreateAssetMenu(fileName = "WorkerService", menuName = "WorkerService")]
     public class WorkerService_SO : SerializedScriptableObject
     {
         [SerializeField] private Dictionary<int, WorkerBehavior> workerPrefabs;
