@@ -1,6 +1,5 @@
 ﻿using Features.GameController.Scripts.StateMachine;
 using UnityEngine;
-
 namespace Features.GameController.Scripts
 {
     [CreateAssetMenu(fileName = "GameState", menuName = "Data/GameState")]
@@ -17,6 +16,7 @@ namespace Features.GameController.Scripts
             }
             else
             {
+                // TODO FIXME if the gameState already has a nextState scheduled, go through all their stages and set next on the previously scheduled state
                 this.gameState.SetNext(gameState);
             }
         }
@@ -29,6 +29,11 @@ namespace Features.GameController.Scripts
         public AbstractGameState.GameState GetId()
         {
             return gameState.id;
+        }
+
+        internal void Update()
+        {
+            gameState = gameState.Process();
         }
     }
 }

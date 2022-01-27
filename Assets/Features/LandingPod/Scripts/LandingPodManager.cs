@@ -1,36 +1,26 @@
 ﻿using DataStructures.Variables;
 using Features.ExtendedRandom;
-using Features.Planet_Generation.Scripts;
-using Features.Planet_Generation.Scripts.Events;
 using UnityEngine;
-
 namespace Features.LandingPod.Scripts
 {
     public class LandingPodManager : MonoBehaviour
     {
-        [SerializeField] private PlanetGeneratedActionEvent onPlanetGenerated;
         [SerializeField] private LandingPod landingPodPrefab;
 
-        [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
         [SerializeField] private IntVariable relicAmount;
 
         private LandingPod landingPod;
 
-        private void Awake()
-        {
-            onPlanetGenerated.RegisterListener(PlaceLandingPod);
-            onLaunchTriggered.RegisterListener(Launch);
-        }
 
-        private void PlaceLandingPod(PlanetGenerator planetGenerator)
+        public void PlaceLandingPod(GameObject[] landingSurface)
         {
-            var surfaceCubes = planetGenerator.GetSurface(Surface.POSITIVE_Y);
+            var surfaceCubes = landingSurface;
             var pickedSurfaceCube = RandomSet<GameObject>.PickOne(surfaceCubes);
             this.landingPod = Instantiate(landingPodPrefab, this.transform);
             this.landingPod.Init(pickedSurfaceCube);
         }
 
-        private void Launch(LaunchInformation launchInformation)
+        public void Launch(LaunchInformation launchInformation)
         {
             // Safety check
             if (relicAmount.Get() <= 0) return;

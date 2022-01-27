@@ -1,15 +1,16 @@
 using DataStructures.Variables;
 using Features.LandingPod.Scripts;
 using Features.Planet.Resources.Scripts;
-using Features.Planet_Generation.Scripts.Events;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Features.Planet_Integrity
+// TODO rename namespace
+namespace Features.PlanetIntegrity.Scripts
 {
+    // TODO rename to IntegrityManager
+    // TODO move IntegrityBar into UI
     public class Integrity : MonoBehaviour
     {
-        [SerializeField] private PlanetGeneratedActionEvent onPlanetGenerated;
         [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
         [SerializeField] private PlanetCubes_SO planetCubes;
 
@@ -22,12 +23,7 @@ namespace Features.Planet_Integrity
         private float[][][] cubeDistanceFromCenter;
         private float maxDistanceFromCenter;
     
-        private void Awake()
-        {
-            onPlanetGenerated.RegisterListener(InitializeIntegrity);
-        }
-
-        private void InitializeIntegrity(PlanetGenerator planetGenerator)
+        public void Initialize()
         {
             cubeDistanceFromCenter = CalculateDistanceFromCenter(planetCubes.GetCubes());
             maxStability = CalculateStability(planetCubes.GetCubes());
