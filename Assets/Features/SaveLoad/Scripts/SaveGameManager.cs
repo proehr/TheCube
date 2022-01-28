@@ -1,12 +1,12 @@
 using Features.WorkerAI.Scripts;
 using UnityEngine;
 
-namespace Features.SaveLoad
+namespace Features.SaveLoad.Scripts
 {
-    public class SaveAndLoadWorkers : MonoBehaviour
+    public class SaveGameManager : MonoBehaviour
     {
         [SerializeField] private WorkerService_SO workerService;
-    
+
         public void Save()
         {
             workerService.Save();

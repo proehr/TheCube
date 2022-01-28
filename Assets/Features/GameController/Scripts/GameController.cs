@@ -1,14 +1,19 @@
-﻿using System;
-using DataStructures.Event;
+﻿using DataStructures.Event;
 using Features.GameController.Scripts.StateMachine;
+using Features.Gui.Scripts;
 using Features.Inventory.Scripts;
 using Features.LandingPod.Scripts;
-using Features.Planet_Generation.Scripts;
 using Features.PlanetIntegrity.Scripts;
+using Features.SaveLoad.Scripts;
 using Features.WorkerAI.Scripts;
 using UnityEngine;
+
 namespace Features.GameController.Scripts
 {
+    // TODO 1: create all the event assets
+    // TODO 2: create GameController (Prefab?) in scene and link everything together
+    // TODO 3: test the game
+    // TODO 4: do all the refactorings
     /// <summary>
     ///     <para>
     ///         There shall be no references to this class outside of the Features.GameController namespace!
@@ -36,18 +41,39 @@ namespace Features.GameController.Scripts
         [Header("Game Features & Components")]
         [SerializeField] private PlanetGenerator planetGenerator;
         [SerializeField] private LandingPodManager landingPodManager;
-        [SerializeField] private Integrity integrity;
+        [SerializeField] private IntegrityManager integrityManager;
         [SerializeField] private WorkerService_SO workerService;
+        [SerializeField] private GuiManager guiManager;
         [SerializeField] private Inventory_SO inventory;
+        [SerializeField] private SaveGameManager saveGameManager;
 
-        [Header("Game Events")]
-        // TODO prolly needs its own class
+        [Header("Inbound Game Events")]
         [SerializeField] private ActionEvent onStartRequested;
         [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
-        // TODO prolly needs its own class
         [SerializeField] private ActionEvent onPauseRequested;
-        // TODO prolly needs its own class
         [SerializeField] private ActionEvent onExitRequested;
+
+        [Header("Outbound Game Events")]
+        [SerializeField] private ActionEvent onBeforeStartScreen;
+        [SerializeField] private ActionEvent onAfterStartScreen;
+
+        [SerializeField] private ActionEvent onBeforeLevelInit;
+        [SerializeField] private ActionEvent onAfterLevelInit;
+
+        [SerializeField] private ActionEvent onBeforeGameplay;
+        [SerializeField] private ActionEvent onAfterGameplay;
+
+        [SerializeField] private ActionEvent onBeforePauseScreen;
+        [SerializeField] private ActionEvent onAfterPauseScreen;
+
+        [SerializeField] private ActionEvent onBeforeLevelEnd;
+        [SerializeField] private ActionEvent onAfterLevelEnd;
+
+        [SerializeField] private ActionEvent onBeforeLevelResultScreen;
+        [SerializeField] private ActionEvent onAfterLevelResultScreen;
+
+        [SerializeField] private ActionEvent onBeforeGameExiting;
+        [SerializeField] private ActionEvent onAfterGameExiting;
 
         private void Awake()
         {
@@ -56,7 +82,10 @@ namespace Features.GameController.Scripts
             onPauseRequested.RegisterListener(Pause);
             onExitRequested.RegisterListener(Exit);
 
-            gameStateData.Set(new StartScreenState());
+            gameStateData.Set(
+                new StartScreenState(
+                    onBeforeStartScreen,
+                    onAfterStartScreen));
         }
 
         private void Update()
@@ -66,33 +95,24 @@ namespace Features.GameController.Scripts
 
         private void InitLevel()
         {
-            // TODO refactor to move all this method(s) into the states itself - so the state does stuff and protects the state transitions
-            if (gameStateData.GetId() != AbstractGameState.GameState.START_SCREEN &&
-                gameStateData.GetId() != AbstractGameState.GameState.LEVEL_END)
-            {
-                throw new InvalidOperationException("Invalid Game State transition");
-            }
-
-            gameStateData.Set(new LevelInitState());
-
-            planetGenerator.Generate();
-            // For now, the landing pod is always placed "on top" - later this could be input by the player
-            landingPodManager.PlaceLandingPod(planetGenerator.GetSurface(Surface.POSITIVE_Y));
-            integrity.Initialize();
-            workerService.OnLevelStart();
+            gameStateData.Set(
+                new LevelInitState(
+                    onBeforeLevelInit,
+                    onAfterLevelInit,
+                    planetGenerator,
+                    landingPodManager,
+                    integrityManager,
+                    workerService));
 
             StartGameplay();
         }
 
         private void StartGameplay()
         {
-            if (gameStateData.GetId() != AbstractGameState.GameState.LEVEL_INIT &&
-                gameStateData.GetId() != AbstractGameState.GameState.PAUSE_SCREEN)
-            {
-                throw new InvalidOperationException("Invalid Game State transition");
-            }
-
-            gameStateData.Set(new GameplayState());
+            gameStateData.Set(
+                new GameplayState(
+                    onBeforeGameplay,
+                    onAfterGameplay));
 
             // And now we wait - until the planet disintegrates or the
             // relic was retrieved and we initiate the launch procedure.
@@ -100,47 +120,45 @@ namespace Features.GameController.Scripts
 
         private void Pause()
         {
-            if (gameStateData.GetId() != AbstractGameState.GameState.GAMEPLAY)
-            {
-                throw new InvalidOperationException("Invalid Game State transition");
-            }
+            gameStateData.Set(
+                new PauseScreenState(
+                    onBeforePauseScreen,
+                    onAfterPauseScreen,
+                    guiManager));
 
-            gameStateData.Set(new PauseScreenState());
-
-            // TODO Tell UI to Show Pause Screen OR make UI listen to the game state and show the according screen
         }
 
         private void EndLevel(LaunchInformation launchInformation)
         {
-            if (gameStateData.GetId() != AbstractGameState.GameState.GAMEPLAY)
-            {
-                throw new InvalidOperationException("Invalid Game State transition");
-            }
+            gameStateData.Set(
+                new LevelEndState(
+                    onBeforeLevelEnd,
+                    onAfterLevelEnd,
+                    landingPodManager,
+                    launchInformation,
+                    workerService,
+                    inventory));
 
-            gameStateData.Set(new LevelEndState());
+            ShowLevelResultScreen(launchInformation);
+        }
 
-            landingPodManager.Launch(launchInformation);
-            workerService.OnLevelEnd();
-            inventory.Reset();
-            // TODO Tell UI to Show Level Result Screen OR make UI listen to the game state and show the according screen
-
-            gameStateData.Set(new LevelResultScreenState());
+        private void ShowLevelResultScreen(LaunchInformation launchInformation)
+        {
+            gameStateData.Set(
+                new LevelResultScreenState(
+                    onBeforeLevelResultScreen,
+                    onAfterLevelResultScreen,
+                    guiManager,
+                    launchInformation));
         }
 
         private void Exit()
         {
-            if (gameStateData.GetId() != AbstractGameState.GameState.START_SCREEN &&
-                gameStateData.GetId() != AbstractGameState.GameState.PAUSE_SCREEN &&
-                gameStateData.GetId() != AbstractGameState.GameState.LEVEL_RESULT_SCREEN)
-            {
-                throw new InvalidOperationException("Invalid Game State transition");
-            }
-
-            gameStateData.Set(new GameExitingState());
-
-            // TODO Save?
-
-            Application.Quit();
+            gameStateData.Set(
+                new GameExitingState(
+                    onBeforeGameExiting,
+                    onAfterGameExiting,
+                    saveGameManager));
         }
     }
 }

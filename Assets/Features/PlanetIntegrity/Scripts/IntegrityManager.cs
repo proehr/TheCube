@@ -4,12 +4,10 @@ using Features.Planet.Resources.Scripts;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-// TODO rename namespace
 namespace Features.PlanetIntegrity.Scripts
 {
-    // TODO rename to IntegrityManager
     // TODO move IntegrityBar into UI
-    public class Integrity : MonoBehaviour
+    public class IntegrityManager : MonoBehaviour
     {
         [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
         [SerializeField] private PlanetCubes_SO planetCubes;
@@ -66,7 +64,7 @@ namespace Features.PlanetIntegrity.Scripts
         
             currentStability = CalculateStability(planetCubes.GetCubes());
             currentIntegrity.Add(-(1 - currentStability / maxStability) * Time.deltaTime);
-        
+
             if (currentIntegrity.Get() < integrityThreshold.Get())
             {
                 onLaunchTriggered.Raise(new LaunchInformation());
