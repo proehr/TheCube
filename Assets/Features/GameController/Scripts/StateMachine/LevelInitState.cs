@@ -6,11 +6,11 @@ using Features.WorkerAI.Scripts;
 
 namespace Features.GameController.Scripts.StateMachine
 {
-    public class LevelInitState : AbstractGameState
+    internal class LevelInitState : AbstractGameState
     {
         private readonly PlanetGenerator planetGenerator;
         private readonly LandingPodManager landingPodManager;
-        private readonly IntegrityManager integrityManager;
+        private readonly IntegrityController integrityController;
         private readonly WorkerService_SO workerService;
 
         public LevelInitState(
@@ -18,13 +18,13 @@ namespace Features.GameController.Scripts.StateMachine
             ActionEvent onAfterLevelInit,
             PlanetGenerator planetGenerator,
             LandingPodManager landingPodManager,
-            IntegrityManager integrityManager,
+            IntegrityController integrityController,
             WorkerService_SO workerService)
             : base(GameState.LEVEL_INIT, onBeforeLevelInit, onAfterLevelInit)
         {
             this.planetGenerator = planetGenerator;
             this.landingPodManager = landingPodManager;
-            this.integrityManager = integrityManager;
+            this.integrityController = integrityController;
             this.workerService = workerService;
         }
 
@@ -35,7 +35,7 @@ namespace Features.GameController.Scripts.StateMachine
             planetGenerator.Generate();
             // For now, the landing pod is always placed "on top" - later this could be input by the player
             landingPodManager.PlaceLandingPod(planetGenerator.GetSurface(Surface.POSITIVE_Y));
-            integrityManager.Initialize();
+            integrityController.Initialize();
             workerService.OnLevelStart();
         }
 

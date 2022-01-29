@@ -10,10 +10,6 @@ using UnityEngine;
 
 namespace Features.GameController.Scripts
 {
-    // TODO 1: create all the event assets
-    // TODO 2: create GameController (Prefab?) in scene and link everything together
-    // TODO 3: test the game
-    // TODO 4: do all the refactorings
     /// <summary>
     ///     <para>
     ///         There shall be no references to this class outside of the Features.GameController namespace!
@@ -26,14 +22,14 @@ namespace Features.GameController.Scripts
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///         <b>When would you use the Game Controller vs event based inter-feature communication?</b><br/>
+    ///         <b>When would you use the Game Controller vs event based inter-feature communication?</b><br />
     ///         The question has to be: Is the event part of the game loop? Is the order of execution
     ///         relevant of potential listeners? Does the event alter the game state?
     ///         If all of this is 'yes', this should be handled via the Game Controller. If one of those
     ///         is a 'no', you will need to find another way to handle this event.
     ///     </para>
     /// </remarks>
-    public class GameController : MonoBehaviour
+    internal class GameController : MonoBehaviour
     {
         [Header("Most important - the Game State")]
         [SerializeField] private GameState_SO gameStateData;
@@ -41,9 +37,9 @@ namespace Features.GameController.Scripts
         [Header("Game Features & Components")]
         [SerializeField] private PlanetGenerator planetGenerator;
         [SerializeField] private LandingPodManager landingPodManager;
-        [SerializeField] private IntegrityManager integrityManager;
+        [SerializeField] private IntegrityController integrityController;
         [SerializeField] private WorkerService_SO workerService;
-        [SerializeField] private GuiManager guiManager;
+        [SerializeField] private GuiController guiController;
         [SerializeField] private Inventory_SO inventory;
         [SerializeField] private SaveGameManager saveGameManager;
 
@@ -85,7 +81,8 @@ namespace Features.GameController.Scripts
             gameStateData.Set(
                 new StartScreenState(
                     onBeforeStartScreen,
-                    onAfterStartScreen));
+                    onAfterStartScreen,
+                    guiController));
         }
 
         private void Update()
@@ -101,7 +98,7 @@ namespace Features.GameController.Scripts
                     onAfterLevelInit,
                     planetGenerator,
                     landingPodManager,
-                    integrityManager,
+                    integrityController,
                     workerService));
 
             StartGameplay();
@@ -124,7 +121,7 @@ namespace Features.GameController.Scripts
                 new PauseScreenState(
                     onBeforePauseScreen,
                     onAfterPauseScreen,
-                    guiManager));
+                    guiController));
 
         }
 
@@ -148,7 +145,7 @@ namespace Features.GameController.Scripts
                 new LevelResultScreenState(
                     onBeforeLevelResultScreen,
                     onAfterLevelResultScreen,
-                    guiManager,
+                    guiController,
                     launchInformation));
         }
 

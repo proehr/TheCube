@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6772702390766787531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5085557872381821032}
+  - component: {fileID: 8254635085791371001}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5085557872381821032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6772702390766787531}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8254635085791371001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6772702390766787531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd030f6c9a9a444485d2f39149581cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStateData: {fileID: 11400000, guid: 147bf89ba0eb13c45aa6fbf73815ecbf, type: 2}
+  planetGenerator: {fileID: 0}
+  landingPodManager: {fileID: 0}
+  integrityManager: {fileID: 0}
+  workerService: {fileID: 11400000, guid: d2da8624966c1b442a7e83172a545dee, type: 2}
+  guiManager: {fileID: 0}
+  inventory: {fileID: 11400000, guid: b951f25756a12eb48a71be3d3bba0121, type: 2}
+  saveGameManager: {fileID: 0}
+  onStartRequested: {fileID: 11400000, guid: 2ee98d885659a6d48b1b5e4a5a14f90a, type: 2}
+  onLaunchTriggered: {fileID: 11400000, guid: cb6bc0a8661e89147a25f7338dda6746, type: 2}
+  onPauseRequested: {fileID: 11400000, guid: a047b8d728199524884559c9ab5783fb, type: 2}
+  onExitRequested: {fileID: 11400000, guid: c1ad77971b706494fbcd8dd81f04e2d9, type: 2}
+  onBeforeStartScreen: {fileID: 11400000, guid: 14a380f6ea4c07946b204807267391f8, type: 2}
+  onAfterStartScreen: {fileID: 11400000, guid: af1307955fe9a3e44a2a49f686329014, type: 2}
+  onBeforeLevelInit: {fileID: 11400000, guid: 3422695fc1eeb0244b84a926fba7d601, type: 2}
+  onAfterLevelInit: {fileID: 11400000, guid: 7abc46f485e18934eb96dc549f83fb28, type: 2}
+  onBeforeGameplay: {fileID: 11400000, guid: e80a655d3d040904c8a0932f19b4b288, type: 2}
+  onAfterGameplay: {fileID: 11400000, guid: 050fb55eff75ab5478c9bec1811d8ae8, type: 2}
+  onBeforePauseScreen: {fileID: 11400000, guid: ce0dd25fd0eb9fa46bfbc893fe6a7837, type: 2}
+  onAfterPauseScreen: {fileID: 11400000, guid: 03217127399c49b4eabd3203013adf01, type: 2}
+  onBeforeLevelEnd: {fileID: 11400000, guid: 3422695fc1eeb0244b84a926fba7d601, type: 2}
+  onAfterLevelEnd: {fileID: 11400000, guid: 8d1f5d259288d0547ba3550ade86b75b, type: 2}
+  onBeforeLevelResultScreen: {fileID: 11400000, guid: 67ce1e085e603134db96be2e200be415, type: 2}
+  onAfterLevelResultScreen: {fileID: 11400000, guid: cf7bfa1630ad1734d94d8ce4ee8a5a76, type: 2}
+  onBeforeGameExiting: {fileID: 11400000, guid: bf753ebc32fdb264dbe2237c68e1324e, type: 2}
+  onAfterGameExiting: {fileID: 11400000, guid: 48fe4d53c4f0d90438ce86739494659a, type: 2}

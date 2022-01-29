@@ -1,22 +1,32 @@
-﻿using System;
+﻿// #define GAMESTATE_PRINT_DEBUG
+
+using System;
 using DataStructures.Event;
+#if GAMESTATE_PRINT_DEBUG
+using UnityEngine;
+#endif
 
 namespace Features.GameController.Scripts.StateMachine
 {
-    // TODO don't let outside namespaces extend from this class
-    public abstract class AbstractGameState
-    {
-        public enum GameState
-        {
-            START_SCREEN,
-            LEVEL_INIT,
-            GAMEPLAY,
-            PAUSE_SCREEN,
-            LEVEL_END,
-            LEVEL_RESULT_SCREEN,
-            GAME_EXITING
-        };
 
+    public enum GameState
+    {
+        /**
+             * Default game state when the game is not yet started.
+             */
+        NONE,
+
+        START_SCREEN,
+        LEVEL_INIT,
+        GAMEPLAY,
+        PAUSE_SCREEN,
+        LEVEL_END,
+        LEVEL_RESULT_SCREEN,
+        GAME_EXITING
+    };
+
+    internal abstract class AbstractGameState
+    {
         protected enum Stage
         {
             ENTER,
@@ -25,6 +35,7 @@ namespace Features.GameController.Scripts.StateMachine
         };
 
         public GameState id { get; }
+        public GameState NextId => nextState?.id ?? GameState.NONE;
         protected Stage stage;
 
         protected AbstractGameState nextState;
@@ -37,10 +48,18 @@ namespace Features.GameController.Scripts.StateMachine
             this.stage = Stage.ENTER;
             this.onEnterState = onEnterState;
             this.onExitState = onExitState;
+
+#if GAMESTATE_PRINT_DEBUG
+            Debug.Log(this.GetType().Name + " constructed");
+#endif
         }
 
         protected virtual void Enter()
         {
+#if GAMESTATE_PRINT_DEBUG
+            Debug.Log(this.GetType().Name + " Enter");
+#endif
+
             onEnterState.Raise();
             stage = Stage.UPDATE;
         }
@@ -60,6 +79,10 @@ namespace Features.GameController.Scripts.StateMachine
 
         protected virtual void Exit()
         {
+#if GAMESTATE_PRINT_DEBUG
+            Debug.Log(this.GetType().Name + " Exit");
+#endif
+
             stage = Stage.EXIT;
             onExitState.Raise();
         }
@@ -79,6 +102,10 @@ namespace Features.GameController.Scripts.StateMachine
 
         internal void SetNext(AbstractGameState nextState)
         {
+#if GAMESTATE_PRINT_DEBUG
+            Debug.Log(this.GetType().Name + " SetNext " + nextState.GetType().Name);
+#endif
+
             if (this.nextState == null)
             {
                 if (!ValidateNextState(nextState))

@@ -2,7 +2,7 @@
 
 namespace Features.GameController.Scripts.StateMachine
 {
-    public class GameplayState : AbstractGameState
+    internal class GameplayState : AbstractGameState
     {
         public GameplayState(ActionEvent onBeforeGameplay, ActionEvent onAfterGameplay)
             : base(GameState.GAMEPLAY, onBeforeGameplay, onAfterGameplay) { }

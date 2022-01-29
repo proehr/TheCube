@@ -1,6 +1,7 @@
 ﻿using DataStructures.Variables;
 using Features.ExtendedRandom;
 using UnityEngine;
+
 namespace Features.LandingPod.Scripts
 {
     public class LandingPodManager : MonoBehaviour
@@ -10,7 +11,6 @@ namespace Features.LandingPod.Scripts
         [SerializeField] private IntVariable relicAmount;
 
         private LandingPod landingPod;
-
 
         public void PlaceLandingPod(GameObject[] landingSurface)
         {
@@ -26,6 +26,8 @@ namespace Features.LandingPod.Scripts
             if (relicAmount.Get() <= 0) return;
 
             Debug.Log("We would launch now :)");
+
+            Destroy(this.landingPod);
             // TODO Do the launch!
         }
     }

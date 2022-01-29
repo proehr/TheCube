@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features.GameController.Scripts.StateMachine
 {
-    public class GameExitingState : AbstractGameState
+    internal class GameExitingState : AbstractGameState
     {
         private readonly SaveGameManager saveGameManager;
 

@@ -5,7 +5,7 @@ using Features.WorkerAI.Scripts;
 
 namespace Features.GameController.Scripts.StateMachine
 {
-    public class LevelEndState : AbstractGameState
+    internal class LevelEndState : AbstractGameState
     {
         private readonly LandingPodManager landingPodManager;
         private readonly LaunchInformation launchInformation;

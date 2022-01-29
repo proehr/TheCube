@@ -3,21 +3,28 @@ using Features.Gui.Scripts;
 
 namespace Features.GameController.Scripts.StateMachine
 {
-    public class PauseScreenState : AbstractGameState
+    internal class PauseScreenState : AbstractGameState
     {
-        private readonly GuiManager guiManager;
+        private readonly GuiController guiController;
 
-        public PauseScreenState(ActionEvent onBeforePauseScreen, ActionEvent onAfterPauseScreen, GuiManager guiManager)
+        public PauseScreenState(ActionEvent onBeforePauseScreen, ActionEvent onAfterPauseScreen, GuiController guiController)
             : base(GameState.PAUSE_SCREEN, onBeforePauseScreen, onAfterPauseScreen)
         {
-            this.guiManager = guiManager;
+            this.guiController = guiController;
         }
 
         protected override void Enter()
         {
             base.Enter();
 
-            guiManager.ShowPauseScreen();
+            guiController.ShowPauseScreen();
+        }
+
+        protected override void Exit()
+        {
+            guiController.HidePauseScreen();
+
+            base.Exit();
         }
 
         protected override bool ValidateNextState(AbstractGameState nextState)

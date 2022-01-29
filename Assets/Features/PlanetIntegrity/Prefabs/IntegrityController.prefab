@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5712587119823172448}
   - component: {fileID: 2680913770497524541}
   m_Layer: 0
-  m_Name: Integrity
+  m_Name: IntegrityController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

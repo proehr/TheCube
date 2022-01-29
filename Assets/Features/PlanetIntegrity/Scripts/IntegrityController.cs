@@ -6,21 +6,20 @@ using UnityEngine;
 
 namespace Features.PlanetIntegrity.Scripts
 {
-    // TODO move IntegrityBar into UI
-    public class IntegrityManager : MonoBehaviour
+    public class IntegrityController : MonoBehaviour
     {
         [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
         [SerializeField] private PlanetCubes_SO planetCubes;
 
         [SerializeField] private FloatVariable integrityThreshold;
         [SerializeField] private FloatVariable currentIntegrity;
-        [SerializeField][ReadOnly] private float maxStability;
-        [SerializeField][ReadOnly] private float currentStability;
+        [SerializeField] [ReadOnly] private float maxStability;
+        [SerializeField] [ReadOnly] private float currentStability;
 
         private bool isInitialized;
         private float[][][] cubeDistanceFromCenter;
         private float maxDistanceFromCenter;
-    
+
         public void Initialize()
         {
             cubeDistanceFromCenter = CalculateDistanceFromCenter(planetCubes.GetCubes());
@@ -32,7 +31,7 @@ namespace Features.PlanetIntegrity.Scripts
         private float[][][] CalculateDistanceFromCenter(Cube[][][] cubes)
         {
             float[][][] cubeDistance = new float[cubes.Length][][];
-        
+
             for (int i = 0; i < cubes.Length; i++)
             {
                 cubeDistance[i] = new float[cubes.Length][];
@@ -57,11 +56,11 @@ namespace Features.PlanetIntegrity.Scripts
 
             return cubeDistance;
         }
-    
+
         private void Update()
         {
             if (!isInitialized) return;
-        
+
             currentStability = CalculateStability(planetCubes.GetCubes());
             currentIntegrity.Add(-(1 - currentStability / maxStability) * Time.deltaTime);
 
@@ -75,7 +74,7 @@ namespace Features.PlanetIntegrity.Scripts
         private float CalculateStability(Cube[][][] cubes)
         {
             float newStability = default;
-        
+
             for (int i = 0; i < cubes.Length; i++)
             {
                 for (int j = 0; j < cubes[i].Length; j++)
