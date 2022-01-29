@@ -31,7 +31,7 @@ namespace Features.Integrity.Scripts
 
         private void UpdateCurrentStability(Cube cube)
         {
-            currentStability -= cube.resourceData.IntegrityBlockValue * Mathf.Pow(
+            currentStability -= cube.resourceData.IntegrityCubeValue * Mathf.Pow(
                 2f - planetCubes.GetCubeLayerDistanceFromCenter(cube.planetPosition) /
                 maxDistanceFromCenter, 2);
         }
@@ -57,7 +57,7 @@ namespace Features.Integrity.Scripts
                         Cube currentCube = cubes[i][j][k];
                         if (currentCube != null)
                         {
-                            maxStability += currentCube.resourceData.IntegrityBlockValue *
+                            maxStability += currentCube.resourceData.IntegrityCubeValue *
                                             Mathf.Pow(2f - (planetCubes.GetCubeLayerDistanceFromCenter(currentCube.planetPosition) 
                                                             / maxDistanceFromCenter), 2);
                         }

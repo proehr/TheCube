@@ -21,7 +21,7 @@ namespace Features.PlanetGeneration.Scripts
         [Tooltip("The values used when workers are commanded to excavate a cube of this resource.")]
         [SerializeField] private Command_SO excavationCommandData;
         [Tooltip("The integrity multiplier per type of block")]
-        [SerializeField] private float integrityBlockValue;
+        [SerializeField] private float integrityCubeValue;
 
         public int Count => count;
 
@@ -33,6 +33,6 @@ namespace Features.PlanetGeneration.Scripts
 
         public Command_SO ExcavationCommandData => excavationCommandData;
 
-        public float IntegrityBlockValue => integrityBlockValue;
+        public float IntegrityCubeValue => integrityCubeValue;
     }
 }

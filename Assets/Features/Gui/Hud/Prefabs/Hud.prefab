@@ -2383,14 +2383,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IntegrityBar
       objectReference: {fileID: 0}
-    - target: {fileID: 5861954449164258520, guid: 60592bd9cea70ba42875996a73b8f5db, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5861954449164258520, guid: 60592bd9cea70ba42875996a73b8f5db, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 6012852027397535579, guid: 60592bd9cea70ba42875996a73b8f5db, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

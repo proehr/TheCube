@@ -910,33 +910,6 @@
                     "isPartOfComposite": false
                 }
             ]
-        },
-        {
-            "name": "Testing",
-            "id": "211a2aa4-6f91-40bd-a698-16fe47945c81",
-            "actions": [
-                {
-                    "name": "IntegrityCubeRemoval",
-                    "type": "Button",
-                    "id": "807daf84-2261-4ef7-8adf-d1dc1074eff2",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "a8e039eb-c394-45f4-9672-003c52b68ae4",
-                    "path": "<Keyboard>/h",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "IntegrityCubeRemoval",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
         }
     ],
     "controlSchemes": [
