@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 
 namespace Features.WorkerAI.Scripts
 {
-    [CreateAssetMenu(fileName = "WorkerBO", menuName = "WorkerBO")]
+    [CreateAssetMenu(fileName = "WorkerService", menuName = "WorkerService")]
     public class WorkerService_SO : SerializedScriptableObject
     {
         [SerializeField] private Dictionary<int, WorkerBehavior> workerPrefabs;
@@ -46,7 +46,7 @@ namespace Features.WorkerAI.Scripts
             }
         }
 
-        private void OnEnable()
+        public void OnLevelStart()
         {
             foreach (AbstractState.STATE state in Enum.GetValues(typeof(AbstractState.STATE)))
             {
@@ -54,6 +54,20 @@ namespace Features.WorkerAI.Scripts
                 {
                     workersPerState.Add(state, new List<WorkerBehavior>());
                 }
+            }
+        }
+        
+        public void DestroyAllWorkers()
+        {
+            foreach (var worker in workers)
+            {
+                UnityEngine.Object.Destroy(worker.gameObject);
+            }
+
+            workers.Clear();
+            foreach (var entry in workersPerState)
+            {
+                entry.Value.Clear();
             }
         }
 
@@ -141,11 +155,7 @@ namespace Features.WorkerAI.Scripts
         public void Load()
         {
             //Reset Instantiated Workers
-            for (int i = workers.Count - 1; i >= 0; i--)
-            {
-                WorkerBehavior worker = workers[i];
-                DestroyWorker(worker);
-            }
+            DestroyAllWorkers();
 
             //Load them
             foreach (WorkerVO workerVO in SaveGame.Load<List<WorkerVO>>("worker"))
@@ -153,5 +163,7 @@ namespace Features.WorkerAI.Scripts
                 InstantiateNewWorker(workerVO.workerSize, workerVO.position, workerVO.rotation);
             }
         }
+
+
     }
 }

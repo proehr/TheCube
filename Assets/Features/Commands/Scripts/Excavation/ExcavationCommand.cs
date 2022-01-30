@@ -40,8 +40,6 @@ namespace Features.Commands.Scripts.Excavation
             // TODO use leantween otherwise Xyck will punch me
             targetCube.transform.localScale = this.cubeStartScale * (1 - progress);
 
-            // TODO grant resources according to excavated cube
-
             base.Update();
         }
 

@@ -1,6 +1,5 @@
 ﻿using DataStructures.Variables;
 using UnityEngine;
-
 namespace Features.Inventory.Scripts
 {
     [CreateAssetMenu(fileName = "newInventory", menuName = "Inventory")]
@@ -14,5 +13,11 @@ namespace Features.Inventory.Scripts
 
         public IntVariable Resource => resource;
         public IntVariable Relics => relics;
+
+        public void Reset()
+        {
+            resource.Restore();
+            relics.Restore();
+        }
     }
 }

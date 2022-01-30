@@ -1,4 +1,3 @@
-using System;
 using Features.Planet_Generation.Scripts;
 using UnityEngine;
 
@@ -37,6 +36,23 @@ namespace Features.Planet.Resources.Scripts
         private void RemoveCube(Cube cube)
         {
             cubes[cube.planetPosition.x][cube.planetPosition.y][cube.planetPosition.z] = null;
+        }
+
+        public void RemoveAllCubes()
+        {
+            for (int x = 0; x < cubes.Length; x++)
+            {
+                for (int y = 0; y < cubes[x].Length; y++)
+                {
+                    for (int z = 0; z < cubes[x][y].Length; z++)
+                    {
+                        if (cubes[x][y][z] == null) continue;
+
+                        Destroy(cubes[x][y][z].gameObject);
+                        cubes[x][y][z] = null;
+                    }
+                }
+            }
         }
     }
 }

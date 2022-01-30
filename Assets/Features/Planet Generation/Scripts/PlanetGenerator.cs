@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Features.Planet.Resources.Scripts;
-using DataStructures.Variables;
 using Features.Planet_Generation.Scripts;
-using Features.Planet_Generation.Scripts.Events;
 using Unity.AI.Navigation;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -13,7 +11,6 @@ public class PlanetGenerator : MonoBehaviour
     [SerializeField] private Planet_SO planetData;
     [SerializeField] private PlanetCubes_SO planetCubes;
     [SerializeField] private NavMeshSurface[] navMeshSurfaces = new NavMeshSurface[6];
-    [SerializeField] private PlanetGeneratedActionEvent onPlanetGenerated;
     [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
     /**
      * 1-4: top
@@ -30,23 +27,18 @@ public class PlanetGenerator : MonoBehaviour
     private Vector3 edgesMin;
     private Vector3 edgesMax;
 
-    void Start()
-    {
-        Generate();
-        planetCubes.Init(planetData);
-        CreateGameObjects();
-        GenerateNavMesh();
-        onPlanetGenerated.Raise(this);
-        onCubeRemoved.RegisterListener(UpdateNavMesh);
-    }
-
-    private void Generate()
+    public void Generate()
     {
         InitSeededRandomization();
         InitSurfaces();
         InitWithDefaultResource();
         ApplyPlanetModifiers();
         PlaceRelics();
+
+        planetCubes.Init(planetData);
+        CreateGameObjects();
+        GenerateNavMesh();
+        onCubeRemoved.RegisterListener(UpdateNavMesh);
     }
 
     private void InitSeededRandomization()
@@ -219,5 +211,10 @@ public class PlanetGenerator : MonoBehaviour
         {
             navMeshSurfaces[i].UpdateNavMesh(navMeshSurfaces[i].navMeshData);
         }
+    }
+
+    public void Destroy()
+    {
+        planetCubes.RemoveAllCubes();
     }
 }

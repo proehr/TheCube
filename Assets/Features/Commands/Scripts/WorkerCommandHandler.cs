@@ -114,5 +114,15 @@ namespace Features.Commands.Scripts
             this.activeCommandsPerCube.Remove(command.CubeObjectId);
             this.activeCommands.Remove(command);
         }
+
+        public void CancelAllCommands()
+        {
+            commandsFlaggedForRemoval.AddRange(activeCommands);
+            foreach (var command in commandsFlaggedForRemoval)
+            {
+                command.Cancel();
+                RemoveCommand(command);
+            }
+        }
     }
 }
