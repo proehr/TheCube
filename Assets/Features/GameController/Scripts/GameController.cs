@@ -1,4 +1,5 @@
 ﻿using DataStructures.Event;
+using Features.Commands.Scripts;
 using Features.GameController.Scripts.StateMachine;
 using Features.Gui.Scripts;
 using Features.Inventory.Scripts;
@@ -42,6 +43,7 @@ namespace Features.GameController.Scripts
         [SerializeField] private GuiController guiController;
         [SerializeField] private Inventory_SO inventory;
         [SerializeField] private SaveGameManager saveGameManager;
+        [SerializeField] private WorkerCommandHandler workerCommandHandler;
 
         [Header("Inbound Game Events")]
         [SerializeField] private ActionEvent onStartRequested;
@@ -134,7 +136,8 @@ namespace Features.GameController.Scripts
                     landingPodManager,
                     launchInformation,
                     workerService,
-                    inventory));
+                    inventory,
+                    workerCommandHandler));
 
             ShowLevelResultScreen(launchInformation);
         }
@@ -146,6 +149,7 @@ namespace Features.GameController.Scripts
                     onBeforeLevelResultScreen,
                     onAfterLevelResultScreen,
                     guiController,
+                    planetGenerator,
                     launchInformation));
         }
 

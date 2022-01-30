@@ -8,6 +8,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
+
 namespace Features.WorkerAI.Scripts
 {
     [CreateAssetMenu(fileName = "WorkerService", menuName = "WorkerService")]
@@ -56,12 +57,7 @@ namespace Features.WorkerAI.Scripts
             }
         }
         
-        public void OnLevelEnd()
-        {
-            DestroyAllWorkers();
-        }
-
-        private void DestroyAllWorkers()
+        public void DestroyAllWorkers()
         {
             foreach (var worker in workers)
             {

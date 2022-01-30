@@ -27,7 +27,7 @@ namespace Features.LandingPod.Scripts
 
             Debug.Log("We would launch now :)");
 
-            Destroy(this.landingPod);
+            Destroy(this.landingPod.gameObject);
             // TODO Do the launch!
         }
     }

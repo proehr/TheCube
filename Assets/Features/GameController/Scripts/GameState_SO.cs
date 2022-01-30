@@ -1,4 +1,5 @@
-﻿using Features.GameController.Scripts.StateMachine;
+﻿using DataStructures.Event;
+using Features.GameController.Scripts.StateMachine;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Features.GameController.Scripts
     public class GameState_SO : ScriptableObject
     {
         private AbstractGameState gameState;
+        [SerializeField] private GameEvent onGameStateChanged;
 
 #if UNITY_EDITOR
         // Display readable game states for developers
@@ -43,6 +45,7 @@ namespace Features.GameController.Scripts
             if (this.gameState == null)
             {
                 this.gameState = gameState;
+                if (onGameStateChanged != null) onGameStateChanged.Raise();
             }
             else
             {
@@ -57,7 +60,12 @@ namespace Features.GameController.Scripts
 
         internal void Update()
         {
+            var previousStateId = gameState.id;
             gameState = gameState.Process();
+            if (previousStateId != gameState.id && onGameStateChanged != null)
+            {
+                onGameStateChanged.Raise();
+            }
         }
     }
 }

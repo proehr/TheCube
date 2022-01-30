@@ -5,6 +5,7 @@ using Features.Planet_Generation.Scripts;
 using Unity.AI.Navigation;
 using UnityEngine;
 using Random = UnityEngine.Random;
+
 public class PlanetGenerator : MonoBehaviour
 {
     [SerializeField] private Planet_SO planetData;
@@ -210,5 +211,10 @@ public class PlanetGenerator : MonoBehaviour
         {
             navMeshSurfaces[i].UpdateNavMesh(navMeshSurfaces[i].navMeshData);
         }
+    }
+
+    public void Destroy()
+    {
+        planetCubes.RemoveAllCubes();
     }
 }

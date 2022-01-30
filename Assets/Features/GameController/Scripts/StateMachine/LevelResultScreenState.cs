@@ -8,15 +8,17 @@ namespace Features.GameController.Scripts.StateMachine
     {
         private readonly GuiController guiController;
         private readonly LaunchInformation launchInformation;
+        private readonly PlanetGenerator planetGenerator;
 
-        public LevelResultScreenState(
-            ActionEvent onBeforeLevelResultScreen,
+        public LevelResultScreenState(ActionEvent onBeforeLevelResultScreen,
             ActionEvent onAfterLevelResultScreen,
             GuiController guiController,
+            PlanetGenerator planetGenerator,
             LaunchInformation launchInformation)
             : base(GameState.LEVEL_RESULT_SCREEN, onBeforeLevelResultScreen, onAfterLevelResultScreen)
         {
             this.guiController = guiController;
+            this.planetGenerator = planetGenerator;
             this.launchInformation = launchInformation;
         }
 
@@ -24,6 +26,7 @@ namespace Features.GameController.Scripts.StateMachine
         {
             base.Enter();
 
+            planetGenerator.Destroy();
             guiController.ShowLevelResultScreen(launchInformation);
         }
 
