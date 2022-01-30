@@ -43,7 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57bcbc712f0488ab7293dca9fa10ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPlanetGenerated: {fileID: 11400000, guid: f84051dd761d9fc41a7dcb7302a5dfb0, type: 2}
   landingPodPrefab: {fileID: 3942852816037562710, guid: 16fb14ddae4b0ec458c6d146ff6eda22, type: 3}
-  onLaunchTriggered: {fileID: 11400000, guid: cb6bc0a8661e89147a25f7338dda6746, type: 2}
   relicAmount: {fileID: 11400000, guid: cb2bab5ef5e385d44807c9e320f9cc3f, type: 2}
+  shakeTime: 2
+  shakeSpeed: 10
+  shakeDistance: 10
+  onResetCamera: {fileID: 11400000, guid: b6205afdc986d9a4087d9acd603a1e9b, type: 2}
+  onLaunchSequenceStarted: {fileID: 11400000, guid: fc4f2d45e7871034189f4aadf1eb605b, type: 2}
+  onLaunchSequenceCompleted: {fileID: 11400000, guid: d93fefc343f7b7d428cfe147f25d9837, type: 2}
+  onLandSequenceStarted: {fileID: 11400000, guid: e571c48b173f72744aba86654fb6053f, type: 2}
+  onLandSequenceCompleted: {fileID: 11400000, guid: e7e54b2af2dc0664d88a771f2ab55509, type: 2}

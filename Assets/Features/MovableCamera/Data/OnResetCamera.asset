@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92a54472c5124c8c8c23e297eb5b73d4, type: 3}
-  m_Name: RelicExcavationCommandData
+  m_Script: {fileID: 11500000, guid: b61bf13e647c7e742a936c7d0bd7ee3f, type: 3}
+  m_Name: OnResetCamera
   m_EditorClassIdentifier: 
-  requiredWorkers: 8
-  maxDistanceToLocation: 13
-  duration: 2
-  commandPostPrefab: {fileID: 1792652583490922534, guid: e0c3e6980c5bb5942a2f9abba5f81c35, type: 3}

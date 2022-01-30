@@ -1,4 +1,6 @@
-﻿using Features.Inventory.Scripts;
+﻿using System;
+using Cinemachine;
+using Features.Inventory.Scripts;
 using Features.WorkerAI.Scripts;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,6 +13,11 @@ namespace Features.LandingPod.Scripts
         [SerializeField] private Inventory_SO inventory;
 
         [SerializeField] private WorkerService_SO workerService;
+        
+        [Header("References to camera in child ")]
+        [SerializeField] private CinemachineVirtualCamera landingPodCam;
+
+        public CinemachineVirtualCamera LandingPodCam => landingPodCam;
 
         [Header("Landing Pod Positioning")]
         [Tooltip("How high does the Landing Pod float above the planet?")]
@@ -36,6 +43,9 @@ namespace Features.LandingPod.Scripts
             this.SpawnWorker(false);
         }
 
+        // TODO can be refactored in one method or moved up to landingPodManager
+        // TODO to either get the landing Position for Land() or init the pod for the first time
+        
         public void Init(GameObject surfaceCube)
         {
             var thisTransform = this.transform;
@@ -52,6 +62,31 @@ namespace Features.LandingPod.Scripts
             thisTransform.rotation = surfaceCubeTransform.rotation;
 
             spawnPosition = surfaceCubePosition + surfaceCubeTransform.up * (surfaceCubeScale.y / 2);
+        }
+
+        public Vector3 GetLandingPosition(GameObject surfaceCube)
+        {
+            var thisTransform = this.transform;
+            var surfaceCubeTransform = surfaceCube.transform;
+            var surfaceCubePosition = surfaceCubeTransform.position;
+            var surfaceCubeScale = surfaceCubeTransform.localScale;
+            // From the cube position, add:
+            // - half the cube height
+            // - half the landing pod height
+            // - the specified float offset
+            Vector3 landingPosition = surfaceCubePosition +
+                                      surfaceCubeTransform.up * (surfaceCubeScale.y / 2 +
+                                                                 thisTransform.localScale.y / 2 + yOffset);
+            thisTransform.rotation = surfaceCubeTransform.rotation;
+
+            spawnPosition = surfaceCubePosition + surfaceCubeTransform.up * (surfaceCubeScale.y / 2);
+
+            return landingPosition;
+        }
+
+        private void Awake()
+        {
+            landingPodCam.LookAt = this.transform;
         }
 
         private void Update()
