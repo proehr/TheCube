@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features.Commands.Scripts.ActionEvents
 {
-    [CreateAssetMenu(fileName = "newWorkerCommandActionEvent", menuName = "Utils/ActionEvents/WorkerCommand")]
+    [CreateAssetMenu(fileName = "newWorkerCommandActionEvent", menuName = "Utils/Typed Action Events/WorkerCommand")]
     public class WorkerCommandActionEvent : ActionEventWithParameter<Cube>
     {
     }
