@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features.Planet_Generation.Scripts
 {
-    [CreateAssetMenu(fileName = "OnCubeRemovedEvent", menuName = "Utils/ActionEvents/CubeRemoved")]
+    [CreateAssetMenu(fileName = "OnCubeRemovedEvent", menuName = "Utils/Typed Action Events/CubeRemoved")]
     public class CubeRemovedActionEvent : ActionEventWithParameter<Cube>
     {
     }

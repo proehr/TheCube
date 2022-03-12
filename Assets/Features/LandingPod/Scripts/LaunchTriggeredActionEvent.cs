@@ -8,7 +8,7 @@ namespace Features.LandingPod.Scripts
         // TODO add whatever infos are required, e.g. next planet etc
     }
 
-    [CreateAssetMenu(fileName = "OnLaunchTriggeredEvent", menuName = "Utils/ActionEvents/LaunchTriggered")]
+    [CreateAssetMenu(fileName = "OnLaunchTriggeredEvent", menuName = "Utils/Typed Action Events/LaunchTriggered")]
     public class LaunchTriggeredActionEvent : ActionEventWithParameter<LaunchInformation>
     {
     }
