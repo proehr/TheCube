@@ -3,6 +3,7 @@ using DataStructures.Event;
 using DataStructures.Variables;
 using Features.ExtendedRandom;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Features.LandingPod.Scripts
 {
@@ -13,17 +14,17 @@ namespace Features.LandingPod.Scripts
         [SerializeField] private IntVariable relicAmount;
         
         [Header("Launching parameters")]
-        [SerializeField][Range(0,10)] private float shakeTime;
-        [SerializeField][Range(0,20)] private float shakeSpeed;
-        [SerializeField][Range(0, 20)] private float shakeDistance;
+        [SerializeField, Range(0, 10)] private float shakeTime;
+        [SerializeField, Range(0, 20)] private float shakeSpeed;
+        [SerializeField, Range(0, 20)] private float shakeDistance;
 
         [SerializeField] private GameEvent onResetCamera;
         
-        [Header("Launching parameters")]
-        [SerializeField] private GameEvent onLaunchSequenceStarted;
-        [SerializeField] private GameEvent onLaunchSequenceCompleted;
-        [SerializeField] private GameEvent onLandSequenceStarted;
-        [SerializeField] private GameEvent onLandSequenceCompleted;
+        [Header("Launching Events")]
+        [FormerlySerializedAs("onLaunchSequenceStarted")][SerializeField] private GameEvent onBeforeLaunch;
+        [FormerlySerializedAs("onLaunchSequenceCompleted")] [SerializeField] private GameEvent onAfterLaunch;
+        [FormerlySerializedAs("onLandSequenceStarted")] [SerializeField] private GameEvent onBeforeLanding;
+        [FormerlySerializedAs("onLandSequenceCompleted")] [SerializeField] private GameEvent onAfterLanding;
 
         private LandingPod landingPod;
 
@@ -64,7 +65,7 @@ namespace Features.LandingPod.Scripts
             // TODO trigger event for turning off CameraRig (State)
             // TODO stop Worker Spawning
             
-            onLaunchSequenceStarted.Raise();
+            onBeforeLaunch.Raise();
             
             // Hardcoded 2 sec wait for MovableCamera reset
             onResetCamera.Raise();
@@ -98,12 +99,12 @@ namespace Features.LandingPod.Scripts
             yield return new WaitForSeconds(5);
 
             // Move LandingPod up with LeanTween, Hardcoded easeInOutQuint
-            LeanTween.moveLocal(landingPod.gameObject, new Vector3(0,landingPodPosition.y + 400,0), 10)
+            LeanTween.moveLocal(landingPod.gameObject, new Vector3(0, landingPodPosition.y + 400, 0), 10)
                 .setEase(LeanTweenType.easeInOutQuint);
             
             // Hardcoded wait before launchCompleted event
             yield return new WaitForSeconds(10);
-            onLaunchSequenceCompleted.Raise();
+            onAfterLaunch.Raise();
         }
 
         private IEnumerator LandingSequence(Vector3 landingPosition)
@@ -112,7 +113,7 @@ namespace Features.LandingPod.Scripts
             // (this is only for testing) Waiting for launching is completed
             yield return new WaitForSeconds(23);
 
-            onLandSequenceStarted.Raise();
+            onBeforeLanding.Raise();
             
             // TODO trigger LaunchSound
             
@@ -131,7 +132,7 @@ namespace Features.LandingPod.Scripts
             
             // Hardcoded wait before landCompleted event
             yield return new WaitForSeconds(10);
-            onLandSequenceCompleted.Raise();
+            onAfterLanding.Raise();
             
         }
     }
