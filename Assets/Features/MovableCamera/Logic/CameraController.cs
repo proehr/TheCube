@@ -123,6 +123,12 @@ namespace Features.MovableCamera.Logic
             cameraDebugViewer.zoomInput = zoomInput;
         }
 
+        public void OnResetCamera()
+        {
+            newPosition = snappingPositions[0].Position();
+            newRotation = snappingPositions[0].Rotation();
+        }
+
         private void HandleSnappingInput()
         {
             float snapAInput = playerControls.CameraActionMap.SnapSideA.ReadValue<float>();
