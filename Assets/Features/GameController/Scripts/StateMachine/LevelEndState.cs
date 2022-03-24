@@ -29,10 +29,13 @@ namespace Features.GameController.Scripts.StateMachine
             
             workerCommandHandler.CancelAllCommands();
             // TODO also think about re-enabling commands once LevelInits
-            // TODO disable Command UI
+            // TODO disable Commands and Command UI
+            // TODO Disable Integrity Tracking and UI
             // workerCommandHandler.DisableNewCommands();
             workerService.DestroyAllWorkers();
+            // TODO disable worker spanwing
             cameraController.OnResetCamera();
+            // Disable Movable Camera
         }
 
         protected override bool ValidateNextState(AbstractGameState nextState)
