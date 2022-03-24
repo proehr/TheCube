@@ -21,6 +21,7 @@ namespace Features.GameController.Scripts.StateMachine
         GAMEPLAY,
         PAUSE_SCREEN,
         LEVEL_END,
+        LAUNCHING,
         LEVEL_RESULT_SCREEN,
         GAME_EXITING
     };

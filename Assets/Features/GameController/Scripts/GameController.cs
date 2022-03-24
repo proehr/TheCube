@@ -4,6 +4,7 @@ using Features.GameController.Scripts.StateMachine;
 using Features.Gui.Scripts;
 using Features.Inventory.Scripts;
 using Features.LandingPod.Scripts;
+using Features.MovableCamera.Logic;
 using Features.PlanetIntegrity.Scripts;
 using Features.SaveLoad.Scripts;
 using Features.WorkerAI.Scripts;
@@ -39,6 +40,7 @@ namespace Features.GameController.Scripts
         [SerializeField] private PlanetGenerator planetGenerator;
         [SerializeField] private LandingPodManager landingPodManager;
         [SerializeField] private IntegrityController integrityController;
+        [SerializeField] private CameraController cameraController;
         [SerializeField] private WorkerService_SO workerService;
         [SerializeField] private GuiController guiController;
         [SerializeField] private Inventory_SO inventory;
@@ -48,6 +50,7 @@ namespace Features.GameController.Scripts
         [Header("Inbound Game Events")]
         [SerializeField] private ActionEvent onStartRequested;
         [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
+        [SerializeField] private LaunchCompletedActionEvent onLaunchCompleted;
         [SerializeField] private ActionEvent onPauseRequested;
         [SerializeField] private ActionEvent onExitRequested;
 
@@ -67,6 +70,9 @@ namespace Features.GameController.Scripts
         [SerializeField] private ActionEvent onBeforeLevelEnd;
         [SerializeField] private ActionEvent onAfterLevelEnd;
 
+        [SerializeField] private ActionEvent onBeforeLaunch;
+        [SerializeField] private ActionEvent onAfterLaunch;
+
         [SerializeField] private ActionEvent onBeforeLevelResultScreen;
         [SerializeField] private ActionEvent onAfterLevelResultScreen;
 
@@ -77,6 +83,7 @@ namespace Features.GameController.Scripts
         {
             onStartRequested.RegisterListener(InitLevel);
             onLaunchTriggered.RegisterListener(EndLevel);
+            onLaunchCompleted.RegisterListener(ShowLevelResultScreen);
             onPauseRequested.RegisterListener(Pause);
             onExitRequested.RegisterListener(Exit);
 
@@ -133,13 +140,24 @@ namespace Features.GameController.Scripts
                 new LevelEndState(
                     onBeforeLevelEnd,
                     onAfterLevelEnd,
-                    landingPodManager,
-                    launchInformation,
                     workerService,
-                    inventory,
+                    cameraController,
                     workerCommandHandler));
+            
+            LaunchPod(launchInformation);
+        }
 
-            ShowLevelResultScreen(launchInformation);
+        private void LaunchPod(LaunchInformation launchInformation)
+        {
+            gameStateData.Set(
+                new LaunchingState(
+                    onBeforeLaunch,
+                    onAfterLaunch,
+                    inventory,
+                    landingPodManager,
+                    launchInformation));
+
+            // And now we wait until the launch is completed
         }
 
         private void ShowLevelResultScreen(LaunchInformation launchInformation)

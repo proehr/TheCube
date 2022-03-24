@@ -49,7 +49,8 @@ MonoBehaviour:
   shakeSpeed: 10
   shakeDistance: 10
   onResetCamera: {fileID: 11400000, guid: b6205afdc986d9a4087d9acd603a1e9b, type: 2}
-  onLaunchSequenceStarted: {fileID: 11400000, guid: fc4f2d45e7871034189f4aadf1eb605b, type: 2}
-  onLaunchSequenceCompleted: {fileID: 11400000, guid: d93fefc343f7b7d428cfe147f25d9837, type: 2}
-  onLandSequenceStarted: {fileID: 11400000, guid: e571c48b173f72744aba86654fb6053f, type: 2}
-  onLandSequenceCompleted: {fileID: 11400000, guid: e7e54b2af2dc0664d88a771f2ab55509, type: 2}
+  onLaunchCompleted: {fileID: 11400000, guid: 8396509a562c56248ad17bdc4327cf2c, type: 2}
+  onBeforeLaunch: {fileID: 11400000, guid: fc4f2d45e7871034189f4aadf1eb605b, type: 2}
+  onAfterLaunch: {fileID: 11400000, guid: d93fefc343f7b7d428cfe147f25d9837, type: 2}
+  onBeforeLanding: {fileID: 11400000, guid: e571c48b173f72744aba86654fb6053f, type: 2}
+  onAfterLanding: {fileID: 11400000, guid: e7e54b2af2dc0664d88a771f2ab55509, type: 2}
