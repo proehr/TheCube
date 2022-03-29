@@ -21,7 +21,7 @@ namespace Features.LandingPod.Scripts
 
         private LandingPod landingPod;
 
-        private LaunchInformation launchInformation;
+        private LaunchInformation latestLaunchInformation;
 
         public void PlaceLandingPod(GameObject[] landingSurface)
         {
@@ -47,7 +47,7 @@ namespace Features.LandingPod.Scripts
 
         public void Launch(LaunchInformation launchInformation)
         {
-            this.launchInformation = launchInformation;
+            this.latestLaunchInformation = launchInformation;
             
             // Safety check
             if (relicAmount.Get() <= 0) return;
@@ -94,7 +94,8 @@ namespace Features.LandingPod.Scripts
             
             // Hardcoded wait before launchCompleted event
             yield return new WaitForSeconds(10);
-            onLaunchCompleted.Raise(launchInformation);
+            onLaunchCompleted.Raise(latestLaunchInformation);
+            this.latestLaunchInformation = null;
         }
 
         private IEnumerator LandingSequence(Vector3 landingPosition)
