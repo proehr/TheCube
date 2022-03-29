@@ -1,9 +1,7 @@
 ﻿using System.Collections;
-using DataStructures.Event;
 using DataStructures.Variables;
 using Features.ExtendedRandom;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Features.LandingPod.Scripts
 {
@@ -18,15 +16,12 @@ namespace Features.LandingPod.Scripts
         [SerializeField, Range(0, 20)] private float shakeSpeed;
         [SerializeField, Range(0, 20)] private float shakeDistance;
 
-        [SerializeField] private GameEvent onResetCamera;
-        
         [Header("Launching Events")]
-        [FormerlySerializedAs("onLaunchSequenceStarted")][SerializeField] private GameEvent onBeforeLaunch;
-        [FormerlySerializedAs("onLaunchSequenceCompleted")] [SerializeField] private GameEvent onAfterLaunch;
-        [FormerlySerializedAs("onLandSequenceStarted")] [SerializeField] private GameEvent onBeforeLanding;
-        [FormerlySerializedAs("onLandSequenceCompleted")] [SerializeField] private GameEvent onAfterLanding;
+        [SerializeField] private LaunchCompletedActionEvent onLaunchCompleted;
 
         private LandingPod landingPod;
+
+        private LaunchInformation latestLaunchInformation;
 
         public void PlaceLandingPod(GameObject[] landingSurface)
         {
@@ -52,26 +47,21 @@ namespace Features.LandingPod.Scripts
 
         public void Launch(LaunchInformation launchInformation)
         {
+            this.latestLaunchInformation = launchInformation;
+            
             // Safety check
             if (relicAmount.Get() <= 0) return;
-
+            
             // Launch mechanic
             StartCoroutine(LaunchingSequence());
         }
 
         private IEnumerator LaunchingSequence()
         {
-            // TODO trigger event for turning off Commands (State)
-            // TODO trigger event for turning off CameraRig (State)
-            // TODO stop Worker Spawning
-            
-            onBeforeLaunch.Raise();
-            
             // Hardcoded 2 sec wait for MovableCamera reset
-            onResetCamera.Raise();
+            // TODO needs to be fetched from Main Camera Brain (Default Blend)
             yield return new WaitForSeconds(2);
             
-            // TODO if we use more than two virtual Cams we will need a StateDrivenCam later on
             landingPod.LandingPodCam.Priority = 11;
             // Set parent of LandingPodCamera so that it will not move with the landingPod
             landingPod.LandingPodCam.transform.SetParent(this.transform);
@@ -104,36 +94,25 @@ namespace Features.LandingPod.Scripts
             
             // Hardcoded wait before launchCompleted event
             yield return new WaitForSeconds(10);
-            onAfterLaunch.Raise();
+            onLaunchCompleted.Raise(latestLaunchInformation);
+            this.latestLaunchInformation = null;
         }
 
         private IEnumerator LandingSequence(Vector3 landingPosition)
         {
-            // TODO REMOVE this after gameController events are implemented
-            // (this is only for testing) Waiting for launching is completed
-            yield return new WaitForSeconds(23);
-
-            onBeforeLanding.Raise();
-            
-            // TODO trigger LaunchSound
-            
             // Move LandingPod down to given position with LeanTween, Hardcoded easeInOutQuint
             LeanTween.moveLocal(landingPod.gameObject, landingPosition, 5)
                 .setEase(LeanTweenType.easeInOutQuint);
             
             yield return new WaitForSeconds(5);
+            // TODO trigger LandSound
             
-            // TODO trigger event for turning on CameraRig (State)
-            // TODO trigger event for turning on Commands (State)
-            // TODO start Worker Spawning
-            
+            // Set parent of LandingPodCamera back, so that it will move with the landingPod again
             landingPod.LandingPodCam.transform.SetParent(landingPod.transform);
             landingPod.LandingPodCam.Priority = 8;
             
             // Hardcoded wait before landCompleted event
             yield return new WaitForSeconds(10);
-            onAfterLanding.Raise();
-            
         }
     }
 }
