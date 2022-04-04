@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc34fbd2052a8ee4fa03aa3c133ed2aa, type: 3}
   m_Name: SampleCameraPreset
   m_EditorClassIdentifier: 
-  movementTime: 3
-  normalSpeed: 0.3
+  movementTime: 7
+  planarRotationSpeed: 0.35
+  faceRotationSpeed: 0.9
+  zoomSpeed: 5
+  normalSpeed: 0.4
   fastSpeed: 1
+  clampMovement: 105
   rotationAmount: 0.5
-  zoomAmount: {x: 0, y: 2.5, z: -4}
+  zoomAmount: {x: 0, y: 2.5, z: -2.5}
+  zoomYClamp: {x: 20, y: 100}
+  zoomZClamp: {x: -170, y: -90}

@@ -1,19 +1,33 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Features.MovableCamera.Logic
 {
     [CreateAssetMenu(fileName = "NewCameraPreset", menuName = "Camera/Preset")]
     public class CameraPreset_SO : ScriptableObject
     {
-        [Tooltip("Smoothness (Time it takes to Lerp between two values)")]
+        [Header("Smoothness between planar movement in seconds")]
         public float movementTime;
-        [Tooltip("Default Speed for actions")]
+        [Header("Smoothness between planar rotation in seconds")]
+        public float planarRotationSpeed;
+        [Header("Smoothness between face rotations in seconds")]
+        public float faceRotationSpeed;
+        [Header("Smoothness between Zooms in seconds")]
+        public float zoomSpeed;
+        [Header("Default Speed for actions")]
         public float normalSpeed;
-        [Tooltip("Faster Speed when pressing LEFT-SHIFT")]
+        [Header("Faster Speed when pressing LEFT-SHIFT")]
         public float fastSpeed;
-        [Tooltip("Default Rotation Speed")]
+        [Header("Circular Movement Clamp Radius")][Range(0, 300)]
+        public int clampMovement;
+        [Header("Default Rotation Speed")]
         public float rotationAmount;
-        [Tooltip("Default Zoom Speed")]
+        [Header("Default Zoom Speed")]
         public Vector3 zoomAmount;
+        [Header("Zoom Clamp Y (MIN MAX)")][MinMaxSlider(15, 100, true)]
+        public Vector2 zoomYClamp;
+        [Header("Zoom Clamp Z (MIN MAX)")][MinMaxSlider(-175, -90, true)]
+        public Vector2 zoomZClamp;
     }
 }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SideBSnappingPosition
   m_EditorClassIdentifier: 
   position: {x: 15, y: 0, z: 0}
-  rotation: {x: 0.27059802, y: 0.27059808, z: -0.65328145, w: 0.65328145}
+  rotation: {x: -0.27059808, y: -0.27059808, z: 0.65328145, w: -0.65328145}
