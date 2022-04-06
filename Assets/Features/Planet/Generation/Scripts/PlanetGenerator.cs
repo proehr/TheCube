@@ -4,6 +4,7 @@ using Features.Commands.Scripts.ActionEvents;
 using Features.ExtendedRandom;
 using Features.Planet.Resources.Scripts;
 using Features.Planet_Generation.Scripts;
+using Sirenix.OdinInspector;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
@@ -36,13 +37,13 @@ namespace Features.Planet.Generation.Scripts
         private Vector3 edgesMin;
         private Vector3 edgesMax;
 
-        public void Generate()
-        {
-            InitSeededRandomization();
-            InitSurfaces();
-            InitWithDefaultResource();
-            ApplyPlanetModifiers();
-            PlaceRelics();
+    public void Generate()
+    {
+        InitSeededRandomization();
+        InitSurfaces();
+        InitWithDefaultResource();
+        ApplyPlanetModifiers();
+        PlaceRelics();
 
             planetCubes.Init(planetData);
             CreateGameObjects();
@@ -132,19 +133,23 @@ namespace Features.Planet.Generation.Scripts
 
         private void GenerateNavMesh()
         {
-            Debug.Assert(navMeshSurfaces != null && navMeshSurfaces.Length == 6);
-            for (int i = 0; i < 6; i++)
-            {
-                navMeshSurfaces[i].BuildNavMesh();
-            }
-            //
-            // Debug.Log("Created " + NavMeshSurface.activeSurfaces.Count + " navMeshSurfaces.");
-            // int j = 1;
-            // foreach (var navMeshSurface in NavMeshSurface.activeSurfaces)
-            // {
-            //     Debug.Log("Surface #" + j + ": " + navMeshSurface.center + " size: " + navMeshSurface.size + " => " + new Bounds(navMeshSurface.center, navMeshSurface.size));
-            //     j++;
-            // }
+            AstarPath.active.Scan();
+
+            return;
+
+        Debug.Assert(navMeshSurfaces != null && navMeshSurfaces.Length == 6);
+        for (int i = 0; i < 6; i++)
+        {
+            navMeshSurfaces[i].BuildNavMesh();
+        }
+        //
+        // Debug.Log("Created " + NavMeshSurface.activeSurfaces.Count + " navMeshSurfaces.");
+        // int j = 1;
+        // foreach (var navMeshSurface in NavMeshSurface.activeSurfaces)
+        // {
+        //     Debug.Log("Surface #" + j + ": " + navMeshSurface.center + " size: " + navMeshSurface.size + " => " + new Bounds(navMeshSurface.center, navMeshSurface.size));
+        //     j++;
+        // }
 
             // Debug.Log("edgesMin: " + edgesMin);
             // Debug.Log("edgesMax: " + edgesMax);
