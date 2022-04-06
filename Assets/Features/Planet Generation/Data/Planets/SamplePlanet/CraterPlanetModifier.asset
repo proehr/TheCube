@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34040617e0b74dd08c577ac0e1b63426, type: 3}
   m_Name: CraterPlanetModifier
   m_EditorClassIdentifier: 
-  radiusInterval: {x: 2, y: 4}
+  radiusInterval: {x: 1, y: 2}
   count: 1

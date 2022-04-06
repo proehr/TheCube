@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Features.Planet.Resources.Scripts;
 using Features.Planet_Generation.Scripts;
+using Sirenix.OdinInspector;
 using Unity.AI.Navigation;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -26,6 +27,19 @@ public class PlanetGenerator : MonoBehaviour
     private Dictionary<Surface, List<GameObject>> surfaces;
     private Vector3 edgesMin;
     private Vector3 edgesMax;
+
+    // TODO remove
+    private void Start()
+    {
+        Generate();
+    }
+
+    [Button]
+    public void Regenerate()
+    {
+        this.Destroy();
+        this.Generate();
+    }
 
     public void Generate()
     {
@@ -102,6 +116,10 @@ public class PlanetGenerator : MonoBehaviour
 
     private void GenerateNavMesh()
     {
+        AstarPath.active.Scan();
+
+        return;
+
         Debug.Assert(navMeshSurfaces != null && navMeshSurfaces.Length == 6);
         for (int i = 0; i < 6; i++)
         {
