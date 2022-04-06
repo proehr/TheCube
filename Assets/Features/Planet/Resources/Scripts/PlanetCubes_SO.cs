@@ -67,6 +67,8 @@ namespace Features.Planet.Resources.Scripts
 
                         Destroy(cubes[x][y][z].gameObject);
                         cubes[x][y][z] = null;
+                        cubeLayerDistanceFromCenter[x][y][z] = 0;
+                        CubeLayerCount = 0;
                     }
                 }
             }

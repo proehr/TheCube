@@ -45,13 +45,13 @@ namespace Features.Integrity.Scripts
         {
             maxStability = 0.0f;
         
-            for (int i = 0; i < cubes.Length; i++)
+            for (int x = 0; x < cubes.Length; x++)
             {
-                for (int j = 0; j < cubes[i].Length; j++)
+                for (int y = 0; y < cubes[x].Length; y++)
                 {
-                    for (int k = 0; k < cubes[i][j].Length; k++)
+                    for (int z = 0; z < cubes[x][y].Length; z++)
                     {
-                        Cube currentCube = cubes[i][j][k];
+                        Cube currentCube = cubes[x][y][z];
                         if (currentCube != null)
                         {
                             maxStability += currentCube.resourceData.IntegrityCubeValue *

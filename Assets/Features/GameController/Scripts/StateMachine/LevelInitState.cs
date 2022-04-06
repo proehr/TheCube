@@ -35,7 +35,7 @@ namespace Features.GameController.Scripts.StateMachine
             planetGenerator.Generate();
             // For now, the landing pod is always placed "on top" - later this could be input by the player
             landingPodManager.PlaceLandingPod(planetGenerator.GetSurface(Surface.POSITIVE_Y));
-            integrityBehaviour.InitializeIntegrity(); // TODO does not work correctly yet
+            integrityBehaviour.InitializeIntegrity();
             workerService.OnLevelStart();
         }
 
