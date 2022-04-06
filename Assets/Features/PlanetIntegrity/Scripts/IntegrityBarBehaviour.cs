@@ -2,7 +2,7 @@ using DataStructures.Variables;
 using UnityEngine;
 namespace Features.Planet_Integrity
 {
-    public class IntegrityBar : MonoBehaviour
+    public class IntegrityBarBehaviour : MonoBehaviour
     {
         [SerializeField] private RectTransform integrityPanel;
         [SerializeField] private FloatVariable currentIntegrity;
@@ -13,6 +13,11 @@ namespace Features.Planet_Integrity
         private void Awake()
         {
             startingIntegrityPanelWidth = integrityPanel.rect.width;
+        }
+        
+        private void Update()
+        {
+            UpdateIntegrityPanel();
         }
 
         public void UpdateIntegrityPanel()

@@ -2,10 +2,10 @@
 using Features.Commands.Scripts;
 using Features.GameController.Scripts.StateMachine;
 using Features.Gui.Scripts;
+using Features.Integrity.Scripts;
 using Features.Inventory.Scripts;
 using Features.LandingPod.Scripts;
 using Features.MovableCamera.Logic;
-using Features.PlanetIntegrity.Scripts;
 using Features.SaveLoad.Scripts;
 using Features.WorkerAI.Scripts;
 using UnityEngine;
@@ -39,7 +39,7 @@ namespace Features.GameController.Scripts
         [Header("Game Features & Components")]
         [SerializeField] private PlanetGenerator planetGenerator;
         [SerializeField] private LandingPodManager landingPodManager;
-        [SerializeField] private IntegrityController integrityController;
+        [SerializeField] private IntegrityBehaviour integrityBehaviour;
         [SerializeField] private CameraController cameraController;
         [SerializeField] private WorkerService_SO workerService;
         [SerializeField] private GuiController guiController;
@@ -107,7 +107,7 @@ namespace Features.GameController.Scripts
                     onAfterLevelInit,
                     planetGenerator,
                     landingPodManager,
-                    integrityController,
+                    integrityBehaviour,
                     workerService));
 
             StartGameplay();
