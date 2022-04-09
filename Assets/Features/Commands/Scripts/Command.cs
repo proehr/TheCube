@@ -22,7 +22,7 @@ namespace Features.Commands.Scripts
         private GameObject commandPost;
         protected readonly Command_SO commandData;
         private readonly WorkerService_SO workerService;
-        private readonly ICollection<WorkerBehavior> workersForCommand;
+        private readonly List<WorkerBehavior> workersForCommand;
         public int CubeObjectId { get; private set; }
         public bool Success { get; private set; }
 
@@ -32,19 +32,24 @@ namespace Features.Commands.Scripts
         private readonly float sqrMaxWorkerDistance;
 
         protected float remainingDuration;
+        private readonly Vector3 planeNormal;
+        private readonly float cubeSize;
 
         protected Command(Cube targetCube, int cubeObjectId, Vector3 planeNormal, WorkerService_SO workerService,
             Command_SO commandData, Transform commandPostsParent)
         {
             this.workerService = workerService;
             this.CubeObjectId = cubeObjectId;
-            // TODO Might want to offset according to plane normal
-            this.location = targetCube.transform.position;
+            var targetCubeTransform = targetCube.transform;
+            this.cubeSize = targetCubeTransform.localScale.x;
+            this.location = targetCubeTransform.position + planeNormal * (cubeSize / 2);
+            this.planeNormal = planeNormal;
+            
             this.commandData = commandData;
             this.workersForCommand = new List<WorkerBehavior>(commandData.RequiredWorkers);
             if (commandData.CommandPostPrefab != null)
             {
-                Vector3 commandPostLocation = this.location;
+                Vector3 commandPostLocation = targetCubeTransform.position;
                 commandPostLocation += planeNormal * commandData.CommandPostPrefab.transform.localScale.y;
                 commandPost = Object.Instantiate(commandData.CommandPostPrefab, commandPostLocation,
                     Quaternion.identity,
@@ -167,6 +172,21 @@ namespace Features.Commands.Scripts
             {
                 Object.Destroy(commandPost);
             }
+        }
+
+        public Vector3 GetDesiredWorkerPosition(WorkerBehavior worker)
+        {
+            var indexOf = workersForCommand.IndexOf(worker);
+            Debug.Assert(indexOf >= 0, "Couldn't find worker in command.");
+
+            var normal = planeNormal;
+            var tangent = new Vector3();
+            Vector3.OrthoNormalize(ref normal, ref tangent);
+            // Lets form a nice circle
+            return location 
+                   + Quaternion.AngleAxis((360 / commandData.RequiredWorkers) * indexOf + 45, planeNormal)
+                   * tangent 
+                   * (cubeSize * 0.25f);
         }
     }
 }

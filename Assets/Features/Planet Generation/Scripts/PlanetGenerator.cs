@@ -121,32 +121,38 @@ public class PlanetGenerator : MonoBehaviour
         // Debug.Log("edgesMin: " + edgesMin);
         // Debug.Log("edgesMax: " + edgesMax);
 
-        navMeshLinks[0].transform.localPosition = new Vector3(0, edgesMax.y, edgesMin.z);
-        navMeshLinks[0].width = edgesMax.x - edgesMin.x;
-        navMeshLinks[1].transform.localPosition = new Vector3(0, edgesMax.y, edgesMax.z);
-        navMeshLinks[1].width = edgesMax.x - edgesMin.x;
-        navMeshLinks[2].transform.localPosition = new Vector3(edgesMin.x, edgesMax.y, 0);
-        navMeshLinks[2].width = edgesMax.z - edgesMin.z;
-        navMeshLinks[3].transform.localPosition = new Vector3(edgesMax.x, edgesMax.y, 0);
-        navMeshLinks[3].width = edgesMax.z - edgesMin.z;
-
-        navMeshLinks[4].transform.localPosition = new Vector3(edgesMin.x, 0, edgesMin.z);
-        navMeshLinks[4].width = edgesMax.y - edgesMin.y;
-        navMeshLinks[5].transform.localPosition = new Vector3(edgesMax.x, 0, edgesMin.z);
-        navMeshLinks[5].width = edgesMax.y - edgesMin.y;
-        navMeshLinks[6].transform.localPosition = new Vector3(edgesMax.x, 0, edgesMax.z);
-        navMeshLinks[6].width = edgesMax.y - edgesMin.y;
-        navMeshLinks[7].transform.localPosition = new Vector3(edgesMin.x, 0, edgesMax.z);
-        navMeshLinks[7].width = edgesMax.y - edgesMin.y;
-
-        navMeshLinks[8].transform.localPosition = new Vector3(0, edgesMin.y, edgesMin.z);
-        navMeshLinks[8].width = edgesMax.x - edgesMin.x;
-        navMeshLinks[9].transform.localPosition = new Vector3(0, edgesMin.y, edgesMax.z);
-        navMeshLinks[9].width = edgesMax.x - edgesMin.x;
-        navMeshLinks[10].transform.localPosition = new Vector3(edgesMin.x, edgesMin.y, 0);
-        navMeshLinks[10].width = edgesMax.z - edgesMin.z;
-        navMeshLinks[11].transform.localPosition = new Vector3(edgesMax.x, edgesMin.y, 0);
-        navMeshLinks[11].width = edgesMax.z - edgesMin.z;
+        // TODO clean-up after MVP - neither for the "Simple Worker Solution" nor the updatable nav mesh, those links are needed
+        for (int i = 0; i < navMeshLinks.Length; i++)
+        {
+            Destroy(navMeshLinks[i]);
+        }
+        
+        // navMeshLinks[0].transform.localPosition = new Vector3(0, edgesMax.y, edgesMin.z);
+        // navMeshLinks[0].width = edgesMax.x - edgesMin.x;
+        // navMeshLinks[1].transform.localPosition = new Vector3(0, edgesMax.y, edgesMax.z);
+        // navMeshLinks[1].width = edgesMax.x - edgesMin.x;
+        // navMeshLinks[2].transform.localPosition = new Vector3(edgesMin.x, edgesMax.y, 0);
+        // navMeshLinks[2].width = edgesMax.z - edgesMin.z;
+        // navMeshLinks[3].transform.localPosition = new Vector3(edgesMax.x, edgesMax.y, 0);
+        // navMeshLinks[3].width = edgesMax.z - edgesMin.z;
+        //
+        // navMeshLinks[4].transform.localPosition = new Vector3(edgesMin.x, 0, edgesMin.z);
+        // navMeshLinks[4].width = edgesMax.y - edgesMin.y;
+        // navMeshLinks[5].transform.localPosition = new Vector3(edgesMax.x, 0, edgesMin.z);
+        // navMeshLinks[5].width = edgesMax.y - edgesMin.y;
+        // navMeshLinks[6].transform.localPosition = new Vector3(edgesMax.x, 0, edgesMax.z);
+        // navMeshLinks[6].width = edgesMax.y - edgesMin.y;
+        // navMeshLinks[7].transform.localPosition = new Vector3(edgesMin.x, 0, edgesMax.z);
+        // navMeshLinks[7].width = edgesMax.y - edgesMin.y;
+        //
+        // navMeshLinks[8].transform.localPosition = new Vector3(0, edgesMin.y, edgesMin.z);
+        // navMeshLinks[8].width = edgesMax.x - edgesMin.x;
+        // navMeshLinks[9].transform.localPosition = new Vector3(0, edgesMin.y, edgesMax.z);
+        // navMeshLinks[9].width = edgesMax.x - edgesMin.x;
+        // navMeshLinks[10].transform.localPosition = new Vector3(edgesMin.x, edgesMin.y, 0);
+        // navMeshLinks[10].width = edgesMax.z - edgesMin.z;
+        // navMeshLinks[11].transform.localPosition = new Vector3(edgesMax.x, edgesMin.y, 0);
+        // navMeshLinks[11].width = edgesMax.z - edgesMin.z;
     }
 
     private void CreateGameObjects()
