@@ -17,8 +17,11 @@ namespace Features.WorkerAI.Scripts.StateMachine
 
         protected override void Enter()
         {
-            agent.speed = runSpeedMultiplier * GetSpeedMultiplier();
-            Seek(command.location);
+            // This would be the nav-mesh solution
+            // agent.speed = runSpeedMultiplier * GetSpeedMultiplier();
+            // Seek(command.location);
+
+            agent.Warp(command.GetDesiredWorkerPosition(workerBehavior));
 
             base.Enter();
         }
