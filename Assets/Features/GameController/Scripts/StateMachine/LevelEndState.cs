@@ -34,7 +34,7 @@ namespace Features.GameController.Scripts.StateMachine
             // workerCommandHandler.DisableNewCommands();
             workerService.DestroyAllWorkers();
             // TODO disable worker spanwing
-            cameraController.OnResetCamera();
+            cameraController.ResetCamera();
             // Disable Movable Camera
         }
 

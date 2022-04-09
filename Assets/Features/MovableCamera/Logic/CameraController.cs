@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using Features.Input;
+﻿using System.Collections;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Features.MovableCamera.Logic
 {
@@ -10,32 +11,71 @@ namespace Features.MovableCamera.Logic
         [SerializeField] private CameraPreset_SO cameraPreset;
         [SerializeField] private CameraDebugViewer_SO cameraDebugViewer;
 
-        [SerializeField] private List<PosRotObject_SO> snappingPositions = new List<PosRotObject_SO>(6);
-        
-        private PlayerControls playerControls;
+        [SerializeField, ReadOnly] private CubeCorner_SO activeCorner;
+        [SerializeField, ReadOnly] private CubeFace_SO activeFace;
+
+        private CubeFace_SO startFace;
+        private CubeCorner_SO startCorner;
+
+        private TheCube playerControls;
+        private CameraLocation cameraLocation;
         
         private Vector3 newPosition;
-        private Quaternion newRotation;
+        private Vector3 startPosition;
+        private Quaternion startRotation;
         private Vector3 newZoom;
+        private Vector3 startZoom;
 
-        [Header("Current movementSpeed")]
+        private Vector2 currentMovementInputVector;
+        private Vector2 smoothMovementInputVelocity;
+        
+        private float currentZoomInputValue;
+        private float smoothZoomInputVelocity;
+
         private float movementSpeed;
+
+        private bool camRunning;
 
         private Vector2 movementInput;
         private float shiftInput;
         private float leftRotationInput;
         private float rightRotationInput;
         private float zoomInput;
-        
+
+        public CubeCorner_SO ActiveCorner
+        {
+            get => activeCorner;
+            set => activeCorner = value;
+        }
+
+        public CubeFace_SO ActiveFace
+        {
+            get => activeFace;
+            set => activeFace = value;
+        }
+
         private void Awake()
         {
-            playerControls = new PlayerControls();
-            
+            playerControls = new TheCube();
+            cameraLocation = new CameraLocation(this, activeCorner, activeFace);
+
             Transform cameraRigTransform = transform;
             newPosition = cameraRigTransform.position;
-            newRotation = cameraRigTransform.rotation;
             
             newZoom = movementCameraTransform.localPosition;
+        }
+
+        private void Start()
+        {
+            startPosition = transform.position;
+            startRotation = transform.rotation;
+            startZoom = movementCameraTransform.localPosition;
+            startFace = activeFace;
+            startCorner = activeCorner;
+
+            cameraDebugViewer.startPosition = startPosition;
+            cameraDebugViewer.startRotation = startRotation.eulerAngles;
+            cameraDebugViewer.startZoom = startZoom;
         }
 
         private void OnEnable()
@@ -50,69 +90,56 @@ namespace Features.MovableCamera.Logic
         
         private void Update()
         {
-            HandleSnappingInput();
             HandleKeyboardInput();
         }
         
         private void HandleKeyboardInput()
         {
             // Get Inputs
-            movementInput = playerControls.CameraActionMap.PlanarMovement.ReadValue<Vector2>();
-            shiftInput = playerControls.CameraActionMap.ShiftSpeed.ReadValue<float>();
-            leftRotationInput = playerControls.CameraActionMap.LeftRotationMovement.ReadValue<float>();
-            rightRotationInput = playerControls.CameraActionMap.RigthRotationMovement.ReadValue<float>();
-            zoomInput = playerControls.CameraActionMap.Zoom.ReadValue<float>();
+            movementInput = playerControls.Camera.PlanarMovement.ReadValue<Vector2>();
+            shiftInput = playerControls.Camera.ShiftSpeed.ReadValue<float>();
+            leftRotationInput = playerControls.Camera.RotateLeft.ReadValue<float>();
+            rightRotationInput = playerControls.Camera.RotateRight.ReadValue<float>();
+            zoomInput = playerControls.Camera.Zoom.ReadValue<float>();
             
             // if shift is pressed add extraSpeed
-            movementSpeed = shiftInput > 0 ? cameraPreset.fastSpeed : cameraPreset.normalSpeed;
+            movementSpeed = shiftInput > 0 ? cameraPreset.FastSpeed : cameraPreset.NormalSpeed;
 
-            if (movementInput.x < 0)
+            if (!camRunning)
             {
-                newPosition += (transform.right * -movementSpeed);
-            }
-
-            if (movementInput.x > 0)
-            {
-                newPosition += (transform.right * movementSpeed);
-            }
-
-            if (movementInput.y < 0)
-            {
-                newPosition += (transform.forward * -movementSpeed);
-            }
-
-            if (movementInput.y > 0)
-            {
-                newPosition += (transform.forward * movementSpeed);
-            }
-
-            if (leftRotationInput > 0)
-            {
-                newRotation *= Quaternion.Euler(Vector3.up * cameraPreset.rotationAmount);
-            }
-
-            if (rightRotationInput > 0)
-            {
-                newRotation *= Quaternion.Euler(Vector3.up * -cameraPreset.rotationAmount);
-            }
+                // Planar Movement
+                currentMovementInputVector = Vector2.SmoothDamp(currentMovementInputVector, movementInput, ref smoothMovementInputVelocity, cameraPreset.SmoothTime);
+                Vector3 moveDir = new Vector3(currentMovementInputVector.x, 0, currentMovementInputVector.y);
+                moveDir = Quaternion.Euler(transform.rotation.eulerAngles) * moveDir;
+                
+                newPosition += moveDir * movementSpeed * Time.deltaTime;
             
-            if (zoomInput > 0)
-            {
-                newZoom -= cameraPreset.zoomAmount;
-            }
-
-            if (zoomInput < 0)
-            {
-                newZoom += cameraPreset.zoomAmount;
-            }
+                //Zoom
+                currentZoomInputValue = Mathf.SmoothDamp(currentZoomInputValue, zoomInput, ref smoothZoomInputVelocity, cameraPreset.SmoothTime);
+                float zoomDir = -currentZoomInputValue;
+                
+                newZoom += zoomDir * cameraPreset.ZoomAmount * cameraPreset.ZoomSpeed * Time.deltaTime;
             
-            transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * cameraPreset.movementTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * cameraPreset.movementTime);
-            movementCameraTransform.localPosition = Vector3.Lerp(movementCameraTransform.localPosition, newZoom, Time.deltaTime * cameraPreset.movementTime);
+                // Clamp movement
+                float distance = Vector3.Distance(newPosition, activeFace.Offset);
+
+                if (distance > cameraPreset.ClampMovement)
+                {
+                    Vector3 fromOriginToObject = newPosition - activeFace.Offset;
+                    fromOriginToObject *= cameraPreset.ClampMovement / distance;
+                    newPosition = activeFace.Offset + fromOriginToObject;
+                }
+                
+                // Clamp Zoom
+                newZoom.y = Mathf.Clamp(newZoom.y, cameraPreset.ZoomYClamp.x,cameraPreset.ZoomYClamp.y);
+                newZoom.z = Mathf.Clamp(newZoom.z, cameraPreset.ZoomZClamp.x, cameraPreset.ZoomZClamp.y);
+
+                transform.position = newPosition;
+                movementCameraTransform.localPosition = newZoom;
+            }
             
             // assign Values for Debug
             cameraDebugViewer.newPosition = newPosition;
-            cameraDebugViewer.newRotation = newRotation;
             cameraDebugViewer.newZoom = newZoom;
             cameraDebugViewer.movementSpeed = movementSpeed;
             
@@ -123,56 +150,128 @@ namespace Features.MovableCamera.Logic
             cameraDebugViewer.zoomInput = zoomInput;
         }
 
-        public void OnResetCamera()
+        public void OnResetCamera(InputAction.CallbackContext context)
         {
-            newPosition = snappingPositions[0].Position();
-            newRotation = snappingPositions[0].Rotation();
+            if (context.started)
+            {
+                ResetCamera();
+            }
         }
 
-        private void HandleSnappingInput()
+        public void ResetCamera()
         {
-            float snapAInput = playerControls.CameraActionMap.SnapSideA.ReadValue<float>();
-            float snapBInput = playerControls.CameraActionMap.SnapSideB.ReadValue<float>();
-            float snapCInput = playerControls.CameraActionMap.SnapSideC.ReadValue<float>();
-            float snapDInput = playerControls.CameraActionMap.SnapSideD.ReadValue<float>();
-            float snapEInput = playerControls.CameraActionMap.SnapSideE.ReadValue<float>();
-            float snapFInput = playerControls.CameraActionMap.SnapSideF.ReadValue<float>();
+            if (camRunning) return;
+            
+            Quaternion startR = transform.rotation;
+            Vector3 startP = newPosition;
+            Vector3 startZ = newZoom;
+            
+            StartCoroutine(Rotate(transform, startR, startRotation, cameraPreset.FaceRotationSpeed));
+            StartCoroutine(Move(transform, startP, startPosition, cameraPreset.FaceRotationSpeed));
+            StartCoroutine(MoveLocal(movementCameraTransform, startZ, startZoom, cameraPreset.FaceRotationSpeed));
 
-            if (snapAInput > 0)
-            {
-                newPosition = snappingPositions[0].Position();
-                newRotation = snappingPositions[0].Rotation();
-            }
+            newPosition = startPosition;
+            newZoom = startZoom;
 
-            if (snapBInput > 0)
-            {
-                newPosition = snappingPositions[1].Position();
-                newRotation = snappingPositions[1].Rotation();
-            }
+            activeFace = startFace;
+            activeCorner = startCorner;
+            cameraLocation.ActiveFace = startFace;
+            cameraLocation.ActiveCorner = startCorner;
+        }
 
-            if (snapCInput > 0)
+        public void OnFaceRotate(InputAction.CallbackContext context)
+        {
+            if (context.started)
             {
-                newPosition = snappingPositions[2].Position();
-                newRotation = snappingPositions[2].Rotation();
-            }
+                if (camRunning) return;
 
-            if (snapDInput > 0)
-            {
-                newPosition = snappingPositions[3].Position();
-                newRotation = snappingPositions[3].Rotation();
+                cameraLocation.SetActiveFace(out Vector3 newOffset);
+                
+                Quaternion startQ = transform.rotation;
+                Quaternion endQ = startQ * Quaternion.Euler(45, 45, -90);
+                StartCoroutine(Rotate(transform, startQ, endQ, cameraPreset.FaceRotationSpeed));
+                StartCoroutine(Move(transform, newPosition, newOffset, cameraPreset.FaceRotationSpeed));
+                newPosition = newOffset;
             }
+        }
 
-            if (snapEInput > 0)
+        public void OnRotateLeft(InputAction.CallbackContext context)
+        {
+            if (context.started)
             {
-                newPosition = snappingPositions[4].Position();
-                newRotation = snappingPositions[4].Rotation();
+                if (camRunning) return;
+                
+                cameraLocation.SetActiveCornerOnLeftRotation();
+                
+                Quaternion startQ = transform.rotation;
+                Quaternion endQ = startQ * Quaternion.Euler(0, 90,0);
+                
+                StartCoroutine(Rotate(transform, startQ, endQ, cameraPreset.PlanarRotationSpeed));
+                StartCoroutine(MoveLocal(transform, newPosition, activeFace.Offset, cameraPreset.PlanarRotationSpeed));
+                newPosition = activeFace.Offset;
             }
+        }
 
-            if (snapFInput > 0)
+        public void OnRotateRight(InputAction.CallbackContext context)
+        {
+            if (context.started)
             {
-                newPosition = snappingPositions[5].Position();
-                newRotation = snappingPositions[5].Rotation();
+                if (camRunning) return;
+                
+                cameraLocation.SetActiveCornerOnRightRotation();
+                
+                Quaternion startQ = transform.rotation;
+                Quaternion endQ = startQ * Quaternion.Euler(0, -90, 0);
+                
+                StartCoroutine(Rotate(transform, startQ, endQ, cameraPreset.PlanarRotationSpeed));
+                StartCoroutine(Move(transform, newPosition, activeFace.Offset, cameraPreset.PlanarRotationSpeed));
+                newPosition = activeFace.Offset;
             }
+        }
+
+        private IEnumerator Rotate(Transform transform, Quaternion start, Quaternion end, float t)
+        {
+            camRunning = true;
+            float time = 0;
+            
+            while (time < t)
+            {
+                transform.rotation = Quaternion.Lerp(start, end, time / t);
+                time += Time.deltaTime;
+                yield return null;
+            }
+            transform.rotation = end;
+            camRunning = false;
+        }
+        
+        private IEnumerator Move(Transform transform, Vector3 start, Vector3 end, float t)
+        {
+            camRunning = true;
+            float time = 0;
+            
+            while (time < t)
+            {
+                transform.position = Vector3.Lerp(start, end, time / t);
+                time += Time.deltaTime;
+                yield return null;
+            }
+            transform.position = end;
+            camRunning = false;
+        }
+        
+        private IEnumerator MoveLocal(Transform transform, Vector3 start, Vector3 end, float t)
+        {
+            camRunning = true;
+            float time = 0;
+            
+            while (time < t)
+            {
+                transform.localPosition = Vector3.Lerp(start, end, time / t);
+                time += Time.deltaTime;
+                yield return null;
+            }
+            transform.localPosition = end;
+            camRunning = false;
         }
     }
 }

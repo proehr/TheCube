@@ -49,6 +49,14 @@ public class @TheCube : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CommandLaunch"",
+                    ""type"": ""Button"",
+                    ""id"": ""71a13ac7-9d3f-47d6-953f-d1c76fe2ce32"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -93,6 +101,17 @@ public class @TheCube : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""MouseAndKeyboard;Keyboard&Mouse"",
                     ""action"": ""CommandModeTransport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0591e0b-067e-468d-a229-d3c5082cfb40"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseAndKeyboard;Keyboard&Mouse"",
+                    ""action"": ""CommandLaunch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -904,6 +923,303 @@ public class @TheCube : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Testing"",
+            ""id"": ""211a2aa4-6f91-40bd-a698-16fe47945c81"",
+            ""actions"": [
+                {
+                    ""name"": ""IntegrityCubeRemoval"",
+                    ""type"": ""Button"",
+                    ""id"": ""807daf84-2261-4ef7-8adf-d1dc1074eff2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a8e039eb-c394-45f4-9672-003c52b68ae4"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""IntegrityCubeRemoval"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Camera"",
+            ""id"": ""7e3937de-e1f6-47f5-8527-59aaf5f88422"",
+            ""actions"": [
+                {
+                    ""name"": ""RotateLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""14504c0b-8f48-4e1c-88d9-9d69ffe3f1ba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RotateRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""34a6bdc5-45b4-48fe-a9a9-409fdcc231df"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""PlanarMovement"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""de03c3e4-f600-416c-8eb7-21b04806495d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""FaceRotation"",
+                    ""type"": ""Button"",
+                    ""id"": ""4e35ee2b-4f67-469a-918e-98cdae79eb76"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ResetCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3a3cb6c-af19-4a54-a901-804e2e61bce3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DragMovement"",
+                    ""type"": ""Button"",
+                    ""id"": ""fff6cf5d-9aac-4ca1-85d8-a6891c203012"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""83e76a96-4ee4-4482-9a45-fc068b2b7dec"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ShiftSpeed"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c87ba82-cdab-4498-abe3-80f0930ac4e2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2767b27e-e79c-480a-ac25-6c946c7200e1"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b277998a-5678-42ff-a664-18fb196e4ce7"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a09f47b-13be-4bf9-8878-03c2e6075515"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FaceRotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""206e4be8-8abe-450c-b15a-b20c3bcca9dd"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlanarMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""8907ffc5-0530-4a57-bc77-652d487758a3"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlanarMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""a8392824-b636-4047-9b79-d1f404a12a43"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlanarMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c85683af-a55b-4638-a37d-d07fdc0fd69d"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlanarMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""57c4b851-8a81-4fec-ac1b-baafec39384e"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlanarMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""ArrowKeys"",
+                    ""id"": ""d500f5ec-9258-4ffa-8b8f-1afcea926a8c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlanarMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""a39738bc-580d-4777-85e0-a687a490bc41"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlanarMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""760fd10e-6976-487c-b179-7d1ca0271e85"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlanarMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f594b1fc-3900-4abd-b2e8-bfaef0069566"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlanarMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""2d3e84b0-68e5-4a95-a312-7cd07058db26"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlanarMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b0812297-511d-44b0-bf22-03027dd9d0ed"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""249940c2-b20e-47ae-bcc8-67de70e0ef04"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fbc4dd02-6de9-4331-b417-f113c28c3ef9"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DragMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f34a1560-ae0a-49c5-9012-9d12f66c1709"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": ""Normalize(min=-1,max=1)"",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cfcb0bd2-718c-4c7e-bd7b-ff38a63e404e"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShiftSpeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -975,6 +1291,7 @@ public class @TheCube : IInputActionCollection, IDisposable
         m_Commands_PauseMenu = m_Commands.FindAction("PauseMenu", throwIfNotFound: true);
         m_Commands_CommandModeExcavate = m_Commands.FindAction("CommandModeExcavate", throwIfNotFound: true);
         m_Commands_CommandModeTransport = m_Commands.FindAction("CommandModeTransport", throwIfNotFound: true);
+        m_Commands_CommandLaunch = m_Commands.FindAction("CommandLaunch", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
@@ -994,6 +1311,19 @@ public class @TheCube : IInputActionCollection, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Testing
+        m_Testing = asset.FindActionMap("Testing", throwIfNotFound: true);
+        m_Testing_IntegrityCubeRemoval = m_Testing.FindAction("IntegrityCubeRemoval", throwIfNotFound: true);
+        // Camera
+        m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
+        m_Camera_RotateLeft = m_Camera.FindAction("RotateLeft", throwIfNotFound: true);
+        m_Camera_RotateRight = m_Camera.FindAction("RotateRight", throwIfNotFound: true);
+        m_Camera_PlanarMovement = m_Camera.FindAction("PlanarMovement", throwIfNotFound: true);
+        m_Camera_FaceRotation = m_Camera.FindAction("FaceRotation", throwIfNotFound: true);
+        m_Camera_ResetCamera = m_Camera.FindAction("ResetCamera", throwIfNotFound: true);
+        m_Camera_DragMovement = m_Camera.FindAction("DragMovement", throwIfNotFound: true);
+        m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
+        m_Camera_ShiftSpeed = m_Camera.FindAction("ShiftSpeed", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1047,6 +1377,7 @@ public class @TheCube : IInputActionCollection, IDisposable
     private readonly InputAction m_Commands_PauseMenu;
     private readonly InputAction m_Commands_CommandModeExcavate;
     private readonly InputAction m_Commands_CommandModeTransport;
+    private readonly InputAction m_Commands_CommandLaunch;
     public struct CommandsActions
     {
         private @TheCube m_Wrapper;
@@ -1055,6 +1386,7 @@ public class @TheCube : IInputActionCollection, IDisposable
         public InputAction @PauseMenu => m_Wrapper.m_Commands_PauseMenu;
         public InputAction @CommandModeExcavate => m_Wrapper.m_Commands_CommandModeExcavate;
         public InputAction @CommandModeTransport => m_Wrapper.m_Commands_CommandModeTransport;
+        public InputAction @CommandLaunch => m_Wrapper.m_Commands_CommandLaunch;
         public InputActionMap Get() { return m_Wrapper.m_Commands; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1076,6 +1408,9 @@ public class @TheCube : IInputActionCollection, IDisposable
                 @CommandModeTransport.started -= m_Wrapper.m_CommandsActionsCallbackInterface.OnCommandModeTransport;
                 @CommandModeTransport.performed -= m_Wrapper.m_CommandsActionsCallbackInterface.OnCommandModeTransport;
                 @CommandModeTransport.canceled -= m_Wrapper.m_CommandsActionsCallbackInterface.OnCommandModeTransport;
+                @CommandLaunch.started -= m_Wrapper.m_CommandsActionsCallbackInterface.OnCommandLaunch;
+                @CommandLaunch.performed -= m_Wrapper.m_CommandsActionsCallbackInterface.OnCommandLaunch;
+                @CommandLaunch.canceled -= m_Wrapper.m_CommandsActionsCallbackInterface.OnCommandLaunch;
             }
             m_Wrapper.m_CommandsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1092,6 +1427,9 @@ public class @TheCube : IInputActionCollection, IDisposable
                 @CommandModeTransport.started += instance.OnCommandModeTransport;
                 @CommandModeTransport.performed += instance.OnCommandModeTransport;
                 @CommandModeTransport.canceled += instance.OnCommandModeTransport;
+                @CommandLaunch.started += instance.OnCommandLaunch;
+                @CommandLaunch.performed += instance.OnCommandLaunch;
+                @CommandLaunch.canceled += instance.OnCommandLaunch;
             }
         }
     }
@@ -1266,6 +1604,128 @@ public class @TheCube : IInputActionCollection, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Testing
+    private readonly InputActionMap m_Testing;
+    private ITestingActions m_TestingActionsCallbackInterface;
+    private readonly InputAction m_Testing_IntegrityCubeRemoval;
+    public struct TestingActions
+    {
+        private @TheCube m_Wrapper;
+        public TestingActions(@TheCube wrapper) { m_Wrapper = wrapper; }
+        public InputAction @IntegrityCubeRemoval => m_Wrapper.m_Testing_IntegrityCubeRemoval;
+        public InputActionMap Get() { return m_Wrapper.m_Testing; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TestingActions set) { return set.Get(); }
+        public void SetCallbacks(ITestingActions instance)
+        {
+            if (m_Wrapper.m_TestingActionsCallbackInterface != null)
+            {
+                @IntegrityCubeRemoval.started -= m_Wrapper.m_TestingActionsCallbackInterface.OnIntegrityCubeRemoval;
+                @IntegrityCubeRemoval.performed -= m_Wrapper.m_TestingActionsCallbackInterface.OnIntegrityCubeRemoval;
+                @IntegrityCubeRemoval.canceled -= m_Wrapper.m_TestingActionsCallbackInterface.OnIntegrityCubeRemoval;
+            }
+            m_Wrapper.m_TestingActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @IntegrityCubeRemoval.started += instance.OnIntegrityCubeRemoval;
+                @IntegrityCubeRemoval.performed += instance.OnIntegrityCubeRemoval;
+                @IntegrityCubeRemoval.canceled += instance.OnIntegrityCubeRemoval;
+            }
+        }
+    }
+    public TestingActions @Testing => new TestingActions(this);
+
+    // Camera
+    private readonly InputActionMap m_Camera;
+    private ICameraActions m_CameraActionsCallbackInterface;
+    private readonly InputAction m_Camera_RotateLeft;
+    private readonly InputAction m_Camera_RotateRight;
+    private readonly InputAction m_Camera_PlanarMovement;
+    private readonly InputAction m_Camera_FaceRotation;
+    private readonly InputAction m_Camera_ResetCamera;
+    private readonly InputAction m_Camera_DragMovement;
+    private readonly InputAction m_Camera_Zoom;
+    private readonly InputAction m_Camera_ShiftSpeed;
+    public struct CameraActions
+    {
+        private @TheCube m_Wrapper;
+        public CameraActions(@TheCube wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RotateLeft => m_Wrapper.m_Camera_RotateLeft;
+        public InputAction @RotateRight => m_Wrapper.m_Camera_RotateRight;
+        public InputAction @PlanarMovement => m_Wrapper.m_Camera_PlanarMovement;
+        public InputAction @FaceRotation => m_Wrapper.m_Camera_FaceRotation;
+        public InputAction @ResetCamera => m_Wrapper.m_Camera_ResetCamera;
+        public InputAction @DragMovement => m_Wrapper.m_Camera_DragMovement;
+        public InputAction @Zoom => m_Wrapper.m_Camera_Zoom;
+        public InputAction @ShiftSpeed => m_Wrapper.m_Camera_ShiftSpeed;
+        public InputActionMap Get() { return m_Wrapper.m_Camera; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraActions set) { return set.Get(); }
+        public void SetCallbacks(ICameraActions instance)
+        {
+            if (m_Wrapper.m_CameraActionsCallbackInterface != null)
+            {
+                @RotateLeft.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateLeft;
+                @RotateLeft.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateLeft;
+                @RotateLeft.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateLeft;
+                @RotateRight.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateRight;
+                @RotateRight.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateRight;
+                @RotateRight.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateRight;
+                @PlanarMovement.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnPlanarMovement;
+                @PlanarMovement.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnPlanarMovement;
+                @PlanarMovement.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnPlanarMovement;
+                @FaceRotation.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnFaceRotation;
+                @FaceRotation.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnFaceRotation;
+                @FaceRotation.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnFaceRotation;
+                @ResetCamera.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnResetCamera;
+                @ResetCamera.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnResetCamera;
+                @ResetCamera.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnResetCamera;
+                @DragMovement.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnDragMovement;
+                @DragMovement.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnDragMovement;
+                @DragMovement.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnDragMovement;
+                @Zoom.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnZoom;
+                @ShiftSpeed.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnShiftSpeed;
+                @ShiftSpeed.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnShiftSpeed;
+                @ShiftSpeed.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnShiftSpeed;
+            }
+            m_Wrapper.m_CameraActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @RotateLeft.started += instance.OnRotateLeft;
+                @RotateLeft.performed += instance.OnRotateLeft;
+                @RotateLeft.canceled += instance.OnRotateLeft;
+                @RotateRight.started += instance.OnRotateRight;
+                @RotateRight.performed += instance.OnRotateRight;
+                @RotateRight.canceled += instance.OnRotateRight;
+                @PlanarMovement.started += instance.OnPlanarMovement;
+                @PlanarMovement.performed += instance.OnPlanarMovement;
+                @PlanarMovement.canceled += instance.OnPlanarMovement;
+                @FaceRotation.started += instance.OnFaceRotation;
+                @FaceRotation.performed += instance.OnFaceRotation;
+                @FaceRotation.canceled += instance.OnFaceRotation;
+                @ResetCamera.started += instance.OnResetCamera;
+                @ResetCamera.performed += instance.OnResetCamera;
+                @ResetCamera.canceled += instance.OnResetCamera;
+                @DragMovement.started += instance.OnDragMovement;
+                @DragMovement.performed += instance.OnDragMovement;
+                @DragMovement.canceled += instance.OnDragMovement;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
+                @ShiftSpeed.started += instance.OnShiftSpeed;
+                @ShiftSpeed.performed += instance.OnShiftSpeed;
+                @ShiftSpeed.canceled += instance.OnShiftSpeed;
+            }
+        }
+    }
+    public CameraActions @Camera => new CameraActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1317,6 +1777,7 @@ public class @TheCube : IInputActionCollection, IDisposable
         void OnPauseMenu(InputAction.CallbackContext context);
         void OnCommandModeExcavate(InputAction.CallbackContext context);
         void OnCommandModeTransport(InputAction.CallbackContext context);
+        void OnCommandLaunch(InputAction.CallbackContext context);
     }
     public interface IPlayerActions
     {
@@ -1338,5 +1799,20 @@ public class @TheCube : IInputActionCollection, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface ITestingActions
+    {
+        void OnIntegrityCubeRemoval(InputAction.CallbackContext context);
+    }
+    public interface ICameraActions
+    {
+        void OnRotateLeft(InputAction.CallbackContext context);
+        void OnRotateRight(InputAction.CallbackContext context);
+        void OnPlanarMovement(InputAction.CallbackContext context);
+        void OnFaceRotation(InputAction.CallbackContext context);
+        void OnResetCamera(InputAction.CallbackContext context);
+        void OnDragMovement(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
+        void OnShiftSpeed(InputAction.CallbackContext context);
     }
 }

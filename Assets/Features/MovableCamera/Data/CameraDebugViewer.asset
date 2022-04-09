@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0654260c1c4b06967f9db63f0b40a8, type: 3}
   m_Name: CameraDebugViewer
   m_EditorClassIdentifier: 
-  newPosition: {x: 0, y: 0, z: 0}
-  newRotation: {x: 0, y: 0, z: 0, w: 0}
-  newZoom: {x: 0, y: 0, z: 0}
-  movementSpeed: 0
+  newPosition: {x: 0, y: 15, z: 0}
+  newRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
+  newZoom: {x: -0, y: 75, z: -150}
+  movementSpeed: 0.3
   movementInput: {x: 0, y: 0}
   shiftInput: 0
   leftRotationInput: 0
