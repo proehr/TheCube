@@ -69,7 +69,7 @@ namespace Features.Planet.Resources.Scripts
             {
                 AddState(CubeState.MarkedForExcavation);
             }
-            else if(!bExcavate && !this.hasExcavationStarted)
+            else if(!info.Excavate && !this.hasExcavationStarted)
             {
                 RemoveState(CubeState.MarkedForExcavation);
             }
