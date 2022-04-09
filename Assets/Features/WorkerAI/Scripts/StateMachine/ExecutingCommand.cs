@@ -22,6 +22,7 @@ namespace Features.WorkerAI.Scripts.StateMachine
             // Seek(command.location);
 
             agent.Warp(command.GetDesiredWorkerPosition(workerBehavior));
+            agent.enabled = false; // disable agent behavior, for performance & positioning in obstructed area
 
             base.Enter();
         }

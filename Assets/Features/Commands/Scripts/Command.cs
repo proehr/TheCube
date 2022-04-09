@@ -12,6 +12,7 @@ namespace Features.Commands.Scripts
         {
             STARTING,
             COLLECTING_WORKERS,
+            PREPARING_RUN,
             RUNNING,
             CLEANING_UP,
             FINISHED
@@ -34,6 +35,7 @@ namespace Features.Commands.Scripts
         protected float remainingDuration;
         private readonly Vector3 planeNormal;
         private readonly float cubeSize;
+        private readonly int angleOffset;
 
         protected Command(Cube targetCube, int cubeObjectId, Vector3 planeNormal, WorkerService_SO workerService,
             Command_SO commandData, Transform commandPostsParent)
@@ -59,6 +61,7 @@ namespace Features.Commands.Scripts
 
             this.sqrMaxWorkerDistance = Mathf.Pow(commandData.MaxDistanceToLocation, 2);
             this.remainingDuration = commandData.Duration;
+            this.angleOffset = 45;
 
             Success = false;
 
@@ -76,6 +79,11 @@ namespace Features.Commands.Scripts
             if (stage == Stage.COLLECTING_WORKERS)
             {
                 CheckIfWorkersAreReady();
+            }
+
+            if (stage == Stage.PREPARING_RUN)
+            {
+                OnWorkersReady();
             }
 
             if (stage == Stage.RUNNING)
@@ -136,7 +144,12 @@ namespace Features.Commands.Scripts
             }
 
             // Every worker is in range --> proceed to next stage
-            stage = Stage.RUNNING;
+            stage = Stage.PREPARING_RUN;
+        }
+
+        protected virtual void OnWorkersReady()
+        {
+            this.stage = Stage.RUNNING;
         }
 
         protected virtual void Update()
@@ -184,7 +197,7 @@ namespace Features.Commands.Scripts
             Vector3.OrthoNormalize(ref normal, ref tangent);
             // Lets form a nice circle
             return location 
-                   + Quaternion.AngleAxis((360 / commandData.RequiredWorkers) * indexOf + 45, planeNormal)
+                   + Quaternion.AngleAxis((360 / commandData.RequiredWorkers) * indexOf + angleOffset, planeNormal)
                    * tangent 
                    * (cubeSize * 0.25f);
         }

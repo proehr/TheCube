@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Features.Commands.Scripts.ActionEvents;
 using Features.Planet.Resources.Scripts;
 using Features.Planet_Generation.Scripts;
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 public class PlanetGenerator : MonoBehaviour
@@ -11,6 +13,7 @@ public class PlanetGenerator : MonoBehaviour
     [SerializeField] private Planet_SO planetData;
     [SerializeField] private PlanetCubes_SO planetCubes;
     [SerializeField] private NavMeshSurface[] navMeshSurfaces = new NavMeshSurface[6];
+    [SerializeField] private ExcavationStartedActionEvent onExcavationStarted;
     [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
     /**
      * 1-4: top
@@ -18,6 +21,8 @@ public class PlanetGenerator : MonoBehaviour
      * 9-12: bottom
      */
     [SerializeField] private NavMeshLink[] navMeshLinks = new NavMeshLink[12];
+    [SerializeField] private Transform obstaclesParent;
+    [SerializeField] private NavMeshObstacle obstaclePrefab;
 
     [Tooltip("Just for preview purposes. Your workers will get stuck :(")]
     [SerializeField] private bool updateNavMeshOnCubeRemoval = false;
@@ -38,6 +43,7 @@ public class PlanetGenerator : MonoBehaviour
         planetCubes.Init(planetData);
         CreateGameObjects();
         GenerateNavMesh();
+        onExcavationStarted.RegisterListener(PlaceNavMeshObstacle);
         onCubeRemoved.RegisterListener(UpdateNavMesh);
     }
 
@@ -210,6 +216,14 @@ public class PlanetGenerator : MonoBehaviour
         return surfaces[surface].ToArray();
     }
 
+    private void PlaceNavMeshObstacle(Cube targetCube)
+    {
+        if (!surfaces[Surface.POSITIVE_Y].Contains(targetCube.gameObject) ) return;
+
+        var targetTransform = targetCube.transform;
+        Instantiate(obstaclePrefab, targetTransform.position, targetTransform.rotation, obstaclesParent);
+    }
+
     private void UpdateNavMesh(Cube obj)
     {
         // TODO create navMeshLinks at edges of removed cube
@@ -224,5 +238,8 @@ public class PlanetGenerator : MonoBehaviour
     public void Destroy()
     {
         planetCubes.RemoveAllCubes();
+        foreach (Transform obstacles in obstaclesParent) {
+            Destroy(obstacles.gameObject);
+        }
     }
 }

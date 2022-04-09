@@ -63,6 +63,7 @@ namespace Features.WorkerAI.Scripts
 
         public void QueueWandering()
         {
+            agent.enabled = true;
             agent.Warp(idlePosition);
             currentState.SetNext(new Wander(gameObject, agent, walkSpeedMultiplier, runSpeedMultiplier, wanderRadius,
                 wanderDistance, maxAngleChange));

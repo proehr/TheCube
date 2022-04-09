@@ -24,14 +24,17 @@ namespace Features.Planet.Resources.Scripts
         [SerializeField] private ColorVariable defaultMaterialColor;
         [SerializeField] private ColorVariable highlightMaterialColor;
         [SerializeField] private ColorVariable excavateMaterialColor;
-        
+
         private CubeState state;
 
         public bool isMarkedForExcavation => this.state.HasFlag(CubeState.MarkedForExcavation);
         public bool hasExcavationStarted => this.state.HasFlag(CubeState.ExcavationStarted);
         public Resource_SO resourceData { get; private set; }
         public Vector3Int planetPosition { get; private set; }
-        public CubeState cubeState => this.state;   
+        public CubeState cubeState => this.state;
+        /**
+         * Whats the (last) normal through which the state of the cube changed.
+         */
         public Vector3 stateNormal { get; private set; }
 
         public void Init(Resource_SO resourceData, Vector3Int planetPosition)
@@ -119,21 +122,33 @@ namespace Features.Planet.Resources.Scripts
         {
             if (this.state.HasFlag(newCubeState)) return;
             this.state |= newCubeState;
-            this.OnStateChange();
+            this.OnStateChange(newCubeState);
         }
 
         private void RemoveState(CubeState newCubeState)
         {
             if (!this.state.HasFlag(newCubeState)) return;
             this.state &= ~newCubeState;
-            this.OnStateChange();
+            this.OnStateChange(newCubeState);
         }
 
-        private void OnStateChange()
+        private void OnStateChange(CubeState newCubeState)
         {
             UpdateMaterial();
-            if (this.workerCommandActionEvent == null) return;
-            this.workerCommandActionEvent.Raise(this);
+
+            switch (newCubeState)
+            {
+                case CubeState.Hovered:
+                    break;
+                case CubeState.MarkedForExcavation:
+                    if (this.workerCommandActionEvent != null)
+                    {
+                        this.workerCommandActionEvent.Raise(this);
+                    }
+                    break;
+                case CubeState.ExcavationStarted:
+                    break;
+            }
         }
     }
 }
