@@ -1,5 +1,6 @@
 using System;
 using DataStructures.Variables;
+using Features.Commands.Scripts;
 using Features.Gui;
 using Features.LandingPod.Scripts;
 using UnityEngine;
@@ -83,7 +84,7 @@ public class CommandInputHandler : MonoBehaviour
                 {
                     if (this.selectorInputDown)
                     {
-                        targetObject.SendMessage(this.cubeSelectMethodName, excavationMode);
+                        targetObject.SendMessage(this.cubeSelectMethodName, new SelectInfo(excavationMode, hit));
                     }
                     else
                     {
@@ -124,7 +125,11 @@ public class CommandInputHandler : MonoBehaviour
             this.selectorInputDown = true;
             if (!this.hoveredObject) return;
             excavationMode = HoverState.currentHoverState != HoverState.State.CubeExcavate;
-            this.hoveredObject.SendMessage(this.cubeSelectMethodName, excavationMode);
+            Ray ray = this.cachedCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (Physics.Raycast(ray, out var hit))
+            {
+                this.hoveredObject.SendMessage(this.cubeSelectMethodName, new SelectInfo(excavationMode, hit));
+            }
             
         }
         if (context.canceled)

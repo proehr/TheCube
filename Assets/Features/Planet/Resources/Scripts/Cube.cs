@@ -1,5 +1,6 @@
 using System;
 using DataStructures.Variables;
+using Features.Commands.Scripts;
 using Features.Commands.Scripts.ActionEvents;
 using Features.Planet_Generation.Scripts;
 using UnityEngine;
@@ -18,19 +19,20 @@ namespace Features.Planet.Resources.Scripts
             ExcavationStarted = 4
         }
 
-        private CubeState state;
-        public CubeState cubeState => this.state;
-
         [SerializeField] private WorkerCommandActionEvent workerCommandActionEvent;
         [FormerlySerializedAs("renderer")] [SerializeField] private MeshRenderer cubeMeshRenderer;
         [SerializeField] private ColorVariable defaultMaterialColor;
         [SerializeField] private ColorVariable highlightMaterialColor;
         [SerializeField] private ColorVariable excavateMaterialColor;
+        
+        private CubeState state;
 
         public bool isMarkedForExcavation => this.state.HasFlag(CubeState.MarkedForExcavation);
         public bool hasExcavationStarted => this.state.HasFlag(CubeState.ExcavationStarted);
         public Resource_SO resourceData { get; private set; }
         public Vector3Int planetPosition { get; private set; }
+        public CubeState cubeState => this.state;   
+        public Vector3 stateNormal { get; private set; }
 
         public void Init(Resource_SO resourceData, Vector3Int planetPosition)
         {
@@ -60,9 +62,10 @@ namespace Features.Planet.Resources.Scripts
             UpdateMaterial();
         }
 
-        private void OnSelect(bool bExcavate)
+        private void OnSelect(SelectInfo info)
         {
-            if (!this.isMarkedForExcavation && bExcavate)
+            stateNormal = info.Hit.normal;
+            if (!this.isMarkedForExcavation && info.Excavate)
             {
                 AddState(CubeState.MarkedForExcavation);
             }
