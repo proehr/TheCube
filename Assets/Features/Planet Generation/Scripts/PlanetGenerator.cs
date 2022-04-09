@@ -54,6 +54,8 @@ public class PlanetGenerator : MonoBehaviour
         surfaces = new Dictionary<Surface, List<GameObject>>();
         foreach (Surface surface in Enum.GetValues(typeof(Surface)))
         {
+            if (surface == Surface.NONE) continue;
+
             surfaces.Add(surface, new List<GameObject>());
         }
     }

@@ -2,6 +2,7 @@
 {
     public enum Surface
     {
+        NONE,
         POSITIVE_Y,
         NEGATIVE_Y,
         POSITIVE_X,
