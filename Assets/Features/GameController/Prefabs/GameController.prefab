@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5085557872381821032}
   - component: {fileID: 8254635085791371001}
+  - component: {fileID: 796869340252383379}
+  - component: {fileID: 4578037406109861227}
+  - component: {fileID: 1864799771}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -49,18 +52,21 @@ MonoBehaviour:
   integrityController: {fileID: 0}
   cameraController: {fileID: 0}
   workerService: {fileID: 11400000, guid: d2da8624966c1b442a7e83172a545dee, type: 2}
-  guiController: {fileID: 0}
+  canvasManager: {fileID: 0}
   inventory: {fileID: 11400000, guid: b951f25756a12eb48a71be3d3bba0121, type: 2}
   saveGameManager: {fileID: 0}
   workerCommandHandler: {fileID: 0}
+  onShowStartScreen: {fileID: 11400000, guid: 630c56c0412e6f64ca4325d5d07a5dc1, type: 2}
   onStartRequested: {fileID: 11400000, guid: 2ee98d885659a6d48b1b5e4a5a14f90a, type: 2}
+  onUnloadLevel: {fileID: 11400000, guid: bf97cb627971ac4428bcfe5c3adebfbf, type: 2}
   onLaunchTriggered: {fileID: 11400000, guid: cb6bc0a8661e89147a25f7338dda6746, type: 2}
   onLaunchCompleted: {fileID: 11400000, guid: 8396509a562c56248ad17bdc4327cf2c, type: 2}
   onPauseRequested: {fileID: 11400000, guid: a047b8d728199524884559c9ab5783fb, type: 2}
+  onStartGameplay: {fileID: 11400000, guid: 1924ed809dfc4204a83aea45a94cc39d, type: 2}
   onExitRequested: {fileID: 11400000, guid: c1ad77971b706494fbcd8dd81f04e2d9, type: 2}
   onBeforeStartScreen: {fileID: 11400000, guid: 14a380f6ea4c07946b204807267391f8, type: 2}
   onAfterStartScreen: {fileID: 11400000, guid: af1307955fe9a3e44a2a49f686329014, type: 2}
-  onBeforeLevelInit: {fileID: 11400000, guid: 3422695fc1eeb0244b84a926fba7d601, type: 2}
+  onBeforeLevelInit: {fileID: 11400000, guid: 62c7d20f34ea18c4f9d3bb94f8b5b405, type: 2}
   onAfterLevelInit: {fileID: 11400000, guid: 7abc46f485e18934eb96dc549f83fb28, type: 2}
   onBeforeGameplay: {fileID: 11400000, guid: e80a655d3d040904c8a0932f19b4b288, type: 2}
   onAfterGameplay: {fileID: 11400000, guid: 050fb55eff75ab5478c9bec1811d8ae8, type: 2}
@@ -74,3 +80,87 @@ MonoBehaviour:
   onAfterLevelResultScreen: {fileID: 11400000, guid: cf7bfa1630ad1734d94d8ce4ee8a5a76, type: 2}
   onBeforeGameExiting: {fileID: 11400000, guid: bf753ebc32fdb264dbe2237c68e1324e, type: 2}
   onAfterGameExiting: {fileID: 11400000, guid: 48fe4d53c4f0d90438ce86739494659a, type: 2}
+--- !u!114 &796869340252383379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6772702390766787531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562333bb560789b4fbc0b79687b142fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: ce0dd25fd0eb9fa46bfbc893fe6a7837, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Features.Gui.Scripts.CanvasManager, Assembly-CSharp
+        m_MethodName: AddCanvas
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 12a0102f2c123cb41b73058648bda008, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Features.Gui.Scripts.MenuType_SO, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4578037406109861227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6772702390766787531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562333bb560789b4fbc0b79687b142fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: 67ce1e085e603134db96be2e200be415, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Features.Gui.Scripts.CanvasManager, Assembly-CSharp
+        m_MethodName: AddCanvas
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: c1aa3000bc0231e4ab9ac8f6ecef2606, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Features.Gui.Scripts.MenuType_SO, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1864799771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6772702390766787531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562333bb560789b4fbc0b79687b142fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: e80a655d3d040904c8a0932f19b4b288, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Features.Gui.Scripts.CanvasManager, Assembly-CSharp
+        m_MethodName: HideCanvas
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1622972831089985491}
   - component: {fileID: 3681857847642558880}
   - component: {fileID: 849179258}
+  - component: {fileID: 1973045535}
   m_Layer: 0
   m_Name: CommandInputHandler
   m_TagString: Untagged
@@ -126,7 +127,19 @@ MonoBehaviour:
     m_ActionId: 1e85b773-48cb-46a0-afdc-e3b65c8884be
     m_ActionName: Commands/IssueCommand[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1973045535}
+        m_TargetAssemblyTypeName: Features.Gui.Scripts.GuiInputHandler, Assembly-CSharp
+        m_MethodName: OnPauseGame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 57396f0c-cb23-47c6-a99e-89685cea02cd
     m_ActionName: Commands/PauseMenu[/Keyboard/escape]
   - m_PersistentCalls:
@@ -237,6 +250,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 71a13ac7-9d3f-47d6-953f-d1c76fe2ce32
     m_ActionName: Commands/CommandLaunch[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 807daf84-2261-4ef7-8adf-d1dc1074eff2
+    m_ActionName: Testing/IntegrityCubeRemoval[/Keyboard/h]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Commands
@@ -258,3 +275,20 @@ MonoBehaviour:
   playOnStart: 0
   audioCueEventChannel: {fileID: 11400000, guid: 9b5c99e34ed1e9c419efb86300044bb0, type: 2}
   audioConfiguration: {fileID: 11400000, guid: 135d58a04787528408d6533e47de5db4, type: 2}
+--- !u!114 &1973045535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3681857849156021646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393172393de382b438d7224b62a23508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPauseRequested: {fileID: 11400000, guid: a047b8d728199524884559c9ab5783fb, type: 2}
+  onStartGameplay: {fileID: 11400000, guid: 1924ed809dfc4204a83aea45a94cc39d, type: 2}
+  onLaunchTriggered: {fileID: 11400000, guid: cb6bc0a8661e89147a25f7338dda6746, type: 2}
+  onLaunchCompleted: {fileID: 11400000, guid: 8396509a562c56248ad17bdc4327cf2c, type: 2}
+  gameState: {fileID: 11400000, guid: 147bf89ba0eb13c45aa6fbf73815ecbf, type: 2}
