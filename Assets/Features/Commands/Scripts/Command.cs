@@ -35,6 +35,7 @@ namespace Features.Commands.Scripts
         protected float remainingDuration;
         private readonly Vector3 planeNormal;
         private readonly float cubeSize;
+        private readonly int angleOffset;
 
         protected Command(Cube targetCube, int cubeObjectId, Vector3 planeNormal, WorkerService_SO workerService,
             Command_SO commandData, Transform commandPostsParent)
@@ -60,6 +61,7 @@ namespace Features.Commands.Scripts
 
             this.sqrMaxWorkerDistance = Mathf.Pow(commandData.MaxDistanceToLocation, 2);
             this.remainingDuration = commandData.Duration;
+            this.angleOffset = 45;
 
             Success = false;
 
@@ -192,7 +194,6 @@ namespace Features.Commands.Scripts
 
             var normal = planeNormal;
             var tangent = new Vector3();
-            var angleOffset = Random.Range(0, 45);
             Vector3.OrthoNormalize(ref normal, ref tangent);
             // Lets form a nice circle
             return location 
