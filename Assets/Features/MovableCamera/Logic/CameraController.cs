@@ -14,6 +14,9 @@ namespace Features.MovableCamera.Logic
         [SerializeField, ReadOnly] private CubeCorner_SO activeCorner;
         [SerializeField, ReadOnly] private CubeFace_SO activeFace;
 
+        private CubeFace_SO startFace;
+        private CubeCorner_SO startCorner;
+
         private TheCube playerControls;
         private CameraLocation cameraLocation;
         
@@ -67,6 +70,8 @@ namespace Features.MovableCamera.Logic
             startPosition = transform.position;
             startRotation = transform.rotation;
             startZoom = movementCameraTransform.localPosition;
+            startFace = activeFace;
+            startCorner = activeCorner;
 
             cameraDebugViewer.startPosition = startPosition;
             cameraDebugViewer.startRotation = startRotation.eulerAngles;
@@ -167,6 +172,11 @@ namespace Features.MovableCamera.Logic
 
             newPosition = startPosition;
             newZoom = startZoom;
+
+            activeFace = startFace;
+            activeCorner = startCorner;
+            cameraLocation.ActiveFace = startFace;
+            cameraLocation.ActiveCorner = startCorner;
         }
 
         public void OnFaceRotate(InputAction.CallbackContext context)
@@ -175,7 +185,7 @@ namespace Features.MovableCamera.Logic
             {
                 if (camRunning) return;
 
-                cameraLocation.SetActiveFace(out Vector3 oldOffset, out Vector3 newOffset);
+                cameraLocation.SetActiveFace(out Vector3 newOffset);
                 
                 Quaternion startQ = transform.rotation;
                 Quaternion endQ = startQ * Quaternion.Euler(45, 45, -90);
@@ -191,7 +201,7 @@ namespace Features.MovableCamera.Logic
             {
                 if (camRunning) return;
                 
-                cameraLocation.SetActiveCorner(-1);
+                cameraLocation.SetActiveCornerOnLeftRotation();
                 
                 Quaternion startQ = transform.rotation;
                 Quaternion endQ = startQ * Quaternion.Euler(0, 90,0);
@@ -208,7 +218,7 @@ namespace Features.MovableCamera.Logic
             {
                 if (camRunning) return;
                 
-                cameraLocation.SetActiveCorner(1);
+                cameraLocation.SetActiveCornerOnRightRotation();
                 
                 Quaternion startQ = transform.rotation;
                 Quaternion endQ = startQ * Quaternion.Euler(0, -90, 0);
