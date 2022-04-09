@@ -238,5 +238,8 @@ public class PlanetGenerator : MonoBehaviour
     public void Destroy()
     {
         planetCubes.RemoveAllCubes();
+        foreach (Transform obstacles in obstaclesParent) {
+            Destroy(obstacles.gameObject);
+        }
     }
 }
