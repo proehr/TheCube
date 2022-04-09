@@ -981,9 +981,17 @@
                 },
                 {
                     "name": "Zoom",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "83e76a96-4ee4-4482-9a45-fc068b2b7dec",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ShiftSpeed",
+                    "type": "Button",
+                    "id": "6c87ba82-cdab-4498-abe3-80f0930ac4e2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -1168,11 +1176,22 @@
                 {
                     "name": "",
                     "id": "f34a1560-ae0a-49c5-9012-9d12f66c1709",
-                    "path": "<Mouse>/scroll",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "Normalize(min=-1,max=1)",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cfcb0bd2-718c-4c7e-bd7b-ff38a63e404e",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Zoom",
+                    "action": "ShiftSpeed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

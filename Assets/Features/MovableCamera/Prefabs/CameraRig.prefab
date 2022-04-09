@@ -159,15 +159,8 @@ MonoBehaviour:
   movementCameraTransform: {fileID: 5857115625557989880}
   cameraPreset: {fileID: 11400000, guid: e56a26b9dab67f646823c6ba6b942e10, type: 2}
   cameraDebugViewer: {fileID: 11400000, guid: 61c8d2092c372634d84ffe2b12c7d908, type: 2}
-  istrue: 0
-  zero: {fileID: 0}
-  snappingPositions:
-  - {fileID: 11400000, guid: cbb672848b454934e93a36cda50d3596, type: 2}
-  - {fileID: 11400000, guid: 582a67d1309b97041a81d79bf0745fe2, type: 2}
-  - {fileID: 11400000, guid: 3ac7ca29af2bc83459e5698511ca359d, type: 2}
-  - {fileID: 11400000, guid: 474ece96bd3767d4c89d6800cfb24c3a, type: 2}
-  - {fileID: 11400000, guid: a34a27ec7a6aa93419468f75d41ae07d, type: 2}
-  - {fileID: 11400000, guid: 433f0825cfc17df42b7cbe4389e922cf, type: 2}
+  activeCorner: {fileID: 11400000, guid: 58c63d14b396ed244812dfb4ff79de3b, type: 2}
+  activeFace: {fileID: 11400000, guid: 35abbb2f2dd134c40880b45557f0092c, type: 2}
 --- !u!114 &5305641842195297382
 MonoBehaviour:
   m_ObjectHideFlags: 0
