@@ -1181,6 +1181,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: d398d64abf2958a4eb05f7535f8a3ed6, type: 2}
     - target: {fileID: 2355959874383997977, guid: 95183b0cda015d7499b8ca7fd60e857f, type: 3}
+      propertyPath: obstaclePrefab
+      value: 
+      objectReference: {fileID: -2016044987054578434, guid: dae0cd3d7e70c2346b264c9e511dd645, type: 3}
+    - target: {fileID: 2355959874383997977, guid: 95183b0cda015d7499b8ca7fd60e857f, type: 3}
+      propertyPath: obstaclesParent
+      value: 
+      objectReference: {fileID: 4974943278137037239}
+    - target: {fileID: 2355959874383997977, guid: 95183b0cda015d7499b8ca7fd60e857f, type: 3}
+      propertyPath: onExcavationStarted
+      value: 
+      objectReference: {fileID: 11400000, guid: d8c9a0675b3e71640b525f618c0bd579, type: 2}
+    - target: {fileID: 2355959874383997977, guid: 95183b0cda015d7499b8ca7fd60e857f, type: 3}
       propertyPath: navMeshLinks.Array.data[0]
       value: 
       objectReference: {fileID: 3910909627570791316}
@@ -1252,8 +1264,17 @@ PrefabInstance:
       propertyPath: navMeshSurfaces.Array.data[5]
       value: 
       objectReference: {fileID: 472741250}
+    - target: {fileID: 4850339933418970465, guid: 95183b0cda015d7499b8ca7fd60e857f, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95183b0cda015d7499b8ca7fd60e857f, type: 3}
+--- !u!4 &4974943278137037239 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4850339933418970465, guid: 95183b0cda015d7499b8ca7fd60e857f, type: 3}
+  m_PrefabInstance: {fileID: 451858550718139606}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1734731981184921783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2186026472103115873, guid: 95183b0cda015d7499b8ca7fd60e857f, type: 3}

@@ -20,8 +20,8 @@ namespace Features.Commands.Scripts
         [SerializeField] private CommandFinishedActionEvent commandFinishedEvent;
         [SerializeField] private Transform commandPostsParent;
         [SerializeField] private UnityEvent onCommandAction;
+        [SerializeField] private ExcavationStartedActionEvent onExcavationStarted;
         [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
-
 
         private readonly Dictionary<int, Command> activeCommandsPerCube = new Dictionary<int, Command>();
 
@@ -68,7 +68,7 @@ namespace Features.Commands.Scripts
             {
                 // Create worker command
                 var pCommand = new ExcavationCommand(cube, cubeObjectId, cube.stateNormal, workerService,
-                    cube.resourceData.ExcavationCommandData, commandPostsParent, onCubeRemoved);
+                    cube.resourceData.ExcavationCommandData, commandPostsParent, onExcavationStarted, onCubeRemoved);
                 if (!this.activeCommandsPerCube.ContainsKey(cubeObjectId))
                 {
                     activeCommandsPerCube.Add(cubeObjectId, pCommand);

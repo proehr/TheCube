@@ -12,6 +12,7 @@ namespace Features.Commands.Scripts
         {
             STARTING,
             COLLECTING_WORKERS,
+            PREPARING_RUN,
             RUNNING,
             CLEANING_UP,
             FINISHED
@@ -78,6 +79,11 @@ namespace Features.Commands.Scripts
                 CheckIfWorkersAreReady();
             }
 
+            if (stage == Stage.PREPARING_RUN)
+            {
+                OnWorkersReady();
+            }
+
             if (stage == Stage.RUNNING)
             {
                 Update();
@@ -136,7 +142,12 @@ namespace Features.Commands.Scripts
             }
 
             // Every worker is in range --> proceed to next stage
-            stage = Stage.RUNNING;
+            stage = Stage.PREPARING_RUN;
+        }
+
+        protected virtual void OnWorkersReady()
+        {
+            this.stage = Stage.RUNNING;
         }
 
         protected virtual void Update()
@@ -181,10 +192,11 @@ namespace Features.Commands.Scripts
 
             var normal = planeNormal;
             var tangent = new Vector3();
+            var angleOffset = Random.Range(0, 45);
             Vector3.OrthoNormalize(ref normal, ref tangent);
             // Lets form a nice circle
             return location 
-                   + Quaternion.AngleAxis((360 / commandData.RequiredWorkers) * indexOf + 45, planeNormal)
+                   + Quaternion.AngleAxis((360 / commandData.RequiredWorkers) * indexOf + angleOffset, planeNormal)
                    * tangent 
                    * (cubeSize * 0.25f);
         }
