@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BayatGames.SaveGameFree;
+using DataStructures.Variables;
 using Features.WorkerAI.Scripts.StateMachine;
 using Features.WorkerDTO;
 using Sirenix.OdinInspector;
@@ -14,6 +15,7 @@ namespace Features.WorkerAI.Scripts
     [CreateAssetMenu(fileName = "WorkerService", menuName = "WorkerService")]
     public class WorkerService_SO : SerializedScriptableObject
     {
+        [SerializeField] private IntVariable workerAmount;
         [SerializeField] private Dictionary<int, WorkerBehavior> workerPrefabs;
 
         private readonly List<WorkerBehavior> workers = new List<WorkerBehavior>();
@@ -69,6 +71,7 @@ namespace Features.WorkerAI.Scripts
             {
                 entry.Value.Clear();
             }
+            UpdateWorkerAmount();
         }
 
         public ICollection<WorkerBehavior> GetWorkersForCommand(int count)
@@ -98,10 +101,17 @@ namespace Features.WorkerAI.Scripts
             workersPerState[newState].Add(worker);
         }
 
+        private void UpdateWorkerAmount()
+        {
+            if (!this.workerAmount) return;
+            this.workerAmount.Set(this.workers?.Count ?? 0);
+        }
+
         public void AddNewWorker(WorkerBehavior workerBehaviour)
         {
             workers.Add(workerBehaviour);
             workersPerState[workerBehaviour.currentState.name].Add(workerBehaviour);
+            UpdateWorkerAmount();
         }
 
         private void InstantiateNewWorker(int workerSizeKey, Vector3 position, Quaternion rotation)
@@ -133,6 +143,7 @@ namespace Features.WorkerAI.Scripts
             workers.Remove(worker);
 
             UnityEngine.Object.Destroy(worker.gameObject);
+            UpdateWorkerAmount();
         }
 
         public void Debug(TMP_Text workerInfoText)

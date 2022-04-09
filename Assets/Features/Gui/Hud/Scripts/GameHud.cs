@@ -5,10 +5,8 @@ using UnityEngine;
 public class GameHud : MonoBehaviour
 {
     [SerializeField] private CommandModeVariable commandMode;
-    [SerializeField] private IntVariable totalWorkerAmount;
     [SerializeField] private GameObject ExcavationModeButtonHighlight;
     [SerializeField] private GameObject TransportModeButtonHighlight;
-    [SerializeField] private TMP_Text WorkerAmountLabel;
 
     private void OnEnable()
     {
@@ -18,12 +16,6 @@ public class GameHud : MonoBehaviour
     public void OnCommandModeChanged()
     {
         UpdateButtons();
-    }
-    
-    public void OnWorkerAmountChanged()
-    {
-        if (!WorkerAmountLabel) return;
-        WorkerAmountLabel.text = totalWorkerAmount.Get().ToString();
     }
 
     public void OnCommandModeExcavate()

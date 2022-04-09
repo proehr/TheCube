@@ -82,19 +82,8 @@
                 },
                 {
                     "name": "",
-                    "id": "2e54d9fc-28fc-44ff-9488-3c669d0f49d3",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "MouseAndKeyboard;Keyboard&Mouse",
-                    "action": "CommandModeTransport",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e0591e0b-067e-468d-a229-d3c5082cfb40",
-                    "path": "<Keyboard>/3",
+                    "id": "ef525a2c-3b29-49e1-9de3-27d29b962218",
+                    "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseAndKeyboard;Keyboard&Mouse",
