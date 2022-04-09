@@ -41,6 +41,8 @@ namespace Features.MovableCamera.Logic
         private float leftRotationInput;
         private float rightRotationInput;
         private float zoomInput;
+        
+        private Vector2 mousePosition;
 
         public CubeCorner_SO ActiveCorner
         {
@@ -90,6 +92,8 @@ namespace Features.MovableCamera.Logic
         
         private void Update()
         {
+            if (!CheckForMouseInScreen()) return;
+            
             HandleKeyboardInput();
         }
         
@@ -272,6 +276,16 @@ namespace Features.MovableCamera.Logic
             }
             transform.localPosition = end;
             camRunning = false;
+        }
+        
+        private bool CheckForMouseInScreen()
+        {
+            mousePosition = playerControls.Camera.MousePosition.ReadValue<Vector2>();
+
+            return !(mousePosition.y > Screen.height) 
+                   && !(mousePosition.y < 0) 
+                   && !(mousePosition.x > Screen.width) 
+                   && !(mousePosition.x < 0);
         }
     }
 }

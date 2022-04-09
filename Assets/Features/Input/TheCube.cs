@@ -95,19 +95,8 @@ public class @TheCube : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2e54d9fc-28fc-44ff-9488-3c669d0f49d3"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard;Keyboard&Mouse"",
-                    ""action"": ""CommandModeTransport"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e0591e0b-067e-468d-a229-d3c5082cfb40"",
-                    ""path"": ""<Keyboard>/3"",
+                    ""id"": ""ef525a2c-3b29-49e1-9de3-27d29b962218"",
+                    ""path"": ""<Keyboard>/l"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MouseAndKeyboard;Keyboard&Mouse"",
@@ -1018,6 +1007,14 @@ public class @TheCube : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""1f0f5950-f850-4ce0-8fc8-59a476ee0532"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -1218,6 +1215,17 @@ public class @TheCube : IInputActionCollection, IDisposable
                     ""action"": ""ShiftSpeed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab0eeaf7-14ab-428e-8393-55f717b1ed4b"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1324,6 +1332,7 @@ public class @TheCube : IInputActionCollection, IDisposable
         m_Camera_DragMovement = m_Camera.FindAction("DragMovement", throwIfNotFound: true);
         m_Camera_Zoom = m_Camera.FindAction("Zoom", throwIfNotFound: true);
         m_Camera_ShiftSpeed = m_Camera.FindAction("ShiftSpeed", throwIfNotFound: true);
+        m_Camera_MousePosition = m_Camera.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1649,6 +1658,7 @@ public class @TheCube : IInputActionCollection, IDisposable
     private readonly InputAction m_Camera_DragMovement;
     private readonly InputAction m_Camera_Zoom;
     private readonly InputAction m_Camera_ShiftSpeed;
+    private readonly InputAction m_Camera_MousePosition;
     public struct CameraActions
     {
         private @TheCube m_Wrapper;
@@ -1661,6 +1671,7 @@ public class @TheCube : IInputActionCollection, IDisposable
         public InputAction @DragMovement => m_Wrapper.m_Camera_DragMovement;
         public InputAction @Zoom => m_Wrapper.m_Camera_Zoom;
         public InputAction @ShiftSpeed => m_Wrapper.m_Camera_ShiftSpeed;
+        public InputAction @MousePosition => m_Wrapper.m_Camera_MousePosition;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1694,6 +1705,9 @@ public class @TheCube : IInputActionCollection, IDisposable
                 @ShiftSpeed.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnShiftSpeed;
                 @ShiftSpeed.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnShiftSpeed;
                 @ShiftSpeed.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnShiftSpeed;
+                @MousePosition.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnMousePosition;
             }
             m_Wrapper.m_CameraActionsCallbackInterface = instance;
             if (instance != null)
@@ -1722,6 +1736,9 @@ public class @TheCube : IInputActionCollection, IDisposable
                 @ShiftSpeed.started += instance.OnShiftSpeed;
                 @ShiftSpeed.performed += instance.OnShiftSpeed;
                 @ShiftSpeed.canceled += instance.OnShiftSpeed;
+                @MousePosition.started += instance.OnMousePosition;
+                @MousePosition.performed += instance.OnMousePosition;
+                @MousePosition.canceled += instance.OnMousePosition;
             }
         }
     }
@@ -1814,5 +1831,6 @@ public class @TheCube : IInputActionCollection, IDisposable
         void OnDragMovement(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
         void OnShiftSpeed(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }
