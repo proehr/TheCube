@@ -39,6 +39,7 @@ namespace Features.Commands.Scripts.Excavation
             // The further the progress, the smaller the target cube (as it's getting excavated)
             // TODO use leantween otherwise Xyck will punch me
             targetCube.transform.localScale = this.cubeStartScale * (1 - progress);
+            this.targetCube.OnStartExcavation();
 
             base.Update();
         }

@@ -13,9 +13,9 @@ namespace Features.Planet.Resources.Scripts
         [Flags]
         public enum CubeState
         {
-            Default,
-            Hovered,
-            MarkedForExcavation
+            Hovered = 1,
+            MarkedForExcavation = 2,
+            ExcavationStarted = 4
         }
 
         private CubeState state;
@@ -28,6 +28,7 @@ namespace Features.Planet.Resources.Scripts
         [SerializeField] private ColorVariable excavateMaterialColor;
 
         public bool isMarkedForExcavation => this.state.HasFlag(CubeState.MarkedForExcavation);
+        public bool hasExcavationStarted => this.state.HasFlag(CubeState.ExcavationStarted);
         public Resource_SO resourceData { get; private set; }
         public Vector3Int planetPosition { get; private set; }
 
@@ -65,9 +66,17 @@ namespace Features.Planet.Resources.Scripts
             {
                 AddState(CubeState.MarkedForExcavation);
             }
-            else if(!bExcavate)
+            else if(!bExcavate && !this.hasExcavationStarted)
             {
                 RemoveState(CubeState.MarkedForExcavation);
+            }
+        }
+        
+        public void OnStartExcavation()
+        {
+            if (!this.hasExcavationStarted)
+            {
+                AddState(CubeState.ExcavationStarted);
             }
         }
 
@@ -75,9 +84,6 @@ namespace Features.Planet.Resources.Scripts
         {
             switch (state)
             {
-                case CubeState.Default:
-                    SetMaterialColor(this.defaultMaterialColor);
-                    break;
                 case CubeState.Hovered:
                     HoverState.SetState(HoverState.State.Cube);
                     SetMaterialColor(this.highlightMaterialColor);
@@ -91,7 +97,8 @@ namespace Features.Planet.Resources.Scripts
                     SetMaterialColorBlend(this.highlightMaterialColor, this.excavateMaterialColor);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    SetMaterialColor(this.defaultMaterialColor);
+                    break;
             }
         }
 
