@@ -84,6 +84,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onExcavationStarted: {fileID: 11400000, guid: d8c9a0675b3e71640b525f618c0bd579, type: 2}
   onCubeRemoved: {fileID: 11400000, guid: d398d64abf2958a4eb05f7535f8a3ed6, type: 2}
 --- !u!114 &3681857847642558880
 MonoBehaviour:

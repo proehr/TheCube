@@ -23,29 +23,11 @@ namespace Features.WorkerAI.Scripts
         private readonly Dictionary<AbstractState.STATE, List<WorkerBehavior>> workersPerState =
             new Dictionary<AbstractState.STATE, List<WorkerBehavior>>();
 
-        private Transform cachedWorkersParent = null;
-        private bool cachedWorkersParentLoaded = false;
-        private Transform workersParent
+        private Transform workersParent;
+
+        public void Init(WorkersParent workersParent)
         {
-            get
-            {
-                if (cachedWorkersParent == null && cachedWorkersParentLoaded == false)
-                {
-                    var foundWorkersParent = GameObject.FindGameObjectWithTag("WorkersParent");
-                    if (foundWorkersParent == null)
-                    {
-                        UnityEngine.Debug.Assert(true, "Missing a game object tagged 'WorkersParent' in the scene!");
-                    }
-                    else
-                    {
-                        cachedWorkersParent = foundWorkersParent.transform;
-                    }
-
-                    cachedWorkersParentLoaded = true;
-                }
-
-                return cachedWorkersParent;
-            }
+            this.workersParent = workersParent.transform;
         }
 
         public void OnLevelStart()
@@ -174,7 +156,5 @@ namespace Features.WorkerAI.Scripts
                 InstantiateNewWorker(workerVO.workerSize, workerVO.position, workerVO.rotation);
             }
         }
-
-
     }
 }
