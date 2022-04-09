@@ -14,6 +14,7 @@ public class PlanetGenerator : MonoBehaviour
     [SerializeField] private PlanetCubes_SO planetCubes;
     [SerializeField] private NavMeshSurface[] navMeshSurfaces = new NavMeshSurface[6];
     [SerializeField] private ExcavationStartedActionEvent onExcavationStarted;
+    
     [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
     /**
      * 1-4: top
