@@ -1,4 +1,6 @@
 using DataStructures.Variables;
+using Features.GameController.Scripts;
+using Features.GameController.Scripts.StateMachine;
 using Features.LandingPod.Scripts;
 using Features.Planet.Resources.Scripts;
 using Features.Planet_Generation.Scripts;
@@ -9,6 +11,7 @@ namespace Features.Integrity.Scripts
 {
     public class IntegrityBehaviour : MonoBehaviour
     {
+        [SerializeField] private GameState_SO gameState;
         [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
         [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
         [SerializeField] private PlanetCubes_SO planetCubes;
@@ -38,6 +41,7 @@ namespace Features.Integrity.Scripts
             maxDistanceFromCenter = planetCubes.CubeLayerCount;
             CalculateMaxStability(planetCubes.GetCubes());
             currentStability = maxStability;
+            currentIntegrity.Restore();
             isInitialized = true;
         }
         
@@ -65,7 +69,7 @@ namespace Features.Integrity.Scripts
     
         private void Update()
         {
-            if (!isInitialized) return;
+            if (!isInitialized && !(gameState.Get() is GameState.GAMEPLAY)) return;
             
             currentIntegrity.Add((1 - currentStability / maxStability) * Time.deltaTime);
         

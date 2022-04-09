@@ -15,7 +15,11 @@ namespace DataStructures.Variables
             Restore();
         }
 
-        public void Restore() => runtimeValue = storedValue;
+        public void Restore()
+        {
+            runtimeValue = storedValue;
+            if(onValueChanged != null) onValueChanged.Raise();
+        }
 
         public T Get() => runtimeValue;
 

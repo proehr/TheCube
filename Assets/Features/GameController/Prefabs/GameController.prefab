@@ -46,21 +46,24 @@ MonoBehaviour:
   gameStateData: {fileID: 11400000, guid: 147bf89ba0eb13c45aa6fbf73815ecbf, type: 2}
   planetGenerator: {fileID: 0}
   landingPodManager: {fileID: 0}
-  integrityController: {fileID: 0}
+  integrityBehaviour: {fileID: 0}
   cameraController: {fileID: 0}
   workerService: {fileID: 11400000, guid: d2da8624966c1b442a7e83172a545dee, type: 2}
-  guiController: {fileID: 0}
+  canvasManager: {fileID: 0}
   inventory: {fileID: 11400000, guid: b951f25756a12eb48a71be3d3bba0121, type: 2}
   saveGameManager: {fileID: 0}
   workerCommandHandler: {fileID: 0}
+  onShowStartScreen: {fileID: 11400000, guid: 630c56c0412e6f64ca4325d5d07a5dc1, type: 2}
   onStartRequested: {fileID: 11400000, guid: 2ee98d885659a6d48b1b5e4a5a14f90a, type: 2}
+  onUnloadLevel: {fileID: 11400000, guid: bf97cb627971ac4428bcfe5c3adebfbf, type: 2}
   onLaunchTriggered: {fileID: 11400000, guid: cb6bc0a8661e89147a25f7338dda6746, type: 2}
   onLaunchCompleted: {fileID: 11400000, guid: 8396509a562c56248ad17bdc4327cf2c, type: 2}
   onPauseRequested: {fileID: 11400000, guid: a047b8d728199524884559c9ab5783fb, type: 2}
+  onStartGameplay: {fileID: 11400000, guid: 1924ed809dfc4204a83aea45a94cc39d, type: 2}
   onExitRequested: {fileID: 11400000, guid: c1ad77971b706494fbcd8dd81f04e2d9, type: 2}
   onBeforeStartScreen: {fileID: 11400000, guid: 14a380f6ea4c07946b204807267391f8, type: 2}
   onAfterStartScreen: {fileID: 11400000, guid: af1307955fe9a3e44a2a49f686329014, type: 2}
-  onBeforeLevelInit: {fileID: 11400000, guid: 3422695fc1eeb0244b84a926fba7d601, type: 2}
+  onBeforeLevelInit: {fileID: 11400000, guid: 62c7d20f34ea18c4f9d3bb94f8b5b405, type: 2}
   onAfterLevelInit: {fileID: 11400000, guid: 7abc46f485e18934eb96dc549f83fb28, type: 2}
   onBeforeGameplay: {fileID: 11400000, guid: e80a655d3d040904c8a0932f19b4b288, type: 2}
   onAfterGameplay: {fileID: 11400000, guid: 050fb55eff75ab5478c9bec1811d8ae8, type: 2}

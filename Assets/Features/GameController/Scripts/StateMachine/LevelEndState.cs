@@ -30,7 +30,7 @@ namespace Features.GameController.Scripts.StateMachine
             workerCommandHandler.CancelAllCommands();
             // TODO also think about re-enabling commands once LevelInits
             // TODO disable Commands and Command UI
-            // TODO Disable Integrity Tracking and UI
+            // TODO Disable Integrity UI
             // workerCommandHandler.DisableNewCommands();
             workerService.DestroyAllWorkers();
             // TODO disable worker spanwing
@@ -40,7 +40,14 @@ namespace Features.GameController.Scripts.StateMachine
 
         protected override bool ValidateNextState(AbstractGameState nextState)
         {
-            return nextState == GameState.LAUNCHING;
+            switch (nextState.id)
+            {
+                case GameState.LAUNCHING:
+                case GameState.START_SCREEN:
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 }

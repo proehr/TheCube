@@ -1,4 +1,5 @@
-﻿using DataStructures.Event;
+﻿using System;
+using DataStructures.Event;
 using Features.Commands.Scripts;
 using Features.GameController.Scripts.StateMachine;
 using Features.Gui.Scripts;
@@ -42,16 +43,19 @@ namespace Features.GameController.Scripts
         [SerializeField] private IntegrityBehaviour integrityBehaviour;
         [SerializeField] private CameraController cameraController;
         [SerializeField] private WorkerService_SO workerService;
-        [SerializeField] private GuiController guiController;
+        [SerializeField] private CanvasManager canvasManager;
         [SerializeField] private Inventory_SO inventory;
         [SerializeField] private SaveGameManager saveGameManager;
         [SerializeField] private WorkerCommandHandler workerCommandHandler;
 
         [Header("Inbound Game Events")]
+        [SerializeField] private ActionEvent onShowStartScreen;
         [SerializeField] private ActionEvent onStartRequested;
+        [SerializeField] private ActionEvent onUnloadLevel;
         [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
         [SerializeField] private LaunchCompletedActionEvent onLaunchCompleted;
         [SerializeField] private ActionEvent onPauseRequested;
+        [SerializeField] private ActionEvent onStartGameplay;
         [SerializeField] private ActionEvent onExitRequested;
 
         [Header("Outbound Game Events")]
@@ -81,22 +85,33 @@ namespace Features.GameController.Scripts
 
         private void Awake()
         {
+            onShowStartScreen.RegisterListener(StartGameScreen);
             onStartRequested.RegisterListener(InitLevel);
+            onUnloadLevel.RegisterListener(UnloadLevel);
             onLaunchTriggered.RegisterListener(EndLevel);
             onLaunchCompleted.RegisterListener(ShowLevelResultScreen);
             onPauseRequested.RegisterListener(Pause);
+            onStartGameplay.RegisterListener(StartGameplay);
             onExitRequested.RegisterListener(Exit);
+        }
 
-            gameStateData.Set(
-                new StartScreenState(
-                    onBeforeStartScreen,
-                    onAfterStartScreen,
-                    guiController));
+        private void Start()
+        {
+            StartGameScreen();
         }
 
         private void Update()
         {
             gameStateData.Update();
+        }
+
+        private void StartGameScreen()
+        {
+            gameStateData.Set(
+                new StartScreenState(
+                    onBeforeStartScreen,
+                    onAfterStartScreen,
+                    canvasManager));
         }
 
         private void InitLevel()
@@ -105,6 +120,7 @@ namespace Features.GameController.Scripts
                 new LevelInitState(
                     onBeforeLevelInit,
                     onAfterLevelInit,
+                    inventory,
                     planetGenerator,
                     landingPodManager,
                     integrityBehaviour,
@@ -129,12 +145,17 @@ namespace Features.GameController.Scripts
             gameStateData.Set(
                 new PauseScreenState(
                     onBeforePauseScreen,
-                    onAfterPauseScreen,
-                    guiController));
-
+                    onAfterPauseScreen));
+        }
+        
+        private void EndLevel(LaunchInformation launchInformation)
+        {
+            UnloadLevel();
+            
+            LaunchPod(launchInformation);
         }
 
-        private void EndLevel(LaunchInformation launchInformation)
+        private void UnloadLevel()
         {
             gameStateData.Set(
                 new LevelEndState(
@@ -143,8 +164,6 @@ namespace Features.GameController.Scripts
                     workerService,
                     cameraController,
                     workerCommandHandler));
-            
-            LaunchPod(launchInformation);
         }
 
         private void LaunchPod(LaunchInformation launchInformation)
@@ -153,7 +172,6 @@ namespace Features.GameController.Scripts
                 new LaunchingState(
                     onBeforeLaunch,
                     onAfterLaunch,
-                    inventory,
                     landingPodManager,
                     launchInformation));
 
@@ -166,9 +184,7 @@ namespace Features.GameController.Scripts
                 new LevelResultScreenState(
                     onBeforeLevelResultScreen,
                     onAfterLevelResultScreen,
-                    guiController,
-                    planetGenerator,
-                    launchInformation));
+                    planetGenerator));
         }
 
         private void Exit()
