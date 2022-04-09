@@ -1,8 +1,10 @@
 using System;
 using DataStructures.Variables;
+using Features.Commands.Scripts;
 using Features.Gui;
 using Features.LandingPod.Scripts;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class CommandInputHandler : MonoBehaviour
@@ -52,7 +54,18 @@ public class CommandInputHandler : MonoBehaviour
         {
             this.cachedCamera = Camera.current;
         }
-        if (!this.cachedCamera) return;
+        if (!this.cachedCamera
+            || Mouse.current == null)
+            return;
+        if (this.mouseCursorHandler && EventSystem.current && EventSystem.current.IsPointerOverGameObject())
+        {
+            if (this.mouseCursorHandler)
+            {
+                this.mouseCursorHandler.SetCursor(MouseCursorLook.Default);
+            }
+            RemoveCurrentHighlight();
+            return;
+        }
         Ray ray = this.cachedCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out var hit))
         {
@@ -71,7 +84,7 @@ public class CommandInputHandler : MonoBehaviour
                 {
                     if (this.selectorInputDown)
                     {
-                        targetObject.SendMessage(this.cubeSelectMethodName, excavationMode);
+                        targetObject.SendMessage(this.cubeSelectMethodName, new SelectInfo(excavationMode, hit));
                     }
                     else
                     {
@@ -99,12 +112,24 @@ public class CommandInputHandler : MonoBehaviour
 
     public void OnIssueCommand(InputAction.CallbackContext context)
     {
+        if (this.mouseCursorHandler && EventSystem.current && EventSystem.current.IsPointerOverGameObject())
+        {
+            if (this.mouseCursorHandler)
+            {
+                this.mouseCursorHandler.SetCursor(MouseCursorLook.Default);
+            }
+            return;
+        }
         if (context.started)
         {
             this.selectorInputDown = true;
             if (!this.hoveredObject) return;
             excavationMode = HoverState.currentHoverState != HoverState.State.CubeExcavate;
-            this.hoveredObject.SendMessage(this.cubeSelectMethodName, excavationMode);
+            Ray ray = this.cachedCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (Physics.Raycast(ray, out var hit))
+            {
+                this.hoveredObject.SendMessage(this.cubeSelectMethodName, new SelectInfo(excavationMode, hit));
+            }
             
         }
         if (context.canceled)

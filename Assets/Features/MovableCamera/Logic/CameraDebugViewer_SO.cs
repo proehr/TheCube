@@ -7,7 +7,6 @@ namespace Features.MovableCamera.Logic
     public class CameraDebugViewer_SO : ScriptableObject
     {
         [ReadOnly] public Vector3 newPosition;
-        [ReadOnly] public Quaternion newRotation;
         [ReadOnly] public Vector3 newZoom;
 
         [Header("Current movementSpeed")]
@@ -18,16 +17,24 @@ namespace Features.MovableCamera.Logic
         [ReadOnly] public float leftRotationInput;
         [ReadOnly] public float rightRotationInput;
         [ReadOnly] public float zoomInput;
+        
+        [ReadOnly] public Vector3 startPosition;
+        [ReadOnly] public Vector3 startRotation;
+        [ReadOnly] public Vector3 startZoom;
 
         public void ResetValues()
         {
-            newPosition = new Vector3(0, 0, 0);
-            newRotation.x = 0;
-            newRotation.y = 0;
-            newRotation.z = 0;
+            newPosition = Vector3.zero;
+            newZoom = Vector3.zero;
+            
+            startPosition = Vector3.zero;
+            startRotation = Vector3.zero;
+            startZoom = Vector3.zero;
 
             zoomInput = 0;
-            movementInput = new Vector2(0, 0);
+            movementInput = Vector2.zero;
+            
+            
         }
 
         private void OnEnable()

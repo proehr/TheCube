@@ -3,10 +3,10 @@ using DataStructures.Event;
 using Features.Commands.Scripts;
 using Features.GameController.Scripts.StateMachine;
 using Features.Gui.Scripts;
+using Features.Integrity.Scripts;
 using Features.Inventory.Scripts;
 using Features.LandingPod.Scripts;
 using Features.MovableCamera.Logic;
-using Features.PlanetIntegrity.Scripts;
 using Features.SaveLoad.Scripts;
 using Features.WorkerAI.Scripts;
 using UnityEngine;
@@ -40,7 +40,7 @@ namespace Features.GameController.Scripts
         [Header("Game Features & Components")]
         [SerializeField] private PlanetGenerator planetGenerator;
         [SerializeField] private LandingPodManager landingPodManager;
-        [SerializeField] private IntegrityController integrityController;
+        [SerializeField] private IntegrityBehaviour integrityBehaviour;
         [SerializeField] private CameraController cameraController;
         [SerializeField] private WorkerService_SO workerService;
         [SerializeField] private CanvasManager canvasManager;
@@ -123,7 +123,7 @@ namespace Features.GameController.Scripts
                     inventory,
                     planetGenerator,
                     landingPodManager,
-                    integrityController,
+                    integrityBehaviour,
                     workerService));
 
             StartGameplay();
@@ -147,6 +147,13 @@ namespace Features.GameController.Scripts
                     onBeforePauseScreen,
                     onAfterPauseScreen));
         }
+        
+        private void EndLevel(LaunchInformation launchInformation)
+        {
+            UnloadLevel();
+            
+            LaunchPod(launchInformation);
+        }
 
         private void UnloadLevel()
         {
@@ -157,13 +164,6 @@ namespace Features.GameController.Scripts
                     workerService,
                     cameraController,
                     workerCommandHandler));
-        }
-
-        private void EndLevel(LaunchInformation launchInformation)
-        {
-            UnloadLevel();
-            
-            LaunchPod(launchInformation);
         }
 
         private void LaunchPod(LaunchInformation launchInformation)
@@ -184,8 +184,7 @@ namespace Features.GameController.Scripts
                 new LevelResultScreenState(
                     onBeforeLevelResultScreen,
                     onAfterLevelResultScreen,
-                    planetGenerator,
-                    launchInformation));
+                    planetGenerator));
         }
 
         private void Exit()

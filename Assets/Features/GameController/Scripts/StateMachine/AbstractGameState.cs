@@ -1,4 +1,4 @@
-﻿#define GAMESTATE_PRINT_DEBUG
+﻿// #define GAMESTATE_PRINT_DEBUG
 
 using System;
 using DataStructures.Event;

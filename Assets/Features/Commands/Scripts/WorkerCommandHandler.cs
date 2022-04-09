@@ -66,8 +66,8 @@ namespace Features.Commands.Scripts
         {
             if (cube.isMarkedForExcavation)
             {
-                // Create worker command; TODO: planeNormal
-                var pCommand = new ExcavationCommand(cube, cubeObjectId, Vector3.up, workerService,
+                // Create worker command
+                var pCommand = new ExcavationCommand(cube, cubeObjectId, cube.stateNormal, workerService,
                     cube.resourceData.ExcavationCommandData, commandPostsParent, onCubeRemoved);
                 if (!this.activeCommandsPerCube.ContainsKey(cubeObjectId))
                 {

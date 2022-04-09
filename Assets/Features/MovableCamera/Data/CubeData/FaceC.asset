@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c95934f7623441678166614a7242f615, type: 3}
+  m_Name: FaceC
+  m_EditorClassIdentifier: 
+  adjacentCorners:
+  - {fileID: 11400000, guid: a58f473b890b3cf46b49f904f3de8070, type: 2}
+  - {fileID: 11400000, guid: 0c3ee0baac92d0d408740e72066b6cdb, type: 2}
+  - {fileID: 11400000, guid: 7bf6a644dc5e6a94d85bfabbc2d98824, type: 2}
+  - {fileID: 11400000, guid: 9d987eb2b3ae4b04eb9a05f30e128ec1, type: 2}
+  offset: {x: 0, y: 0, z: 15}

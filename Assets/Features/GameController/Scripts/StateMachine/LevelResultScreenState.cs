@@ -6,17 +6,14 @@ namespace Features.GameController.Scripts.StateMachine
 {
     internal class LevelResultScreenState : AbstractGameState
     {
-        private readonly LaunchInformation launchInformation;
         private readonly PlanetGenerator planetGenerator;
 
         public LevelResultScreenState(ActionEvent onBeforeLevelResultScreen,
             ActionEvent onAfterLevelResultScreen,
-            PlanetGenerator planetGenerator,
-            LaunchInformation launchInformation)
+            PlanetGenerator planetGenerator)
             : base(GameState.LEVEL_RESULT_SCREEN, onBeforeLevelResultScreen, onAfterLevelResultScreen)
         {
             this.planetGenerator = planetGenerator;
-            this.launchInformation = launchInformation;
         }
 
         protected override void Enter()
