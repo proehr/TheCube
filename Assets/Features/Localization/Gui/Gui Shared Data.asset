@@ -16,7 +16,7 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 54b96a95d57107d4ea33b439cf7bba7e
   m_Entries:
   - m_Id: 80705159168
-    m_Key: BUTTON_PLAY
+    m_Key: BUTTON_RESUM
     m_Metadata:
       m_Items: []
   - m_Id: 855182064156672
@@ -25,6 +25,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 855243934334976
     m_Key: BUTTON_SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16250565023956992
+    m_Key: BUTTON_RESUME
     m_Metadata:
       m_Items: []
   m_Metadata:

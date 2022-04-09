@@ -1,20 +1,22 @@
-﻿using UnityEngine;
+﻿using DataStructures.Variables;
+using UnityEngine;
 
 namespace Features.Gui.PauseMenu
 {
     public class PauseMenu : MonoBehaviour
     {
         private bool isOpen;
+        [SerializeField] private BoolVariable pauseState;
     
         public void Toggle()
         {
-            if (this.isOpen)
+            if (this.pauseState.Get())
             {
-                this.Close();
+                this.Open();
             }
             else
             {
-                this.Open();
+                this.Close();
             }
         }
 

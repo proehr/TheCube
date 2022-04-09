@@ -30,5 +30,9 @@ MonoBehaviour:
     m_Localized: Settings
     m_Metadata:
       m_Items: []
+  - m_Id: 16250565023956992
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

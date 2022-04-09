@@ -5,11 +5,11 @@ using UnityEngine;
 namespace DataStructures.Event
 {
     [CreateAssetMenu(fileName = "new GameEvent", menuName = "Utils/Game Event")]
-    public class GameEvent : ScriptableObject
+    public class GameEvent : EventBase
     {
         [ShowInInspector, ReadOnly] private List<GameEventListener> listeners = new List<GameEventListener>();
 
-        public void Raise()
+        public override void Raise()
         {
             for (int i = listeners.Count - 1; i >= 0; i--)
             {

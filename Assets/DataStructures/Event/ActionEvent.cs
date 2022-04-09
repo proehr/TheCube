@@ -4,11 +4,11 @@ using UnityEngine;
 namespace DataStructures.Event
 {
     [CreateAssetMenu(fileName = "new ActionEvent", menuName = "Utils/Action Event")]
-    public class ActionEvent : ScriptableObject
+    public class ActionEvent : EventBase
     {
         private Action listeners;
     
-        public void Raise()
+        public override void Raise()
         {
             this.listeners?.Invoke();
         }
