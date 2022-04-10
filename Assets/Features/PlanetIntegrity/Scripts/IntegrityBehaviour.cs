@@ -1,17 +1,14 @@
 using DataStructures.Variables;
-using Features.GameController.Scripts;
-using Features.GameController.Scripts.StateMachine;
 using Features.LandingPod.Scripts;
 using Features.Planet.Resources.Scripts;
 using Features.Planet_Generation.Scripts;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Features.Integrity.Scripts
+namespace Features.PlanetIntegrity.Scripts
 {
     public class IntegrityBehaviour : MonoBehaviour
     {
-        [SerializeField] private GameState_SO gameState;
         [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
         [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
         [SerializeField] private PlanetCubes_SO planetCubes;
@@ -69,16 +66,15 @@ namespace Features.Integrity.Scripts
     
         private void Update()
         {
-            if (!isInitialized && !(gameState.Get() is GameState.GAMEPLAY)) return;
+            if (!isInitialized) return;
             
             currentIntegrity.Add((1 - currentStability / maxStability) * Time.deltaTime);
         
             if (currentIntegrity.Get() > integrityThreshold.Get())
             {
-                onLaunchTriggered.Raise(new LaunchInformation());
+                onLaunchTriggered.Raise(new LaunchInformation(false));
                 isInitialized = false;
             }
         }
     }
 }
-

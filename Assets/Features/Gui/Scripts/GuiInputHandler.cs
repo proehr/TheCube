@@ -46,7 +46,7 @@ namespace Features.Gui.Scripts
 
             if (gameState.Get() is GameState.GAMEPLAY)
             {
-                LaunchInformation launchInformation = new LaunchInformation();
+                LaunchInformation launchInformation = new LaunchInformation(true);
                 onLaunchTriggered.Raise(launchInformation);
                 onLaunchCompleted.Raise(launchInformation);
             }

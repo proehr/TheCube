@@ -6,7 +6,6 @@ using DataStructures.Variables;
 using Features.WorkerAI.Scripts.StateMachine;
 using Features.WorkerDTO;
 using Sirenix.OdinInspector;
-using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -40,12 +39,12 @@ namespace Features.WorkerAI.Scripts
                 }
             }
         }
-        
+
         public void DestroyAllWorkers()
         {
             foreach (var worker in workers)
             {
-                UnityEngine.Object.Destroy(worker.gameObject);
+                Destroy(worker.gameObject);
             }
 
             workers.Clear();
@@ -85,8 +84,7 @@ namespace Features.WorkerAI.Scripts
 
         private void UpdateWorkerAmount()
         {
-            if (!this.workerAmount) return;
-            this.workerAmount.Set(this.workers?.Count ?? 0);
+            this.workerAmount.Set(this.workers.Count);
         }
 
         public void AddNewWorker(WorkerBehavior workerBehaviour)
@@ -104,14 +102,13 @@ namespace Features.WorkerAI.Scripts
             }
             else
             {
-                UnityEngine.Debug.LogWarning($"The requested cube prefab doesnt exists in the {workerPrefabs}");
+                Debug.LogWarning($"The requested cube prefab doesnt exists in the {workerPrefabs}");
             }
         }
 
         public void InstantiateNewWorker(WorkerBehavior workerBehaviorPrefab, Vector3 position, Quaternion rotation)
         {
-            WorkerBehavior workerBehaviour =
-                UnityEngine.Object.Instantiate(workerBehaviorPrefab, position, rotation, workersParent);
+            WorkerBehavior workerBehaviour = Instantiate(workerBehaviorPrefab, position, rotation, workersParent);
             AddNewWorker(workerBehaviour);
         }
 
@@ -124,19 +121,8 @@ namespace Features.WorkerAI.Scripts
 
             workers.Remove(worker);
 
-            UnityEngine.Object.Destroy(worker.gameObject);
+            Destroy(worker.gameObject);
             UpdateWorkerAmount();
-        }
-
-        public void Debug(TMP_Text workerInfoText)
-        {
-            UnityEngine.Debug.Log("Workers: " + "ON THE JOB " + workersPerState[AbstractState.STATE.COMMAND].Count +
-                                  " / IDLE " +
-                                  workersPerState[AbstractState.STATE.WANDER].Count + " / TOTAL " + workers.Count);
-            workerInfoText.text = "<align=\"left\"><u>Workers</u></align>" +
-                                  "\nON THE JOB: " + workersPerState[AbstractState.STATE.COMMAND].Count +
-                                  "\nIDLE: " + workersPerState[AbstractState.STATE.WANDER].Count +
-                                  "\nTOTAL: " + workers.Count;
         }
 
         public void Save()

@@ -1,12 +1,12 @@
-﻿using System;
-using DataStructures.Event;
+﻿using DataStructures.Event;
+using DataStructures.Variables;
 using Features.Commands.Scripts;
 using Features.GameController.Scripts.StateMachine;
 using Features.Gui.Scripts;
-using Features.Integrity.Scripts;
 using Features.Inventory.Scripts;
 using Features.LandingPod.Scripts;
 using Features.MovableCamera.Logic;
+using Features.PlanetIntegrity.Scripts;
 using Features.SaveLoad.Scripts;
 using Features.WorkerAI.Scripts;
 using UnityEngine;
@@ -46,7 +46,9 @@ namespace Features.GameController.Scripts
         [SerializeField] private CanvasManager canvasManager;
         [SerializeField] private Inventory_SO inventory;
         [SerializeField] private SaveGameManager saveGameManager;
+        [SerializeField] private  BoolVariable commandsAllowed;
         [SerializeField] private WorkerCommandHandler workerCommandHandler;
+        [SerializeField] private CommandInputHandler commandInputHandler;
 
         [Header("Inbound Game Events")]
         [SerializeField] private ActionEvent onShowStartScreen;
@@ -91,7 +93,7 @@ namespace Features.GameController.Scripts
             onLaunchTriggered.RegisterListener(EndLevel);
             onLaunchCompleted.RegisterListener(ShowLevelResultScreen);
             onPauseRequested.RegisterListener(Pause);
-            onStartGameplay.RegisterListener(StartGameplay);
+            onStartGameplay.RegisterListener(QueueGameplayState);
             onExitRequested.RegisterListener(Exit);
         }
 
@@ -124,12 +126,15 @@ namespace Features.GameController.Scripts
                     planetGenerator,
                     landingPodManager,
                     integrityBehaviour,
-                    workerService));
+                    workerService,
+                    commandsAllowed));
 
-            StartGameplay();
+            // Level Init will wait with proceeding into the next state until the landing sequence is fully done
+
+            QueueGameplayState();
         }
 
-        private void StartGameplay()
+        private void QueueGameplayState()
         {
             gameStateData.Set(
                 new GameplayState(
@@ -161,9 +166,12 @@ namespace Features.GameController.Scripts
                 new LevelEndState(
                     onBeforeLevelEnd,
                     onAfterLevelEnd,
-                    workerService,
+                    integrityBehaviour,
                     cameraController,
-                    workerCommandHandler));
+                    commandsAllowed,
+                    workerCommandHandler,
+                    commandInputHandler,
+                    landingPodManager));
         }
 
         private void LaunchPod(LaunchInformation launchInformation)
@@ -184,6 +192,7 @@ namespace Features.GameController.Scripts
                 new LevelResultScreenState(
                     onBeforeLevelResultScreen,
                     onAfterLevelResultScreen,
+                    workerService,
                     planetGenerator));
         }
 

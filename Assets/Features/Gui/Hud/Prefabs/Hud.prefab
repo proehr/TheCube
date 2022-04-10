@@ -32,7 +32,7 @@ RectTransform:
   m_Children:
   - {fileID: 1757579148}
   m_Father: {fileID: 590540273}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -265,7 +265,6 @@ GameObject:
   m_Component:
   - component: {fileID: 590540273}
   - component: {fileID: 2649775197195879992}
-  - component: {fileID: 6077937161872652089}
   m_Layer: 5
   m_Name: WorkerElement
   m_TagString: Untagged
@@ -284,6 +283,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 994102976516922394}
   - {fileID: 497031717}
   - {fileID: 8840418125312753263}
   m_Father: {fileID: 4832117983900808190}
@@ -308,34 +308,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resource: {fileID: 11400000, guid: 7c5bbcd44d600fe43bb6d491827888dc, type: 2}
   amountLabel: {fileID: 1983493295}
---- !u!114 &6077937161872652089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 590540272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b14879ae99a78a24aac937a0d1317c9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  event: {fileID: 11400000, guid: f84414e081b22c5409808730b0a35fb9, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2649775197195879992}
-        m_TargetAssemblyTypeName: Features.Gui.Hud.Scripts.ResourceElement, Assembly-CSharp
-        m_MethodName: OnResourceAmountChanged
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &760836773
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +846,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1948979138}
   - component: {fileID: 1948979139}
-  - component: {fileID: 4202501201869672571}
   m_Layer: 5
   m_Name: ResourceElement
   m_TagString: Untagged
@@ -918,34 +889,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resource: {fileID: 11400000, guid: ab4801d2e9b68f44aa5711385e8926f6, type: 2}
   amountLabel: {fileID: 541206500}
---- !u!114 &4202501201869672571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948979137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b14879ae99a78a24aac937a0d1317c9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  event: {fileID: 11400000, guid: cd4861e7adff0084b921b569079e8e19, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1948979139}
-        m_TargetAssemblyTypeName: Features.Gui.Hud.Scripts.ResourceElement, Assembly-CSharp
-        m_MethodName: OnResourceAmountChanged
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1983493292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1077,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1948979139}
         m_TargetAssemblyTypeName: Features.Gui.Hud.Scripts.ResourceElement, Assembly-CSharp
-        m_MethodName: OnResourceAmountChanged
+        m_MethodName: OnValueChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3387,7 +3330,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 906513417472882124}
         m_TargetAssemblyTypeName: Features.Gui.Hud.Scripts.ResourceElement, Assembly-CSharp
-        m_MethodName: OnResourceAmountChanged
+        m_MethodName: OnValueChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3541,7 +3484,6 @@ GameObject:
   - component: {fileID: 758605611892279811}
   - component: {fileID: 8627505314204166818}
   - component: {fileID: 6666495044258371949}
-  - component: {fileID: 4506455031841010608}
   m_Layer: 5
   m_Name: ResourceAmountLabel
   m_TagString: Untagged
@@ -3665,34 +3607,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4506455031841010608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6771712580088369005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b14879ae99a78a24aac937a0d1317c9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  event: {fileID: 11400000, guid: f84414e081b22c5409808730b0a35fb9, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6666495044258371949}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &7421458572776268888
 GameObject:
   m_ObjectHideFlags: 0
@@ -3982,7 +3896,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1132028911426326034}
   - component: {fileID: 906513417472882124}
-  - component: {fileID: 728923147631960014}
   m_Layer: 5
   m_Name: RelicElement
   m_TagString: Untagged
@@ -4026,25 +3939,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resource: {fileID: 11400000, guid: cb2bab5ef5e385d44807c9e320f9cc3f, type: 2}
   amountLabel: {fileID: 6666495044258371949}
---- !u!114 &728923147631960014
+--- !u!1 &7898660214654700719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 994102976516922394}
+  - component: {fileID: 7026377294912862215}
+  m_Layer: 5
+  m_Name: GameEventListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &994102976516922394
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7898660214654700719}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 590540273}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7026377294912862215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7885412934412751137}
+  m_GameObject: {fileID: 7898660214654700719}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b14879ae99a78a24aac937a0d1317c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  event: {fileID: 11400000, guid: 562930a3a05379446aaecb906d45cb9d, type: 2}
+  event: {fileID: 11400000, guid: f84414e081b22c5409808730b0a35fb9, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 906513417472882124}
-        m_TargetAssemblyTypeName: Features.Gui.Hud.Scripts.ResourceElement, Assembly-CSharp
-        m_MethodName: OnResourceAmountChanged
+      - m_Target: {fileID: 2649775197195879992}
+        m_TargetAssemblyTypeName: Features.Gui.Hud.Scripts.DisplayVariableElement,
+          Assembly-CSharp
+        m_MethodName: OnValueChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4373,7 +4323,7 @@ RectTransform:
   m_Children:
   - {fileID: 1983493293}
   m_Father: {fileID: 590540273}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4693,14 +4643,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472defa4bbe466948ba4cb2189f233e5, type: 3}
---- !u!1 &1389095107016874622 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1410990826125004757, guid: 472defa4bbe466948ba4cb2189f233e5, type: 3}
-  m_PrefabInstance: {fileID: 59626575175177643}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1389095107016874561 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1410990826125004778, guid: 472defa4bbe466948ba4cb2189f233e5, type: 3}
+  m_PrefabInstance: {fileID: 59626575175177643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1389095107016874622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1410990826125004757, guid: 472defa4bbe466948ba4cb2189f233e5, type: 3}
   m_PrefabInstance: {fileID: 59626575175177643}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &879957449295678811
@@ -5069,14 +5019,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fda5f60a01221a44aaea90bf13d9f6b, type: 3}
---- !u!224 &5228822972119852264 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5861954449164258520, guid: 5fda5f60a01221a44aaea90bf13d9f6b, type: 3}
-  m_PrefabInstance: {fileID: 1858115592212441136}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5384241675640741739 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6012852027397535579, guid: 5fda5f60a01221a44aaea90bf13d9f6b, type: 3}
+  m_PrefabInstance: {fileID: 1858115592212441136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &5228822972119852264 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5861954449164258520, guid: 5fda5f60a01221a44aaea90bf13d9f6b, type: 3}
   m_PrefabInstance: {fileID: 1858115592212441136}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2305182912536311358
@@ -5448,14 +5398,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472defa4bbe466948ba4cb2189f233e5, type: 3}
---- !u!1 &7632959384690391626 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6246584760705173508, guid: 472defa4bbe466948ba4cb2189f233e5, type: 3}
-  m_PrefabInstance: {fileID: 4566064673883370062}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3227166746444250532 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1410990826125004778, guid: 472defa4bbe466948ba4cb2189f233e5, type: 3}
+  m_PrefabInstance: {fileID: 4566064673883370062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7632959384690391626 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6246584760705173508, guid: 472defa4bbe466948ba4cb2189f233e5, type: 3}
   m_PrefabInstance: {fileID: 4566064673883370062}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5378386364459222395

@@ -7,6 +7,8 @@ namespace Features.Gui.Hud.Scripts
     [RequireComponent(typeof(CanvasGroup))]
     public class LaunchCommandButton : MonoBehaviour
     {
+        // TODO adjust visual & interactivity state accordingly
+        [SerializeField] private BoolVariable commandsAllowed;
         [SerializeField] private IntVariable relicAmount;
         [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
         private CanvasGroup buttonCanvasGroup;
@@ -42,7 +44,9 @@ namespace Features.Gui.Hud.Scripts
 
         public void OnClick()
         {
-            onLaunchTriggered.Raise(new LaunchInformation());
+            if (commandsAllowed.Not()) return;
+
+            onLaunchTriggered.Raise(new LaunchInformation(true));
         }
     }
 }

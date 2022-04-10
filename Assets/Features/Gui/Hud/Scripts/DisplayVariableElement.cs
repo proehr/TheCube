@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features.Gui.Hud.Scripts
 {
-    public class ResourceElement : MonoBehaviour
+    public class DisplayVariableElement : MonoBehaviour
     {
         [SerializeField] private IntVariable resource;
         [SerializeField] private TMP_Text amountLabel;
@@ -14,7 +14,7 @@ namespace Features.Gui.Hud.Scripts
             UpdateLabel();
         }
 
-        public void OnResourceAmountChanged()
+        public void OnValueChanged()
         {
             UpdateLabel();
         }

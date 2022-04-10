@@ -41,3 +41,4 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  workerAmount: {fileID: 11400000, guid: 7c5bbcd44d600fe43bb6d491827888dc, type: 2}
