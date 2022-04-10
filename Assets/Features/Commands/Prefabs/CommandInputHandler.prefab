@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7aab43126b12f4292662bf8e34e2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commandsAllowed: {fileID: 11400000, guid: 70aca9559fef1ae47876b5ec2d03477b, type: 2}
   commandMode: {fileID: 11400000, guid: b60ae1fb9a26eb3458a186e23f52ab21, type: 2}
   mouseCursorHandler: {fileID: 11400000, guid: a139b231c1fcaae4a947f01eb4d5fc1b, type: 2}
   cubeTag: Resource
@@ -288,8 +289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393172393de382b438d7224b62a23508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: {fileID: 11400000, guid: 147bf89ba0eb13c45aa6fbf73815ecbf, type: 2}
   onPauseRequested: {fileID: 11400000, guid: a047b8d728199524884559c9ab5783fb, type: 2}
   onStartGameplay: {fileID: 11400000, guid: 1924ed809dfc4204a83aea45a94cc39d, type: 2}
   onLaunchTriggered: {fileID: 11400000, guid: cb6bc0a8661e89147a25f7338dda6746, type: 2}
   onLaunchCompleted: {fileID: 11400000, guid: 8396509a562c56248ad17bdc4327cf2c, type: 2}
-  gameState: {fileID: 11400000, guid: 147bf89ba0eb13c45aa6fbf73815ecbf, type: 2}

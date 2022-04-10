@@ -1,6 +1,10 @@
 ﻿using DataStructures.Event;
 using Features.SaveLoad.Scripts;
+#if UNITY_EDITOR
+using UnityEditor;
+#else
 using UnityEngine;
+#endif
 
 namespace Features.GameController.Scripts.StateMachine
 {
@@ -19,7 +23,11 @@ namespace Features.GameController.Scripts.StateMachine
             base.Enter();
 
             saveGameManager.Save();
+#if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();
+#else
             Application.Quit();
+#endif
         }
 
         protected override bool ValidateNextState(AbstractGameState nextState)

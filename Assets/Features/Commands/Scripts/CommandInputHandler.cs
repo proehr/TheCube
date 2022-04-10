@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 
 public class CommandInputHandler : MonoBehaviour
 {
+    [SerializeField] private BoolVariable commandsAllowed;
     [SerializeField] private CommandModeVariable commandMode;
     [SerializeField] private MouseCursorHandler_SO mouseCursorHandler;
     [SerializeField] private string cubeTag;
@@ -35,6 +36,8 @@ public class CommandInputHandler : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (commandsAllowed.Not()) return;
+
         switch (this.commandMode.Get())
         {
             case CommandMode.Excavate:
@@ -103,7 +106,7 @@ public class CommandInputHandler : MonoBehaviour
         }
     }
 
-    private void RemoveCurrentHighlight()
+    public void RemoveCurrentHighlight()
     {
         if (!this.hoveredObject) return;
         this.hoveredObject.SendMessage(this.cubeRemoveHighlightMethod); // , SendMessageOptions.DontRequireReceiver
@@ -112,6 +115,8 @@ public class CommandInputHandler : MonoBehaviour
 
     public void OnIssueCommand(InputAction.CallbackContext context)
     {
+        if (commandsAllowed.Not()) return;
+
         if (this.mouseCursorHandler && EventSystem.current && EventSystem.current.IsPointerOverGameObject())
         {
             if (this.mouseCursorHandler)
@@ -140,6 +145,8 @@ public class CommandInputHandler : MonoBehaviour
     
     public void OnCommandModeExcavate(InputAction.CallbackContext context)
     {
+        if (commandsAllowed.Not()) return;
+
         if (context.ReadValueAsButton())
         {
             if (!commandMode) return;
@@ -149,6 +156,8 @@ public class CommandInputHandler : MonoBehaviour
     
     public void OnCommandModeTransport(InputAction.CallbackContext context)
     {
+        if (commandsAllowed.Not()) return;
+
         if (context.ReadValueAsButton())
         {
             if (!commandMode) return;
@@ -159,9 +168,11 @@ public class CommandInputHandler : MonoBehaviour
 
     public void OnCommandLaunch(InputAction.CallbackContext context)
     {
+        if (commandsAllowed.Not()) return;
+
         if (context.performed && context.ReadValueAsButton())
         {
-            onLaunchTriggered.Raise(new LaunchInformation());
+            onLaunchTriggered.Raise(new LaunchInformation(true));
         }
     }
 }

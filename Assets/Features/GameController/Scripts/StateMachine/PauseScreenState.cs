@@ -1,5 +1,4 @@
 ﻿using DataStructures.Event;
-using Features.Gui.Scripts;
 using UnityEngine;
 
 namespace Features.GameController.Scripts.StateMachine
@@ -29,7 +28,7 @@ namespace Features.GameController.Scripts.StateMachine
         {
             switch (nextState.id)
             {
-                case GameState.LEVEL_END:
+                case GameState.LEVEL_END: // TODO why?
                 case GameState.GAMEPLAY:
                 case GameState.GAME_EXITING:
                     return true;

@@ -52,7 +52,9 @@ MonoBehaviour:
   canvasManager: {fileID: 0}
   inventory: {fileID: 11400000, guid: b951f25756a12eb48a71be3d3bba0121, type: 2}
   saveGameManager: {fileID: 0}
+  commandsAllowed: {fileID: 11400000, guid: 70aca9559fef1ae47876b5ec2d03477b, type: 2}
   workerCommandHandler: {fileID: 0}
+  commandInputHandler: {fileID: 0}
   onShowStartScreen: {fileID: 11400000, guid: 630c56c0412e6f64ca4325d5d07a5dc1, type: 2}
   onStartRequested: {fileID: 11400000, guid: 2ee98d885659a6d48b1b5e4a5a14f90a, type: 2}
   onUnloadLevel: {fileID: 11400000, guid: bf97cb627971ac4428bcfe5c3adebfbf, type: 2}

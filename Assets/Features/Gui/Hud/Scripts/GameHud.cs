@@ -1,9 +1,9 @@
 using DataStructures.Variables;
-using TMPro;
 using UnityEngine;
 
 public class GameHud : MonoBehaviour
 {
+    [SerializeField] private BoolVariable commandsAllowed;
     [SerializeField] private CommandModeVariable commandMode;
     [SerializeField] private GameObject ExcavationModeButtonHighlight;
     [SerializeField] private GameObject TransportModeButtonHighlight;
@@ -20,11 +20,15 @@ public class GameHud : MonoBehaviour
 
     public void OnCommandModeExcavate()
     {
+        if (commandsAllowed.Not()) return;
+
         commandMode.Set(CommandMode.Excavate);
     }
     
     public void OnCommandModeTransportLine()
     {
+        if (commandsAllowed.Not()) return;
+
         commandMode.Set(CommandMode.TransportLine);
     }
     
@@ -32,6 +36,7 @@ public class GameHud : MonoBehaviour
     {
         if (!ExcavationModeButtonHighlight || !TransportModeButtonHighlight) return;
         if (!commandMode) return;
+
         ExcavationModeButtonHighlight.SetActive(commandMode.Get() == CommandMode.Excavate);
         TransportModeButtonHighlight.SetActive(commandMode.Get() == CommandMode.TransportLine);
     }

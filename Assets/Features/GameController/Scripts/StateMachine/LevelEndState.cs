@@ -1,39 +1,48 @@
 ﻿using DataStructures.Event;
+using DataStructures.Variables;
 using Features.Commands.Scripts;
+using Features.LandingPod.Scripts;
 using Features.MovableCamera.Logic;
-using Features.WorkerAI.Scripts;
+using Features.PlanetIntegrity.Scripts;
 
 namespace Features.GameController.Scripts.StateMachine
 {
     internal class LevelEndState : AbstractGameState
     {
-        private readonly WorkerService_SO workerService;
-        private readonly CameraController cameraController;
+        private readonly IntegrityBehaviour integrityBehaviour;
+        private readonly BoolVariable commandsAllowed;
         private readonly WorkerCommandHandler workerCommandHandler;
+        private readonly CommandInputHandler commandInputHandler;
+        private readonly LandingPodManager landingPodManager;
+        private readonly CameraController cameraController;
 
         public LevelEndState(ActionEvent onBeforeLevelEnd,
             ActionEvent onAfterLevelEnd,
-            WorkerService_SO workerService,
+            IntegrityBehaviour integrityBehaviour,
             CameraController cameraController,
-            WorkerCommandHandler workerCommandHandler)
+            BoolVariable commandsAllowed,
+            WorkerCommandHandler workerCommandHandler,
+            CommandInputHandler commandInputHandler,
+            LandingPodManager landingPodManager)
             : base(GameState.LEVEL_END, onBeforeLevelEnd, onAfterLevelEnd)
         {
-            this.workerService = workerService;
+            this.integrityBehaviour = integrityBehaviour;
             this.cameraController = cameraController;
+            this.commandsAllowed = commandsAllowed;
             this.workerCommandHandler = workerCommandHandler;
+            this.commandInputHandler = commandInputHandler;
+            this.landingPodManager = landingPodManager;
         }
 
         protected override void Enter()
         {
             base.Enter();
-            
+
+            integrityBehaviour.enabled = false;
+            commandsAllowed.Set(false);
+            commandInputHandler.RemoveCurrentHighlight();
             workerCommandHandler.CancelAllCommands();
-            // TODO also think about re-enabling commands once LevelInits
-            // TODO disable Commands and Command UI
-            // TODO Disable Integrity UI
-            // workerCommandHandler.DisableNewCommands();
-            workerService.DestroyAllWorkers();
-            // TODO disable worker spanwing
+            landingPodManager.DisableWorkerSpawn();
             cameraController.ResetCamera();
             // Disable Movable Camera
         }

@@ -22,9 +22,12 @@ namespace Features.LandingPod.Scripts
         private LandingPod landingPod;
 
         private LaunchInformation latestLaunchInformation;
+        public bool isLanded {get; private set;}
 
         public void PlaceLandingPod(GameObject[] landingSurface)
         {
+            isLanded = false;
+
             var surfaceCubes = landingSurface;
             var pickedSurfaceCube = RandomSet<GameObject>.PickOne(surfaceCubes);
             
@@ -32,6 +35,7 @@ namespace Features.LandingPod.Scripts
             {
                 this.landingPod = Instantiate(landingPodPrefab, this.transform);
                 this.landingPod.Init(pickedSurfaceCube);
+                isLanded = true;
             }
             else
             {
@@ -113,6 +117,17 @@ namespace Features.LandingPod.Scripts
             
             // Hardcoded wait before landCompleted event
             yield return new WaitForSeconds(10);
+
+            landingPod.EnableWorkerSpawn();
+            landingPod.enabled = true;
+
+            isLanded = true;
+        }
+
+        public void DisableWorkerSpawn()
+        {
+            landingPod.DisableWorkerSpawn();
+            landingPod.enabled = false;
         }
     }
 }

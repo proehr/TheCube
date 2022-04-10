@@ -9,5 +9,10 @@ namespace DataStructures.Variables
         {
             Set(!runtimeValue);
         }
+
+        public bool Not()
+        {
+            return !Get();
+        }
     }
 }

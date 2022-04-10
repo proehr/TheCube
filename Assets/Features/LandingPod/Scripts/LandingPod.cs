@@ -1,5 +1,4 @@
-﻿using System;
-using Cinemachine;
+﻿using Cinemachine;
 using Features.Inventory.Scripts;
 using Features.WorkerAI.Scripts;
 using Sirenix.OdinInspector;
@@ -34,7 +33,7 @@ namespace Features.LandingPod.Scripts
 
         [ShowInInspector] [ReadOnly] private float currentCooldown;
         private float lastWorkerSpawnTime;
-
+        private bool spawnEnabled = true;
         private Vector3 spawnPosition;
 
         [Button(ButtonSizes.Medium)]
@@ -105,10 +104,12 @@ namespace Features.LandingPod.Scripts
 
         private void SpawnWorker(bool useResources)
         {
-            if (useResources && inventory.Resource.Get() < workerCost)
+            if (!this.spawnEnabled)
             {
+                Debug.LogWarning("Spawn is currently disabled.");
                 return;
             }
+            if (useResources && inventory.Resource.Get() < workerCost) return;
 
             workerService.InstantiateNewWorker(spawnedWorkerPrefab, spawnPosition, Quaternion.identity);
             if (useResources)
@@ -117,6 +118,18 @@ namespace Features.LandingPod.Scripts
             }
 
             lastWorkerSpawnTime = Time.time;
+        }
+
+        public void EnableWorkerSpawn()
+        {
+            this.currentCooldown = 0;
+            this.lastWorkerSpawnTime = 0;
+            this.spawnEnabled = true;
+        }
+
+        public void DisableWorkerSpawn()
+        {
+            this.spawnEnabled = false;
         }
     }
 }

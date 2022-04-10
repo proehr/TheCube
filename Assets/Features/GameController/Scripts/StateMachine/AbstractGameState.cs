@@ -111,7 +111,7 @@ namespace Features.GameController.Scripts.StateMachine
             {
                 if (!ValidateNextState(nextState))
                 {
-                    throw new InvalidOperationException("Invalid Game State transition");
+                    throw new InvalidOperationException("Invalid Game State transition (current) " + this.id + " --> (next) " + nextState.id);
                 }
                 this.nextState = nextState;
             }
