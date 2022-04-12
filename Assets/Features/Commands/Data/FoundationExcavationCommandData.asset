@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92a54472c5124c8c8c23e297eb5b73d4, type: 3}
-  m_Name: ResourceExcavationCommandData
+  m_Name: FoundationExcavationCommandData
   m_EditorClassIdentifier: 
-  requiredWorkers: 3
+  requiredWorkers: 4
   maxDistanceToLocation: 12
-  duration: 5
+  duration: 30
   commandPostPrefab: {fileID: 1792652583490922534, guid: e0c3e6980c5bb5942a2f9abba5f81c35, type: 3}
