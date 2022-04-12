@@ -8,7 +8,7 @@ namespace Features.ExtendedRandom
     {
         public static T PickOne(IReadOnlyList<T> choices)
         {
-            return choices[Random.Range(0, choices.Count - 1)];
+            return choices[Random.Range(0, choices.Count)];
         }
 
         IList<T> availableChoices;
@@ -21,18 +21,14 @@ namespace Features.ExtendedRandom
             if (this.GetAvailableChoices().Count == 1)
             {
                 element = this.GetAvailableChoices()[0];
-
                 this.availableChoices = this.NewSet();
+                return element;
+            }
 
-                return element;
-            }
-            else
-            {
-                var index = Random.Range(0, this.GetAvailableChoices().Count - 1);
-                element = this.GetAvailableChoices()[index];
-                this.GetAvailableChoices().RemoveAt(index);
-                return element;
-            }
+            var index = Random.Range(0, this.GetAvailableChoices().Count);
+            element = this.GetAvailableChoices()[index];
+            this.GetAvailableChoices().RemoveAt(index);
+            return element;
         }
 
         protected IList<T> GetAvailableChoices()
