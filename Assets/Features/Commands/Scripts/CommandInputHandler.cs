@@ -55,7 +55,7 @@ public class CommandInputHandler : MonoBehaviour
     {
         if (!this.cachedCamera)
         {
-            this.cachedCamera = Camera.current;
+            this.cachedCamera = Camera.main;
         }
         if (!this.cachedCamera
             || Mouse.current == null)
