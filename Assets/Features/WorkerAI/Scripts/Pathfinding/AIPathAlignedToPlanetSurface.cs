@@ -1,34 +1,125 @@
-﻿using Pathfinding;
+﻿using System;
+using Features.Physics;
+using Pathfinding;
+using Pathfinding.Util;
 using UnityEngine;
+using Object = System.Object;
 
 namespace Features.WorkerAI.Scripts.Pathfinding
 {
     public class AIPathAlignedToPlanetSurface : AIPathAlignedToSurface
     {
-        protected new Vector3 RaycastPosition (Vector3 position, float lastElevation) {
-            float elevation;
+        // private Vector3 lastSimulatedPosition;
+        private RaycastHit lastEvaluatedRaycastHit;
+        public string status;
+        public string lastStatus;
 
-            movementPlane.ToPlane(position, out elevation);
-            float rayLength = tr.localScale.y * height * 0.5f + Mathf.Max(0, lastElevation-elevation);
-            Vector3 rayOffset = movementPlane.ToWorld(Vector2.zero, rayLength);
+        // protected override void Start()
+        // {
+        //     base.Start();
+        //
+        //     this.lastSimulatedPosition = this.transform.position;
+        // }
 
-            if (UnityEngine.Physics.Raycast(position + rayOffset, -rayOffset, out lastRaycastHit, rayLength, groundMask, QueryTriggerInteraction.Ignore)) {
-                // Grounded
-                // Make the vertical velocity fall off exponentially. This is reasonable from a physical standpoint as characters
-                // are not completely stiff and touching the ground will not immediately negate all velocity downwards. The AI will
-                // stop moving completely due to the raycast penetration test but it will still *try* to move downwards. This helps
-                // significantly when moving down along slopes as if the vertical velocity would be set to zero when the character
-                // was grounded it would lead to a kind of 'bouncing' behavior (try it, it's hard to explain). Ideally this should
-                // use a more physically correct formula but this is a good approximation and is much more performant. The constant
-                // '5' in the expression below determines how quickly it converges but high values can lead to too much noise.
-                verticalVelocity *= System.Math.Max(0, 1 - 5 * lastDeltaTime);
-                return lastRaycastHit.point;
+        private void UpdateStatus(string newStatus, Object extraInfo = null)
+        {
+            if (newStatus == status) return; // no change
+            if (lastStatus == newStatus &&
+                status.Contains("falling") && 
+                newStatus.StartsWith("left")) return; // falling loop
+
+            lastStatus = status;
+            status = newStatus;
+            Debug.Log("Agent is " + newStatus + (extraInfo == null ? string.Empty : " " + extraInfo));
+        }
+
+        protected override void UpdateMovementPlane () {
+            if (prevPosition2 == position)
+            {
+                UpdateStatus("100% not moving");
+                // Agent hasn't moved, so it can't be falling
+                return;
+            }
+            if (prevPosition2.EqualEnough(position, Vector3.kEpsilon))
+            {
+                UpdateStatus("not moving enough", (prevPosition2 - position));
+                // Agent hasn't moved, so it can't be falling
+                return;
+            }
+
+            // lastSimulatedPosition = simulatedPosition;
+
+            // if (lastEvaluatedRaycastHit.point != Vector3.zero &&
+            //     lastEvaluatedRaycastHit.point == lastRaycastHit.point)
+            if (lastRaycastHit.point == Vector3.zero)
+            {
+                // Seems like the lastRaycastHit is still the same
+                // --> no ground was found this update
+                // --> agent is falling
+                UpdateStatus("Left the movement plane, try to grab onto the next wall." , (prevPosition2 - position));
+                // float elevation;
+                //
+                // movementPlane.ToPlane(position, out elevation);
+                // Half height of the agent, downwards
+                Vector3 rayOffset = movementPlane.ToWorld(Vector2.zero, tr.localScale.y * height * -0.5f);
+                Debug.DrawLine(position, position+rayOffset, Color.blue, 30);
+                var tangent = new Vector3();
+                Vector3.OrthoNormalize(ref rayOffset, ref tangent);
+                Debug.DrawLine(position+rayOffset, position+rayOffset + tangent, Color.magenta, 30);
+
+                // Check all 4 directions for a possible wall to grab
+                float shortestDistance = Single.PositiveInfinity;
+                // RaycastHit closestCubeHit;
+                for (int i = 0; i < 4; i++)
+                {
+                    var direction = /*position
+                                    + */Quaternion.AngleAxis(90 * i, rayOffset)
+                                    * tangent;
+                    // Debug.Log(direction);
+                    Debug.DrawLine(position+rayOffset, position+rayOffset + (direction * (maxSpeed * 2)), Color.green, 30);
+                    if (UnityEngine.Physics.Raycast(
+                            position + rayOffset,
+                            direction,
+                            out var cubeHit,
+                            maxSpeed * 2,
+                            groundMask,
+                            QueryTriggerInteraction.Ignore))
+                    {
+                        if (cubeHit.distance < shortestDistance)
+                        {
+                            shortestDistance = cubeHit.distance;
+                            lastRaycastHit = cubeHit;
+                            // closestCubeHit = cubeHit;
+                        }
+                    }
+                }
+
+                if (float.IsPositiveInfinity(shortestDistance))
+                {
+                    // GG we didn't find a wall
+                    // TODO what now??
+                    UpdateStatus("falling aaaaAAAAAHHHHHH");
+                }
             }
             else
             {
-                Debug.Log("Falling");
+                UpdateStatus("grounded");
             }
-            return position;
+            // lastEvaluatedRaycastHit = lastRaycastHit;
+            
+            // TODO how to walk across inner corners (e.g. from a higher cube onto an orthogonal lower cube)
+            
+            // base.UpdateMovementPlane();
+            var normal = lastRaycastHit.normal;
+            if (normal == Vector3.right)
+            {
+                normal = new Vector3(1, 0.01f, 0);
+            }
+            if (normal != Vector3.zero) {
+                var fwd = Vector3.Cross(movementPlane.rotation * Vector3.right, normal);
+                movementPlane = new SimpleMovementPlane(Quaternion.LookRotation(fwd, normal));
+            }
+            if (rvoController != null) rvoController.movementPlane = movementPlane;
         }
     }
 }
