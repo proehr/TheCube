@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Features.Planet.Resources.Scripts;
 using Pathfinding;
 using Pathfinding.Serialization;
 using Pathfinding.Util;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 using Progress = Pathfinding.Progress;
@@ -20,6 +22,9 @@ namespace Features.WorkerAI.Scripts.Pathfinding
         // /// <summary>Rotation of the graph in degrees</summary>
         // // TODO ???
         // private Vector3 rotation = Vector3.zero;
+
+        [JsonMember]
+        public int verticesPerEdge = 2;
 
         /// <summary>
         /// Center of the bounding box.
@@ -70,15 +75,16 @@ namespace Features.WorkerAI.Scripts.Pathfinding
             var vertices = new List<Vertex>();
             var faces = new List<Face>();
             int size = planetCubes.Size + 1;
-            var verticesInSpace = new Vertex[size][][];
-            for (int x = 0; x < size; x++)
-            {
-                verticesInSpace[x] = new Vertex[size][];
-                for (int y = 0; y < size; y++)
-                {
-                    verticesInSpace[x][y] = new Vertex[size];
-                }
-            }
+            // var verticesInSpace = new Vertex[size][][];
+            var verticesInSpace = new Dictionary<Vertex.Key, Vertex>();
+            // for (int x = 0; x < size; x++)
+            // {
+            //     verticesInSpace[x] = new Vertex[size][];
+            //     for (int y = 0; y < size; y++)
+            //     {
+            //         verticesInSpace[x][y] = new Vertex[size];
+            //     }
+            // }
 
             planetCubes.GetCubes(((cube, x, y, z) => {
                 if (!planetCubes.HasCubeAt(x - 1, y, z))
@@ -199,6 +205,29 @@ namespace Features.WorkerAI.Scripts.Pathfinding
             // TODO not set statically but match actual planet
             forcedBoundsSize = new Vector3(30, 30, 30);
 
+            // TODO generate sub-faces
+            
+            var subFaces = new List<Face>(); // TODO apply capacity of 2 * (n-1)^2
+            foreach (var face in faces)
+            {
+                var bottomLeftVertex = face.vertices[Face.BOTTOM_LEFT];
+                var subFace = new Face {
+                    vertices = {
+                        [Face.BOTTOM_LEFT] =
+                            GetOrCreateVertex(verticesInSpace, vertices, bottomLeftVertex.x, bottomLeftVertex.y, bottomLeftVertex.z),
+                        [Face.BOTTOM_RIGHT] =
+                            GetOrCreateVertex(verticesInSpace, vertices, x, y + 1, z + 1),
+                        [Face.TOP_RIGHT] =
+                            GetOrCreateVertex(verticesInSpace, vertices, x + 1, y + 1, z + 1),
+                        [Face.TOP_LEFT] =
+                            GetOrCreateVertex(verticesInSpace, vertices, x + 1, y, z + 1)
+                    }
+                };
+
+                face.ConnectVertices();
+                faces.Add(face);
+            }
+            
             foreach (var vertex in vertices)
             {
                 // vertex.DebugDraw(forcedBoundsCenter - forcedBoundsSize / 2, 10.0f);
@@ -464,35 +493,123 @@ namespace Features.WorkerAI.Scripts.Pathfinding
             ListPool<Connection>.Release(ref connections);
         }
 
-        private static Vertex GetOrCreateVertex(Vertex[][][] verticesInSpace, List<Vertex> vertices, int x, int y, int z)
+        private static Vertex GetOrCreateVertex(Dictionary<Vertex.Key, Vertex> verticesInSpace, List<Vertex> vertices,
+            int x, int y, int z)
         {
-            if (verticesInSpace[x][y][z] != null)
+            return GetOrCreateVertex(verticesInSpace, vertices, x, 0, y, 0, z, 0);
+        }
+
+
+        private static Vertex GetOrCreateVertex(Dictionary<Vertex.Key, Vertex> verticesInSpace, List<Vertex> vertices, int x, int xSub, int y, int ySub, int z, int zSub)
+        {
+            var key = new Vertex.Key(x, xSub, y, ySub, z, zSub);
+            // if (verticesInSpace[x][y][z] != null)
+            // {
+            //     return verticesInSpace[x][y][z];
+            // }
+            Vertex vertex;
+            if (verticesInSpace.TryGetValue(key, out vertex))
             {
-                return verticesInSpace[x][y][z];
+                return vertex;
             }
 
-            var vertex = new Vertex(x, y, z);
-            verticesInSpace[x][y][z] = vertex;
+            vertex = new Vertex(key);
+            verticesInSpace.Add(key, vertex);
+            // verticesInSpace[x][y][z] = vertex;
             vertices.Add(vertex);
             return vertex;
         }
 
         class Vertex
         {
-            int x;
-            int y;
-            int z;
+            
+            public class Key : IEquatable<Key>
+            {
+                // subs represent the sub section where the vertex is located between x and x+1
+                // e.g. an edge is seperated into 4 sections, the subs are 0, 1, 2.
+                // theoretical 3 would be 0 of x+1
+
+               public readonly int x;
+               public readonly int xSub;
+               public readonly int y;
+               public readonly int ySub;
+               public readonly int z;
+               public readonly int zSub;
+
+                public Key(int x, int xSub, int y, int ySub, int z, int zSub)
+                {
+                    this.x = x;
+                    this.xSub = xSub;
+                    this.y = y;
+                    this.ySub = ySub;
+                    this.z = z;
+                    this.zSub = zSub;
+                }
+
+                public bool Equals(Key other)
+                {
+                    if (ReferenceEquals(null, other)) return false;
+                    if (ReferenceEquals(this, other)) return true;
+                    return x == other.x && xSub == other.xSub && y == other.y && ySub == other.ySub && z == other.z && zSub == other.zSub;
+                }
+
+                public override bool Equals(object obj)
+                {
+                    if (ReferenceEquals(null, obj)) return false;
+                    if (ReferenceEquals(this, obj)) return true;
+                    if (obj.GetType() != typeof(Key)) return false;
+                    return Equals((Key) obj);
+                }
+
+                public override int GetHashCode()
+                {
+                    unchecked
+                    {
+                        var hashCode = x;
+                        hashCode = (hashCode * 397) ^ xSub;
+                        hashCode = (hashCode * 397) ^ y;
+                        hashCode = (hashCode * 397) ^ ySub;
+                        hashCode = (hashCode * 397) ^ z;
+                        hashCode = (hashCode * 397) ^ zSub;
+                        return hashCode;
+                    }
+                }
+
+                public static bool operator ==(Key left, Key right)
+                {
+                    return Equals(left, right);
+                }
+
+                public static bool operator !=(Key left, Key right)
+                {
+                    return !Equals(left, right);
+                }
+            }
+
+            private Key position;
 
             public List<Vertex> connectedVertices = new List<Vertex>();
             public int index;
             public List<int> connectedTriangles = new List<int>(6);
 
-            public Vertex(int x, int y, int z)
+            public int x => position.x;
+            public int y => position.y;
+            public int z => position.z;
+
+            // public Vertex(int x, int y, int z) :
+            //     this(x, 0, y, 0, z, 0)
+            // {
+            // }
+
+            public Vertex(Key position)
             {
-                this.x = x;
-                this.y = y;
-                this.z = z;
+                this.position = position;
             }
+
+            // public Vertex(int x, int xSub, int y, int ySub, int z, int zSub)
+            // {
+            //     this.position = new Key(x, xSub, y, ySub, z, zSub);
+            // }
 
             public void Connect(Vertex connectedVertex)
             {
@@ -520,10 +637,16 @@ namespace Features.WorkerAI.Scripts.Pathfinding
             {
                 foreach (var connectedVertex in connectedVertices)
                 {
+                    var primary = this.position.xSub == 0 &&
+                                  this.position.ySub == 0 &&
+                                  this.position.zSub == 0 &&
+                                  connectedVertex.position.xSub == 0 &&
+                                  connectedVertex.position.ySub == 0 &&
+                                  connectedVertex.position.zSub == 0;
                     Debug.DrawLine(
                         this.ToVector3() * scale + offset,
                         connectedVertex.ToVector3() * scale + offset,
-                        Color.blue,
+                        primary ? Color.blue : Color.green,
                         10.0f
                     );
                 }
