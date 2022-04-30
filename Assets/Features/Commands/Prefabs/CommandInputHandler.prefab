@@ -52,6 +52,7 @@ MonoBehaviour:
   mouseCursorHandler: {fileID: 11400000, guid: a139b231c1fcaae4a947f01eb4d5fc1b, type: 2}
   cubeTag: Resource
   onLaunchTriggered: {fileID: 11400000, guid: cb6bc0a8661e89147a25f7338dda6746, type: 2}
+  relicAmount: {fileID: 11400000, guid: cb2bab5ef5e385d44807c9e320f9cc3f, type: 2}
 --- !u!114 &1622972831089985491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +257,42 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 807daf84-2261-4ef7-8adf-d1dc1074eff2
     m_ActionName: Testing/IntegrityCubeRemoval[/Keyboard/h]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14504c0b-8f48-4e1c-88d9-9d69ffe3f1ba
+    m_ActionName: Camera/RotateLeft[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 34a6bdc5-45b4-48fe-a9a9-409fdcc231df
+    m_ActionName: Camera/RotateRight[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: de03c3e4-f600-416c-8eb7-21b04806495d
+    m_ActionName: Camera/PlanarMovement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4e35ee2b-4f67-469a-918e-98cdae79eb76
+    m_ActionName: Camera/FaceRotation[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f3a3cb6c-af19-4a54-a901-804e2e61bce3
+    m_ActionName: Camera/ResetCamera[/Keyboard/space,/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fff6cf5d-9aac-4ca1-85d8-a6891c203012
+    m_ActionName: Camera/DragMovement[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 83e76a96-4ee4-4482-9a45-fc068b2b7dec
+    m_ActionName: Camera/Zoom[/Mouse/scroll/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6c87ba82-cdab-4498-abe3-80f0930ac4e2
+    m_ActionName: Camera/ShiftSpeed[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f0f5950-f850-4ce0-8fc8-59a476ee0532
+    m_ActionName: Camera/MousePosition[/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Commands
