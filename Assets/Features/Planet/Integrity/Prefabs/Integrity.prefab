@@ -43,7 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bca69d07ba18db4084b143e8f67aca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: {fileID: 11400000, guid: 147bf89ba0eb13c45aa6fbf73815ecbf, type: 2}
   onLaunchTriggered: {fileID: 11400000, guid: cb6bc0a8661e89147a25f7338dda6746, type: 2}
   onCubeRemoved: {fileID: 11400000, guid: d398d64abf2958a4eb05f7535f8a3ed6, type: 2}
   planetCubes: {fileID: 11400000, guid: 2ba9aca49bd6a7e49bd0f7350ae5bfaa, type: 2}
@@ -51,3 +50,4 @@ MonoBehaviour:
   currentIntegrity: {fileID: 11400000, guid: 3253e204aa8aca14193315643fa54697, type: 2}
   maxStability: 0
   currentStability: 0
+  isActive: 1
