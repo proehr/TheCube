@@ -2,6 +2,7 @@
 using DataStructures.Variables;
 using Features.Inventory.Scripts;
 using Features.LandingPod.Scripts;
+using Features.Planet.Generation.Scripts;
 using Features.Planet.Progression.Scripts;
 using Features.Planet_Generation.Scripts;
 using Features.PlanetIntegrity.Scripts;
