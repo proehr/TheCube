@@ -12,9 +12,9 @@ namespace Features.Planet_Generation.Scripts
         [Tooltip("Data for default resource in this planet. Count will be ignored")]
         [SerializeField] private Resource_SO defaultResource;
         [Tooltip("Data for relics in this planet")]
-        [SerializeField] private Resource_SO relic;
-        [Tooltip("Minimum distance of relic to surface, can not be bigger than half planet size")]
-        [Min(0)][SerializeField] private int relicDistanceToSurface;
+        [SerializeField] private Resource_SO relic; 
+        [Tooltip("Maximum distance of relic to core, can not be bigger than half planet size")]
+        [Min(0)][SerializeField] private int maxRelicDistanceToCore;
         [Tooltip("Data for resources in this planet")]
         [SerializeField] private List<Resource_SO> resources;
         [Tooltip("Data for all planet modifiers")]
@@ -27,8 +27,8 @@ namespace Features.Planet_Generation.Scripts
 
         public Resource_SO Relic => relic;
         
-        public int RelicDistanceToSurface => relicDistanceToSurface;
-        
+        public int MaxRelicDistanceToCore => maxRelicDistanceToCore;
+
         public Resource_SO DefaultResource => defaultResource;
 
         public List<Resource_SO> Resources => resources;

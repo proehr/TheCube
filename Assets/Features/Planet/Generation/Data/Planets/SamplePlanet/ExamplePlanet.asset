@@ -16,6 +16,7 @@ MonoBehaviour:
   defaultResource: {fileID: 11400000, guid: 959852ddfed053b4bb8fd93ab653f9c0, type: 2}
   relic: {fileID: 11400000, guid: 96d47fe986a180047a0ea373af7550a5, type: 2}
   relicDistanceToSurface: 0
+  maxRelicDistanceToCore: 2
   resources:
   - {fileID: 11400000, guid: 81acf1edef1470144aed235d19c28fde, type: 2}
   planetModifiers:

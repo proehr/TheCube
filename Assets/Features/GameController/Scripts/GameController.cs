@@ -6,6 +6,7 @@ using Features.Gui.Scripts;
 using Features.Inventory.Scripts;
 using Features.LandingPod.Scripts;
 using Features.MovableCamera.Logic;
+using Features.Planet.Generation.Scripts;
 using Features.Planet.Progression.Scripts;
 using Features.PlanetIntegrity.Scripts;
 using Features.SaveLoad.Scripts;
