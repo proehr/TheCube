@@ -17,10 +17,11 @@ jobs:
       # Notify
       - name: Discord notification
         env:
+          DIFF_URL: ${{ github.server_url }}/${{ github.repository }}/compare/${{ github.event.before }}...${{ github.event.after }}
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: Git Cube
           GITHUB_BRANCH: ${{ steps.branch.outputs.branch_name }}
-          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          COMMITS: ${{toJSON(github.event.commits.*.message)}}
         uses: Ilshidur/action-discord@master
         with:
-          args: 'A new commit was pushed to {{ GITHUB_BRANCH }}. Commit message: {{ COMMIT_MESSAGE }}'
+          args: "New commits were pushed to {{ GITHUB_BRANCH }}. Commit messages:\n```json\n{{ COMMITS }}\n```\nCheck out the changes at {{ DIFF_URL }}"
