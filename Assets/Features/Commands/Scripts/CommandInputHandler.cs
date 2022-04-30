@@ -15,6 +15,8 @@ public class CommandInputHandler : MonoBehaviour
     [SerializeField] private string cubeTag;
     [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
 
+    [SerializeField] private IntVariable relicAmount;
+
     private Camera cachedCamera;
     private bool selectorInputDown;
     private bool excavationMode;
@@ -169,6 +171,9 @@ public class CommandInputHandler : MonoBehaviour
     public void OnCommandLaunch(InputAction.CallbackContext context)
     {
         if (commandsAllowed.Not()) return;
+        
+        // Safety check
+        if (relicAmount.Get() <= 0) return;
 
         if (context.performed && context.ReadValueAsButton())
         {

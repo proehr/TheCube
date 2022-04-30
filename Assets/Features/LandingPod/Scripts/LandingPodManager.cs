@@ -8,8 +8,6 @@ namespace Features.LandingPod.Scripts
     public class LandingPodManager : MonoBehaviour
     {
         [SerializeField] private LandingPod landingPodPrefab;
-
-        [SerializeField] private IntVariable relicAmount;
         
         [Header("Launching parameters")]
         [SerializeField, Range(0, 10)] private float shakeTime;
