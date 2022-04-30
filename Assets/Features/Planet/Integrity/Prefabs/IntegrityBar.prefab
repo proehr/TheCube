@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6012852027397535579}
   - component: {fileID: 3327154900666317613}
+  - component: {fileID: 3144726686871017679}
   m_Layer: 5
   m_Name: IntegrityBar
   m_TagString: Untagged
@@ -50,9 +51,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887448380012b0a4cbcad2f140de2d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: {fileID: 0}
   integrityPanel: {fileID: 5861954449164258520}
   currentIntegrity: {fileID: 11400000, guid: 3253e204aa8aca14193315643fa54697, type: 2}
   integrityThreshold: {fileID: 11400000, guid: 3477042811d2649439bf98de1b6c963e, type: 2}
+--- !u!114 &3144726686871017679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928524327137440197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14879ae99a78a24aac937a0d1317c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: 86e64f59c1f85c748b744ecedb3c1e23, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3327154900666317613}
+        m_TargetAssemblyTypeName: Features.Planet_Integrity.IntegrityBarBehaviour,
+          Assembly-CSharp
+        m_MethodName: UpdateIntegrityPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6516239063634291548
 GameObject:
   m_ObjectHideFlags: 0

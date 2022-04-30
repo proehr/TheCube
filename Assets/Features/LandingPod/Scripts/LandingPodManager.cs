@@ -52,10 +52,7 @@ namespace Features.LandingPod.Scripts
         public void Launch(LaunchInformation launchInformation)
         {
             this.latestLaunchInformation = launchInformation;
-            
-            // Safety check
-            if (relicAmount.Get() <= 0) return;
-            
+
             // Launch mechanic
             StartCoroutine(LaunchingSequence());
         }
