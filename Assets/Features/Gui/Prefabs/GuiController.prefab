@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4190342075993677890}
   - component: {fileID: 4190342075993677889}
   - component: {fileID: 4190342075993677888}
+  - component: {fileID: 894768924}
   m_Layer: 0
   m_Name: GuiController
   m_TagString: Untagged
@@ -132,6 +133,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &894768924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2228721465585106455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562333bb560789b4fbc0b79687b142fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: 03217127399c49b4eabd3203013adf01, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4939405867909654059}
+        m_TargetAssemblyTypeName: Features.Gui.Scripts.CanvasManager, Assembly-CSharp
+        m_MethodName: RemoveCanvas_SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &4190342075217604162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -240,10 +269,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2738103358711095078, guid: bf7e9211bdab6944ba834aa262ab19af, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 4939405867909654059}
-    - target: {fileID: 5942336255723441569, guid: bf7e9211bdab6944ba834aa262ab19af, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 4939405867909654059}
