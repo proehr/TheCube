@@ -17,6 +17,14 @@ namespace Features.PlanetIntegrity.Scripts
         [SerializeField] private FloatVariable currentIntegrity;
         [SerializeField, ReadOnly] private float maxStability;
         [SerializeField, ReadOnly] private float currentStability;
+        
+        [Header("Cheats")] 
+        [SerializeField] private bool isActive;
+        [Button(ButtonSizes.Medium)]
+        private void SetUnstable()
+        {
+            currentIntegrity.Set(integrityThreshold.Get() + 1);
+        }
 
         private bool isInitialized;
         private float maxDistanceFromCenter;
@@ -66,7 +74,7 @@ namespace Features.PlanetIntegrity.Scripts
     
         private void Update()
         {
-            if (!isInitialized) return;
+            if (!isInitialized || !isActive) return;
             
             currentIntegrity.Add((1 - currentStability / maxStability) * Time.deltaTime);
         
