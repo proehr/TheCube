@@ -2,6 +2,7 @@ using DataStructures.Event;
 using Features.GameController.Scripts;
 using Features.GameController.Scripts.StateMachine;
 using Features.LandingPod.Scripts;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +22,7 @@ namespace Features.Gui.Scripts
         [SerializeField] private LaunchCompletedActionEvent onLaunchCompleted;
 #endif
         
+        [UsedImplicitly]
         public void OnPauseGame(InputAction.CallbackContext context)
         {
             if (!context.started) return;
