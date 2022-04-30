@@ -13,7 +13,7 @@ namespace Features.Planet.Progression.Scripts
         [SerializeField] private IntVariable currentPlanet;
         [SerializeField] private IntVariable relicAmount;
 
-        [SerializeField] private IntVariable momentum;
+        [SerializeField] private IntVariable progressionMomentum;
 
         internal Planet_SO GetNextPlanetData()
         {
@@ -21,14 +21,14 @@ namespace Features.Planet.Progression.Scripts
             // TODO: save data on level win/loss in a BoolVariable 
             if (relicAmount.Get() > 0)
             {
-                momentum.Set(1);
+                progressionMomentum.Set(1);
             }
             else
             {
-                momentum.Set(Math.Max(momentum.Get() - 1, -1));
+                progressionMomentum.Set(Math.Max(progressionMomentum.Get() - 1, -1));
             }
 
-            currentPlanet.Set(Math.Max(0, Math.Min(planetDataList.Count - 1, currentPlanet.Get() + momentum.Get())));
+            currentPlanet.Set(Math.Max(0, Math.Min(planetDataList.Count - 1, currentPlanet.Get() + progressionMomentum.Get())));
             return planetDataList[currentPlanet.Get()];
         }
     }
