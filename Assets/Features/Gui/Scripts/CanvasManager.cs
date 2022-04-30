@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Features.Gui.Scripts
@@ -10,7 +11,7 @@ namespace Features.Gui.Scripts
         
         private List<CanvasController> canvasControllerList;
     
-        private readonly List<CanvasController> canvasCommandList = new List<CanvasController>();
+        [ShowInInspector][ReadOnly] private readonly List<CanvasController> canvasCommandList = new List<CanvasController>();
         private CanvasController CurrentCanvas => canvasCommandList[canvasCommandList.Count - 1];
 
         private void Awake()
