@@ -22,4 +22,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 048cd348b71c84c4fa433448eb69f279, type: 2}
   currentPlanet: {fileID: 11400000, guid: 5bce3e3ebb3129d40931dfd78d0ff175, type: 2}
   relicAmount: {fileID: 11400000, guid: cb2bab5ef5e385d44807c9e320f9cc3f, type: 2}
-  momentum: {fileID: 11400000, guid: 7911b251448637340ac0b7994af87dc5, type: 2}
+  progressionMomentum: {fileID: 11400000, guid: 7911b251448637340ac0b7994af87dc5, type: 2}
