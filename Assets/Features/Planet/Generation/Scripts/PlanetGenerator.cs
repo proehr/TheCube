@@ -49,6 +49,11 @@ public class PlanetGenerator : MonoBehaviour
         onCubeRemoved.RegisterListener(UpdateNavMesh);
     }
 
+    internal void SetPlanetData(Planet_SO planetData)
+    {
+        this.planetData = planetData;
+    }
+
     private void InitSeededRandomization()
     {
         if (planetData.Seed != 0)

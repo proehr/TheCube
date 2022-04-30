@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791df9d81b2a4e15a1372a47c3075d90, type: 3}
+  m_Name: PlanetProgressionData
+  m_EditorClassIdentifier: 
+  planetDataList:
+  - {fileID: 11400000, guid: 1ea7c2a5bc3e9cd43bd0cbf14ce8c19d, type: 2}
+  - {fileID: 11400000, guid: df56e5ffdba567740867c8c3cbd75858, type: 2}
+  - {fileID: 11400000, guid: 33b3f3bc4ea072341b6384b038cafabd, type: 2}
+  - {fileID: 11400000, guid: bfb1f37092b46584189306f8a20f99bf, type: 2}
+  - {fileID: 11400000, guid: a45ce20afed209d45b1529880064effe, type: 2}
+  - {fileID: 11400000, guid: 8fc1a9ee0edab744eb9b1dc858a50f9f, type: 2}
+  - {fileID: 11400000, guid: 048cd348b71c84c4fa433448eb69f279, type: 2}
+  currentPlanet: {fileID: 11400000, guid: 5bce3e3ebb3129d40931dfd78d0ff175, type: 2}
+  relicAmount: {fileID: 11400000, guid: cb2bab5ef5e385d44807c9e320f9cc3f, type: 2}
+  momentum: {fileID: 11400000, guid: 7911b251448637340ac0b7994af87dc5, type: 2}
