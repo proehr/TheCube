@@ -1,0 +1,26 @@
+﻿name: Development commit notification
+
+on:
+  push:
+    branches:
+      - 'development'
+
+jobs:
+  notify:
+    name: Send discord notification
+    runs-on: ubuntu-latest
+    steps:
+      # Extract branch name for discord notification
+      - name: Extract branch name
+        uses: vazco/github-actions-branch-name@v1
+        id: branch
+      # Notify
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_USERNAME: Git Cube
+          GITHUB_BRANCH: ${{ steps.branch.outputs.branch_name }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'A new commit was pushed to {{ GITHUB_BRANCH }}. Commit message: {{ COMMIT_MESSAGE }}'
