@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9cd589461f347043a37253b75ba6322, type: 3}
   m_Name: ExcavateMouseCursor
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 55e92700c15ee3a4084156c42d846717, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 69942cc0208e14047af973a26827c550, type: 3}
   hotSpot: {x: 0, y: 0}

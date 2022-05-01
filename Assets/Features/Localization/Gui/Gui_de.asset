@@ -19,15 +19,36 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 80705159168
-    m_Localized: Spielen
+    m_Localized: Spiel Starten
     m_Metadata:
       m_Items: []
   - m_Id: 855182064156672
-    m_Localized: Beenden
+    m_Localized: Quit
     m_Metadata:
       m_Items: []
   - m_Id: 855243934334976
     m_Localized: Einstellungen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71700704332808192
+    m_Localized: "Planetare Integrit\xE4t\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71749383945125888
+    m_Localized: "Verf\xFCgbare Resourcen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71749500567748608
+    m_Localized: 'Arbeiter: Sie bauen Resourcen ab.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71749912255463424
+    m_Localized: 'Relikte: Sammle genug um zu starten.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71751548356984832
+    m_Localized: "Planetare Integrit\xE4t\r: Ausgrabungen verringern die Stabilit\xE4t
+      eines Planeten. Finde das Relikt und starte bevor er kollabiert!"
     m_Metadata:
       m_Items: []
   references:
