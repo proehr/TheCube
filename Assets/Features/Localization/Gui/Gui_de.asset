@@ -51,5 +51,17 @@ MonoBehaviour:
       eines Planeten. Finde das Relikt und starte bevor er kollabiert!"
     m_Metadata:
       m_Items: []
+  - m_Id: 72072653324091392
+    m_Localized: "Zur\xFCck"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72072758492069888
+    m_Localized: "Zur\xFCcksetzen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72073100092964864
+    m_Localized: "Lautst\xE4rke"
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

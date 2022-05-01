@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GameSettingsGui : MonoBehaviour
@@ -11,6 +12,7 @@ public class GameSettingsGui : MonoBehaviour
     [SerializeField] private Slider masterVolumeSlider;
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private Slider effectsVolumeSlider;
+    [SerializeField] private UnityEvent<bool>[] languageSelection;
     
     private GameSettings_SO gameSettingsSO;
 
@@ -27,6 +29,7 @@ public class GameSettingsGui : MonoBehaviour
         UpdateMasterVolumeSlider();
         UpdateMusicVolumeSlider();
         UpdatEffectsVolumeSlider();
+        UpdateLanguageSelection();
     }
 
     private void OnDisable()
@@ -77,5 +80,21 @@ public class GameSettingsGui : MonoBehaviour
     private void UpdatEffectsVolumeSlider()
     {
         this.effectsVolumeSlider.SetValueWithoutNotify(gameSettingsSO.effectsVolume);
+    }
+    
+    private void UpdateLanguageSelection()
+    {
+        var indexToHighlight = this.gameSettingsSO.currentLanguage switch
+        {
+            "en" => 0,
+            "de" => 1,
+            _ => 0
+        };
+        for (var index = 0; index < this.languageSelection.Length; index++)
+        {
+            var highlightEvent = this.languageSelection[index];
+            highlightEvent.Invoke(index == indexToHighlight);
+
+        }
     }
 }

@@ -51,5 +51,17 @@ MonoBehaviour:
       the relic and launch before it collapses!'
     m_Metadata:
       m_Items: []
+  - m_Id: 72072653324091392
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72072758492069888
+    m_Localized: Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72073100092964864
+    m_Localized: Volume
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
