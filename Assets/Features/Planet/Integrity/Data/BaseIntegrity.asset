@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05d7b30f20f4d2644a70edb1b620b762, type: 3}
-  m_Name: IntegrityThreshold
+  m_Name: BaseIntegrity
   m_EditorClassIdentifier: 
-  storedValue: 10
+  storedValue: 20
   onValueChanged: {fileID: 0}

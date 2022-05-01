@@ -51,10 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887448380012b0a4cbcad2f140de2d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: {fileID: 11400000, guid: 147bf89ba0eb13c45aa6fbf73815ecbf, type: 2}
   integrityPanel: {fileID: 5861954449164258520}
   currentIntegrity: {fileID: 11400000, guid: 3253e204aa8aca14193315643fa54697, type: 2}
-  integrityThreshold: {fileID: 11400000, guid: 3477042811d2649439bf98de1b6c963e, type: 2}
+  baseIntegrity: {fileID: 11400000, guid: 3477042811d2649439bf98de1b6c963e, type: 2}
 --- !u!114 &3144726686871017679
 MonoBehaviour:
   m_ObjectHideFlags: 0
