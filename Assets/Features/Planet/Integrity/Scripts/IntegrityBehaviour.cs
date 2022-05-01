@@ -13,7 +13,7 @@ namespace Features.PlanetIntegrity.Scripts
         [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
         [SerializeField] private PlanetCubes_SO planetCubes;
 
-        [SerializeField] private FloatVariable integrityThreshold;
+        [SerializeField] private FloatVariable baseIntegrity;
         [SerializeField] private FloatVariable currentIntegrity;
         [SerializeField, ReadOnly] private float maxStability;
         [SerializeField, ReadOnly] private float currentStability;
@@ -23,7 +23,7 @@ namespace Features.PlanetIntegrity.Scripts
         [Button(ButtonSizes.Medium)]
         private void SetUnstable()
         {
-            currentIntegrity.Set(integrityThreshold.Get() + 1);
+            currentIntegrity.Set(0);
         }
 
         private bool isInitialized;
@@ -45,8 +45,12 @@ namespace Features.PlanetIntegrity.Scripts
         {
             maxDistanceFromCenter = planetCubes.CubeLayerCount;
             CalculateMaxStability(planetCubes.GetCubes());
+            
             currentStability = maxStability;
             currentIntegrity.Restore();
+            
+            currentIntegrity.Set(baseIntegrity.Get());
+            
             isInitialized = true;
         }
         
@@ -76,9 +80,9 @@ namespace Features.PlanetIntegrity.Scripts
         {
             if (!isInitialized || !isActive) return;
             
-            currentIntegrity.Add((1 - currentStability / maxStability) * Time.deltaTime);
+            currentIntegrity.Add(-(1 - currentStability / maxStability) * Time.deltaTime);
         
-            if (currentIntegrity.Get() > integrityThreshold.Get())
+            if (currentIntegrity.Get() <= 0)
             {
                 onLaunchTriggered.Raise(new LaunchInformation(false));
                 isInitialized = false;

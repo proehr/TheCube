@@ -7,10 +7,9 @@ namespace Features.Planet_Integrity
 {
     public class IntegrityBarBehaviour : MonoBehaviour
     {
-        [SerializeField] private GameState_SO gameState;
         [SerializeField] private RectTransform integrityPanel;
         [SerializeField] private FloatVariable currentIntegrity;
-        [SerializeField] private FloatVariable integrityThreshold;
+        [SerializeField] private FloatVariable baseIntegrity;
 
         private float startingIntegrityPanelWidth;
 
@@ -19,18 +18,11 @@ namespace Features.Planet_Integrity
             startingIntegrityPanelWidth = integrityPanel.rect.width;
         }
         
-        private void Update()
-        {
-            if (gameState.Get() is GameState.GAMEPLAY)
-            {
-                UpdateIntegrityPanel();
-            }
-        }
-
         private void UpdateIntegrityPanel()
         {
-            integrityPanel.sizeDelta = new Vector2(
-                startingIntegrityPanelWidth - currentIntegrity.Get() / integrityThreshold.Get() * startingIntegrityPanelWidth, integrityPanel.sizeDelta.y);
+            float width = currentIntegrity.Get() / baseIntegrity.Get() * startingIntegrityPanelWidth;
+            
+            integrityPanel.sizeDelta = new Vector2(width, integrityPanel.sizeDelta.y);
         }
     }
 }
