@@ -19,15 +19,36 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 80705159168
-    m_Localized: Play
+    m_Localized: Start Game
     m_Metadata:
       m_Items: []
   - m_Id: 855182064156672
-    m_Localized: Exit
+    m_Localized: Quit
     m_Metadata:
       m_Items: []
   - m_Id: 855243934334976
     m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71700704332808192
+    m_Localized: Planetary Integrity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71749383945125888
+    m_Localized: 'Resources: Amount of available resources.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71749500567748608
+    m_Localized: 'Workers: They excavate resources.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71749912255463424
+    m_Localized: 'Relics: Collect enough to launch.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71751548356984832
+    m_Localized: 'Planetary Integrity: Excavations reduce a planets stability. Find
+      the relic and launch before it collapses!'
     m_Metadata:
       m_Items: []
   references:
