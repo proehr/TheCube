@@ -1,0 +1,27 @@
+﻿name: Development commit notification
+
+on:
+  push:
+    branches:
+      - 'development'
+
+jobs:
+  notify:
+    name: Send discord notification
+    runs-on: ubuntu-latest
+    steps:
+      # Extract branch name for discord notification
+      - name: Extract branch name
+        uses: vazco/github-actions-branch-name@v1
+        id: branch
+      # Notify
+      - name: Discord notification
+        env:
+          DIFF_URL: ${{ github.server_url }}/${{ github.repository }}/compare/${{ github.event.before }}...${{ github.event.after }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_USERNAME: Git Cube
+          GITHUB_BRANCH: ${{ steps.branch.outputs.branch_name }}
+          COMMITS: ${{toJSON(github.event.commits.*.message)}}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: "New commits were pushed to {{ GITHUB_BRANCH }}. Commit messages:\n```json\n{{ COMMITS }}\n```\nCheck out the changes at {{ DIFF_URL }}"

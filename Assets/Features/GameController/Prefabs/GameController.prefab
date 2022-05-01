@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStateData: {fileID: 11400000, guid: 147bf89ba0eb13c45aa6fbf73815ecbf, type: 2}
   planetGenerator: {fileID: 0}
+  planetProgressionData: {fileID: 11400000, guid: 5b0ce8e135ea5e844bb645bfe7b16eb1, type: 2}
   landingPodManager: {fileID: 0}
   integrityBehaviour: {fileID: 0}
   cameraController: {fileID: 0}

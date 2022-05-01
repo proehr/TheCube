@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Features.Audio
 {
@@ -16,6 +17,8 @@ namespace Features.Audio
 		[Header("Music")]
 		[SerializeField] private AudioCue_SO ingameMusic = default;
 		[SerializeField] private AudioConfiguration_SO ingameMusicConfiguration = default;
+		[SerializeField] private AudioMixer audioMixer;
+		[SerializeField] private GameSettings_SO gameSettings = default;
 
 		private void Awake()
 		{
@@ -24,12 +27,23 @@ namespace Features.Audio
 			this.pool.SetParent(this.transform);
 		}
 
-		private void OnEnable()
+		private void Start()
 		{
+			SetAudioVolumesFromSettings();
 			this.effectsEventChannel.OnAudioCuePlayRequested += PlayAudioCue;
 			this.effectsEventChannel.OnAudioCueStopRequested += StopAudioCue;
 			this.effectsEventChannel.OnAudioCueFinishRequested += FinishAudioCue;
 			this.PlayNextMusicTrack();
+		}
+
+		private void SetAudioVolumesFromSettings()
+		{
+			var value = Mathf.Clamp(this.gameSettings.masterVolume, 0.0001f, 1f);
+			this.audioMixer.SetFloat("MasterVolume", Mathf.Log10(value) * 20);
+			value = Mathf.Clamp(this.gameSettings.musicVolume, 0.0001f, 1f);
+			this.audioMixer.SetFloat("MusicVolume", Mathf.Log10(value) * 20);
+			value = Mathf.Clamp(this.gameSettings.effectsVolume, 0.0001f, 1f);
+			this.audioMixer.SetFloat("EffectsVolume", Mathf.Log10(value) * 20);
 		}
 
 		private void OnDestroy()

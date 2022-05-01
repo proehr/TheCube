@@ -27,6 +27,26 @@ MonoBehaviour:
     m_Key: BUTTON_SETTINGS
     m_Metadata:
       m_Items: []
+  - m_Id: 71700704332808192
+    m_Key: LABEL_PLANETARY_INTEGRITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71749383945125888
+    m_Key: TOOLTIP_RESOURCES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71749500567748608
+    m_Key: TOOLTIP_WORKERS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71749912255463424
+    m_Key: TOOLTIP_RELIC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71751548356984832
+    m_Key: TOOLTIP_PLANETARY_INTEGRITY
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -10,6 +10,12 @@ namespace Features.Gui
         [SerializeField] private MouseCursor_SO cursorDefault;
         [SerializeField] private MouseCursor_SO cursorExcavate;
         private MouseCursorLook currentLook;
+        
+        public void SetCursorToDefault()
+        {
+            SetCursor(this.cursorDefault);
+            this.currentLook = MouseCursorLook.Default;
+        }
 
         public void SetCursor(MouseCursorLook cursorLook)
         {

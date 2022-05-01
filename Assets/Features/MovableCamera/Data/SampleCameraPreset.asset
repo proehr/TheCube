@@ -18,7 +18,7 @@ MonoBehaviour:
   zoomSpeed: 1.2
   normalSpeed: 80
   fastSpeed: 240
-  clampMovement: 105
+  clampMovement: 125
   zoomAmount: {x: 0, y: 2.5, z: -2.5}
-  zoomYClamp: {x: 20, y: 100}
-  zoomZClamp: {x: -175, y: -95}
+  zoomYClamp: {x: 20, y: 140}
+  zoomZClamp: {x: -175, y: -55}

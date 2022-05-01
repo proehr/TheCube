@@ -6,6 +6,8 @@ using Features.Gui.Scripts;
 using Features.Inventory.Scripts;
 using Features.LandingPod.Scripts;
 using Features.MovableCamera.Logic;
+using Features.Planet.Generation.Scripts;
+using Features.Planet.Progression.Scripts;
 using Features.PlanetIntegrity.Scripts;
 using Features.SaveLoad.Scripts;
 using Features.WorkerAI.Scripts;
@@ -39,6 +41,7 @@ namespace Features.GameController.Scripts
 
         [Header("Game Features & Components")]
         [SerializeField] private PlanetGenerator planetGenerator;
+        [SerializeField] private PlanetProgression_SO planetProgressionData;
         [SerializeField] private LandingPodManager landingPodManager;
         [SerializeField] private IntegrityBehaviour integrityBehaviour;
         [SerializeField] private CameraController cameraController;
@@ -46,7 +49,7 @@ namespace Features.GameController.Scripts
         [SerializeField] private CanvasManager canvasManager;
         [SerializeField] private Inventory_SO inventory;
         [SerializeField] private SaveGameManager saveGameManager;
-        [SerializeField] private  BoolVariable commandsAllowed;
+        [SerializeField] private BoolVariable commandsAllowed;
         [SerializeField] private WorkerCommandHandler workerCommandHandler;
         [SerializeField] private CommandInputHandler commandInputHandler;
 
@@ -124,6 +127,7 @@ namespace Features.GameController.Scripts
                     onAfterLevelInit,
                     inventory,
                     planetGenerator,
+                    planetProgressionData,
                     landingPodManager,
                     integrityBehaviour,
                     workerService,

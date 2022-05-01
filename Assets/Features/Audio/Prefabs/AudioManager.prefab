@@ -48,3 +48,5 @@ MonoBehaviour:
   effectsEventChannel: {fileID: 11400000, guid: 9b5c99e34ed1e9c419efb86300044bb0, type: 2}
   ingameMusic: {fileID: 11400000, guid: 633a1ce1fa44c9941929494b0386b75a, type: 2}
   ingameMusicConfiguration: {fileID: 11400000, guid: 135d58a04787528408d6533e47de5db4, type: 2}
+  audioMixer: {fileID: 24100000, guid: d450f48ee3674cefb91f0c2ffbf9c620, type: 2}
+  gameSettings: {fileID: 11400000, guid: 56d49b949f2e0724faa7dd2a31c077c2, type: 2}

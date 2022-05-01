@@ -2,6 +2,8 @@
 using DataStructures.Variables;
 using Features.Inventory.Scripts;
 using Features.LandingPod.Scripts;
+using Features.Planet.Generation.Scripts;
+using Features.Planet.Progression.Scripts;
 using Features.Planet_Generation.Scripts;
 using Features.PlanetIntegrity.Scripts;
 using Features.WorkerAI.Scripts;
@@ -12,6 +14,7 @@ namespace Features.GameController.Scripts.StateMachine
     {
         private readonly Inventory_SO inventory;
         private readonly PlanetGenerator planetGenerator;
+        private readonly PlanetProgression_SO planetProgressionData;
         private readonly LandingPodManager landingPodManager;
         private readonly IntegrityBehaviour integrityBehaviour;
         private readonly WorkerService_SO workerService;
@@ -22,6 +25,7 @@ namespace Features.GameController.Scripts.StateMachine
             ActionEvent onAfterLevelInit,
             Inventory_SO inventory,
             PlanetGenerator planetGenerator,
+            PlanetProgression_SO planetProgressionData,
             LandingPodManager landingPodManager,
             IntegrityBehaviour integrityBehaviour,
             WorkerService_SO workerService,
@@ -30,6 +34,7 @@ namespace Features.GameController.Scripts.StateMachine
         {
             this.inventory = inventory;
             this.planetGenerator = planetGenerator;
+            this.planetProgressionData = planetProgressionData;
             this.landingPodManager = landingPodManager;
             this.integrityBehaviour = integrityBehaviour;
             this.workerService = workerService;
@@ -40,6 +45,7 @@ namespace Features.GameController.Scripts.StateMachine
         {
             base.Enter();
 
+            planetGenerator.SetPlanetData(planetProgressionData.GetNextPlanetData());
             inventory.Reset();
             planetGenerator.Generate();
             // For now, the landing pod is always placed "on top" - later this could be input by the player
