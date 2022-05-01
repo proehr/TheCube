@@ -17,10 +17,11 @@ MonoBehaviour:
   settingsData:
     masterVolume: 0.0001
     musicVolume: 0.0001
-    effectsVolume: 0.56483537
+    effectsVolume: 0.0001
     resolutionWidth: 3440
     resolutionHeight: 1440
     fullScreenMode: 0
+  localizationSettings: {fileID: 11400000, guid: 6d2fd996e443d274abd6154473880047, type: 2}
   audioMixer: {fileID: 24100000, guid: d450f48ee3674cefb91f0c2ffbf9c620, type: 2}
   defaultVolumeAll: 1
   defaultVolumeMusic: 1

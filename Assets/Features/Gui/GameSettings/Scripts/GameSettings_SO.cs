@@ -5,6 +5,8 @@ using System.Linq;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.Serialization;
 
 [CreateAssetMenu]
@@ -59,6 +61,7 @@ public class GameSettings_SO : ScriptableObject
 		[SerializeField, ReadOnly] public int resolutionWidth;
 		[FormerlySerializedAs("resolutioHeight")] [SerializeField, ReadOnly] public int resolutionHeight;
 		[SerializeField, ReadOnly] public int fullScreenMode;
+		[SerializeField, ReadOnly] public string languageCode = "en";
 		public object Clone()
 		{
 			return this.MemberwiseClone();
@@ -67,6 +70,7 @@ public class GameSettings_SO : ScriptableObject
 	[SerializeField, ReadOnly] private SettingsData settingsData = new SettingsData();
 	
 	//Audio
+	[SerializeField] private LocalizationSettings localizationSettings;
 	[SerializeField] private AudioMixer audioMixer;
 	public float masterVolume => settingsData.masterVolume;
 	public float musicVolume  => settingsData.musicVolume;
@@ -82,9 +86,15 @@ public class GameSettings_SO : ScriptableObject
 	[NonSerialized] private int _currentfullScreenMode = 0;
 	public int currentResolutionIndex => _currentResolutionIndex;
 	public int currentfullScreenMode => _currentfullScreenMode;
-
 	//Video Defaults
 	[SerializeField] private FullScreenMode defaultFullScreenMode = FullScreenMode.MaximizedWindow;
+	
+	//Language
+	[SerializeField] private string defaultLanguage = "en";
+	[SerializeField] private Locale englishLocale;
+	[SerializeField] private Locale germanLocale;
+	public string currentLanguage => this.settingsData.languageCode;
+
 
 	private void Init()
 	{
@@ -98,6 +108,7 @@ public class GameSettings_SO : ScriptableObject
 			value = Mathf.Clamp(effectsVolume, 0.0001f, 1f);
 			audioMixer.SetFloat("EffectsVolume", Mathf.Log10(value) * 20);
 			Screen.SetResolution(this.settingsData.resolutionWidth, this.settingsData.resolutionHeight, (FullScreenMode)this.settingsData.fullScreenMode);
+			SetLocale(this.settingsData.languageCode);
 		}
 		else
 		{
@@ -106,7 +117,7 @@ public class GameSettings_SO : ScriptableObject
 		UpdateAvailableResolutions();
 		_currentfullScreenMode = (int)Screen.fullScreenMode;
 	}
-	
+
 	private void UpdateAvailableResolutions()
 	{
 		for (var index = 0; index < Screen.resolutions.Length; index++)
@@ -174,7 +185,7 @@ public class GameSettings_SO : ScriptableObject
 		audioMixer.SetFloat("MasterVolume", Mathf.Log10(value) * 20);
 	}
 
-	public void SetMusicVolume (float value)
+	public void SetMusicVolume(float value)
 	{
 		value = Mathf.Clamp(value, 0.0001f, 1f);
 		this.settingsData.musicVolume = value;
@@ -182,18 +193,61 @@ public class GameSettings_SO : ScriptableObject
 		audioMixer.SetFloat("MusicVolume", Mathf.Log10(value) * 20);
 	}
 
-	public void SetEffectsVolume (float value)
+	public void SetEffectsVolume(float value)
 	{
 		value = Mathf.Clamp(value, 0.0001f, 1f);
 		this.settingsData.effectsVolume = value;
 		if (!audioMixer) return;
 		audioMixer.SetFloat("EffectsVolume", Mathf.Log10(value) * 20);
 	}
+
+	public void SetLocale(string language)
+	{
+		switch (language)
+		{
+			case "en":
+				if (this.englishLocale)
+				{
+					this.localizationSettings.SetSelectedLocale(this.englishLocale);
+				}
+				break;
+			case "de":
+				if (this.germanLocale)
+				{
+					this.localizationSettings.SetSelectedLocale(this.germanLocale);
+				}
+				break;
+			default:
+				throw new ArgumentOutOfRangeException(nameof(language), language, null);
+		}
+		this.settingsData.languageCode = language;
+	}
+	
+	public void SetLocale(Locale locale)
+	{
+		if (!locale)
+		{
+			return;
+		}
+
+		this.localizationSettings.SetSelectedLocale(locale);
+
+		this.settingsData.languageCode = locale.Identifier.Code;
+	}
 	
 	public void ResetToDefaults()
 	{
 		ResetVideoSettingsToDefault();
 		ResetAudioSettingsToDefault();
+		ResetLocaleToDefault();
+	}
+
+	private void ResetLocaleToDefault()
+	{
+		if (this.localizationSettings)
+		{
+			SetLocale(this.defaultLanguage);
+		}
 	}
 
 	public void ResetVideoSettingsToDefault()

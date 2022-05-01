@@ -47,6 +47,18 @@ MonoBehaviour:
     m_Key: TOOLTIP_PLANETARY_INTEGRITY
     m_Metadata:
       m_Items: []
+  - m_Id: 72072653324091392
+    m_Key: BUTTON_BACK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72072758492069888
+    m_Key: BUTTON_RESET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72073100092964864
+    m_Key: LABEL_VOLUME
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
