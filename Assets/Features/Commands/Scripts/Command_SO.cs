@@ -17,8 +17,18 @@ namespace Features.Commands.Scripts
         [Tooltip("(Optional) Created prefab at the position of the issued command.")]
         [SerializeField] private GameObject commandPostPrefab;
 
-        public int RequiredWorkers => requiredWorkers;
-        public float Duration => duration;
+        public int RequiredWorkers
+        {
+            get => requiredWorkers;
+            set => requiredWorkers = value;
+        }
+
+        public float Duration
+        {
+            get => duration;
+            set => duration = value;
+        }
+
         public GameObject CommandPostPrefab => commandPostPrefab;
         public float MaxDistanceToLocation => maxDistanceToLocation;
     }
