@@ -1,3 +1,4 @@
+#if PATHFINDING
 using System;
 using Pathfinding;
 using UnityEditor;
@@ -40,3 +41,4 @@ namespace Features.WorkerAI.Scripts.Pathfinding
         }
     }
 }
+#endif

@@ -1,4 +1,5 @@
-﻿using System;
+#if PATHFINDING
+using System;
 using Features.Physics;
 using Pathfinding;
 using Pathfinding.Util;
@@ -123,3 +124,4 @@ namespace Features.WorkerAI.Scripts.Pathfinding
         }
     }
 }
+#endif

@@ -1,26 +1,5 @@
 {
   "dependencies": {
-    "com.arongranberg.astar": {
-      "version": "4.3.48",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.burst": "1.6.0-pre.2",
-        "com.unity.collections": "0.15.0-preview.21",
-        "com.unity.jobs": "0.7.0-preview.17",
-        "com.unity.mathematics": "1.1.0",
-        "com.unity.modules.animation": "1.0.0",
-        "com.unity.modules.assetbundle": "1.0.0",
-        "com.unity.modules.audio": "1.0.0",
-        "com.unity.modules.physics": "1.0.0",
-        "com.unity.modules.physics2d": "1.0.0",
-        "com.unity.modules.terrain": "1.0.0",
-        "com.unity.modules.terrainphysics": "1.0.0",
-        "com.unity.modules.ui": "1.0.0",
-        "com.unity.ugui": "1.0.0"
-      },
-      "url": "https://arongranberg.com/packages/askraoul"
-    },
     "com.unity.addressables": {
       "version": "1.19.9",
       "depth": 1,
@@ -44,15 +23,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.burst": {
-      "version": "1.6.0-pre.2",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.mathematics": "1.2.1"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.cinemachine": {
       "version": "2.6.10",
       "depth": 0,
@@ -65,16 +35,6 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.collections": {
-      "version": "0.15.0-preview.21",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.test-framework.performance": "2.3.1-preview",
-        "com.unity.burst": "1.4.1"
-      },
       "url": "https://packages.unity.com"
     },
     "com.unity.ext.nunit": {
@@ -116,16 +76,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.jobs": {
-      "version": "0.7.0-preview.17",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.collections": "0.14.0-preview.16",
-        "com.unity.mathematics": "1.2.1"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.localization": {
       "version": "1.0.5",
       "depth": 0,
@@ -137,8 +87,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.mathematics": {
-      "version": "1.2.1",
-      "depth": 2,
+      "version": "1.1.0",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -202,16 +152,6 @@
         "com.unity.ext.nunit": "1.0.6",
         "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.test-framework.performance": {
-      "version": "2.3.1-preview",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.test-framework": "1.1.0",
-        "com.unity.nuget.newtonsoft-json": "2.0.0-preview"
       },
       "url": "https://packages.unity.com"
     },

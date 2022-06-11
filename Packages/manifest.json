@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.arongranberg.astar": "4.3.48",
     "com.unity.ai.navigation": "1.0.0-exp.4",
     "com.unity.cinemachine": "2.6.10",
     "com.unity.collab-proxy": "1.9.0",
@@ -45,14 +44,5 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  },
-  "scopedRegistries": [
-    {
-      "name": "A* Pathfinding Project",
-      "url": "https://arongranberg.com/packages/askraoul/",
-      "scopes": [
-        "com.arongranberg.astar"
-      ]
-    }
-  ]
+  }
 }

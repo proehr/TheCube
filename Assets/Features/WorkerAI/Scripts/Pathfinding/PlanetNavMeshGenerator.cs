@@ -1,4 +1,5 @@
-﻿using System;
+#if PATHFINDING
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Features.Planet.Resources.Scripts;
@@ -679,3 +680,4 @@ namespace Features.WorkerAI.Scripts.Pathfinding
     }
 
 }
+#endif

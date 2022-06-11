@@ -18,32 +18,46 @@ namespace Features.Planet.Generation.Scripts
         [SerializeField] private PlanetCubes_SO planetCubes;
         [SerializeField] private NavMeshSurface[] navMeshSurfaces = new NavMeshSurface[6];
         [SerializeField] private ExcavationStartedActionEvent onExcavationStarted;
-    
+
         [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
+
         /**
      * 1-4: top
      * 5-8: middle
      * 9-12: bottom
      */
         [SerializeField] private NavMeshLink[] navMeshLinks = new NavMeshLink[12];
+
         [SerializeField] private Transform obstaclesParent;
         [SerializeField] private NavMeshObstacle obstaclePrefab;
 
-        [Tooltip("Just for preview purposes. Your workers will get stuck :(")]
-        [SerializeField] private bool updateNavMeshOnCubeRemoval = false;
+        [Tooltip("Just for preview purposes. Your workers will get stuck :(")] [SerializeField]
+        private bool updateNavMeshOnCubeRemoval = false;
 
         private Resource_SO[][][] resourceArrangement;
         private Dictionary<Surface, List<GameObject>> surfaces;
         private Vector3 edgesMin;
         private Vector3 edgesMax;
 
-    public void Generate()
-    {
-        InitSeededRandomization();
-        InitSurfaces();
-        InitWithDefaultResource();
-        ApplyPlanetModifiers();
-        PlaceRelics();
+        private void Start()
+        {
+            Generate();
+        }
+
+        [Button]
+        public void Regenerate()
+        {
+            this.Destroy();
+            this.Generate();
+        }
+
+        public void Generate()
+        {
+            InitSeededRandomization();
+            InitSurfaces();
+            InitWithDefaultResource();
+            ApplyPlanetModifiers();
+            PlaceRelics();
 
             planetCubes.Init(planetData);
             CreateGameObjects();
@@ -83,6 +97,7 @@ namespace Features.Planet.Generation.Scripts
             {
                 resourceChoices.Add(planetData.DefaultResource);
             }
+
             foreach (var resource in planetData.Resources)
             {
                 for (int i = 0; i < resource.Count; i++)
@@ -90,6 +105,7 @@ namespace Features.Planet.Generation.Scripts
                     resourceChoices.Add(resource);
                 }
             }
+
             var resourceRandomSet = new RandomListSet<Resource_SO>(resourceChoices);
             resourceArrangement = new Resource_SO[planetData.Size][][];
             for (int i = 0; i < planetData.Size; i++)
@@ -133,23 +149,25 @@ namespace Features.Planet.Generation.Scripts
 
         private void GenerateNavMesh()
         {
+#if PATHFINDING
             AstarPath.active.Scan();
 
             return;
+#endif
 
-        Debug.Assert(navMeshSurfaces != null && navMeshSurfaces.Length == 6);
-        for (int i = 0; i < 6; i++)
-        {
-            navMeshSurfaces[i].BuildNavMesh();
-        }
-        //
-        // Debug.Log("Created " + NavMeshSurface.activeSurfaces.Count + " navMeshSurfaces.");
-        // int j = 1;
-        // foreach (var navMeshSurface in NavMeshSurface.activeSurfaces)
-        // {
-        //     Debug.Log("Surface #" + j + ": " + navMeshSurface.center + " size: " + navMeshSurface.size + " => " + new Bounds(navMeshSurface.center, navMeshSurface.size));
-        //     j++;
-        // }
+            Debug.Assert(navMeshSurfaces != null && navMeshSurfaces.Length == 6);
+            for (int i = 0; i < 6; i++)
+            {
+                navMeshSurfaces[i].BuildNavMesh();
+            }
+            //
+            // Debug.Log("Created " + NavMeshSurface.activeSurfaces.Count + " navMeshSurfaces.");
+            // int j = 1;
+            // foreach (var navMeshSurface in NavMeshSurface.activeSurfaces)
+            // {
+            //     Debug.Log("Surface #" + j + ": " + navMeshSurface.center + " size: " + navMeshSurface.size + " => " + new Bounds(navMeshSurface.center, navMeshSurface.size));
+            //     j++;
+            // }
 
             // Debug.Log("edgesMin: " + edgesMin);
             // Debug.Log("edgesMax: " + edgesMax);
@@ -159,7 +177,7 @@ namespace Features.Planet.Generation.Scripts
             {
                 Destroy(navMeshLinks[i]);
             }
-        
+
             // navMeshLinks[0].transform.localPosition = new Vector3(0, edgesMax.y, edgesMin.z);
             // navMeshLinks[0].width = edgesMax.x - edgesMin.x;
             // navMeshLinks[1].transform.localPosition = new Vector3(0, edgesMax.y, edgesMax.z);
@@ -208,8 +226,9 @@ namespace Features.Planet.Generation.Scripts
                             {
                                 cube.Init(resourceData, new Vector3Int(i, j, k));
                             }
+
                             planetCubes.AddCube(cube);
-                        
+
                             float resourceScale = resource.transform.localScale.x;
                             var localPosition = new Vector3(
                                 resourceScale * (i - resourceArrangement.Length / 2),
@@ -218,12 +237,18 @@ namespace Features.Planet.Generation.Scripts
                             resource.transform.localPosition = localPosition;
 
                             var resourceRadius = resourceScale / 2;
-                            if (localPosition.x - resourceRadius < edgesMin.x) edgesMin.x = localPosition.x - resourceRadius;
-                            if (localPosition.y - resourceRadius < edgesMin.y) edgesMin.y = localPosition.y - resourceRadius;
-                            if (localPosition.z - resourceRadius < edgesMin.z) edgesMin.z = localPosition.z - resourceRadius;
-                            if (localPosition.x + resourceRadius > edgesMax.x) edgesMax.x = localPosition.x + resourceRadius;
-                            if (localPosition.y + resourceRadius > edgesMax.y) edgesMax.y = localPosition.y + resourceRadius;
-                            if (localPosition.z + resourceRadius > edgesMax.z) edgesMax.z = localPosition.z + resourceRadius;
+                            if (localPosition.x - resourceRadius < edgesMin.x)
+                                edgesMin.x = localPosition.x - resourceRadius;
+                            if (localPosition.y - resourceRadius < edgesMin.y)
+                                edgesMin.y = localPosition.y - resourceRadius;
+                            if (localPosition.z - resourceRadius < edgesMin.z)
+                                edgesMin.z = localPosition.z - resourceRadius;
+                            if (localPosition.x + resourceRadius > edgesMax.x)
+                                edgesMax.x = localPosition.x + resourceRadius;
+                            if (localPosition.y + resourceRadius > edgesMax.y)
+                                edgesMax.y = localPosition.y + resourceRadius;
+                            if (localPosition.z + resourceRadius > edgesMax.z)
+                                edgesMax.z = localPosition.z + resourceRadius;
 
                             // TODO generalize for all surfaces
                             if (j == resourceArrangement[i].Length - 1)
@@ -245,7 +270,7 @@ namespace Features.Planet.Generation.Scripts
 
         private void PlaceNavMeshObstacle(Cube targetCube)
         {
-            if (!surfaces[Surface.POSITIVE_Y].Contains(targetCube.gameObject) ) return;
+            if (!surfaces[Surface.POSITIVE_Y].Contains(targetCube.gameObject)) return;
 
             var targetTransform = targetCube.transform;
             Instantiate(obstaclePrefab, targetTransform.position, targetTransform.rotation, obstaclesParent);
@@ -265,7 +290,8 @@ namespace Features.Planet.Generation.Scripts
         public void Destroy()
         {
             planetCubes.RemoveAllCubes();
-            foreach (Transform obstacles in obstaclesParent) {
+            foreach (Transform obstacles in obstaclesParent)
+            {
                 Destroy(obstacles.gameObject);
             }
         }
