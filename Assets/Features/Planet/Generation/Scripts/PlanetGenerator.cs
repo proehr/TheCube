@@ -22,10 +22,10 @@ namespace Features.Planet.Generation.Scripts
         [SerializeField] private CubeRemovedActionEvent onCubeRemoved;
 
         /**
-     * 1-4: top
-     * 5-8: middle
-     * 9-12: bottom
-     */
+         * 1-4: top
+         * 5-8: middle
+         * 9-12: bottom
+         */
         [SerializeField] private NavMeshLink[] navMeshLinks = new NavMeshLink[12];
 
         [SerializeField] private Transform obstaclesParent;

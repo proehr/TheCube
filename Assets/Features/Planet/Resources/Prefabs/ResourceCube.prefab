@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5949118940647709314}
   - component: {fileID: 6344934977905358141}
   - component: {fileID: 624397411}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ResourceCube
   m_TagString: Resource
   m_Icon: {fileID: 0}
