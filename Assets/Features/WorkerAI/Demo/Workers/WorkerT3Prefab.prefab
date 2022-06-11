@@ -95,5 +95,18 @@ PrefabInstance:
       propertyPath: wanderR
       value: 30
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6726807087878992179, guid: e56d9e212bf37ba47a8f22b41b1ddf33, type: 3}
+      propertyPath: wanderRadius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726807087878992179, guid: e56d9e212bf37ba47a8f22b41b1ddf33, type: 3}
+      propertyPath: maxAngleChange
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726807087878992179, guid: e56d9e212bf37ba47a8f22b41b1ddf33, type: 3}
+      propertyPath: wanderDistance
+      value: 60
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5712592383464178928, guid: e56d9e212bf37ba47a8f22b41b1ddf33, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e56d9e212bf37ba47a8f22b41b1ddf33, type: 3}
