@@ -2,6 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DataStructures.Event;
 
 namespace Features.MovableCamera.Logic
 {
@@ -10,6 +11,8 @@ namespace Features.MovableCamera.Logic
         [SerializeField] private Transform movementCameraTransform;
         [SerializeField] private CameraPreset_SO cameraPreset;
         [SerializeField] private CameraDebugViewer_SO cameraDebugViewer;
+        [SerializeField] private GameEvent onRotateLeft;
+        [SerializeField] private GameEvent onRotateRight;
 
         [SerializeField, ReadOnly] private CubeCorner_SO activeCorner;
         [SerializeField, ReadOnly] private CubeFace_SO activeFace;
@@ -209,7 +212,9 @@ namespace Features.MovableCamera.Logic
                 
                 Quaternion startQ = transform.rotation;
                 Quaternion endQ = startQ * Quaternion.Euler(0, 90,0);
-                
+
+                onRotateLeft.Raise();
+
                 StartCoroutine(Rotate(transform, startQ, endQ, cameraPreset.PlanarRotationSpeed));
                 StartCoroutine(MoveLocal(transform, newPosition, activeFace.Offset, cameraPreset.PlanarRotationSpeed));
                 newPosition = activeFace.Offset;
@@ -226,7 +231,9 @@ namespace Features.MovableCamera.Logic
                 
                 Quaternion startQ = transform.rotation;
                 Quaternion endQ = startQ * Quaternion.Euler(0, -90, 0);
-                
+
+                onRotateRight.Raise();
+
                 StartCoroutine(Rotate(transform, startQ, endQ, cameraPreset.PlanarRotationSpeed));
                 StartCoroutine(Move(transform, newPosition, activeFace.Offset, cameraPreset.PlanarRotationSpeed));
                 newPosition = activeFace.Offset;

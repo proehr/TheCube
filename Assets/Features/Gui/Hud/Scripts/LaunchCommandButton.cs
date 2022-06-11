@@ -11,6 +11,7 @@ namespace Features.Gui.Hud.Scripts
         [SerializeField] private BoolVariable commandsAllowed;
         [SerializeField] private IntVariable relicAmount;
         [SerializeField] private LaunchTriggeredActionEvent onLaunchTriggered;
+        [SerializeField] private MouseEventHandler mouseEventHandler;
         private CanvasGroup buttonCanvasGroup;
 
 
@@ -34,11 +35,19 @@ namespace Features.Gui.Hud.Scripts
             {
                 buttonCanvasGroup.alpha = 0;
                 buttonCanvasGroup.interactable = false;
+                if (mouseEventHandler)
+                {
+                    mouseEventHandler.enabled = false;
+                }
             }
             else
             {
                 buttonCanvasGroup.alpha = 1;
                 buttonCanvasGroup.interactable = true;
+                if (mouseEventHandler)
+                {
+                    mouseEventHandler.enabled = true;
+                }
             }
         }
 

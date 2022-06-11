@@ -5,16 +5,16 @@ namespace DataStructures.Variables
     [CreateAssetMenu(fileName = "NewIntVariable", menuName = "Utils/Variables/IntVariable")]
     public class IntVariable : AbstractVariable<int>
     {
-        public void Add(int value)
+        public virtual void Add(int value)
         {
             runtimeValue += value;
-            onValueChanged.Raise();
+            if (onValueChanged != null) onValueChanged.Raise();
         }
 
-        public void Add(IntVariable value)
+        public virtual void Add(IntVariable value)
         {
             runtimeValue += value.runtimeValue;
-            onValueChanged.Raise();
+            if (onValueChanged != null) onValueChanged.Raise();
         }
     }
 }
