@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5184443917228064755}
   - component: {fileID: 2802461900014680890}
+  - component: {fileID: 6484326626629000714}
   m_Layer: 0
   m_Name: LandingPodManager
   m_TagString: Untagged
@@ -44,13 +45,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   landingPodPrefab: {fileID: 3942852816037562710, guid: 16fb14ddae4b0ec458c6d146ff6eda22, type: 3}
-  relicAmount: {fileID: 11400000, guid: cb2bab5ef5e385d44807c9e320f9cc3f, type: 2}
   shakeTime: 2
   shakeSpeed: 10
   shakeDistance: 10
-  onResetCamera: {fileID: 11400000, guid: b6205afdc986d9a4087d9acd603a1e9b, type: 2}
   onLaunchCompleted: {fileID: 11400000, guid: 8396509a562c56248ad17bdc4327cf2c, type: 2}
-  onBeforeLaunch: {fileID: 11400000, guid: fc4f2d45e7871034189f4aadf1eb605b, type: 2}
-  onAfterLaunch: {fileID: 11400000, guid: d93fefc343f7b7d428cfe147f25d9837, type: 2}
-  onBeforeLanding: {fileID: 11400000, guid: e571c48b173f72744aba86654fb6053f, type: 2}
-  onAfterLanding: {fileID: 11400000, guid: e7e54b2af2dc0664d88a771f2ab55509, type: 2}
+  onLaunch:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6484326626629000714}
+        m_TargetAssemblyTypeName: Features.Audio.AudioCue, Assembly-CSharp
+        m_MethodName: PlayAudioCue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6484326626629000714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664579047499098914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f92f965dbe44449b252b814ddc7137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCue: {fileID: 11400000, guid: bdd2d583a93cbdd439ad747e40c51baf, type: 2}
+  playOnStart: 0
+  audioCueEventChannel: {fileID: 11400000, guid: 9b5c99e34ed1e9c419efb86300044bb0, type: 2}
+  audioConfiguration: {fileID: 11400000, guid: 135d58a04787528408d6533e47de5db4, type: 2}

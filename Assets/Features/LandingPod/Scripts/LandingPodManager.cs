@@ -2,6 +2,7 @@
 using DataStructures.Variables;
 using Features.ExtendedRandom;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Features.LandingPod.Scripts
 {
@@ -16,6 +17,7 @@ namespace Features.LandingPod.Scripts
 
         [Header("Launching Events")]
         [SerializeField] private LaunchCompletedActionEvent onLaunchCompleted;
+        [SerializeField] private UnityEvent onLaunch;
 
         private LandingPod landingPod;
 
@@ -65,8 +67,8 @@ namespace Features.LandingPod.Scripts
             // Set parent of LandingPodCamera so that it will not move with the landingPod
             landingPod.LandingPodCam.transform.SetParent(this.transform);
             
-            // TODO trigger LaunchSound
-            
+            onLaunch?.Invoke();
+
             // Cache landingPod Position
             Vector3 landingPodPosition = landingPod.transform.localPosition;
             Vector3 landingPodStartPosition = landingPod.transform.localPosition;
