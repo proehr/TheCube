@@ -214,7 +214,6 @@ namespace Features.MovableCamera.Logic
                 Quaternion endQ = startQ * Quaternion.Euler(0, 90,0);
 
                 onRotateLeft.Raise();
-                Debug.Log("rotate");
 
                 StartCoroutine(Rotate(transform, startQ, endQ, cameraPreset.PlanarRotationSpeed));
                 StartCoroutine(MoveLocal(transform, newPosition, activeFace.Offset, cameraPreset.PlanarRotationSpeed));
@@ -234,7 +233,6 @@ namespace Features.MovableCamera.Logic
                 Quaternion endQ = startQ * Quaternion.Euler(0, -90, 0);
 
                 onRotateRight.Raise();
-                Debug.Log("rotate");
 
                 StartCoroutine(Rotate(transform, startQ, endQ, cameraPreset.PlanarRotationSpeed));
                 StartCoroutine(Move(transform, newPosition, activeFace.Offset, cameraPreset.PlanarRotationSpeed));
