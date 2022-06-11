@@ -63,5 +63,33 @@ MonoBehaviour:
     m_Localized: Volume
     m_Metadata:
       m_Items: []
+  - m_Id: 86770799006384128
+    m_Localized: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86771289924501504
+    m_Localized: Next Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86781585078550528
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86787221975662592
+    m_Localized: Music Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86787283397050368
+    m_Localized: Effects Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86787619809591296
+    m_Localized: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86787574599188480
+    m_Localized: Window Mode
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

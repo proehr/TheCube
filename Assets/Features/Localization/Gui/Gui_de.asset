@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 855182064156672
-    m_Localized: Quit
+    m_Localized: Beenden
     m_Metadata:
       m_Items: []
   - m_Id: 855243934334976
@@ -61,6 +61,34 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 72073100092964864
     m_Localized: "Lautst\xE4rke"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86770799006384128
+    m_Localized: "Hauptmen\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86771289924501504
+    m_Localized: "N\xE4chstes Level"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86781585078550528
+    m_Localized: Fortsetzen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86787283397050368
+    m_Localized: "Effektlautst\xE4rke"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86787221975662592
+    m_Localized: "Musiklautst\xE4rke"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86787619809591296
+    m_Localized: "Aufl\xF6sung"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86787574599188480
+    m_Localized: Fenster
     m_Metadata:
       m_Items: []
   references:
