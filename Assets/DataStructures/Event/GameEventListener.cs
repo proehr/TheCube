@@ -18,9 +18,9 @@ namespace DataStructures.Event
             @event.UnregisterListener(this);
         }
 
-        public void OnEventRaised()
+        public virtual void OnEventRaised()
         {
-            response.Invoke();
+            response?.Invoke();
         }
     }
 }

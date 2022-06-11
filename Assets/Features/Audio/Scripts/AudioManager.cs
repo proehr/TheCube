@@ -89,8 +89,8 @@ namespace Features.Audio
 				if (!audioCueData.looping)
 				{
 					soundEmitterArray[i].OnSoundFinishedPlaying += OnSoundEmitterFinishedPlaying;
-					soundEmitterArray[i].SetAudioCueKey(audioCueKey);
 				}
+				soundEmitterArray[i].SetAudioCueKey(audioCueKey);
 			}
 			return audioCueKey;
 		}

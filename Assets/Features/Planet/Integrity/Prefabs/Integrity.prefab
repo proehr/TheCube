@@ -48,6 +48,8 @@ MonoBehaviour:
   planetCubes: {fileID: 11400000, guid: 2ba9aca49bd6a7e49bd0f7350ae5bfaa, type: 2}
   baseIntegrity: {fileID: 11400000, guid: 3477042811d2649439bf98de1b6c963e, type: 2}
   currentIntegrity: {fileID: 11400000, guid: 3253e204aa8aca14193315643fa54697, type: 2}
+  lowIntegrityThreshold: {fileID: 11400000, guid: 070a3d45f23c9a841a0d1162d8731492, type: 2}
+  lowIntegrity: {fileID: 11400000, guid: 0dddfb9f1922728449f1aebc2831de89, type: 2}
   maxStability: 0
   currentStability: 0
   isActive: 1

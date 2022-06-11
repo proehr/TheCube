@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5081702012960922837}
-  - component: {fileID: 2630483834966330514}
+  - component: {fileID: 2495019829985509041}
+  - component: {fileID: 3384982166703260651}
+  - component: {fileID: 649625924855390761}
   m_Layer: 0
-  m_Name: EventListener
+  m_Name: LowIntegrity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +33,67 @@ Transform:
   m_Father: {fileID: 8585116226730157208}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2630483834966330514
+--- !u!114 &2495019829985509041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7104515478742160748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f92f965dbe44449b252b814ddc7137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCue: {fileID: 11400000, guid: a2e325733bb08f14c9984ac9116595ba, type: 2}
+  playOnStart: 0
+  audioCueEventChannel: {fileID: 11400000, guid: 9b5c99e34ed1e9c419efb86300044bb0, type: 2}
+  audioConfiguration: {fileID: 11400000, guid: 135d58a04787528408d6533e47de5db4, type: 2}
+--- !u!114 &3384982166703260651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7104515478742160748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c239b19dd5fa4f4a815798962acffee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: edd02da15780b544686058a4749f7d48, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2495019829985509041}
+        m_TargetAssemblyTypeName: Features.Audio.AudioCue, Assembly-CSharp
+        m_MethodName: PlayAudioCue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  boolVariable: {fileID: 11400000, guid: 0dddfb9f1922728449f1aebc2831de89, type: 2}
+  responseFalse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2495019829985509041}
+        m_TargetAssemblyTypeName: Features.Audio.AudioCue, Assembly-CSharp
+        m_MethodName: StopAudioCue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &649625924855390761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,10 +105,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562333bb560789b4fbc0b79687b142fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  event: {fileID: 11400000, guid: 5a2e14e7ccedd274786b668a249565ff, type: 2}
+  event: {fileID: 11400000, guid: a6463732bd29c434facafa95a4108298, type: 2}
   response:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2495019829985509041}
+        m_TargetAssemblyTypeName: Features.Audio.AudioCue, Assembly-CSharp
+        m_MethodName: FinishAudioCue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8585116226730157210
 GameObject:
   m_ObjectHideFlags: 0
