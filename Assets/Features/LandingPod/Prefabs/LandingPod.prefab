@@ -52,8 +52,8 @@ MonoBehaviour:
   landingPodCam: {fileID: 7955384683483917187}
   yOffset: 4
   spawnedWorkerPrefab: {fileID: 8898499396749841657, guid: aae8914922466a04383ec8cef4c86b99, type: 3}
-  workerCost: 2
-  workerSpawnCooldown: 5
+  workerCost: {fileID: 11400000, guid: 086a387bd9afd6b4cad34d43c6554471, type: 2}
+  workerSpawnCooldown: {fileID: 11400000, guid: 3f0911862526d99459d4291b45164215, type: 2}
 --- !u!65 &6344934977905358141
 BoxCollider:
   m_ObjectHideFlags: 0

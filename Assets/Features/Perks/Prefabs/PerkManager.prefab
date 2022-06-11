@@ -1,0 +1,195 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1290936907410485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 334399182870561522}
+  m_Layer: 0
+  m_Name: PerkManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &334399182870561522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290936907410485}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 9086675626693481604}
+  - {fileID: 629671746994633365}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &384225161280682947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9086675626693481604}
+  m_Layer: 0
+  m_Name: GameEventListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9086675626693481604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384225161280682947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 334399182870561522}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7251247746881528041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 629671746994633365}
+  - component: {fileID: 9143287358937062760}
+  m_Layer: 0
+  m_Name: PerkManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &629671746994633365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251247746881528041}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 334399182870561522}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9143287358937062760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251247746881528041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6049abc9438142d468089f5915cf6706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceExcavationCommandData: {fileID: 11400000, guid: 4d429cc94e5889049b16a15af8eff4bb, type: 2}
+  defaultResourceExcavationRequiredWorker:
+    name: 'Required worker for default resource excavation '
+    description: 
+    level: 1
+    factor: -1
+    maxValue: 1
+    currentValue: 3
+    startValue: 3
+  defaultResourceExcavationDuration:
+    name: Default resource excavation duration
+    description: 
+    level: 1
+    factor: -1
+    maxValue: 0.1
+    currentValue: 5
+    startValue: 5
+  foundationExcavationCommandData: {fileID: 11400000, guid: 5bd7690fda594c84883493b5ee6ea97f, type: 2}
+  foundationResourceExcavationRequiredWorker:
+    name: Required worker for foundation resource excavation
+    description: 
+    level: 1
+    factor: -1
+    maxValue: 1
+    currentValue: 4
+    startValue: 4
+  foundationResourceExcavationDuration:
+    name: Foundation resource excavation duration
+    description: 
+    level: 1
+    factor: -5
+    maxValue: 1
+    currentValue: 30
+    startValue: 30
+  relicExcavationCommandData: {fileID: 11400000, guid: 08146545c4c25c841b021cc794a63ecd, type: 2}
+  relicResourceExcavationRequiredWorker:
+    name: Required worker for relic resource excavation
+    description: 
+    level: 1
+    factor: -1
+    maxValue: 1
+    currentValue: 8
+    startValue: 8
+  relicResourceExcavationDuration:
+    name: Relic resource excavation duration
+    description: 
+    level: 1
+    factor: -5
+    maxValue: 5
+    currentValue: 40
+    startValue: 40
+  workerT1Costs: {fileID: 11400000, guid: 086a387bd9afd6b4cad34d43c6554471, type: 2}
+  workerCost:
+    name: Worker cost
+    description: 
+    level: 1
+    factor: -1
+    maxValue: 1
+    currentValue: 2
+    startValue: 2
+  workerSpawnCooldown: {fileID: 11400000, guid: 3f0911862526d99459d4291b45164215, type: 2}
+  workerSpawnRate:
+    name: Worker spawnrate
+    description: 
+    level: 1
+    factor: -1
+    maxValue: 0.1
+    currentValue: 5
+    startValue: 5
+  workerT1WalkSpeedMultiplier: {fileID: 11400000, guid: 8523ffead42006e419898abc2082045f, type: 2}
+  walkSpeedMultiplier:
+    name: Worker speed
+    description: 
+    level: 1
+    factor: 5
+    maxValue: 1000
+    currentValue: 3.5
+    startValue: 3.5
+  resourceAmount: {fileID: 11400000, guid: ab4801d2e9b68f44aa5711385e8926f6, type: 2}
+  startResourceAmount:
+    name: Start resource amount
+    description: 
+    level: 1
+    factor: 2
+    maxValue: 1000
+    currentValue: 10
+    startValue: 10
+  perkPool: {fileID: 11400000, guid: c1741c0de2421bc4c98578dfd7aa0b4a, type: 2}

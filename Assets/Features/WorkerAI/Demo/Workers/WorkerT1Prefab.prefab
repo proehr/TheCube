@@ -66,7 +66,7 @@ MonoBehaviour:
   wanderRadius: 5
   wanderDistance: 10
   maxAngleChange: 0.3
-  walkSpeedMultiplier: 3.5
+  walkSpeedMultiplier: {fileID: 11400000, guid: 8523ffead42006e419898abc2082045f, type: 2}
   runSpeedMultiplier: 7
 --- !u!33 &3912867443596418114
 MeshFilter:

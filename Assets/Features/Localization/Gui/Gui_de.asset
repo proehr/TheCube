@@ -91,5 +91,45 @@ MonoBehaviour:
     m_Localized: Fenster
     m_Metadata:
       m_Items: []
+  - m_Id: 86849662967398400
+    m_Localized: "Ben\xF6tigte Arbeiter f\xFCr die Ausgrabung von Standardressourcen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86850199825727488
+    m_Localized: Dauer der Standardressourcenausgrabung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86850463546785792
+    m_Localized: "Ben\xF6tigte Arbeiter f\xFCr die Ausgrabung von Fundamenressourcen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86850846411243520
+    m_Localized: Dauer der Fundamenressourcenausgrabung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86850961544888320
+    m_Localized: "Ben\xF6tigte Arbeiter f\xFCr die Ausgrabung von Relikten"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86850965047132160
+    m_Localized: Dauer der Reliktausgrabung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86851222862610432
+    m_Localized: Arbeiter kosten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86858958170013696
+    m_Localized: Arbeitererschaffungrate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86858962964103168
+    m_Localized: Arbeiter Geschwindigkeit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86858970908114944
+    m_Localized: Start Ressourcenmenge
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

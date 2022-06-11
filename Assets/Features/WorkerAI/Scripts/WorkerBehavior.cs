@@ -1,4 +1,5 @@
-﻿using Features.Commands.Scripts;
+﻿using DataStructures.Variables;
+using Features.Commands.Scripts;
 using Features.WorkerAI.Scripts.StateMachine;
 using Features.WorkerDTO;
 using UnityEngine;
@@ -20,7 +21,7 @@ namespace Features.WorkerAI.Scripts
         [Tooltip("In Radians")] [FormerlySerializedAs("change")] [SerializeField]
         private float maxAngleChange = 0.3f;
 
-        [SerializeField] private float walkSpeedMultiplier = 3.5f;
+        [SerializeField] private FloatVariable walkSpeedMultiplier;
         [SerializeField] private float runSpeedMultiplier = 7.0f;
 
         private NavMeshAgent agent;
@@ -34,7 +35,7 @@ namespace Features.WorkerAI.Scripts
         private void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
-            currentState = new Wander(gameObject, agent, walkSpeedMultiplier, runSpeedMultiplier, wanderRadius,
+            currentState = new Wander(gameObject, agent, walkSpeedMultiplier.Get(), runSpeedMultiplier, wanderRadius,
                 wanderDistance, maxAngleChange);
         }
 
@@ -48,7 +49,7 @@ namespace Features.WorkerAI.Scripts
             if (currentState.name == AbstractState.STATE.COMMAND) return;
 
             idlePosition = agent.destination;
-            currentState.SetNext(new ExecutingCommand(gameObject, agent, walkSpeedMultiplier, runSpeedMultiplier,
+            currentState.SetNext(new ExecutingCommand(gameObject, agent, walkSpeedMultiplier.Get(), runSpeedMultiplier,
                 command));
         }
 
@@ -65,7 +66,7 @@ namespace Features.WorkerAI.Scripts
         {
             agent.enabled = true;
             agent.Warp(idlePosition);
-            currentState.SetNext(new Wander(gameObject, agent, walkSpeedMultiplier, runSpeedMultiplier, wanderRadius,
+            currentState.SetNext(new Wander(gameObject, agent, walkSpeedMultiplier.Get(), runSpeedMultiplier, wanderRadius,
                 wanderDistance, maxAngleChange));
         }
 
