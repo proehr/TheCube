@@ -207,26 +207,26 @@ namespace Features.WorkerAI.Scripts.Pathfinding
 
             // TODO generate sub-faces
             
-            var subFaces = new List<Face>(); // TODO apply capacity of 2 * (n-1)^2
-            foreach (var face in faces)
-            {
-                var bottomLeftVertex = face.vertices[Face.BOTTOM_LEFT];
-                var subFace = new Face {
-                    vertices = {
-                        [Face.BOTTOM_LEFT] =
-                            GetOrCreateVertex(verticesInSpace, vertices, bottomLeftVertex.x, bottomLeftVertex.y, bottomLeftVertex.z),
-                        [Face.BOTTOM_RIGHT] =
-                            GetOrCreateVertex(verticesInSpace, vertices, x, y + 1, z + 1),
-                        [Face.TOP_RIGHT] =
-                            GetOrCreateVertex(verticesInSpace, vertices, x + 1, y + 1, z + 1),
-                        [Face.TOP_LEFT] =
-                            GetOrCreateVertex(verticesInSpace, vertices, x + 1, y, z + 1)
-                    }
-                };
-
-                face.ConnectVertices();
-                faces.Add(face);
-            }
+            // var subFaces = new List<Face>(); // TODO apply capacity of 2 * (n-1)^2
+            // foreach (var face in faces)
+            // {
+            //     var bottomLeftVertex = face.vertices[Face.BOTTOM_LEFT];
+            //     var subFace = new Face {
+            //         vertices = {
+            //             [Face.BOTTOM_LEFT] =
+            //                 GetOrCreateVertex(verticesInSpace, vertices, bottomLeftVertex.x, bottomLeftVertex.y, bottomLeftVertex.z),
+            //             [Face.BOTTOM_RIGHT] =
+            //                 GetOrCreateVertex(verticesInSpace, vertices, x, y + 1, z + 1),
+            //             [Face.TOP_RIGHT] =
+            //                 GetOrCreateVertex(verticesInSpace, vertices, x + 1, y + 1, z + 1),
+            //             [Face.TOP_LEFT] =
+            //                 GetOrCreateVertex(verticesInSpace, vertices, x + 1, y, z + 1)
+            //         }
+            //     };
+            //
+            //     face.ConnectVertices();
+            //     faces.Add(face);
+            // }
             
             foreach (var vertex in vertices)
             {
