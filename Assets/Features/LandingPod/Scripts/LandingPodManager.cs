@@ -17,7 +17,8 @@ namespace Features.LandingPod.Scripts
 
         [Header("Launching Events")]
         [SerializeField] private LaunchCompletedActionEvent onLaunchCompleted;
-        [SerializeField] private UnityEvent onLaunch;
+        [SerializeField] private UnityEvent onBeginLaunch;
+        [SerializeField] private UnityEvent onBeginLand;
 
         private LandingPod landingPod;
 
@@ -67,7 +68,7 @@ namespace Features.LandingPod.Scripts
             // Set parent of LandingPodCamera so that it will not move with the landingPod
             landingPod.LandingPodCam.transform.SetParent(this.transform);
             
-            onLaunch?.Invoke();
+            onBeginLaunch?.Invoke();
 
             // Cache landingPod Position
             Vector3 landingPodPosition = landingPod.transform.localPosition;
@@ -106,7 +107,7 @@ namespace Features.LandingPod.Scripts
                 .setEase(LeanTweenType.easeInOutQuint);
             
             yield return new WaitForSeconds(5);
-            // TODO trigger LandSound
+            onBeginLand?.Invoke();
             
             // Set parent of LandingPodCamera back, so that it will move with the landingPod again
             landingPod.LandingPodCam.transform.SetParent(landingPod.transform);
