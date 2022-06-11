@@ -9,22 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b357a35b19afa6e4ca9ed9cc1830f6de, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b6c2b467356a7642a6aa543eb27dccd, type: 3}
   m_Name: SFXAudioConfiguration
   m_EditorClassIdentifier: 
-  OutputAudioMixerGroup: {fileID: 0}
-  _priorityLevel: 128
+  OutputAudioMixerGroup: {fileID: 6206261592968517525, guid: d450f48ee3674cefb91f0c2ffbf9c620, type: 2}
+  priorityLevel: 128
   Mute: 0
   Volume: 1
   Pitch: 1
   PanStereo: 0
   ReverbZoneMix: 1
-  SpatialBlend: 0
+  SpatialBlend: 1
   RolloffMode: 0
-  MinDistance: 0.1
-  MaxDistance: 50
+  MinDistance: 5
+  MaxDistance: 350
   Spread: 0
-  DopplerLevel: 1
+  DopplerLevel: 0.33
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

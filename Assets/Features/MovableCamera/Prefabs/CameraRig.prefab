@@ -159,6 +159,8 @@ MonoBehaviour:
   movementCameraTransform: {fileID: 5857115625557989880}
   cameraPreset: {fileID: 11400000, guid: e56a26b9dab67f646823c6ba6b942e10, type: 2}
   cameraDebugViewer: {fileID: 11400000, guid: 61c8d2092c372634d84ffe2b12c7d908, type: 2}
+  onRotateLeft: {fileID: 11400000, guid: d13680e1df82c304aa1fe5c0ee7c2e5d, type: 2}
+  onRotateRight: {fileID: 11400000, guid: 52f639c1e7240e14186006b119027e60, type: 2}
   activeCorner: {fileID: 11400000, guid: 58c63d14b396ed244812dfb4ff79de3b, type: 2}
   activeFace: {fileID: 11400000, guid: 35abbb2f2dd134c40880b45557f0092c, type: 2}
 --- !u!114 &5305641842195297382
@@ -427,6 +429,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 83e76a96-4ee4-4482-9a45-fc068b2b7dec
     m_ActionName: Camera/Zoom[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6c87ba82-cdab-4498-abe3-80f0930ac4e2
+    m_ActionName: Camera/ShiftSpeed[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f0f5950-f850-4ce0-8fc8-59a476ee0532
+    m_ActionName: Camera/MousePosition[/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Camera

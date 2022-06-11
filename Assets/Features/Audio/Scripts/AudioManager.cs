@@ -15,7 +15,6 @@ namespace Features.Audio
 		private SoundEmitter musicSoundEmitter;
 	
 		[Header("Music")]
-		[SerializeField] private AudioCue_SO ingameMusic = default;
 		[SerializeField] private AudioConfiguration_SO ingameMusicConfiguration = default;
 		[SerializeField] private AudioMixer audioMixer;
 		[SerializeField] private GameSettings_SO gameSettings = default;
@@ -33,7 +32,6 @@ namespace Features.Audio
 			this.effectsEventChannel.OnAudioCuePlayRequested += PlayAudioCue;
 			this.effectsEventChannel.OnAudioCueStopRequested += StopAudioCue;
 			this.effectsEventChannel.OnAudioCueFinishRequested += FinishAudioCue;
-			this.PlayNextMusicTrack();
 		}
 
 		private void SetAudioVolumesFromSettings()
@@ -53,15 +51,15 @@ namespace Features.Audio
 			this.effectsEventChannel.OnAudioCueFinishRequested -= FinishAudioCue;
 			this.StopMusic();
 		}
-
-		public void PlayNextMusicTrack()
+		
+		public void PlayMusicTrack(AudioCue_SO pTrack)
 		{
-			if (!this.ingameMusic || !this.ingameMusicConfiguration) return;
+			if (!this.ingameMusicConfiguration || pTrack == null || pTrack.GetClips() == null || pTrack.GetClips().Length == 0) return;
 			if (!this.musicSoundEmitter)
 			{
 				this.musicSoundEmitter = this.pool.Request();
 			}
-			this.musicSoundEmitter.FadeInAudioClip(this.ingameMusic.GetClips()[0], this.ingameMusicConfiguration, true);
+			this.musicSoundEmitter.FadeInAudioClip(pTrack.GetClips()[0], this.ingameMusicConfiguration, true);
 			this.musicSoundEmitter.OnSoundFinishedPlaying += StopMusicEmitter;
 		}
 	

@@ -105,9 +105,9 @@ namespace Features.LandingPod.Scripts
             // Move LandingPod down to given position with LeanTween, Hardcoded easeInOutQuint
             LeanTween.moveLocal(landingPod.gameObject, landingPosition, 5)
                 .setEase(LeanTweenType.easeInOutQuint);
-            
-            yield return new WaitForSeconds(5);
+
             onBeginLand?.Invoke();
+            yield return new WaitForSeconds(5);
             
             // Set parent of LandingPodCamera back, so that it will move with the landingPod again
             landingPod.LandingPodCam.transform.SetParent(landingPod.transform);
