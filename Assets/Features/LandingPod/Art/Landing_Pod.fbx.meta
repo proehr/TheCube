@@ -3,7 +3,17 @@ guid: c968bdf0053527a4ba70234425e0ec2e
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material LandingPod
+    second: {fileID: 2100000, guid: 239717a7f5691ab47bd756515e52a9d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material LandingPod engine light
+    second: {fileID: 2100000, guid: dbce46ba519aecb4187529110f86c8f0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
