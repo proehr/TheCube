@@ -15,4 +15,4 @@ MonoBehaviour:
   requiredWorkers: 8
   maxDistanceToLocation: 13
   duration: 40
-  commandPostPrefab: {fileID: 1792652583490922534, guid: e0c3e6980c5bb5942a2f9abba5f81c35, type: 3}
+  commandPostPrefab: {fileID: 0}
