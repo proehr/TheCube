@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   looping: 0
   audioClipGroups:
-  - sequenceMode: 2
+  - sequenceMode: 1
     audioClipData:
     - audioClip: {fileID: 8300000, guid: 8f43cb7aca1bb1a45b439a727d06fdc1, type: 3}
       volume:
-        minValue: 1
-        maxValue: 1
+        minValue: 0.60369885
+        maxValue: 0.60369885
       pitch:
         minValue: 1
         maxValue: 1

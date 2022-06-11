@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08e854ccd8588da4694c3ae040c10c5e, type: 3}
-  m_Name: ButonHoverOffAudioCue
+  m_Name: ButtonHoverOffAudioCue
   m_EditorClassIdentifier: 
   looping: 0
   audioClipGroups:
@@ -18,8 +18,8 @@ MonoBehaviour:
     audioClipData:
     - audioClip: {fileID: 8300000, guid: c5abc7f9f92d72a4d9f55f7a17c36361, type: 3}
       volume:
-        minValue: 1
-        maxValue: 1
+        minValue: 0.60369885
+        maxValue: 0.60369885
       pitch:
         minValue: 1
         maxValue: 1

@@ -59,6 +59,34 @@ MonoBehaviour:
     m_Key: LABEL_VOLUME
     m_Metadata:
       m_Items: []
+  - m_Id: 86770799006384128
+    m_Key: BUTTON_MAINMENU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86771289924501504
+    m_Key: BUTTON_NEXTLEVEL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86781585078550528
+    m_Key: BUTTON_RESUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86787221975662592
+    m_Key: LABEL_VOLUME_MUSIC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86787283397050368
+    m_Key: LABEL_VOLUME_EFFECTS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86787574599188480
+    m_Key: LABEL_FULLSCREENMODE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86787619809591296
+    m_Key: LABEL_RESOLUTION
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
