@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DataStructures.Variables;
 using Features.Commands.Scripts;
-using Features.WorkerAI.Scripts;
 using UnityEngine;
-using UnityEngine.Localization;
 
 namespace Features.Perks.Logic
 {
@@ -13,7 +11,6 @@ namespace Features.Perks.Logic
     public struct PerkData
     {
         [SerializeField] private string name;
-        [SerializeField, Multiline(3)] private string description;
         [SerializeField] private int level;
         [SerializeField] private int factor;
         [SerializeField] private float maxValue;
@@ -21,7 +18,6 @@ namespace Features.Perks.Logic
         [SerializeField] private float startValue;
 
         public string Name => name;
-        public string Description => description;
         public int Level
         {
             get => level;
@@ -71,9 +67,12 @@ namespace Features.Perks.Logic
         
         [Header("Data")]
         [SerializeField] private PerkPool perkPool;
+        [SerializeField] private UpgradePerkEvent upgradePerkEvent;
         
         private void Awake()
         {
+            upgradePerkEvent.RegisterListener(ApplyPerkUpgrade);
+            
             resourceExcavationCommandData.RequiredWorkers = (int)defaultResourceExcavationRequiredWorker.StartValue;
             defaultResourceExcavationRequiredWorker.CurrentValue = defaultResourceExcavationRequiredWorker.StartValue;
             resourceExcavationCommandData.Duration = defaultResourceExcavationDuration.StartValue;
