@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   looping: 0
   audioClipGroups:
-  - sequenceMode: 1
+  - sequenceMode: 2
     audioClipData:
-    - audioClip: {fileID: 8300000, guid: f368707d036c7284ab2c248cbb8890d1, type: 3}
+    - audioClip: {fileID: 8300000, guid: aa640c50967cba74e9be10932951d47f, type: 3}
       volume:
         minValue: 1
         maxValue: 1

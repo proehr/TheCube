@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08e854ccd8588da4694c3ae040c10c5e, type: 3}
-  m_Name: ExcavateCommandAudioCue
+  m_Name: PodStartinAudioCue
   m_EditorClassIdentifier: 
   looping: 0
   audioClipGroups:
   - sequenceMode: 2
     audioClipData:
-    - audioClip: {fileID: 8300000, guid: 392cc42babe7aa248a824c9995f4d0c1, type: 3}
+    - audioClip: {fileID: 8300000, guid: 99465a30a7e0e5348a44af9e01e27da5, type: 3}
       volume:
-        minValue: 0.15124607
-        maxValue: 0.15124607
+        minValue: 1
+        maxValue: 1
       pitch:
-        minValue: 1.5132
-        maxValue: 1.5132
+        minValue: 1
+        maxValue: 1
       pan:
         minValue: 0
         maxValue: 0
