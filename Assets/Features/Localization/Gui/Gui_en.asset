@@ -116,6 +116,18 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 86851222862610432
+    m_Localized: Worker cost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86858958170013696
+    m_Localized: Worker spawnrate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86858962964103168
+    m_Localized: Worker speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86858970908114944
     m_Localized: Start resource amount
     m_Metadata:
       m_Items: []

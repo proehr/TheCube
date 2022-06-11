@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DataStructures.Variables;
 using Features.Commands.Scripts;
+using Features.WorkerAI.Scripts;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -11,7 +12,7 @@ namespace Features.Perks.Logic
     [System.Serializable]
     public struct PerkData
     {
-        [SerializeField] private LocalizedString name;
+        [SerializeField] private string name;
         [SerializeField, Multiline(3)] private string description;
         [SerializeField] private int level;
         [SerializeField] private int factor;
@@ -19,7 +20,7 @@ namespace Features.Perks.Logic
         [SerializeField] private float currentValue;
         [SerializeField] private float startValue;
 
-        public LocalizedString Name => name;
+        public string Name => name;
         public string Description => description;
         public int Level
         {
@@ -56,11 +57,13 @@ namespace Features.Perks.Logic
         [SerializeField] private PerkData relicResourceExcavationRequiredWorker;
         [SerializeField] private PerkData relicResourceExcavationDuration;
         
-        [SerializeField] private GameObject landingPod;
+        [SerializeField] private IntVariable workerT1Costs;
         [SerializeField] private PerkData workerCost;
-        [SerializeField] private PerkData workerSpawnCooldown;
         
-        [SerializeField] private GameObject workerT1Prefab;
+        [SerializeField] private FloatVariable workerSpawnCooldown;
+        [SerializeField] private PerkData workerSpawnRate;
+        
+        [SerializeField] private FloatVariable workerT1WalkSpeedMultiplier;
         [SerializeField] private PerkData walkSpeedMultiplier;
         
         [SerializeField] private IntVariable resourceAmount;
@@ -85,6 +88,15 @@ namespace Features.Perks.Logic
             relicResourceExcavationRequiredWorker.CurrentValue = relicResourceExcavationRequiredWorker.StartValue;
             relicExcavationCommandData.Duration = relicResourceExcavationDuration.StartValue;
             relicResourceExcavationDuration.CurrentValue = relicResourceExcavationDuration.StartValue;
+
+            workerT1Costs.Set((int)workerCost.StartValue);
+            workerCost.CurrentValue = workerCost.StartValue;
+            
+            workerSpawnCooldown.Set((int)workerSpawnRate.StartValue);
+            workerSpawnRate.CurrentValue = workerSpawnRate.StartValue;
+
+            workerT1WalkSpeedMultiplier.Set((int)walkSpeedMultiplier.StartValue);
+            walkSpeedMultiplier.CurrentValue = walkSpeedMultiplier.StartValue;
             
             resourceAmount.Set((int)startResourceAmount.StartValue);
             startResourceAmount.CurrentValue = startResourceAmount.StartValue;
@@ -155,6 +167,21 @@ namespace Features.Perks.Logic
             if (perkData.Equals(relicResourceExcavationDuration))
             {
                 relicExcavationCommandData.Duration = relicResourceExcavationDuration.CurrentValue;
+            }
+
+            if (perkData.Equals(workerCost))
+            {
+                workerT1Costs.Set((int)workerCost.CurrentValue);
+            }
+
+            if (perkData.Equals(workerSpawnRate))
+            {
+                workerSpawnCooldown.Set((int)workerSpawnRate.CurrentValue);
+            }
+
+            if (perkData.Equals(walkSpeedMultiplier))
+            {
+                workerT1WalkSpeedMultiplier.Set((int)walkSpeedMultiplier.CurrentValue);
             }
 
             if (perkData.Equals(startResourceAmount))

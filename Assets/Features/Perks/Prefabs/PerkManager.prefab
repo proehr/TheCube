@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceExcavationCommandData: {fileID: 11400000, guid: 4d429cc94e5889049b16a15af8eff4bb, type: 2}
   defaultResourceExcavationRequiredWorker:
-    name: Required worker for default resource excavation
+    name: 'Required worker for default resource excavation '
     description: 
     level: 1
     factor: -1
@@ -115,7 +115,7 @@ MonoBehaviour:
     currentValue: 3
     startValue: 3
   defaultResourceExcavationDuration:
-    name: Default resource excavation speed
+    name: Default resource excavation duration
     description: 
     level: 1
     factor: -1
@@ -132,7 +132,7 @@ MonoBehaviour:
     currentValue: 4
     startValue: 4
   foundationResourceExcavationDuration:
-    name: Foundation resource excavation speed
+    name: Foundation resource excavation duration
     description: 
     level: 1
     factor: -5
@@ -141,7 +141,7 @@ MonoBehaviour:
     startValue: 30
   relicExcavationCommandData: {fileID: 11400000, guid: 08146545c4c25c841b021cc794a63ecd, type: 2}
   relicResourceExcavationRequiredWorker:
-    name: Required worker for relic excavation
+    name: Required worker for relic resource excavation
     description: 
     level: 1
     factor: -1
@@ -149,33 +149,34 @@ MonoBehaviour:
     currentValue: 8
     startValue: 8
   relicResourceExcavationDuration:
-    name: Relic resource excavation speed
+    name: Relic resource excavation duration
     description: 
     level: 1
     factor: -5
     maxValue: 5
     currentValue: 40
     startValue: 40
-  landingPod: {fileID: 950513910805580604, guid: 16fb14ddae4b0ec458c6d146ff6eda22, type: 3}
+  workerT1Costs: {fileID: 11400000, guid: 086a387bd9afd6b4cad34d43c6554471, type: 2}
   workerCost:
-    name: Worker Resource Cost
+    name: Worker cost
     description: 
     level: 1
     factor: -1
     maxValue: 1
     currentValue: 2
     startValue: 2
-  workerSpawnCooldown:
-    name: Worker Spawn Rate in Seconds
+  workerSpawnCooldown: {fileID: 11400000, guid: 3f0911862526d99459d4291b45164215, type: 2}
+  workerSpawnRate:
+    name: Worker spawnrate
     description: 
     level: 1
     factor: -1
     maxValue: 0.1
     currentValue: 5
     startValue: 5
-  workerT1Prefab: {fileID: 3912867443596418126, guid: aae8914922466a04383ec8cef4c86b99, type: 3}
+  workerT1WalkSpeedMultiplier: {fileID: 11400000, guid: 8523ffead42006e419898abc2082045f, type: 2}
   walkSpeedMultiplier:
-    name: Worker Walk Speed
+    name: Worker speed
     description: 
     level: 1
     factor: 5
@@ -184,7 +185,7 @@ MonoBehaviour:
     startValue: 3.5
   resourceAmount: {fileID: 11400000, guid: ab4801d2e9b68f44aa5711385e8926f6, type: 2}
   startResourceAmount:
-    name: 
+    name: Start resource amount
     description: 
     level: 1
     factor: 2

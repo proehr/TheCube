@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using DataStructures.Variables;
 using Features.Inventory.Scripts;
 using Features.WorkerAI.Scripts;
 using Sirenix.OdinInspector;
@@ -26,10 +27,10 @@ namespace Features.LandingPod.Scripts
         [SerializeField] private WorkerBehavior spawnedWorkerPrefab;
 
         [Tooltip("How many resources does it cost to spawn 1 worker?")]
-        [SerializeField] private int workerCost = 2;
+        [SerializeField] private IntVariable workerCost;
 
         [Tooltip("Cooldown in seconds before spawning a new worker.")]
-        [SerializeField] private float workerSpawnCooldown = 5.0f;
+        [SerializeField] private FloatVariable workerSpawnCooldown;
 
         [ShowInInspector] [ReadOnly] private float currentCooldown;
         private float lastWorkerSpawnTime;
@@ -92,7 +93,7 @@ namespace Features.LandingPod.Scripts
         {
             if (lastWorkerSpawnTime > 0)
             {
-                currentCooldown = workerSpawnCooldown - Time.time + lastWorkerSpawnTime;
+                currentCooldown = workerSpawnCooldown.Get() - Time.time + lastWorkerSpawnTime;
             }
 
             if (currentCooldown <= 0)
@@ -109,12 +110,12 @@ namespace Features.LandingPod.Scripts
                 Debug.LogWarning("Spawn is currently disabled.");
                 return;
             }
-            if (useResources && inventory.Resource.Get() < workerCost) return;
+            if (useResources && inventory.Resource.Get() < workerCost.Get()) return;
 
             workerService.InstantiateNewWorker(spawnedWorkerPrefab, spawnPosition, Quaternion.identity);
             if (useResources)
             {
-                inventory.Resource.Add(-workerCost);
+                inventory.Resource.Add(-workerCost.Get());
             }
 
             lastWorkerSpawnTime = Time.time;
