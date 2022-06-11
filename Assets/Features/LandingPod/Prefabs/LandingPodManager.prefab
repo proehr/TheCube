@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2802461900014680890}
   - component: {fileID: 6484326626629000714}
   - component: {fileID: 3196290775600029909}
+  - component: {fileID: 2639368878543499295}
   m_Layer: 0
   m_Name: LandingPodManager
   m_TagString: Untagged
@@ -112,3 +113,31 @@ MonoBehaviour:
   playOnStart: 0
   audioCueEventChannel: {fileID: 11400000, guid: 9b5c99e34ed1e9c419efb86300044bb0, type: 2}
   audioConfiguration: {fileID: 11400000, guid: 135d58a04787528408d6533e47de5db4, type: 2}
+--- !u!114 &2639368878543499295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664579047499098914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562333bb560789b4fbc0b79687b142fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event: {fileID: 11400000, guid: 8d1f5d259288d0547ba3550ade86b75b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6484326626629000714}
+        m_TargetAssemblyTypeName: Features.Audio.AudioCue, Assembly-CSharp
+        m_MethodName: FinishAudioCue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

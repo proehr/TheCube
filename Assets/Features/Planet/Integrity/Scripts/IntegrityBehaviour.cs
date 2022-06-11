@@ -1,3 +1,4 @@
+using DataStructures.Event;
 using DataStructures.Variables;
 using Features.LandingPod.Scripts;
 using Features.Planet.Resources.Scripts;
@@ -15,6 +16,8 @@ namespace Features.PlanetIntegrity.Scripts
 
         [SerializeField] private FloatVariable baseIntegrity;
         [SerializeField] private FloatVariable currentIntegrity;
+        [SerializeField] private FloatVariable lowIntegrityThreshold;
+        [SerializeField] private BoolVariable lowIntegrity;
         [SerializeField, ReadOnly] private float maxStability;
         [SerializeField, ReadOnly] private float currentStability;
         
@@ -50,6 +53,7 @@ namespace Features.PlanetIntegrity.Scripts
             currentIntegrity.Restore();
             
             currentIntegrity.Set(baseIntegrity.Get());
+            lowIntegrity.Set(false);
             
             isInitialized = true;
         }
@@ -81,6 +85,21 @@ namespace Features.PlanetIntegrity.Scripts
             if (!isInitialized || !isActive) return;
             
             currentIntegrity.Add(-(1 - currentStability / maxStability) * Time.deltaTime);
+            
+            if (!lowIntegrity.Get())
+            {
+                if (currentIntegrity.Get() / baseIntegrity.Get() <= lowIntegrityThreshold.Get())
+                {
+                    this.lowIntegrity.Set(true);
+                }
+            }
+            else
+            {
+                if (currentIntegrity.Get() / baseIntegrity.Get() > lowIntegrityThreshold.Get())
+                {
+                    this.lowIntegrity.Set(false);
+                }
+            }
         
             if (currentIntegrity.Get() <= 0)
             {
