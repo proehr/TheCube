@@ -18,11 +18,11 @@ MonoBehaviour:
     audioClipData:
     - audioClip: {fileID: 8300000, guid: 46128b71ef017f04eb5e8d358e86f19c, type: 3}
       volume:
-        minValue: 1
+        minValue: 0.8890221
         maxValue: 1
       pitch:
-        minValue: 1
-        maxValue: 1
+        minValue: 0.90312964
+        maxValue: 1.1029279
       pan:
         minValue: 0
         maxValue: 0

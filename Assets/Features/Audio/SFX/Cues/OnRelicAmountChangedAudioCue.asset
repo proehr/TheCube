@@ -21,8 +21,8 @@ MonoBehaviour:
         minValue: 1
         maxValue: 1
       pitch:
-        minValue: 1
-        maxValue: 1
+        minValue: 0.9015279
+        maxValue: 1.1014733
       pan:
         minValue: 0
         maxValue: 0
